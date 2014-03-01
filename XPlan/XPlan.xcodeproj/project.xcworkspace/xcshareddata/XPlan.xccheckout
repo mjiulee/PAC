@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>308F8646-9E12-44EC-AF3B-90484F500406</string>
+	<key>IDESourceControlProjectName</key>
+	<string>XPlan</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E11432EB-D1AC-4EC9-A528-5C2561422CC5</key>
+		<string>https://github.com/Mjiulee/PAC.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>XPlan/XPlan.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E11432EB-D1AC-4EC9-A528-5C2561422CC5</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Mjiulee/PAC.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E11432EB-D1AC-4EC9-A528-5C2561422CC5</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E11432EB-D1AC-4EC9-A528-5C2561422CC5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>XPlan</string>
+		</dict>
+	</array>
+</dict>
+</plist>

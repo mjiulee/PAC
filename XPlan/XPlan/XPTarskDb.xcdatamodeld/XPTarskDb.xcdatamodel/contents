@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13A3028" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="XPT_Project" representedClassName="XPT_Project" isAbstract="YES" syncable="YES">
+        <attribute name="create_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="project_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="subTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="XPT_Task" inverseName="inproject" inverseEntity="XPT_Task" syncable="YES"/>
+    </entity>
+    <entity name="XPT_Task" representedClassName="XPT_Task" isAbstract="YES" syncable="YES">
+        <attribute name="create_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="done_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="ifdone" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="notify_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="priority" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="taskcontent" attributeType="String" syncable="YES"/>
+        <attribute name="update_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="inproject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="XPT_Project" inverseName="subTasks" inverseEntity="XPT_Project" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="XPT_Project" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="XPT_Task" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>
