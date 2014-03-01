@@ -15,4 +15,10 @@
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
     #import "XPAppDelegate.h"
+
+
+
+#define NLSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
+#define IOS7_OR_LATER   NLSystemVersionGreaterOrEqualThan(7.0)
+
 #endif

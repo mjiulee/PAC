@@ -87,12 +87,26 @@
     [bezierpath  stroke];
     
     [[UIColor darkTextColor] set];
+   
+//    if ([[UIDevice currentDevice].systemVersion floatValue ] < 7.0) {
     
-    CGSize tsize = [_title sizeWithFont:[UIFont systemFontOfSize:14]];
-    CGFloat dy = (titleRect.size.height - tsize.height)/2;
-    titleRect.origin.y   += dy;
-    titleRect.size.height = tsize.height;
-    [_title drawInRect:titleRect withFont:[UIFont systemFontOfSize:14]];
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+    if (IOS7_OR_LATER) {
+        NSDictionary*attdict = [NSDictionary dictionaryWithObjectsAndKeys: [UIFont systemFontOfSize:14],NSFontAttributeName,nil];
+        CGSize tsize   = [_title sizeWithAttributes:attdict];
+        CGFloat dy = (titleRect.size.height - tsize.height)/2;
+        titleRect.origin.y   += dy;
+        titleRect.size.height = tsize.height;
+        [_title drawInRect:titleRect withAttributes:attdict];
+    }else{
+        CGSize tsize = [_title sizeWithFont:[UIFont systemFontOfSize:14]];
+        CGFloat dy = (titleRect.size.height - tsize.height)/2;
+        titleRect.origin.y   += dy;
+        titleRect.size.height = tsize.height;
+        [_title drawInRect:titleRect withFont:[UIFont systemFontOfSize:14]];
+    }
+#endif
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

@@ -9,6 +9,7 @@
 #import "XPNewTaskVctler.h"
 #import "UIImage+XPUIImage.h"
 #import "XPUIRadioButton.h"
+#import "TaskModel.h"
 
 @interface XPNewTaskVctler ()
 {
@@ -20,8 +21,8 @@
     UIView* _pikerView;
     UIDatePicker* _timePicker;
 }
--(void)navBtnBack:(id)sender;
--(void)onNavRightBtuAction:(id)sender;
+-(void)onNavLeftBtnAction:(id)sender;
+-(void)onNavRightBtnAction:(id)sender;
 -(void)onNextBtnAction:(id)sender;
 @end
 
@@ -32,6 +33,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _viewType = XPNewTaskViewType_New;
         UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_back_1"];
         UIImage* imhighLight = [UIImage imageNamed:@"nav_btn_back_2"];
         
@@ -40,15 +42,14 @@
         [btn setImage:imgnormal   forState:UIControlStateNormal];
         [btn setImage:imhighLight forState:UIControlStateHighlighted];
         [btn addTarget:self
-                action:@selector(navBtnBack:)
+                action:@selector(onNavLeftBtnAction:)
       forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.leftBarButtonItem = leftBtn;
-        
         UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
                                                                                   target:self
-                                                                                  action:@selector(onNavRightBtuAction:)];
+                                                                                  action:@selector(onNavRightBtnAction:)];
         self.navigationItem.rightBarButtonItem = rightBtn;
     }
     return self;
@@ -85,12 +86,24 @@
     
     _radioGroupPrio = [[XPUIRadioGroup alloc] initWithRadios:_radioNormal,_radioImportant,nil];
     
-    UIButton* btnNext = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    btnNext.frame = CGRectMake(CGRectGetMaxX(_radioImportant.frame)+20, CGRectGetMaxY(_tfview .frame),100, 40);
-    [btnNext setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
-    [btnNext setTitle:@"下一个" forState:UIControlStateNormal];
-    [btnNext addTarget:self action:@selector(onNextBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btnNext];
+    if (_viewType == XPNewTaskViewType_New) {
+        UIButton* btnNext = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        btnNext.frame = CGRectMake(CGRectGetMaxX(_radioImportant.frame)+20, CGRectGetMaxY(_tfview .frame),100, 40);
+        [btnNext setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
+        [btnNext setTitle:@"下一个" forState:UIControlStateNormal];
+        [btnNext addTarget:self action:@selector(onNextBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btnNext];
+    }else{
+        if (_task2Update) {
+            _tfview.text = _task2Update.brief;
+            int status   = [_task2Update.status integerValue];
+            if (status == 0) {
+                [_radioNormal setIfCheck:YES];
+            }else{
+                [_radioImportant setIfCheck:YES];
+            }
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,11 +112,11 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)navBtnBack:(id)sender{
+-(void)onNavLeftBtnAction:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)onNavRightBtuAction:(id)sender{
+-(void)onNavRightBtnAction:(id)sender{
     // Save to core data
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -116,22 +129,22 @@
     }
     // save item to core data
     XPAppDelegate* app = [XPAppDelegate shareInstance];
+    NSString* value = [_radioGroupPrio getSelectedValue];
     
-#if IfCoreDataDebug
-    [app.coreDataMgr insertTest:_tfview.text date:[NSDate date]];
-#elif
-    XPT_Task * newTask = [[XPT_Task alloc] init];
-    newTask.taskcontent= [NSString stringWithString:_tfview.text];
-    newTask.ifdone     = [NSNumber numberWithInteger:0];
-    newTask.priority   = [NSNumber numberWithInteger:[[_radioGroupPrio getSelectedValue] integerValue]];
-    newTask.create_date= [NSDate date];
-    [app.coreDataMgr insertTask:newTask];
-#endif
-    
+    if (_viewType == XPNewTaskViewType_New)
+    {
+        [app.coreDataMgr insertTask:_tfview.text
+                             status:[value integerValue]
+                               date:[NSDate date]
+                            project:nil];
+        [_tfview setText:@""];
+    }else{
+        [app.coreDataMgr updateTask:_task2Update
+                              brief:_tfview.text
+                             status:[value integerValue]
+                            project:nil];
+    }
     // clean
-    [_tfview setText:@""];
-    
-    [app.coreDataMgr queryTest:1 size:20];
 }
 
 @end

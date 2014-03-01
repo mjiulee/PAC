@@ -10,17 +10,22 @@
 #import "UIImage+XPUIImage.h"
 #import "IIViewDeckController.h"
 #import "XPNewTaskVctler.h"
+#import "XPNewProjectVctler.h"
+#import "XPAppDelegate.h"
 
 @interface XPRootViewCtl ()
 <UITableViewDelegate,UITableViewDataSource>
 {
-    UITableView* _tableview;
+    NSMutableArray* _taskList;
+    NSMutableArray* _projectList;
+    UITableView*    _tableview;
 }
 @property(nonatomic,strong,readonly) UIButton* btnMask;
 
 -(void)setTitleByListType:(XPRootListType)type;
 -(BOOL)openLeftView;
 -(void)onNavRightBtuAction:(id)sender;
+-(void)reLoadData;
 @end
 
 @implementation XPRootViewCtl
@@ -29,6 +34,12 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _XPListType= XPRootList_List_Type_Normal;
+        _taskList = [[NSMutableArray alloc] init];
+        _projectList = [[NSMutableArray alloc] init];
+        // load data From Core Data
+        [self reLoadData];
+        
+        // view setting
         [self setTitleByListType:_XPListType];
         UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_menu01"];
         UIImage* imhighLight = [UIImage imageNamed:@"nav_btn_menu02"];
@@ -56,7 +67,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
     
     _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))
@@ -74,56 +85,80 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UItableviewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+-(void)viewWillAppear:(BOOL)animated
 {
-    return 3;
+    [super viewWillAppear:animated];
+    [self reLoadData];
+    [_tableview reloadData];
 }
+
+#pragma mark - UItableviewDataSource
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return 0;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    int count = _XPListType == XPRootList_List_Type_Normal?[_taskList count]:[_projectList count];
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    NSArray  *cellTitle  = @[@"task-item-01",@"task-item-02"];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    cell.textLabel.text = cellTitle[[indexPath row]];
+    if (_XPListType == XPRootList_List_Type_Normal) {
+        TaskModel* atask    = [_taskList objectAtIndex:[indexPath row]];
+        //NSLog(@"task at (%d)=%@",[indexPath row],atask.description);
+        cell.textLabel.text = [atask valueForKey:@"brief"];
+    }else{
+        ProjectModel* aproj    = [_projectList objectAtIndex:[indexPath row]];
+        //NSLog(@"task at (%d)=%@",[indexPath row],aproj.description);
+        cell.textLabel.text = [aproj valueForKey:@"name"];
+    }
     return cell;
 }
 
 #pragma mark- tableviewdelegate
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    NSArray  *titleArray  = @[@"incoming",@"important",@"done"];
-    UIView* headview = [UIView new];
-    headview.backgroundColor = [UIColor colorWithRed:145/255.0
-                                               green:145/255.0
-                                                blue:145/255.0
-                                               alpha:1.0];
-    UILabel* sectionTItle = [UILabel new];
-    sectionTItle.frame    = CGRectMake(15, 0, 0, 0);
-    sectionTItle.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    sectionTItle.font       = [UIFont systemFontOfSize:18];
-    sectionTItle.textColor  = [UIColor whiteColor];
-    sectionTItle.text = titleArray[section];
-    [headview addSubview:sectionTItle];
-    return headview;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    NSArray  *titleArray  = @[@"incoming",@"important",@"done"];
+//    UIView* headview = [UIView new];
+//    headview.backgroundColor = [UIColor colorWithRed:145/255.0
+//                                               green:145/255.0
+//                                                blue:145/255.0
+//                                               alpha:1.0];
+//    UILabel* sectionTItle = [UILabel new];
+//    sectionTItle.frame    = CGRectMake(15, 0, 0, 0);
+//    sectionTItle.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+//    sectionTItle.font       = [UIFont systemFontOfSize:18];
+//    sectionTItle.textColor  = [UIColor whiteColor];
+//    sectionTItle.text = titleArray[section];
+//    [headview addSubview:sectionTItle];
+//    return headview;
+//}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 44;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 44;
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (_XPListType == XPRootList_List_Type_Normal) {
+        TaskModel* atask    = [_taskList objectAtIndex:[indexPath row]];
+        XPNewTaskVctler* updatevc = [[XPNewTaskVctler alloc] init];
+        updatevc.viewType    = XPNewTaskViewType_Update;
+        updatevc.task2Update = atask;
+        [self.navigationController pushViewController:updatevc animated:YES];
+    }else{
+        
+    }
 }
 
 
@@ -132,6 +167,7 @@
 {
     [self setTitleByListType:type];
     _XPListType = type;
+    [self reLoadData];
     [_tableview reloadData];
 }
 
@@ -144,10 +180,33 @@
     }
 }
 
+-(void)reLoadData{
+    XPAppDelegate* app = [XPAppDelegate shareInstance];
+    if (_XPListType == XPRootList_List_Type_Normal) {
+        NSArray* todaylist = [app.coreDataMgr selectTaskByDay:[NSDate date]];
+        
+        if (todaylist && [todaylist count]) {
+            [_taskList removeAllObjects];
+            [_taskList setArray:todaylist];
+        }
+    }else{
+        NSArray* pList = [app.coreDataMgr selectProject:1 size:20];
+        if (pList && [pList count]) {
+            [_projectList removeAllObjects];
+            [_projectList setArray:pList];
+        }
+    }
+}
+
 -(void)onNavRightBtuAction:(id)sender
 {
-    XPNewTaskVctler* newTvctl = [[XPNewTaskVctler alloc] init];
-    [self.navigationController pushViewController:newTvctl animated:YES];
+    if (_XPListType == XPRootList_List_Type_Normal) {
+        XPNewTaskVctler* newTvctl = [[XPNewTaskVctler alloc] init];
+        [self.navigationController pushViewController:newTvctl animated:YES];
+    }else{
+        XPNewProjectVctler*newTvctl = [[XPNewProjectVctler alloc] init];
+        [self.navigationController pushViewController:newTvctl animated:YES];
+    }
 }
 
 #pragma mark - ViewDeck

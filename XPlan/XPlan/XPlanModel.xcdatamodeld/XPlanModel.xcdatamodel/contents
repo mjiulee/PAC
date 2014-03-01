@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13A3028" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ProjectModel" representedClassName="ProjectModel" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskModel" inverseName="project" inverseEntity="TaskModel" syncable="YES"/>
+    </entity>
+    <entity name="TaskModel" representedClassName="TaskModel" syncable="YES">
+        <attribute name="brief" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="create_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="finish_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectModel" inverseName="tasks" inverseEntity="ProjectModel" syncable="YES"/>
+    </entity>
     <entity name="TestModel" representedClassName="TestModel" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TestModel" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="TestModel" positionX="-405" positionY="-81" width="128" height="75"/>
+        <element name="TaskModel" positionX="-945" positionY="135" width="128" height="118"/>
+        <element name="ProjectModel" positionX="-666" positionY="36" width="128" height="73"/>
     </elements>
 </model>

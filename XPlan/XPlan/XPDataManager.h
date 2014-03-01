@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "TestModel.h"
+#import "TaskModel.h"
+#import "ProjectModel.h"
 
-#define IfCoreDataDebug 1
 
-//#define XPT_Project_SqlTable @"XPT_Project"
-//#define XPT_Task_SqlTable    @"XPT_Task"
-//#define XPT_Test_SqlTable    @"TestModel"
+#define IfCoreDataDebug 0
 
 @interface XPDataManager : NSObject
 {
@@ -27,21 +26,26 @@
 -(BOOL)queryTest:(int)page size:(int)asize;
 
 //#pragma mark - Task-List
-///*
 // * 任务表的增删改查
-// */
-//-(BOOL)insertTask:(XPT_Task*)task;
-//-(void)updateTask:(XPT_Task*)task;
-//-(void)deleteTask:(NSNumber*)taskId;
-//-(NSArray*)selectTaskByDay:(NSDate*)day;
+-(void)insertTask:(NSString*)brief
+           status:(int)status
+             date:(NSDate*)adate
+          project:(ProjectModel*)project;
+
+-(void)updateTask:(TaskModel*)task2update
+            brief:(NSString*)brief
+           status:(int)status
+          project:(ProjectModel*)project;
+
+-(void)deleteTask:(NSString*)brief;
+-(NSArray*)selectTaskByDay:(NSDate*)day;
+
 //
 //#pragma mark - Project-List
-///*
-// * 项目表的增删改查
+///* 项目表的增删改查
 // */
-//-(void)insertProject:(XPT_Project*)project;
-//-(void)updateProject:(XPT_Project*)project;
-//-(void)deleteProject:(NSNumber*)pId;
+-(void)insertProject:(NSString*)name;
+-(NSArray*)selectProject:(NSInteger)page size:(NSInteger)size;
 
 // others:
 //-(NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage;

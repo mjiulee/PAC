@@ -27,6 +27,49 @@
     _deckController = [self generateControllerStack];
     self.window.rootViewController = _deckController;
     [self.window makeKeyAndVisible];
+    
+    /*
+    {   // 第20页
+        NSString* page20 = @"1800,1590,1000,690,600,5883,72,105,3000,9940,432,265,5000";
+        CGFloat total20 = 30377;
+        [self testPage:page20 total:total20 pageidx:20];
+    }
+
+    {   // 第21页
+        NSString* page20 = @"5000,484,55,1060.7,167,54,696,8750,9900,1093,954,75";
+        CGFloat total20 = 28288.7;
+        [self testPage:page20 total:total20 pageidx:21];
+    }
+
+    {   // 第22页
+        NSString* page20 = @"6971,2530,514,280,2030,1410,5450,500,2760,74,70,4013,228";
+        CGFloat total20 = 26830;
+        [self testPage:page20 total:total20 pageidx:22];
+    }
+    
+    {   // 第23页
+        NSString* page20 = @"613,520,162,720,251,170,638";
+        CGFloat total20 = 3074;
+        [self testPage:page20 total:total20 pageidx:23];
+    }
+
+    {   // 第24页
+        NSString* page20 = @"1677,1200,25,10954,161,260,1360,5959,54,36,10350,719,11360";
+        CGFloat total20 = 44115;
+        [self testPage:page20 total:total20 pageidx:24];
+    }
+    {   // 第25页
+        NSString* page20 = @"8090,760.28,16759,42178.5,29205.36,94576.33,621,154,182,100,382,1017,1179,284";
+        CGFloat total20 = 195488.47;
+        [self testPage:page20 total:total20 pageidx:25];
+    }
+    {   // 第25页
+        NSString* page20 = @"8090,760.28,16759,42178.5,29205.36,94576.33,621,154,182,100,382,1017,1179,284";
+        CGFloat total20 = 195488.47;
+        [self testPage:page20 total:total20 pageidx:25];
+    }
+    */
+    
     return YES;
 }
 							
@@ -74,5 +117,20 @@
     return deckController;
 }
 
+/*
+-(void)testPage:(NSString*)datas total:(CGFloat)total pageidx:(int)page{
+    NSArray* ary = [datas componentsSeparatedByString:@","];
+
+    CGFloat totalValue = 0;
+    for (NSString* item in ary) {
+        totalValue += [item floatValue];
+    }
+    if (total != totalValue) {
+        NSLog(@"第%d页不对,total=%.02f,total2=%.02f",page,total,totalValue);
+    }else{
+        NSLog(@"第%d页正确,total=%0.2f",page,totalValue);
+    }
+}
+*/
 
 @end
