@@ -20,6 +20,23 @@
     return self;
 }
 
+-(void)setIfCheck:(BOOL)check{
+    _ifCHeck = check;
+    if (_group){
+        for(XPUIRadioButton* tradio in  _group.radios){
+            if (tradio != self) {
+                [tradio privitesetCheck:NO];
+            }
+        }
+    }
+}
+
+-(void)privitesetCheck:(BOOL)check{
+    _ifCHeck = check;
+    [self setNeedsDisplay];
+    
+}
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
@@ -93,10 +110,48 @@
     float yd = originalLocation.y - currentLocation.y;
     float distance = sqrt(xd*xd + yd*yd);
     
-    if (distance <= 8) {
-        [self setIfCHeck:!_ifCHeck];
+    if (distance <= 8 && !_ifCHeck) {
+        [self setIfCheck:!_ifCHeck];
         [self setNeedsDisplay];
     }
 }
 
 @end
+
+@implementation XPUIRadioGroup
+-(XPUIRadioGroup*)initWithRadios:(id)firstObj, ...
+{
+    self = [super init];
+    if (self) {
+         _radios = [[NSMutableArray alloc] init];
+        [(XPUIRadioButton*)firstObj setGroup:self];
+        [_radios addObject:firstObj];
+
+        va_list arglist;
+        va_start(arglist, firstObj);
+        id radio;
+        while (YES)
+        {
+            radio = va_arg(arglist, id);
+            if (!radio) {
+                break;
+            }
+            [(XPUIRadioButton*)radio setGroup:self];
+            [_radios addObject:radio];
+        }
+        va_end(arglist);
+    }
+    return self;
+}
+
+-(NSString*)getSelectedValue{
+    for (XPUIRadioButton* btn in _radios) {
+        if ([btn ifCHeck]) {
+            return btn.value;
+        }
+    }
+    return @"";
+}
+
+@end
+

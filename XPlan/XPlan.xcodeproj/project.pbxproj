@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4321392918B8D78F00613275 /* XPDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321392818B8D78F00613275 /* XPDataManager.m */; };
-		436AAB0E18BB138F00DA8163 /* XPT_Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 436AAB0D18BB138F00DA8163 /* XPT_Task.m */; };
-		436AAB1118BB139000DA8163 /* XPT_Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 436AAB1018BB139000DA8163 /* XPT_Project.m */; };
 		437A7CC318B71BA20088F1AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC218B71BA20088F1AA /* Foundation.framework */; };
 		437A7CC518B71BA20088F1AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC418B71BA20088F1AA /* CoreGraphics.framework */; };
 		437A7CC718B71BA20088F1AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC618B71BA20088F1AA /* UIKit.framework */; };
@@ -32,7 +30,6 @@
 		437A7D0C18B750B60088F1AA /* UIImage+XPUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A7D0B18B750B60088F1AA /* UIImage+XPUIImage.m */; };
 		4383D9E618BC8577007F7CA0 /* XPNewTaskVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */; };
 		4383D9E918BC9646007F7CA0 /* XPUIRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */; };
-		43A7B13818B847DB0026CA35 /* XPTarskDb.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B13618B847DB0026CA35 /* XPTarskDb.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,10 +45,6 @@
 /* Begin PBXFileReference section */
 		4321392718B8D78F00613275 /* XPDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPDataManager.h; sourceTree = "<group>"; };
 		4321392818B8D78F00613275 /* XPDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPDataManager.m; sourceTree = "<group>"; };
-		436AAB0C18BB138F00DA8163 /* XPT_Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPT_Task.h; sourceTree = "<group>"; };
-		436AAB0D18BB138F00DA8163 /* XPT_Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPT_Task.m; sourceTree = "<group>"; };
-		436AAB0F18BB139000DA8163 /* XPT_Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPT_Project.h; sourceTree = "<group>"; };
-		436AAB1018BB139000DA8163 /* XPT_Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPT_Project.m; sourceTree = "<group>"; };
 		437A7CBF18B71BA20088F1AA /* XPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437A7CC218B71BA20088F1AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		437A7CC418B71BA20088F1AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -86,7 +79,6 @@
 		4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPNewTaskVctler.m; sourceTree = "<group>"; };
 		4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUIRadioButton.h; sourceTree = "<group>"; };
 		4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPUIRadioButton.m; sourceTree = "<group>"; };
-		43A7B13718B847DB0026CA35 /* XPTarskDb.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XPTarskDb.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,11 +154,6 @@
 				437A7D0B18B750B60088F1AA /* UIImage+XPUIImage.m */,
 				4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */,
 				4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */,
-				43A7B13618B847DB0026CA35 /* XPTarskDb.xcdatamodeld */,
-				436AAB0F18BB139000DA8163 /* XPT_Project.h */,
-				436AAB1018BB139000DA8163 /* XPT_Project.m */,
-				436AAB0C18BB138F00DA8163 /* XPT_Task.h */,
-				436AAB0D18BB138F00DA8163 /* XPT_Task.m */,
 				4321392718B8D78F00613275 /* XPDataManager.h */,
 				4321392818B8D78F00613275 /* XPDataManager.m */,
 				437A7CDA18B71BA20088F1AA /* Images.xcassets */,
@@ -318,10 +305,7 @@
 				4383D9E618BC8577007F7CA0 /* XPNewTaskVctler.m in Sources */,
 				437A7D0018B723330088F1AA /* IISideController.m in Sources */,
 				437A7CD318B71BA20088F1AA /* XPAppDelegate.m in Sources */,
-				436AAB1118BB139000DA8163 /* XPT_Project.m in Sources */,
-				436AAB0E18BB138F00DA8163 /* XPT_Task.m in Sources */,
 				4321392918B8D78F00613275 /* XPDataManager.m in Sources */,
-				43A7B13818B847DB0026CA35 /* XPTarskDb.xcdatamodeld in Sources */,
 				437A7D0118B723330088F1AA /* IIViewDeckController.m in Sources */,
 				437A7D0C18B750B60088F1AA /* UIImage+XPUIImage.m in Sources */,
 				437A7CD918B71BA20088F1AA /* XPRootViewCtl.m in Sources */,
@@ -541,19 +525,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		43A7B13618B847DB0026CA35 /* XPTarskDb.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				43A7B13718B847DB0026CA35 /* XPTarskDb.xcdatamodel */,
-			);
-			currentVersion = 43A7B13718B847DB0026CA35 /* XPTarskDb.xcdatamodel */;
-			path = XPTarskDb.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 437A7CB718B71BA20088F1AA /* Project object */;
 }

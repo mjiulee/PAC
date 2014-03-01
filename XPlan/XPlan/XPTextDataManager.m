@@ -10,14 +10,12 @@
 
 @interface XPDataManager(){
 }
-@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *coreDataObjectContext;
+@property (nonatomic, strong, readonly) NSManagedObjectModel *coreDataObjectModel;
 @property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @end
 
 @implementation XPDataManager
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 #pragma mark - CoreData
@@ -25,7 +23,7 @@
 - (void)saveContext
 {
     NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    NSManagedObjectContext *managedObjectContext = self.coreDataObjectContext;
     if (managedObjectContext != nil)
     {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
@@ -45,18 +43,18 @@
 //初始化context对象
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if (_managedObjectContext != nil)
+    if (_coreDataObjectContext != nil)
     {
-        return _managedObjectContext;
+        return _coreDataObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil)
     {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+        _coreDataObjectContext = [[NSManagedObjectContext alloc] init];
+        [_coreDataObjectContext setPersistentStoreCoordinator:coordinator];
     }
-    return _managedObjectContext;
+    return _coreDataObjectContext;
 }
 
 /**
@@ -65,18 +63,14 @@
  */
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (_managedObjectModel != nil)
+    if (_coreDataObjectModel != nil)
     {
-        return _managedObjectModel;
+        return _coreDataObjectModel;
     }
     //这里的URLForResource:@"lich" 的url名字（lich）要和你建立datamodel时候取的名字是一样的，至于怎么建datamodel很多教程讲的很清楚
-#if IfCoreDataDebug
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"XPCDModel" withExtension:@"momd"];
-#elif 
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"XPCDModel" withExtension:@"momd"];
-#endif
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"XPTarskDb" withExtension:@"momd"];
+    _coreDataObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return _coreDataObjectModel;
 }
 
 /**
@@ -90,11 +84,8 @@
         return _persistentStoreCoordinator;
     }
     //这个地方的.sqlite名字没有限制，就是一个数据库文件的名字
-#if IfCoreDataDebug
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"XPCDModel.sqlite"];
-#elif
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"XPCDModel.sqlite"];
-#endif
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"XPTarskDb.sqlite"];
+    
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil
@@ -119,147 +110,100 @@
 }
 
 #pragma mark - Data CURD
-#pragma mark - test 
--(BOOL)insertTest:(NSString*)title date:(NSDate*)adate
+#pragma mark - task-list-curd
+-(BOOL)insertTask:(XPT_Task*)task
 {
-    NSManagedObjectContext *context = [self managedObjectContext];
-    TestModel* newtest  = [NSEntityDescription insertNewObjectForEntityForName:@"TestModel"
-                                                       inManagedObjectContext:context];
-    
+   NSManagedObjectContext *context = [self managedObjectContext];
+   XPT_Task* newTask  = [NSEntityDescription insertNewObjectForEntityForName:XPT_Task_SqlTable
+                                                      inManagedObjectContext:context];
     do
     {
-        if (!newtest){
+        if (!newTask){
             break;
         }
-        [newtest setValue:title forKey:@"title"];
-        [newtest setValue:adate forKey:@"date"];
+        newTask.taskcontent = task.taskcontent;
+        newTask.create_date = task.create_date;;
+        newTask.done_date   = task.done_date;
+        newTask.ifdone      = task.ifdone;
+        newTask.update_date = task.update_date;
+        newTask.priority    = task.priority;
+        newTask.notify_time = task.notify_time;
+        
         NSError *error;
         if(![context save:&error]){
             NSLog(@"Task Add fail：%@",[error localizedDescription]);
             break;
-        }else{
-            NSLog(@"Task Add succes");
         }
         return YES;
     } while (NO);
     return NO;
 }
-
--(BOOL)queryTest:(int)page size:(int)asize
-{
+-(void)updateTask:(XPT_Task*)task{
     NSManagedObjectContext *context = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    [fetchRequest setFetchLimit:asize];
-    [fetchRequest setFetchOffset:page];
-    
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TestModel"
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSError* error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (TestModel *info in fetchedObjects) {
-        NSLog(@"title:%@", [info valueForKey:@"title"]);
-        NSLog(@"date:%@", [info valueForKey:@"date"]);
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"objectID = %d",task.objectID];
+    //首先建立一个request,这里相当于sqlite中的查询条件，具体格式参考苹果文档
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:XPT_Task_SqlTable inManagedObjectContext:context]];
+    [request setPredicate:predicate];
+
+    NSError *error = nil;
+    //这里获取到的是一个数组，你需要取出你要更新的那个obj
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    for (XPT_Task *info in result){
+        info.taskcontent = task.taskcontent;
+        info.create_date = task.create_date;;
+        info.done_date   = task.done_date;
+        info.ifdone      = task.ifdone;
+        info.update_date = task.update_date;
+        info.priority    = task.priority;
+        info.notify_time = task.notify_time;
+        break;
     }
+
+    //保存, 更新成功
+    if ([context save:&error]) {
+        NSLog(@"更新成功");
+    }
+}
+-(void)deleteTask:(NSNumber*)taskId{
     
-    return YES;
 }
 
-#pragma mark - task-list-curd
-//-(BOOL)insertTask:(XPT_Task*)task
-//{
-//   NSManagedObjectContext *context = [self managedObjectContext];
-//   XPT_Task* newTask  = [NSEntityDescription insertNewObjectForEntityForName:XPT_Task_SqlTable
-//                                                      inManagedObjectContext:context];
-//    do
-//    {
-//        if (!newTask){
-//            break;
-//        }
-//        newTask.taskcontent = task.taskcontent;
-//        newTask.create_date = task.create_date;;
-//        newTask.done_date   = task.done_date;
-//        newTask.ifdone      = task.ifdone;
-//        newTask.update_date = task.update_date;
-//        newTask.priority    = task.priority;
-//        newTask.notify_time = task.notify_time;
-//        
-//        NSError *error;
-//        if(![context save:&error]){
-//            NSLog(@"Task Add fail：%@",[error localizedDescription]);
-//            break;
-//        }
-//        return YES;
-//    } while (NO);
-//    return NO;
-//}
-//-(void)updateTask:(XPT_Task*)task{
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"objectID = %d",task.objectID];
-//    //首先建立一个request,这里相当于sqlite中的查询条件，具体格式参考苹果文档
-//    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-//    [request setEntity:[NSEntityDescription entityForName:XPT_Task_SqlTable inManagedObjectContext:context]];
-//    [request setPredicate:predicate];
-//
-//    NSError *error = nil;
-//    //这里获取到的是一个数组，你需要取出你要更新的那个obj
-//    NSArray *result = [context executeFetchRequest:request error:&error];
-//    for (XPT_Task *info in result){
-//        info.taskcontent = task.taskcontent;
-//        info.create_date = task.create_date;;
-//        info.done_date   = task.done_date;
-//        info.ifdone      = task.ifdone;
-//        info.update_date = task.update_date;
-//        info.priority    = task.priority;
-//        info.notify_time = task.notify_time;
-//        break;
-//    }
-//
-//    //保存, 更新成功
-//    if ([context save:&error]) {
-//        NSLog(@"更新成功");
-//    }
-//}
-//-(void)deleteTask:(NSNumber*)taskId{
-//    
-//}
-//
-//-(NSArray*)selectTaskByDay:(NSDate*)day
-//{
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    
-//    // 查询条件
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"create_date=%@",day];
-//    
-//    //首先你需要建立一个request
-//    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-//    [request setEntity:[NSEntityDescription entityForName:XPT_Task_SqlTable
-//                                   inManagedObjectContext:context]];
-//    [request setPredicate:predicate];
-//    
-//    NSError *error = nil;
-//    NSArray *result = [context executeFetchRequest:request error:&error];//这里获取到的是一个数组，你需要取出你要更新的那个obj
-//    return result;
-//}
-//
-//#pragma mark - project-list-curd
-//-(void)insertProject:(NSDictionary*)projectDict{
-//    
-//}
-//
-//-(void)updateProject:(XPT_Project *)project
-//{
-//    
-//}
-//
-//-(void)deleteProject:(NSNumber*)pId
-//{
-//    
-//}
-//
-//
+-(NSArray*)selectTaskByDay:(NSDate*)day
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    // 查询条件
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"create_date=%@",day];
+    
+    //首先你需要建立一个request
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:XPT_Task_SqlTable
+                                   inManagedObjectContext:context]];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:request error:&error];//这里获取到的是一个数组，你需要取出你要更新的那个obj
+    return result;
+}
+
+#pragma mark - project-list-curd
+-(void)insertProject:(NSDictionary*)projectDict{
+    
+}
+
+-(void)updateProject:(XPT_Project *)project
+{
+    
+}
+
+-(void)deleteProject:(NSNumber*)pId
+{
+    
+}
+
+
 
 /*
 - (void)insertCoreData:(NSMutableArray*)dataArray
