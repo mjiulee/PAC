@@ -37,6 +37,7 @@
         UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_back_1"];
         UIImage* imhighLight = [UIImage imageNamed:@"nav_btn_back_2"];
         
+        // nav left
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
         [btn setImage:imgnormal   forState:UIControlStateNormal];
@@ -44,6 +45,8 @@
         [btn addTarget:self
                 action:@selector(onNavLeftBtnAction:)
       forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        self.navigationItem.leftBarButtonItem = leftBtn;
         
     }
     return self;
@@ -145,13 +148,6 @@
     XPAppDelegate* app = [XPAppDelegate shareInstance];
     NSString* value = [_radioGroupPrio getSelectedValue];
 
-    [app.coreDataMgr insertTask:_tfview.text
-                         status:[value integerValue]
-                           date:[NSDate date]
-                        project:nil];
-    [_tfview setText:@""];
-
-    
     [app.coreDataMgr insertTask:_tfview.text
                          status:[value integerValue]
                            date:[NSDate date]

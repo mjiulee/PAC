@@ -176,7 +176,8 @@
 #pragma mark - 
 -(void)reLoadData{
     XPAppDelegate* app = [XPAppDelegate shareInstance];
-    NSArray* todaylist = [app.coreDataMgr selectTaskByDay:[NSDate date]];
+    NSArray* todaylist = [app.coreDataMgr selectTaskAll];
+    //NSArray* todaylist = [app.coreDataMgr selectTaskByDay:[NSDate date]];
     if (todaylist && [todaylist count]) {
         [_taskList removeAllObjects];
         [_taskList setArray:todaylist];

@@ -39,6 +39,8 @@
 
 -(void)deleteTask:(NSString*)brief;
 -(NSArray*)selectTaskByDay:(NSDate*)day;
+// TEST
+-(NSArray*)selectTaskAll;
 
 //
 //#pragma mark - Project-List

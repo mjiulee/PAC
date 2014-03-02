@@ -240,9 +240,30 @@
 
     NSError *error = nil;
     NSArray *result = [context executeFetchRequest:request error:&error];
-    NSLog(@"result=%@",result.description);
+    //NSLog(@"result=%@",result.description);
     return result;
 }
+
+-(NSArray*)selectTaskAll
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    // 查询条件
+    //首先你需要建立一个request
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
+                                   inManagedObjectContext:context]];
+    [request setFetchLimit:100];
+    [request setFetchOffset:1];
+    
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    //NSLog(@"result=%@",result.description);
+    for (TaskModel* item in result) {
+        NSLog(@"date=%@",item.create_date.description);
+    }
+    return result;
+}
+
 
 #pragma mark - project-list-curd
 -(void)insertProject:(NSString*)name

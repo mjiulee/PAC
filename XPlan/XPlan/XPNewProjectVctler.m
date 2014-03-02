@@ -27,6 +27,7 @@
         UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_back_1"];
         UIImage* imhighLight = [UIImage imageNamed:@"nav_btn_back_2"];
         
+        // nav left
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
         [btn setImage:imgnormal   forState:UIControlStateNormal];
@@ -34,9 +35,9 @@
         [btn addTarget:self
                 action:@selector(onNavLeftBtnAction:)
       forControlEvents:UIControlEventTouchUpInside];
-        
         UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.leftBarButtonItem = leftBtn;
+        //nav right
         UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
                                                                                   target:self
                                                                                   action:@selector(onNavRightBtnAction:)];
