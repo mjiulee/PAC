@@ -8,7 +8,8 @@
 
 #import "XPLeftMenuViewCtler.h"
 #import "XPAppDelegate.h"
-#import "XPRootViewCtl.h"
+#import "XPProjectViewCtler.h"
+#import "XPTaskListVCtler.h"
 
 @interface XPLeftMenuViewCtler ()
 
@@ -103,15 +104,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller){
-        if ([controller.centerController isKindOfClass:[UINavigationController class]]){
-            //UITableViewController* cc = (UITableViewController*)((UINavigationController*)controller.centerController).topViewController;
-            //cc.navigationItem.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-            XPRootViewCtl* rootVc = (XPRootViewCtl*)((UINavigationController*)controller.centerController).topViewController;
-            if ([indexPath section] == 0 && [indexPath row] == 0) {
-                [rootVc setXPRootListType:XPRootList_List_Type_Normal];
-            }else if([indexPath section] == 0 && [indexPath row] == 1) {
-                [rootVc setXPRootListType:XPRootList_List_Type_Project];
-            }
+        if ([indexPath section] == 0 && [indexPath row] == 0)
+        {
+            XPTaskListVCtler*centervc = [[XPTaskListVCtler alloc] init];
+            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
+            [self.viewDeckController setCenterController:rootNav];
+        }else if([indexPath section] == 0 && [indexPath row] == 1)
+        {
+            XPProjectViewCtler* centervc = [[XPProjectViewCtler alloc] init];
+            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
+            [self.viewDeckController setCenterController:rootNav];
         }
     }];
 }

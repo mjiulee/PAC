@@ -21,4 +21,9 @@
 #define NLSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
 #define IOS7_OR_LATER   NLSystemVersionGreaterOrEqualThan(7.0)
 
+
+// colors
+#define kClearColor [UIColor clearColor]
+#define kWhiteColor [UIColor whiteColor]
+
 #endif

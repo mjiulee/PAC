@@ -200,7 +200,7 @@
 {
     NSManagedObjectContext *context = [self managedObjectContext];
 
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"objectID = %d",task2update.objectID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"brief=%@",task2update.brief];
     //首先建立一个request,这里相当于sqlite中的查询条件，具体格式参考苹果文档
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
@@ -215,39 +215,11 @@
         info.status= [NSNumber numberWithInteger:status];
         if ([context save:&error]) {
             NSLog(@"更新成功");
+        }else{
+            NSLog(@"更新失败");
         }
     }
 }
-
-
-//-(void)updateTask:(XPT_Task*)task{
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"objectID = %d",task.objectID];
-//    //首先建立一个request,这里相当于sqlite中的查询条件，具体格式参考苹果文档
-//    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-//    [request setEntity:[NSEntityDescription entityForName:XPT_Task_SqlTable inManagedObjectContext:context]];
-//    [request setPredicate:predicate];
-//
-//    NSError *error = nil;
-//    //这里获取到的是一个数组，你需要取出你要更新的那个obj
-//    NSArray *result = [context executeFetchRequest:request error:&error];
-//    for (XPT_Task *info in result){
-//        info.taskcontent = task.taskcontent;
-//        info.create_date = task.create_date;;
-//        info.done_date   = task.done_date;
-//        info.ifdone      = task.ifdone;
-//        info.update_date = task.update_date;
-//        info.priority    = task.priority;
-//        info.notify_time = task.notify_time;
-//        break;
-//    }
-//
-//    //保存, 更新成功
-//    if ([context save:&error]) {
-//        NSLog(@"更新成功");
-//    }
-//}
 //-(void)deleteTask:(NSNumber*)taskId{
 //    
 //}
@@ -268,6 +240,7 @@
 
     NSError *error = nil;
     NSArray *result = [context executeFetchRequest:request error:&error];
+    NSLog(@"result=%@",result.description);
     return result;
 }
 

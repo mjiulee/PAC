@@ -12,7 +12,7 @@
 +(UIImage*)imageNamed:(NSString*)picname{
     NSString* path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"resource/%@",picname]
                                                      ofType:@"png"];
-    NSLog(@"path=%@",path);
+    //NSLog(@"path=%@",path);
     return [UIImage imageWithContentsOfFile:path];
 }
 

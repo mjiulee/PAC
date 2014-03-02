@@ -7,9 +7,11 @@
 //
 
 #import "XPAppDelegate.h"
-#import "XPRootViewCtl.h"
 #import "IIViewDeckController.h"
 #import "XPLeftMenuViewCtler.h"
+
+#import "XPProjectViewCtler.h"
+#import "XPTaskListVCtler.h"
 
 @implementation XPAppDelegate
 
@@ -103,7 +105,7 @@
 #pragma mark- ViewDeck
 - (IIViewDeckController*)generateControllerStack
 {
-    XPRootViewCtl* centervc = [[XPRootViewCtl alloc] init];
+    XPTaskListVCtler* centervc = [[XPTaskListVCtler alloc] init];
     UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
     XPLeftMenuViewCtler*  leftController = [[XPLeftMenuViewCtler alloc] initWithStyle:UITableViewStylePlain];
     IIViewDeckController* deckController = [[IIViewDeckController alloc] initWithCenterViewController:rootNav

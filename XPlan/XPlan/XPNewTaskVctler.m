@@ -45,12 +45,6 @@
                 action:@selector(onNavLeftBtnAction:)
       forControlEvents:UIControlEventTouchUpInside];
         
-        UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
-        self.navigationItem.leftBarButtonItem = leftBtn;
-        UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
-                                                                                  target:self
-                                                                                  action:@selector(onNavRightBtnAction:)];
-        self.navigationItem.rightBarButtonItem = rightBtn;
     }
     return self;
 }
@@ -61,6 +55,14 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"新增任务";
 	// Do any additional setup after loading the view.
+    if (_viewType == XPNewTaskViewType_Update)
+    {
+        self.title = @"修改任务";
+        UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
+                                                                                  target:self
+                                                                                  action:@selector(onNavRightBtnAction:)];
+        self.navigationItem.rightBarButtonItem = rightBtn;
+    }
     
     UIView* tfviewbg  = [[UIView alloc] initWithFrame:CGRectMake(9,CGRectGetMaxY(self.navigationController.navigationBar.frame)+9,
                                                                  302, 142)];
@@ -118,6 +120,18 @@
 
 -(void)onNavRightBtnAction:(id)sender{
     // Save to core data
+    // [self.navigationController popViewControllerAnimated:YES];
+    if (!_tfview.text || [_tfview.text length] <= 0) {
+        return;
+    }
+    // save item to core data
+    XPAppDelegate* app = [XPAppDelegate shareInstance];
+    NSString* value = [_radioGroupPrio getSelectedValue];
+
+    [app.coreDataMgr updateTask:_task2Update
+                          brief:_tfview.text
+                         status:[value integerValue]
+                        project:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -130,21 +144,19 @@
     // save item to core data
     XPAppDelegate* app = [XPAppDelegate shareInstance];
     NSString* value = [_radioGroupPrio getSelectedValue];
+
+    [app.coreDataMgr insertTask:_tfview.text
+                         status:[value integerValue]
+                           date:[NSDate date]
+                        project:nil];
+    [_tfview setText:@""];
+
     
-    if (_viewType == XPNewTaskViewType_New)
-    {
-        [app.coreDataMgr insertTask:_tfview.text
-                             status:[value integerValue]
-                               date:[NSDate date]
-                            project:nil];
-        [_tfview setText:@""];
-    }else{
-        [app.coreDataMgr updateTask:_task2Update
-                              brief:_tfview.text
-                             status:[value integerValue]
-                            project:nil];
-    }
-    // clean
+    [app.coreDataMgr insertTask:_tfview.text
+                         status:[value integerValue]
+                           date:[NSDate date]
+                        project:nil];
+    [_tfview setText:@""];
 }
 
 @end
