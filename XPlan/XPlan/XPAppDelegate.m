@@ -28,6 +28,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     _deckController = [self generateControllerStack];
     self.window.rootViewController = _deckController;
+    // TEST:
+    //XPTaskListVCtler* centervc = [[XPTaskListVCtler alloc] init];
+    //UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
+    //self.window.rootViewController = rootNav;
     [self.window makeKeyAndVisible];
     
     /*
@@ -111,6 +115,7 @@
     IIViewDeckController* deckController = [[IIViewDeckController alloc] initWithCenterViewController:rootNav
                                                                                     leftViewController:leftController
                                                                                    rightViewController:nil];
+    deckController.panningMode = IIViewDeckNavigationBarPanning;
     deckController.leftSize = 100;
     deckController.openSlideAnimationDuration = 0.25f;
     deckController.closeSlideAnimationDuration= 0.50f;

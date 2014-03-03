@@ -1,8 +1,8 @@
 //
-//  XPlanTests.m
-//  XPlanTests
+//  TaskInsertTest.m
+//  XPlan
 //
-//  Created by mjlee on 14-2-21.
+//  Created by mjlee on 14-3-3.
 //  Copyright (c) 2014年 mjlee. All rights reserved.
 //
 
@@ -10,39 +10,36 @@
 #import "TaskModel.h"
 #import "ProjectModel.h"
 #import "XPDataManager.h"
-//#import "NSDate+Conversions.h"
 #import "NSDate+Category.h"
 
-
-@interface XPlanTests : XCTestCase
-//@property(nonatomic,strong)XPDataManager* coreDataManger;
+@interface TaskInsertTest : XCTestCase
+@property(nonatomic,strong)XPDataManager* coreDataManger;
 -(void)getItem:(NSString**)brief date:(NSDate**)date status:(NSNumber**)status ext:(int)ext;
-
 @end
 
-@implementation XPlanTests
+@implementation TaskInsertTest
 
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-    //XPDataManager* cdMgr = [[XPDataManager alloc] init];
-    //self.coreDataManger = cdMgr;
+    // Put setup code here; it will be run once, before the first test case.
+    XPDataManager* cdMgr = [[XPDataManager alloc] init];
+    self.coreDataManger = cdMgr;
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testExample
+-(void)testForInsert
 {
     BOOL      ifError = NO;
     NSString* title;
     NSDate*   date;
-    NSNumber* status;
-    // 测试日期类的正确性：增加
+    NSNumber* status = [NSNumber numberWithInt:1];
+    // 测试Inser函数的正确性：日期类的：增加
     int ext = 1;
     for (int i = 0 ; i < 5; i ++) {
         [self getItem:&title date:&date status:&status ext:ext];
@@ -51,14 +48,32 @@
             ifError = YES;
             break;
         }
+        [self.coreDataManger insertTask:title
+                                 status:1
+                                   date:date
+                                project:nil];
+        NSArray* days = [self.coreDataManger selectTaskByDay:date status:0];
+        if (!days || [days count] != 1) {
+            ifError = YES;
+            break;
+        }
         ext ++;
     }
-    // 测试日期类的正确性：减少
+    // 测试Inser函数的正确性：日期类的：减少
     ext = -1;
     for (int i = 0 ; i < 5; i ++) {
         [self getItem:&title date:&date status:&status ext:ext];
         NSLog(@"title=%@,date=%@,ext=%d",title,date.description,ext);
         if (title == nil || date == nil) {
+            ifError = YES;
+            break;
+        }
+        [self.coreDataManger insertTask:title
+                                 status:1
+                                   date:date
+                                project:nil];
+        NSArray* days = [self.coreDataManger selectTaskByDay:date status:0];
+        if (!days || [days count] != 1) {
             ifError = YES;
             break;
         }
@@ -68,6 +83,12 @@
     XCTAssertNotEqual(ifError, YES, @"NSDate Helper is Pass");
 }
 
+- (void)testExample
+{
+    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    BOOL ifErrof = NO;
+    XCTAssertNotEqual(ifErrof, YES, @"NSDate Helper is Pass");
+}
 
 -(void)getItem:(NSString**)brief date:(NSDate**)date status:(NSNumber**)status ext:(int)ext
 {

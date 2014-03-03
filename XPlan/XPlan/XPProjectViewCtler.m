@@ -35,7 +35,7 @@
         _taskList = [[NSMutableArray alloc] init];
         _projectList = [[NSMutableArray alloc] init];
         // load data From Core Data
-        [self reLoadData];
+        // [self reLoadData];
     }
     return self;
 }
@@ -118,7 +118,7 @@
 #pragma mark - functions
 -(void)reLoadData{
     XPAppDelegate* app = [XPAppDelegate shareInstance];
-    NSArray* pList = [app.coreDataMgr selectProject:1 size:20];
+    NSArray* pList = [app.coreDataMgr selectProject:0 size:20];
     if (pList && [pList count]) {
         [_projectList removeAllObjects];
         [_projectList setArray:pList];

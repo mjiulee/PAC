@@ -10,7 +10,9 @@
 #import "NSString+DrawHelper.h"
 
 @interface XPTaskTableViewCell()
+<UIGestureRecognizerDelegate>
 @property(nonatomic,strong) UILabel* briefLabel;
+@property(nonatomic,strong) UIPanGestureRecognizer* panner;
 @end
 
 
@@ -40,6 +42,12 @@
         lab.textAlignment = NSTextAlignmentLeft;
         [self addSubview:lab];
         self.briefLabel = lab;
+        
+        UIPanGestureRecognizer* panner = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panned:)];
+        panner.cancelsTouchesInView = YES;
+        panner.delegate = self;
+        [self addGestureRecognizer:panner];
+        self.panner = panner;
     }
     return self;
 }
@@ -64,5 +72,18 @@
                                            tsize.height);
     self.briefLabel.text  = atask.brief;
 }
+
+-(void)panned:(UIPanGestureRecognizer*)panner{
+    
+}
+
+#pragma mark - 
+//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+//    
+//}
+//
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+//    
+//}
 
 @end

@@ -38,7 +38,12 @@
           project:(ProjectModel*)project;
 
 -(void)deleteTask:(NSString*)brief;
--(NSArray*)selectTaskByDay:(NSDate*)day;
+/* brief:根据任务的优先级进行查询
+ * @param:day --- 需要查询的日期
+ * @param:status- 需要查询的状态，0.普通 1.重要
+ */
+-(NSArray*)selectTaskByDay:(NSDate*)day status:(int)status;
+
 // TEST
 -(NSArray*)selectTaskAll;
 

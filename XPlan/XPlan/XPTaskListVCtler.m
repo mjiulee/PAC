@@ -13,7 +13,9 @@
 
 @interface XPTaskListVCtler ()
 {
-    NSMutableArray* _taskList;
+    NSMutableArray* _taskListNormal;
+    NSMutableArray* _taskListImportant;
+    NSMutableArray* _taskListFinish;
 }
 // NavButtons
 -(void)onNavRightBtuAction:(id)sender;
@@ -32,7 +34,9 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization，load data From Core Data
-        _taskList = [[NSMutableArray alloc] init];
+        _taskListNormal = [[NSMutableArray alloc] init];
+        _taskListImportant = [[NSMutableArray alloc] init];;
+        _taskListFinish = [[NSMutableArray alloc] init];;
     }
     return self;
 }
@@ -58,6 +62,10 @@
                                                                               target:self
                                                                               action:@selector(onNavRightBtuAction:)];
     self.navigationItem.rightBarButtonItem = rightBtn;
+    
+    // tableview
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    //[self.tableView setEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,9 +82,17 @@
 }
 
 #pragma mark -tableview datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 3;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count = [_taskList count];
+    int count = 0;
+    if(section == 0) count = [_taskListNormal count];
+    if(section == 1) count = [_taskListImportant count];
+    if(section == 2) count = [_taskListFinish count];
     return count;
 }
 
@@ -90,7 +106,11 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    TaskModel* atask    = [_taskList objectAtIndex:[indexPath row]];
+    TaskModel* atask = nil;
+    if([indexPath section] == 0) atask = [_taskListNormal objectAtIndex:[indexPath row]];
+    else if([indexPath section] == 1) atask = [_taskListImportant objectAtIndex:[indexPath row]];
+    else if([indexPath section] == 2) atask = [_taskListFinish objectAtIndex:[indexPath row]];
+    
     [cell setTask:atask];
     return cell;
 }
@@ -98,90 +118,151 @@
 #pragma mark- tableviewdelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TaskModel* atask    = [_taskList objectAtIndex:[indexPath row]];
+    TaskModel* atask = nil;
+    if([indexPath section] == 0) atask = [_taskListNormal objectAtIndex:[indexPath row]];
+    else if([indexPath section] == 1) atask = [_taskListImportant objectAtIndex:[indexPath row]];
+    else if([indexPath section] == 2) atask = [_taskListFinish objectAtIndex:[indexPath row]];
+
     CGSize tsize = [XPTaskTableViewCell taskCellSize:atask];
     return tsize.height;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    TaskModel* atask    = [_taskList objectAtIndex:[indexPath row]];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TaskModel* atask = nil;
+    if([indexPath section] == 0) atask = [_taskListNormal objectAtIndex:[indexPath row]];
+    else if([indexPath section] == 1) atask = [_taskListImportant objectAtIndex:[indexPath row]];
+    else if([indexPath section] == 2) atask = [_taskListFinish objectAtIndex:[indexPath row]];
+
     XPNewTaskVctler* updatevc = [[XPNewTaskVctler alloc] init];
     updatevc.viewType    = XPNewTaskViewType_Update;
     updatevc.task2Update = atask;
     [self.navigationController pushViewController:updatevc animated:YES];
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    NSArray  *titleArray  = @[@"incoming",@"important",@"done"];
-//    UIView* headview = [UIView new];
-//    headview.backgroundColor = [UIColor colorWithRed:145/255.0
-//                                               green:145/255.0
-//                                                blue:145/255.0
-//                                               alpha:1.0];
-//    UILabel* sectionTItle = [UILabel new];
-//    sectionTItle.frame    = CGRectMake(15, 0, 0, 0);
-//    sectionTItle.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-//    sectionTItle.font       = [UIFont systemFontOfSize:18];
-//    sectionTItle.textColor  = [UIColor whiteColor];
-//    sectionTItle.text = titleArray[section];
-//    [headview addSubview:sectionTItle];
-//    return headview;
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSArray  *titleArray  = @[@"普通",@"重要",@"完成"];
+    UIView* headview = [UIView new];
+    headview.backgroundColor = [UIColor colorWithRed:200/255.0
+                                               green:200/255.0
+                                                blue:200/255.0
+                                               alpha:1.0];
+    headview.alpha = 0.8;
+    
+    UILabel* sectionTItle = [UILabel new];
+    sectionTItle.frame    = CGRectMake(15, 0, 0, 0);
+    sectionTItle.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    sectionTItle.font       = [UIFont systemFontOfSize:18];
+    sectionTItle.textColor  = [UIColor whiteColor];
+    sectionTItle.text = titleArray[section];
+    [headview addSubview:sectionTItle];
+    return headview;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 36;
+}
+
+#pragma mark - UITableViewDataSource
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return UITableViewCellEditingStyleNone;
 //}
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//}
-
-
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView deleteRowsAtIndexPaths:@[indexPath]
+                         withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
-/*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
+    if (fromIndexPath.section == [toIndexPath section])
+    {
+        NSInteger se = fromIndexPath.section;
+        if (se == 0) {
+            [_taskListNormal exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+        }else if(se == 1){
+            [_taskListImportant exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+        }else if(se == 2){
+            [_taskListFinish exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+        }
+    }else
+    {
+        NSInteger se = fromIndexPath.section;
+        NSMutableArray* tFromArray = nil;
+        NSMutableArray* ToArray = nil;
+        se == 0?(tFromArray=_taskListNormal):(se==1?(tFromArray=_taskListImportant):(tFromArray=_taskListFinish));
+        se = toIndexPath.section;
+        se == 0?(ToArray=_taskListNormal):(se==1?(ToArray=_taskListImportant):(ToArray=_taskListFinish));
+        
+        if (!tFromArray || !ToArray) {
+            return;
+        }
+        TaskModel* task2Move = [tFromArray objectAtIndex:[fromIndexPath row]];
+        [ToArray insertObject:task2Move atIndex:[toIndexPath row]];
+        [tFromArray removeObject:task2Move];
+        // TODO:save order  & save status
+    }
 }
-*/
 
-/*
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
 
 #pragma mark - 
 -(void)reLoadData{
     XPAppDelegate* app = [XPAppDelegate shareInstance];
-    NSArray* todaylist = [app.coreDataMgr selectTaskAll];
-    //NSArray* todaylist = [app.coreDataMgr selectTaskByDay:[NSDate date]];
-    if (todaylist && [todaylist count]) {
-        [_taskList removeAllObjects];
-        [_taskList setArray:todaylist];
+    {   // Normal
+        NSArray* normalList = [app.coreDataMgr selectTaskByDay:[NSDate date] status:0];
+        if (normalList && [normalList count]) {
+            [_taskListNormal removeAllObjects];
+            [_taskListNormal setArray:normalList];
+        }else{
+            [_taskListNormal removeAllObjects];
+        }
     }
+    
+    {
+        NSArray* importantList = [app.coreDataMgr selectTaskByDay:[NSDate date] status:1];
+        if (importantList && [importantList count]) {
+            [_taskListImportant removeAllObjects];
+            [_taskListImportant setArray:importantList];
+        }else{
+            [_taskListImportant removeAllObjects];
+        }
+    }
+    
+    {
+        NSArray* finishList = [app.coreDataMgr selectTaskByDay:[NSDate date] status:2];
+        if (finishList && [finishList count]) {
+            [_taskListFinish removeAllObjects];
+            [_taskListFinish setArray:finishList];
+        }else{
+            [_taskListFinish removeAllObjects];
+        }
+    }
+    //NSArray* todaylist = [app.coreDataMgr selectTaskAll];
 }
 
 #pragma mark - Navigation

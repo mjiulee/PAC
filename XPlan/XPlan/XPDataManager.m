@@ -7,7 +7,7 @@
 //
 
 #import "XPDataManager.h"
-#import "NSDate+Conversions.h"
+#import "NSDate+Category.h"
 
 @interface XPDataManager(){
 }
@@ -224,13 +224,14 @@
 //    
 //}
 //
--(NSArray*)selectTaskByDay:(NSDate*)day
+-(NSArray*)selectTaskByDay:(NSDate*)day status:(int)status
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     // 查询条件
-    NSDate* dayBegin = [day beginingOfDay];
+    NSDate* dayBegin = [day startOfDay];
     NSDate* dayEnd   = [day endOfDay];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(create_date >= %@) AND (create_date <= %@)", dayBegin,dayEnd];
+    NSNumber* _ptrStatus = [NSNumber numberWithInt:status];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(create_date >= %@) AND (create_date <= %@) AND status=%@", dayBegin,dayEnd,_ptrStatus];
     
     //首先你需要建立一个request
     NSFetchRequest * request = [[NSFetchRequest alloc] init];

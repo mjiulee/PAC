@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		18A97E4218C1B12200CE3161 /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A97E3F18C1B12200CE3161 /* TestModel.m */; };
 		18A97E4318C1B12200CE3161 /* XPlanModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18A97E4018C1B12200CE3161 /* XPlanModel.xcdatamodeld */; };
-		18CDC91418C219BC00459B26 /* NSDate+Conversions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDC91318C219BC00459B26 /* NSDate+Conversions.m */; };
 		18CDC91718C2216000459B26 /* XPNewProjectVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDC91618C2216000459B26 /* XPNewProjectVctler.m */; };
 		18EB3F5718C1EF8800400E72 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB3F5618C1EF8800400E72 /* ProjectModel.m */; };
 		18EB3F5A18C1EF8900400E72 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB3F5918C1EF8900400E72 /* TaskModel.m */; };
@@ -17,6 +16,8 @@
 		18ED380818C30FBF002565E8 /* XPTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */; };
 		18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */; };
 		4321392918B8D78F00613275 /* XPDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321392818B8D78F00613275 /* XPDataManager.m */; };
+		43359AF018C426F700C12617 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 43359AEF18C426F700C12617 /* NSDate+Category.m */; };
+		43359AF218C42A1600C12617 /* TaskInsertTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43359AF118C42A1600C12617 /* TaskInsertTest.m */; };
 		437A7CC318B71BA20088F1AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC218B71BA20088F1AA /* Foundation.framework */; };
 		437A7CC518B71BA20088F1AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC418B71BA20088F1AA /* CoreGraphics.framework */; };
 		437A7CC718B71BA20088F1AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC618B71BA20088F1AA /* UIKit.framework */; };
@@ -55,8 +56,6 @@
 		18A97E3E18C1B12200CE3161 /* TestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestModel.h; sourceTree = "<group>"; };
 		18A97E3F18C1B12200CE3161 /* TestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestModel.m; sourceTree = "<group>"; };
 		18A97E4118C1B12200CE3161 /* XPlanModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XPlanModel.xcdatamodel; sourceTree = "<group>"; };
-		18CDC91218C219BC00459B26 /* NSDate+Conversions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Conversions.h"; sourceTree = "<group>"; };
-		18CDC91318C219BC00459B26 /* NSDate+Conversions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Conversions.m"; sourceTree = "<group>"; };
 		18CDC91518C2216000459B26 /* XPNewProjectVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPNewProjectVctler.h; sourceTree = "<group>"; };
 		18CDC91618C2216000459B26 /* XPNewProjectVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPNewProjectVctler.m; sourceTree = "<group>"; };
 		18EB3F5518C1EF8800400E72 /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
@@ -71,6 +70,9 @@
 		18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPTaskListVCtler.m; sourceTree = "<group>"; };
 		4321392718B8D78F00613275 /* XPDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPDataManager.h; sourceTree = "<group>"; };
 		4321392818B8D78F00613275 /* XPDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPDataManager.m; sourceTree = "<group>"; };
+		43359AEE18C426F700C12617 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
+		43359AEF18C426F700C12617 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
+		43359AF118C42A1600C12617 /* TaskInsertTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInsertTest.m; sourceTree = "<group>"; };
 		437A7CBF18B71BA20088F1AA /* XPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437A7CC218B71BA20088F1AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		437A7CC418B71BA20088F1AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -148,6 +150,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		43359AED18C426DA00C12617 /* NSDateHelper */ = {
+			isa = PBXGroup;
+			children = (
+				43359AEE18C426F700C12617 /* NSDate+Category.h */,
+				43359AEF18C426F700C12617 /* NSDate+Category.m */,
+			);
+			name = NSDateHelper;
+			sourceTree = "<group>";
+		};
 		437A7CB618B71BA20088F1AA = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +195,7 @@
 		437A7CC818B71BA20088F1AA /* XPlan */ = {
 			isa = PBXGroup;
 			children = (
+				43359AED18C426DA00C12617 /* NSDateHelper */,
 				18EB3F5B18C1F01000400E72 /* Model */,
 				437A7CD118B71BA20088F1AA /* XPAppDelegate.h */,
 				437A7CD218B71BA20088F1AA /* XPAppDelegate.m */,
@@ -201,8 +213,6 @@
 				437A7D0B18B750B60088F1AA /* UIImage+XPUIImage.m */,
 				4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */,
 				4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */,
-				18CDC91218C219BC00459B26 /* NSDate+Conversions.h */,
-				18CDC91318C219BC00459B26 /* NSDate+Conversions.m */,
 				18ED380318C308D1002565E8 /* NSString+DrawHelper.h */,
 				18ED380418C308D1002565E8 /* NSString+DrawHelper.m */,
 				18ED380618C30FBF002565E8 /* XPTaskTableViewCell.h */,
@@ -228,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				437A7CED18B71BA20088F1AA /* XPlanTests.m */,
+				43359AF118C42A1600C12617 /* TaskInsertTest.m */,
 				437A7CE818B71BA20088F1AA /* Supporting Files */,
 			);
 			path = XPlanTests;
@@ -355,9 +366,9 @@
 			files = (
 				4383D9E618BC8577007F7CA0 /* XPNewTaskVctler.m in Sources */,
 				18ED380518C308D1002565E8 /* NSString+DrawHelper.m in Sources */,
+				43359AF018C426F700C12617 /* NSDate+Category.m in Sources */,
 				18CDC91718C2216000459B26 /* XPNewProjectVctler.m in Sources */,
 				437A7D0018B723330088F1AA /* IISideController.m in Sources */,
-				18CDC91418C219BC00459B26 /* NSDate+Conversions.m in Sources */,
 				18EB3F5A18C1EF8900400E72 /* TaskModel.m in Sources */,
 				437A7CD318B71BA20088F1AA /* XPAppDelegate.m in Sources */,
 				18A97E4318C1B12200CE3161 /* XPlanModel.xcdatamodeld in Sources */,
@@ -381,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				437A7CEE18B71BA20088F1AA /* XPlanTests.m in Sources */,
+				43359AF218C42A1600C12617 /* TaskInsertTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
