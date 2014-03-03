@@ -8,11 +8,14 @@
 
 #import "XPTaskTableViewCell.h"
 #import "NSString+DrawHelper.h"
+#import "UIImage+XPUIImage.h"
 
 @interface XPTaskTableViewCell()
 <UIGestureRecognizerDelegate>
-@property(nonatomic,strong) UILabel* briefLabel;
-@property(nonatomic,strong) UIPanGestureRecognizer* panner;
+@property(nonatomic,strong) UILabel*  briefLabel;
+@property(nonatomic,strong) UIImageView* editBtn;
+
+@property(nonatomic,strong) UILongPressGestureRecognizer* longPressGesture;
 @end
 
 
@@ -24,8 +27,7 @@
                                             font:[UIFont systemFontOfSize:kTaskCellFontSize]];
     tsize.height += 8*2;
     if (tsize.height < 44) {
-        tsize.height
-        = 44;
+        tsize.height = 44;
     }
     return tsize;
 }
@@ -43,11 +45,20 @@
         [self addSubview:lab];
         self.briefLabel = lab;
         
-        UIPanGestureRecognizer* panner = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panned:)];
-        panner.cancelsTouchesInView = YES;
+        
+        /*UIImageView* btnEdtie = [[UIImageView alloc] init];
+        btnEdtie.frame = CGRectMake(CGRectGetWidth(self.frame)-44, 0, 44, 44);
+        btnEdtie.image = [UIImage imageNamed:@"nav_btn_menu01"];
+        [self.contentView addSubview:btnEdtie];
+        [self.contentView bringSubviewToFront:btnEdtie];
+        self.editBtn = btnEdtie;
+        
+        UILongPressGestureRecognizer* panner = [[UILongPressGestureRecognizer alloc]
+                                                initWithTarget:self
+                                                action:@selector(onLongPressGesture:)];
         panner.delegate = self;
-        [self addGestureRecognizer:panner];
-        self.panner = panner;
+        [btnEdtie addGestureRecognizer:panner];
+        self.longPressGesture = panner;*/
     }
     return self;
 }
@@ -67,14 +78,23 @@
     if (tsize.height < 28) {
         tsize.height = 28;
     }
-    self.briefLabel.frame = CGRectMake(_briefLabel.frame.origin.x,8,
-                                           kTaskCellMaxWidth,
-                                           tsize.height);
+    
+    self.briefLabel.frame = CGRectMake(_briefLabel.frame.origin.x,8,kTaskCellMaxWidth,tsize.height);
     self.briefLabel.text  = atask.brief;
+    
+    tsize.height += 8*2;
+    if (tsize.height < 44) {
+        tsize.height = 44;
+    }
+    [self.editBtn setFrame:CGRectMake(CGRectGetMinX(_editBtn.frame),
+                                      (tsize.height-CGRectGetHeight(_editBtn.frame))/2,
+                                      CGRectGetWidth(_editBtn.frame),
+                                      CGRectGetHeight(_editBtn.frame))];
 }
 
--(void)panned:(UIPanGestureRecognizer*)panner{
-    
+-(void)onLongPressGesture:(UIPanGestureRecognizer*)panner{
+    UITableView* tableview = (UITableView*)self.superview;
+    [tableview setEditing:YES];
 }
 
 #pragma mark - 

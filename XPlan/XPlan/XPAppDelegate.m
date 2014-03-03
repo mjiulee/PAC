@@ -115,7 +115,7 @@
     IIViewDeckController* deckController = [[IIViewDeckController alloc] initWithCenterViewController:rootNav
                                                                                     leftViewController:leftController
                                                                                    rightViewController:nil];
-    deckController.panningMode = IIViewDeckNavigationBarPanning;
+    //deckController.panningMode = IIViewDeckNavigationBarPanning;
     deckController.leftSize = 100;
     deckController.openSlideAnimationDuration = 0.25f;
     deckController.closeSlideAnimationDuration= 0.50f;
