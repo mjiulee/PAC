@@ -65,7 +65,7 @@
     
     // tableview
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    [self.tableView setEditing:YES];
+    //[self.tableView setEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,6 +119,8 @@
 #pragma mark- tableviewdelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    return 44;
+    
     TaskModel* atask = nil;
     if([indexPath section] == 0) atask = [_taskListNormal objectAtIndex:[indexPath row]];
     else if([indexPath section] == 1) atask = [_taskListImportant objectAtIndex:[indexPath row]];
@@ -169,7 +171,7 @@
 
 #pragma mark - UITableViewDataSource
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleInsert;
+    return UITableViewCellEditingStyleNone;
 }
 
 // Override to support conditional editing of the table view.

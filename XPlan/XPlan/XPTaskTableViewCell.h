@@ -12,7 +12,6 @@
 #define kTaskCellFontSize 15.0
 
 @interface XPTaskTableViewCell : UITableViewCell{
-    
 }
 +(CGSize)taskCellSize:(TaskModel*)task;
 -(void)setTask:(TaskModel*)atask;
