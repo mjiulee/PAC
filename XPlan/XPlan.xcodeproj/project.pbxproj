@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1873677418C60D1A003EC3A0 /* FMMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873677118C60D1A003EC3A0 /* FMMoveTableView.m */; };
+		1873677518C60D1A003EC3A0 /* FMMoveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873677318C60D1A003EC3A0 /* FMMoveTableViewCell.m */; };
 		18A97E4218C1B12200CE3161 /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A97E3F18C1B12200CE3161 /* TestModel.m */; };
 		18A97E4318C1B12200CE3161 /* XPlanModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18A97E4018C1B12200CE3161 /* XPlanModel.xcdatamodeld */; };
 		18CDC91718C2216000459B26 /* XPNewProjectVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDC91618C2216000459B26 /* XPNewProjectVctler.m */; };
@@ -53,6 +55,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1873677018C60D1A003EC3A0 /* FMMoveTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMMoveTableView.h; sourceTree = "<group>"; };
+		1873677118C60D1A003EC3A0 /* FMMoveTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMMoveTableView.m; sourceTree = "<group>"; };
+		1873677218C60D1A003EC3A0 /* FMMoveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMMoveTableViewCell.h; sourceTree = "<group>"; };
+		1873677318C60D1A003EC3A0 /* FMMoveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMMoveTableViewCell.m; sourceTree = "<group>"; };
 		18A97E3E18C1B12200CE3161 /* TestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestModel.h; sourceTree = "<group>"; };
 		18A97E3F18C1B12200CE3161 /* TestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestModel.m; sourceTree = "<group>"; };
 		18A97E4118C1B12200CE3161 /* XPlanModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XPlanModel.xcdatamodel; sourceTree = "<group>"; };
@@ -134,6 +140,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1873676F18C60D1A003EC3A0 /* FMMoveCell */ = {
+			isa = PBXGroup;
+			children = (
+				1873677018C60D1A003EC3A0 /* FMMoveTableView.h */,
+				1873677118C60D1A003EC3A0 /* FMMoveTableView.m */,
+				1873677218C60D1A003EC3A0 /* FMMoveTableViewCell.h */,
+				1873677318C60D1A003EC3A0 /* FMMoveTableViewCell.m */,
+			);
+			path = FMMoveCell;
+			sourceTree = "<group>";
+		};
 		18EB3F5B18C1F01000400E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				437A7D0818B74F210088F1AA /* resource */,
+				1873676F18C60D1A003EC3A0 /* FMMoveCell */,
 				437A7CF918B723330088F1AA /* ViewDeck */,
 				437A7CC818B71BA20088F1AA /* XPlan */,
 				437A7CE718B71BA20088F1AA /* XPlanTests */,
@@ -314,6 +332,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = mjlee;
 				TargetAttributes = {
+					437A7CBE18B71BA20088F1AA = {
+						DevelopmentTeam = 6D6U4G36JF;
+					};
 					437A7CDF18B71BA20088F1AA = {
 						TestTargetID = 437A7CBE18B71BA20088F1AA;
 					};
@@ -365,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4383D9E618BC8577007F7CA0 /* XPNewTaskVctler.m in Sources */,
+				1873677518C60D1A003EC3A0 /* FMMoveTableViewCell.m in Sources */,
 				18ED380518C308D1002565E8 /* NSString+DrawHelper.m in Sources */,
 				43359AF018C426F700C12617 /* NSDate+Category.m in Sources */,
 				18CDC91718C2216000459B26 /* XPNewProjectVctler.m in Sources */,
@@ -373,6 +395,7 @@
 				437A7CD318B71BA20088F1AA /* XPAppDelegate.m in Sources */,
 				18A97E4318C1B12200CE3161 /* XPlanModel.xcdatamodeld in Sources */,
 				18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */,
+				1873677418C60D1A003EC3A0 /* FMMoveTableView.m in Sources */,
 				18A97E4218C1B12200CE3161 /* TestModel.m in Sources */,
 				18ED380818C30FBF002565E8 /* XPTaskTableViewCell.m in Sources */,
 				4321392918B8D78F00613275 /* XPDataManager.m in Sources */,
@@ -503,10 +526,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -516,10 +543,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

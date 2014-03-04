@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FMMoveTableView.h"
 
-@interface XPTaskListVCtler : UITableViewController
+@interface XPTaskListVCtler : UITableViewController<FMMoveTableViewDataSource, FMMoveTableViewDelegate>
 
 @end

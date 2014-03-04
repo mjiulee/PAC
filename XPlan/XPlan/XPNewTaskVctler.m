@@ -66,15 +66,18 @@
                                                                                   action:@selector(onNavRightBtnAction:)];
         self.navigationItem.rightBarButtonItem = rightBtn;
     }
-    
-    UIView* tfviewbg  = [[UIView alloc] initWithFrame:CGRectMake(9,CGRectGetMaxY(self.navigationController.navigationBar.frame)+9,
-                                                                 302, 142)];
+    CGFloat yvalstart = 9;
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0) {
+        yvalstart += CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    }
+    UIView* tfviewbg  = [[UIView alloc] initWithFrame:CGRectMake(9,yvalstart,302, 82)];
     tfviewbg.layer.cornerRadius = 3;
     tfviewbg.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:tfviewbg];
-    _tfview = [[UITextView alloc] initWithFrame:CGRectMake(10,CGRectGetMaxY(self.navigationController.navigationBar.frame)+10,
-                                                                     300, 140)];
-    _tfview .textContainerInset = UIEdgeInsetsMake(1, 1, 1, 1);
+    _tfview = [[UITextView alloc] initWithFrame:CGRectMake(10,yvalstart+1,300, 80)];
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0){
+        _tfview .textContainerInset = UIEdgeInsetsMake(1, 1, 1, 1);
+    }
     _tfview .layer.cornerRadius = 3;
     [self.view addSubview:_tfview];
     
@@ -94,7 +97,9 @@
     if (_viewType == XPNewTaskViewType_New) {
         UIButton* btnNext = [UIButton buttonWithType:UIButtonTypeContactAdd];
         btnNext.frame = CGRectMake(CGRectGetMaxX(_radioImportant.frame)+20, CGRectGetMaxY(_tfview .frame),100, 40);
-        [btnNext setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0) {
+            [btnNext setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
+        }
         [btnNext setTitle:@"下一个" forState:UIControlStateNormal];
         [btnNext addTarget:self action:@selector(onNextBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnNext];

@@ -70,7 +70,9 @@
     _tableview.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _tableview.delegate   = self;
     _tableview.dataSource = self;
-    [_tableview setSeparatorInset:UIEdgeInsetsZero];
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0){
+        [_tableview setSeparatorInset:UIEdgeInsetsZero];
+    }
     [self.view addSubview:_tableview];
     [_tableview reloadData];
 }

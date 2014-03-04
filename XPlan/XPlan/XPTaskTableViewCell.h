@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FMMoveTableViewCell.h"
 
 #define kTaskCellMaxWidth 300
 #define kTaskCellFontSize 15.0
 
-@interface XPTaskTableViewCell : UITableViewCell{
+@interface XPTaskTableViewCell : FMMoveTableViewCell{
 }
 +(CGSize)taskCellSize:(TaskModel*)task;
+
+-(id)initWithStyle:(UITableViewCellStyle)style
+    reuseIdentifier:(NSString *)reuseIdentifier
+          tableview:(UITableView*)tableview;
 -(void)setTask:(TaskModel*)atask;
 @end

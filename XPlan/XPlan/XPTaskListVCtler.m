@@ -10,6 +10,8 @@
 #import "XPNewTaskVctler.h"
 #import "IIViewDeckController.h"
 #import "XPTaskTableViewCell.h"
+#import "FMMoveTableView.h"
+#import "FMMoveTableViewCell.h"
 
 @interface XPTaskListVCtler ()
 {
@@ -19,16 +21,14 @@
 }
 // NavButtons
 -(void)onNavRightBtuAction:(id)sender;
-
 // Datas
 -(void)reLoadData;
-
 //ViewDeck
 -(BOOL)openLeftView;
 @end
 
 @implementation XPTaskListVCtler
-
+static NSString *sCellIdentifier;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -37,6 +37,8 @@
         _taskListNormal = [[NSMutableArray alloc] init];
         _taskListImportant = [[NSMutableArray alloc] init];;
         _taskListFinish = [[NSMutableArray alloc] init];;
+        
+        sCellIdentifier = @"MoveCell";
     }
     return self;
 }
@@ -44,6 +46,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView = [[FMMoveTableView alloc] initWithFrame:self.tableView.frame style:UITableViewStylePlain];
+    self.tableView.delegate   = self;
+    self.tableView.dataSource = self;
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     self.view.backgroundColor = [UIColor whiteColor];
     // navs setting
@@ -64,8 +71,10 @@
     self.navigationItem.rightBarButtonItem = rightBtn;
     
     // tableview
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    //[self.tableView setEditing:YES];
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0)
+    {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,32 +96,60 @@
     return 3;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(FMMoveTableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     int count = 0;
     if(section == 0) count = [_taskListNormal count];
     if(section == 1) count = [_taskListImportant count];
     if(section == 2) count = [_taskListFinish count];
+
+    #warning Implement this check in your table data source
+    // 1. A row is in a moving state
+    // 2. The moving row is not in it's initial section
+    if (tableView.movingIndexPath && tableView.movingIndexPath.section != tableView.initialIndexPathForMovingRow.section)
+    {
+
+        if (section == tableView.movingIndexPath.section) {
+            count++;
+        }
+        else if (section == tableView.initialIndexPathForMovingRow.section) {
+            count--;
+        }
+    }
     return count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(FMMoveTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"CellTask";
-    XPTaskTableViewCell *cell = (XPTaskTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell)
-    {
-        cell = [[XPTaskTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.selectionStyle= UITableViewCellSelectionStyleNone;
-    }
-    
-    TaskModel* atask = nil;
-    if([indexPath section] == 0) atask = [_taskListNormal objectAtIndex:[indexPath row]];
-    else if([indexPath section] == 1) atask = [_taskListImportant objectAtIndex:[indexPath row]];
-    else if([indexPath section] == 2) atask = [_taskListFinish objectAtIndex:[indexPath row]];
-    
-    [cell setTask:atask];
+    XPTaskTableViewCell *cell = (XPTaskTableViewCell *)[tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
+    if ([tableView indexPathIsMovingIndexPath:indexPath])
+	{
+		[cell prepareForMove];
+	}
+	else
+	{
+        #warning Implement this check in your table view data source
+		if (tableView.movingIndexPath != nil) {
+            indexPath = [tableView adaptedIndexPathForRowAtIndexPath:indexPath];
+		}else{
+            if (!cell){
+                cell = [[XPTaskTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier tableview:tableView];
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                cell.selectionStyle= UITableViewCellSelectionStyleNone;
+            }
+            TaskModel* atask = nil;
+            if([indexPath section] == 0){
+                atask = [_taskListNormal objectAtIndex:[indexPath row]];
+            }else if([indexPath section] == 1){
+                atask = [_taskListImportant objectAtIndex:[indexPath row]];
+            }else if([indexPath section] == 2){
+                atask = [_taskListFinish objectAtIndex:[indexPath row]];
+            }
+            [cell setTask:atask];
+        }
+        cell.shouldIndentWhileEditing = NO;
+        cell.showsReorderControl      = NO;
+	}
     return cell;
 }
 
@@ -120,14 +157,6 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44;
-    
-    TaskModel* atask = nil;
-    if([indexPath section] == 0) atask = [_taskListNormal objectAtIndex:[indexPath row]];
-    else if([indexPath section] == 1) atask = [_taskListImportant objectAtIndex:[indexPath row]];
-    else if([indexPath section] == 2) atask = [_taskListFinish objectAtIndex:[indexPath row]];
-
-    CGSize tsize = [XPTaskTableViewCell taskCellSize:atask];
-    return tsize.height;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -142,13 +171,13 @@
     updatevc.task2Update = atask;
     [self.navigationController pushViewController:updatevc animated:YES];
 
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     NSArray  *titleArray  = @[@"普通",@"重要",@"完成"];
-    UIView* headview = [UIView new];
+    UIView* headview = [[UIView alloc] initWithFrame:CGRectZero];
     headview.backgroundColor = [UIColor colorWithRed:200/255.0
                                                green:200/255.0
                                                 blue:200/255.0
@@ -158,6 +187,7 @@
     UILabel* sectionTItle = [UILabel new];
     sectionTItle.frame    = CGRectMake(15, 0, 0, 0);
     sectionTItle.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    sectionTItle.backgroundColor = kClearColor;
     sectionTItle.font       = [UIFont systemFontOfSize:18];
     sectionTItle.textColor  = [UIColor whiteColor];
     sectionTItle.text = titleArray[section];
@@ -169,33 +199,47 @@
     return 36;
 }
 
-#pragma mark - UITableViewDataSource
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleNone;
+- (NSIndexPath *)moveTableView:(FMMoveTableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
+{
+	//Uncomment these lines to enable moving a row just within it's current section
+	//if ([sourceIndexPath section] != [proposedDestinationIndexPath section]) {
+	//	proposedDestinationIndexPath = sourceIndexPath;
+	//}
+	return proposedDestinationIndexPath;
 }
 
-// Override to support conditional editing of the table view.
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // Return NO if you do not want the specified item to be editable.
-//    return YES;
-//}
-//
-//// Override to support editing the table view.
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        // Delete the row from the data source
-//        [tableView deleteRowsAtIndexPaths:@[indexPath]
-//                         withRowAnimation:UITableViewRowAnimationFade];
-//    }   
-//    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//    }   
-//}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return NO;
+}
 
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger se = indexPath.section;
+    if (se == 0) {
+        [_taskListNormal removeObjectAtIndex:[indexPath row]];
+    }else if(se == 1){
+        [_taskListImportant removeObjectAtIndex:[indexPath row]];
+    }else if(se == 2){
+        [_taskListFinish removeObjectAtIndex:[indexPath row]];
+    }
+
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+}
+
+#pragma mark - UITableViewDataSource
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the item to be re-orderable.
+    if ([indexPath section] == 2)
+    {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)moveTableView:(FMMoveTableView *)tableView moveRowFromIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
     if (fromIndexPath.section == [toIndexPath section])
     {
@@ -222,15 +266,7 @@
         TaskModel* task2Move = [tFromArray objectAtIndex:[fromIndexPath row]];
         [ToArray insertObject:task2Move atIndex:[toIndexPath row]];
         [tFromArray removeObject:task2Move];
-        // TODO:save order  & save status
     }
-}
-
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
 }
 
 #pragma mark - 
@@ -265,7 +301,6 @@
             [_taskListFinish removeAllObjects];
         }
     }
-    //NSArray* todaylist = [app.coreDataMgr selectTaskAll];
 }
 
 #pragma mark - Navigation
