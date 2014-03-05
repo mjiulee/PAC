@@ -24,11 +24,12 @@
 // Datas
 -(void)reLoadData;
 //ViewDeck
--(BOOL)openLeftView;
+//-(BOOL)openLeftView;
 @end
 
 @implementation XPTaskListVCtler
 static NSString *sCellIdentifier;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -46,35 +47,17 @@ static NSString *sCellIdentifier;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"今日任务";
+    // tableview
+    self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[FMMoveTableView alloc] initWithFrame:self.tableView.frame style:UITableViewStylePlain];
     self.tableView.delegate   = self;
     self.tableView.dataSource = self;
-    
-    
-    // Uncomment the following line to preserve selection between presentations.
-    self.view.backgroundColor = [UIColor whiteColor];
-    // navs setting
-    UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_menu01"];
-    UIImage* imhighLight = [UIImage imageNamed:@"nav_btn_menu02"];
-    
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
-    [btn setImage:imgnormal   forState:UIControlStateNormal];
-    [btn setImage:imhighLight forState:UIControlStateHighlighted];
-    [btn addTarget:self action:@selector(openLeftView) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.leftBarButtonItem = leftBtn;
     
     UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                               target:self
                                                                               action:@selector(onNavRightBtuAction:)];
     self.navigationItem.rightBarButtonItem = rightBtn;
-    
-    // tableview
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0)
-    {
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,6 +105,12 @@ static NSString *sCellIdentifier;
 - (UITableViewCell *)tableView:(FMMoveTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     XPTaskTableViewCell *cell = (XPTaskTableViewCell *)[tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
+    if (!cell) {
+        cell = [[XPTaskTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier tableview:tableView];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.selectionStyle= UITableViewCellSelectionStyleNone;
+    }
+    
     if ([tableView indexPathIsMovingIndexPath:indexPath])
 	{
 		[cell prepareForMove];
@@ -131,22 +120,17 @@ static NSString *sCellIdentifier;
         #warning Implement this check in your table view data source
 		if (tableView.movingIndexPath != nil) {
             indexPath = [tableView adaptedIndexPathForRowAtIndexPath:indexPath];
-		}else{
-            if (!cell){
-                cell = [[XPTaskTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier tableview:tableView];
-                cell.accessoryType = UITableViewCellAccessoryNone;
-                cell.selectionStyle= UITableViewCellSelectionStyleNone;
-            }
-            TaskModel* atask = nil;
-            if([indexPath section] == 0){
-                atask = [_taskListNormal objectAtIndex:[indexPath row]];
-            }else if([indexPath section] == 1){
-                atask = [_taskListImportant objectAtIndex:[indexPath row]];
-            }else if([indexPath section] == 2){
-                atask = [_taskListFinish objectAtIndex:[indexPath row]];
-            }
-            [cell setTask:atask];
+		}
+
+        TaskModel* atask = nil;
+        if([indexPath section] == 0){
+            atask = [_taskListNormal objectAtIndex:[indexPath row]];
+        }else if([indexPath section] == 1){
+            atask = [_taskListImportant objectAtIndex:[indexPath row]];
+        }else if([indexPath section] == 2){
+            atask = [_taskListFinish objectAtIndex:[indexPath row]];
         }
+        [cell setTask:atask];
         cell.shouldIndentWhileEditing = NO;
         cell.showsReorderControl      = NO;
 	}
@@ -178,25 +162,24 @@ static NSString *sCellIdentifier;
 {
     NSArray  *titleArray  = @[@"普通",@"重要",@"完成"];
     UIView* headview = [[UIView alloc] initWithFrame:CGRectZero];
-    headview.backgroundColor = [UIColor colorWithRed:200/255.0
-                                               green:200/255.0
-                                                blue:200/255.0
-                                               alpha:1.0];
-    headview.alpha = 0.8;
+    headview.backgroundColor = [UIColor whiteColor];
+    headview.layer.borderWidth = 0.5;
+    headview.layer.borderColor = [XPRGBColor(157, 157, 157, 0.8) CGColor];
+    headview.alpha = 0.85;
     
     UILabel* sectionTItle = [UILabel new];
     sectionTItle.frame    = CGRectMake(15, 0, 0, 0);
     sectionTItle.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     sectionTItle.backgroundColor = kClearColor;
     sectionTItle.font       = [UIFont systemFontOfSize:18];
-    sectionTItle.textColor  = [UIColor whiteColor];
+    sectionTItle.textColor  = [UIColor darkTextColor];
     sectionTItle.text = titleArray[section];
     [headview addSubview:sectionTItle];
     return headview;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 36;
+    return 40;
 }
 
 - (NSIndexPath *)moveTableView:(FMMoveTableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
@@ -307,24 +290,6 @@ static NSString *sCellIdentifier;
 -(void)onNavRightBtuAction:(id)sender{
     XPNewTaskVctler* newTvctl = [[XPNewTaskVctler alloc] init];
     [self.navigationController pushViewController:newTvctl animated:YES];
-}
-
-#pragma mark - ViewDeck
--(BOOL)openLeftView{
-    if ([self.viewDeckController isSideOpen:IIViewDeckLeftSide]) {
-        if ([self.viewDeckController respondsToSelector:@selector(closeLeftViewAnimated:completion:)])
-        {
-            [self.viewDeckController closeLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success){
-            }];
-        }
-    }else{
-        if ([self.viewDeckController respondsToSelector:@selector(openLeftViewAnimated:completion:)])
-        {
-            [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success){
-            }];
-        }
-    }
-    return YES;
 }
 
 @end

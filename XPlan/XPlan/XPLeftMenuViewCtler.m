@@ -10,6 +10,7 @@
 #import "XPAppDelegate.h"
 #import "XPProjectViewCtler.h"
 #import "XPTaskListVCtler.h"
+#import "XPDialyStaticVCtler.h"
 
 @interface XPLeftMenuViewCtler ()
 
@@ -32,6 +33,7 @@
 {
     [super viewDidLoad];
     [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -59,8 +61,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    NSArray  *section1TextArray  = @[@"nomal-list",@"project-list"];
-    NSArray  *section2TextArray  = @[@"nomal-static",@"project-static"];
+    NSArray  *section1TextArray  = @[@"今日任务",@"任务项目"];
+    NSArray  *section2TextArray  = @[@"今日统计计图标",@"项目统计图标"];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell)
@@ -80,26 +82,31 @@
 }
 
 #pragma mark- tableviewdelegate
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    NSArray  *titleArray  = @[@"list",@"static"];
-    UIView* headview = [UIView new];
-    headview.backgroundColor = [UIColor colorWithRed:145/255.0
-                                               green:145/255.0
-                                                blue:145/255.0
-                                               alpha:1.0];
-    UILabel* sectionTItle = [UILabel new];
-    sectionTItle.frame    = CGRectMake(15, 0, 0, 0);
-    sectionTItle.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    sectionTItle.font       = [UIFont systemFontOfSize:18];
-    sectionTItle.textColor  = [UIColor whiteColor];
-    sectionTItle.text = titleArray[section];
-    [headview addSubview:sectionTItle];
-    return headview;
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    NSArray  *titleArray  = @[@"任务列表",@"统计图标"];
+//    UIView* headview = [UIView new];
+//    headview.backgroundColor = [UIColor colorWithRed:145/255.0
+//                                               green:145/255.0
+//                                                blue:145/255.0
+//                                               alpha:1.0];
+//    UILabel* sectionTItle = [UILabel new];
+//    sectionTItle.frame    = CGRectMake(15, 0, 0, 0);
+//    sectionTItle.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+//    sectionTItle.font       = [UIFont systemFontOfSize:18];
+//    sectionTItle.textColor  = [UIColor whiteColor];
+//    sectionTItle.text = titleArray[section];
+//    [headview addSubview:sectionTItle];
+//    return headview;
+//}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    NSArray  *titleArray  = @[@"任务列表",@"统计图标"];
+    return [titleArray objectAtIndex:section];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 44;
+    return 40;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -113,6 +120,14 @@
         {
             XPProjectViewCtler* centervc = [[XPProjectViewCtler alloc] init];
             UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
+            [self.viewDeckController setCenterController:rootNav];
+        }else if([indexPath section] == 1 && [indexPath row] == 0){
+            XPDialyStaticVCtler* dialystaticVc = [[XPDialyStaticVCtler alloc] init];
+            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:dialystaticVc];
+            [self.viewDeckController setCenterController:rootNav];
+        }else if([indexPath section] == 1 && [indexPath row] == 1){
+            XPDialyStaticVCtler* dialystaticVc = [[XPDialyStaticVCtler alloc] init];
+            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:dialystaticVc];
             [self.viewDeckController setCenterController:rootNav];
         }
     }];

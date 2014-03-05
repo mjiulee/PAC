@@ -42,7 +42,23 @@
     // 测试Inser函数的正确性：日期类的：增加
     int ext = 1;
     for (int i = 0 ; i < 5; i ++) {
-        [self getItem:&title date:&date status:&status ext:ext];
+        // test:
+        status = [NSNumber numberWithInt:1];
+        [self getItem:&title date:&date status:&status ext:0];
+        [self.coreDataManger insertTask:title
+                                 status:0
+                                   date:date
+                                project:nil];
+        
+        // test:
+        status = [NSNumber numberWithInt:0];
+        [self getItem:&title date:&date status:&status ext:0];
+        [self.coreDataManger insertTask:title
+                                 status:0
+                                   date:date
+                                project:nil];
+        continue;
+        
         NSLog(@"title=%@,date=%@,ext=%d",title,date.description,ext);
         if (title == nil || date == nil) {
             ifError = YES;
@@ -59,6 +75,7 @@
         }
         ext ++;
     }
+    /*
     // 测试Inser函数的正确性：日期类的：减少
     ext = -1;
     for (int i = 0 ; i < 5; i ++) {
@@ -78,7 +95,7 @@
             break;
         }
         ext --;
-    }
+    }*/
     //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertNotEqual(ifError, YES, @"NSDate Helper is Pass");
 }
