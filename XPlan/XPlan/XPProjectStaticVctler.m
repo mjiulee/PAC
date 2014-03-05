@@ -26,7 +26,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
+    self.title = @"项目统计图表";
+    UILabel* lab = [[UILabel alloc] initWithFrame:self.view.bounds];
+    lab.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    lab.text = @"开发中";
+    lab.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:lab];
+
 }
 
 - (void)didReceiveMemoryWarning

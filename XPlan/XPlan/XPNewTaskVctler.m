@@ -92,10 +92,8 @@
     
     if (_viewType == XPNewTaskViewType_New) {
         UIButton* btnNext = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        btnNext.frame = CGRectMake(CGRectGetMaxX(_radioImportant.frame)+20, CGRectGetMaxY(_tfview .frame),100, 40);
-        if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0) {
-            [btnNext setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
-        }
+        btnNext.frame = CGRectMake(CGRectGetMaxX(_radioImportant.frame)+20, CGRectGetMaxY(_tfview .frame)+10,100, 40);
+        [btnNext setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
         [btnNext setTitle:@"下一个" forState:UIControlStateNormal];
         [btnNext addTarget:self action:@selector(onNextBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnNext];

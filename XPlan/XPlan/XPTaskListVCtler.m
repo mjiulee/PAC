@@ -69,6 +69,7 @@ static NSString *sCellIdentifier;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.viewDeckController.panningMode = IIViewDeckNavigationBarPanning;
     [self reLoadData];
     [self.tableView reloadData];
 }
@@ -154,6 +155,7 @@ static NSString *sCellIdentifier;
     updatevc.viewType    = XPNewTaskViewType_Update;
     updatevc.task2Update = atask;
     [self.navigationController pushViewController:updatevc animated:YES];
+    self.viewDeckController.panningMode = IIViewDeckNoPanning;
 
     //[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -290,6 +292,7 @@ static NSString *sCellIdentifier;
 -(void)onNavRightBtuAction:(id)sender{
     XPNewTaskVctler* newTvctl = [[XPNewTaskVctler alloc] init];
     [self.navigationController pushViewController:newTvctl animated:YES];
+    self.viewDeckController.panningMode = IIViewDeckNoPanning;
 }
 
 @end

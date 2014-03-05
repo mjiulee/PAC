@@ -13,6 +13,8 @@
 #import "XPProjectViewCtler.h"
 #import "XPTaskListVCtler.h"
 
+#import "XPStartupGuiderVctler.h"
+
 @implementation XPAppDelegate
 
 + (XPAppDelegate*)shareInstance
@@ -20,61 +22,31 @@
     return (XPAppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
+-(void)showTaskListDeckVctler
+{
+    // 初始化
+    _deckController = [self generateControllerStack];
+    
+    // 动画
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.7 ;  // 动画持续时间(秒)
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.type = kCATransitionFade;//淡入淡出效果
+    // view插入、移出
+    [self.guiderVctler.view removeFromSuperview];
+    self.window.rootViewController = self.deckController;
+    [[_window layer] addAnimation:animation forKey:@"animation"];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     _coreDataMgr= [[XPDataManager alloc] init];
-    //
+    // show the start up guider
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    _deckController = [self generateControllerStack];
-    self.window.rootViewController = _deckController;
-    // TEST:
-    //XPTaskListVCtler* centervc = [[XPTaskListVCtler alloc] init];
-    //UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
-    //self.window.rootViewController = rootNav;
+    _guiderVctler   = [self generateStartupGuider];
+    self.window.rootViewController = _guiderVctler;
     [self.window makeKeyAndVisible];
-    
-    /*
-    {   // 第20页
-        NSString* page20 = @"1800,1590,1000,690,600,5883,72,105,3000,9940,432,265,5000";
-        CGFloat total20 = 30377;
-        [self testPage:page20 total:total20 pageidx:20];
-    }
-
-    {   // 第21页
-        NSString* page20 = @"5000,484,55,1060.7,167,54,696,8750,9900,1093,954,75";
-        CGFloat total20 = 28288.7;
-        [self testPage:page20 total:total20 pageidx:21];
-    }
-
-    {   // 第22页
-        NSString* page20 = @"6971,2530,514,280,2030,1410,5450,500,2760,74,70,4013,228";
-        CGFloat total20 = 26830;
-        [self testPage:page20 total:total20 pageidx:22];
-    }
-    
-    {   // 第23页
-        NSString* page20 = @"613,520,162,720,251,170,638";
-        CGFloat total20 = 3074;
-        [self testPage:page20 total:total20 pageidx:23];
-    }
-
-    {   // 第24页
-        NSString* page20 = @"1677,1200,25,10954,161,260,1360,5959,54,36,10350,719,11360";
-        CGFloat total20 = 44115;
-        [self testPage:page20 total:total20 pageidx:24];
-    }
-    {   // 第25页
-        NSString* page20 = @"8090,760.28,16759,42178.5,29205.36,94576.33,621,154,182,100,382,1017,1179,284";
-        CGFloat total20 = 195488.47;
-        [self testPage:page20 total:total20 pageidx:25];
-    }
-    {   // 第25页
-        NSString* page20 = @"8090,760.28,16759,42178.5,29205.36,94576.33,621,154,182,100,382,1017,1179,284";
-        CGFloat total20 = 195488.47;
-        [self testPage:page20 total:total20 pageidx:25];
-    }
-    */
     
     return YES;
 }
@@ -104,6 +76,12 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark- startguider vctler
+-(XPStartupGuiderVctler*)generateStartupGuider{
+    XPStartupGuiderVctler* startupvc = [[XPStartupGuiderVctler alloc] init];
+    return startupvc;
 }
 
 #pragma mark- ViewDeck

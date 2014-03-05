@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"日常任务统计";
 	// Do any additional setup after loading the view.
     UILabel* lab = [[UILabel alloc] initWithFrame:self.view.bounds];
     lab.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
