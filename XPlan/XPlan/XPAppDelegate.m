@@ -42,6 +42,8 @@
 {
     // Override point for customization after application launch.
     _coreDataMgr= [[XPDataManager alloc] init];
+    //[_coreDataMgr selectTaskAll];
+    
     // show the start up guider
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     _guiderVctler   = [self generateStartupGuider];

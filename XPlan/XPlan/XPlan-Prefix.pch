@@ -17,6 +17,8 @@
     #import "XPAppDelegate.h"
     #import "XPBaseViewCtler.h"
     #import "XPBaseTableVCtler.h"
+    #import "UIDevice+Resolution.h"
+
 
 #define NLSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
 #define IOS7_OR_LATER   NLSystemVersionGreaterOrEqualThan(7.0)

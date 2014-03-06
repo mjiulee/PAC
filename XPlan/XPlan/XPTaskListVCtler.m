@@ -13,6 +13,8 @@
 #import "FMMoveTableView.h"
 #import "FMMoveTableViewCell.h"
 
+static int kHeadViewBtnStartIdx = 1000;
+
 @interface XPTaskListVCtler ()
 {
     NSMutableArray* _taskListNormal;
@@ -21,6 +23,8 @@
 }
 // NavButtons
 -(void)onNavRightBtuAction:(id)sender;
+// View Buttons
+-(void)onAddTaskButtonAction:(id)sender;
 // Datas
 -(void)reLoadData;
 //ViewDeck
@@ -54,10 +58,10 @@ static NSString *sCellIdentifier;
     self.tableView.delegate   = self;
     self.tableView.dataSource = self;
     
-    UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+    /*UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                               target:self
                                                                               action:@selector(onNavRightBtuAction:)];
-    self.navigationItem.rightBarButtonItem = rightBtn;
+    self.navigationItem.rightBarButtonItem = rightBtn;*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,7 +86,7 @@ static NSString *sCellIdentifier;
 
 - (NSInteger)tableView:(FMMoveTableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count = 0;
+    NSInteger count = 0;
     if(section == 0) count = [_taskListNormal count];
     if(section == 1) count = [_taskListImportant count];
     if(section == 2) count = [_taskListFinish count];
@@ -100,6 +104,7 @@ static NSString *sCellIdentifier;
             count--;
         }
     }
+    
     return count;
 }
 
@@ -177,6 +182,16 @@ static NSString *sCellIdentifier;
     sectionTItle.textColor  = [UIColor darkTextColor];
     sectionTItle.text = titleArray[section];
     [headview addSubview:sectionTItle];
+    
+    if (section != 2) {
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        btn.tag   = kHeadViewBtnStartIdx + section;
+        btn.frame = CGRectMake(CGRectGetWidth(tableView.frame)-50, 0, 40, 40);
+        btn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+        
+        [btn addTarget:self action:@selector(onAddTaskButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [headview addSubview:btn];
+    }
     return headview;
 }
 
@@ -200,10 +215,24 @@ static NSString *sCellIdentifier;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger se = indexPath.section;
-    if (se == 0) {
+    if (se == 0)
+    {
+        // save to core data
+        TaskModel * task2Done = [_taskListNormal objectAtIndex:[indexPath row]];
+        task2Done.status   = [NSNumber numberWithInt:XPTask_Type_Finish];
         [_taskListNormal removeObjectAtIndex:[indexPath row]];
-    }else if(se == 1){
+        [self performSelector:@selector(reloadListByStatus:) withObject:nil afterDelay:0.5];
+    }else if(se == 1)
+    {
+        // save to core data
+        TaskModel * task2Done = [_taskListImportant objectAtIndex:[indexPath row]];
+        task2Done.status   = [NSNumber numberWithInt:XPTask_Type_Finish];
+        XPAppDelegate* app = [XPAppDelegate shareInstance];
+        [app.coreDataMgr updateTask:task2Done
+                            project:nil];
         [_taskListImportant removeObjectAtIndex:[indexPath row]];
+        NSLog(@"important.count=%d",[_taskListImportant count]);
+        [self performSelector:@selector(reloadListByStatus:) withObject:nil afterDelay:0.5];
     }else if(se == 2){
         [_taskListFinish removeObjectAtIndex:[indexPath row]];
     }
@@ -233,8 +262,6 @@ static NSString *sCellIdentifier;
             [_taskListNormal exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
         }else if(se == 1){
             [_taskListImportant exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
-        }else if(se == 2){
-            [_taskListFinish exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
         }
     }else
     {
@@ -249,7 +276,20 @@ static NSString *sCellIdentifier;
             return;
         }
         TaskModel* task2Move = [tFromArray objectAtIndex:[fromIndexPath row]];
+        // remove to array
         [ToArray insertObject:task2Move atIndex:[toIndexPath row]];
+        // save to core data
+        XPAppDelegate* app = [XPAppDelegate shareInstance];
+        if ([toIndexPath section] == 1)
+        {
+            task2Move.status = [NSNumber numberWithInt:XPTask_Type_Important];
+        }else
+        {
+            task2Move.status = [NSNumber numberWithInt:XPTask_Type_Normal];
+        }
+        [app.coreDataMgr updateTask:task2Move
+                            project:nil];
+        
         [tFromArray removeObject:task2Move];
     }
 }
@@ -288,9 +328,37 @@ static NSString *sCellIdentifier;
     }
 }
 
+-(void)reloadListByStatus:(int)status
+{
+    XPAppDelegate* app = [XPAppDelegate shareInstance];
+    NSArray* finishList = [app.coreDataMgr selectTaskByDay:[NSDate date] status:2];
+    if (finishList && [finishList count]) {
+        [_taskListFinish removeAllObjects];
+        [_taskListFinish setArray:finishList];
+    }else{
+        [_taskListFinish removeAllObjects];
+    }
+    NSIndexSet* inset = [[NSIndexSet alloc] initWithIndex:2];
+    [self.tableView reloadSections:inset
+                  withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+
 #pragma mark - Navigation
 -(void)onNavRightBtuAction:(id)sender{
+    
+}
+
+#pragma mark - view Buttons
+-(void)onAddTaskButtonAction:(id)sender{
+    UIButton* btn = (UIButton*)sender;
+
     XPNewTaskVctler* newTvctl = [[XPNewTaskVctler alloc] init];
+    if (btn.tag == kHeadViewBtnStartIdx) {
+        newTvctl.viewType = XPNewTaskViewType_NewNormal;
+    }else{
+        newTvctl.viewType = XPNewTaskViewType_NewImportant;
+    }
     [self.navigationController pushViewController:newTvctl animated:YES];
     self.viewDeckController.panningMode = IIViewDeckNoPanning;
 }

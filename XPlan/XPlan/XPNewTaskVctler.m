@@ -63,7 +63,10 @@
         self.navigationItem.rightBarButtonItem = rightBtn;
     }
     
-    CGFloat yvalstart = 30;
+    CGFloat yvalstart = 25;
+    if ([UIDevice isRunningOniPhone]) {
+        yvalstart = 15;
+    }
     yvalstart += CGRectGetMaxY(self.navigationController.navigationBar.frame);
     
     // input text view and backgoundview
@@ -79,18 +82,24 @@
     
     XPUIRadioButton*_radioNormal = [[XPUIRadioButton alloc] initWithFrame:CGRectMake(20,CGRectGetMaxY(_tfview .frame)+20,80, 24)];
     _radioNormal.title = @"普通";
-    _radioNormal.value = @"0";
+    _radioNormal.value = [NSString stringWithFormat:@"%d",XPTask_Type_Normal];
     [self.view addSubview:_radioNormal];
     
     XPUIRadioButton*_radioImportant = [[XPUIRadioButton alloc] initWithFrame:CGRectMake(120,CGRectGetMaxY(_tfview .frame)+20,80, 24)];
     _radioImportant.title = @"重要";
-    _radioImportant.value = @"1";
+    _radioImportant.value = [NSString stringWithFormat:@"%d",XPTask_Type_Important];
     _radioImportant.ifCHeck = YES;
     [self.view addSubview:_radioImportant];
     
     _radioGroupPrio = [[XPUIRadioGroup alloc] initWithRadios:_radioNormal,_radioImportant,nil];
     
-    if (_viewType == XPNewTaskViewType_New) {
+    if (_viewType != XPNewTaskViewType_Update) {
+        if (_viewType == XPNewTaskViewType_NewNormal) {
+            [_radioNormal setIfCheck:YES];
+        }else if(_viewType == XPNewTaskViewType_NewImportant){
+            [_radioImportant setIfCheck:YES];
+        }
+        
         UIButton* btnNext = [UIButton buttonWithType:UIButtonTypeContactAdd];
         btnNext.frame = CGRectMake(CGRectGetMaxX(_radioImportant.frame)+20, CGRectGetMaxY(_tfview .frame)+10,100, 40);
         [btnNext setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
@@ -129,10 +138,9 @@
     // save item to core data
     XPAppDelegate* app = [XPAppDelegate shareInstance];
     NSString* value = [_radioGroupPrio getSelectedValue];
-
+    _task2Update.brief = _tfview.text;
+    _task2Update.status= [NSNumber numberWithInt:[value integerValue]];
     [app.coreDataMgr updateTask:_task2Update
-                          brief:_tfview.text
-                         status:[value integerValue]
                         project:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
