@@ -14,6 +14,15 @@
 
 #define IfCoreDataDebug 0
 
+
+enum {
+    // Task Normal
+    XPTask_Type_Normal      = 0,
+    // Task Important
+    XPTask_Type_Important   = 1,
+    XPTask_Type_Finish      = 2
+};typedef NSUInteger XPTaskType;
+
 @interface XPDataManager : NSObject
 {
 }
@@ -33,8 +42,6 @@
           project:(ProjectModel*)project;
 
 -(void)updateTask:(TaskModel*)task2update
-            brief:(NSString*)brief
-           status:(int)status
           project:(ProjectModel*)project;
 
 -(void)deleteTask:(NSString*)brief;

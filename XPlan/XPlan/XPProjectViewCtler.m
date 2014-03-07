@@ -22,7 +22,6 @@
     UITableView*    _tableview;
 }
 @property(nonatomic,strong,readonly) UIButton* btnMask;
--(BOOL)openLeftView;
 -(void)onNavRightBtuAction:(id)sender;
 -(void)reLoadData;
 @end
@@ -34,8 +33,6 @@
     if (self) {
         _taskList = [[NSMutableArray alloc] init];
         _projectList = [[NSMutableArray alloc] init];
-        // load data From Core Data
-        // [self reLoadData];
     }
     return self;
 }
@@ -44,23 +41,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.title = @"项目列表";
     self.view.backgroundColor = [UIColor whiteColor];
-    // view setting
-    UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_menu01"];
-    UIImage* imhighLight = [UIImage imageNamed:@"nav_btn_menu02"];
-    
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
-    [btn setImage:imgnormal   forState:UIControlStateNormal];
-    [btn setImage:imhighLight forState:UIControlStateHighlighted];
-    [btn addTarget:self action:@selector(openLeftView) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.leftBarButtonItem = leftBtn;
-    
-    UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                              target:self
-                                                                              action:@selector(onNavRightBtuAction:)];
+    // nav setting
+    UIBarButtonItem* rightBtn =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onNavRightBtuAction:)];
     self.navigationItem.rightBarButtonItem = rightBtn;
     
     // tableview
@@ -133,21 +118,4 @@
     [self.navigationController pushViewController:newTvctl animated:YES];
 }
 
-#pragma mark - ViewDeck
--(BOOL)openLeftView{
-    if ([self.viewDeckController isSideOpen:IIViewDeckLeftSide]) {
-        if ([self.viewDeckController respondsToSelector:@selector(closeLeftViewAnimated:completion:)])
-        {
-            [self.viewDeckController closeLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success){
-            }];
-        }
-    }else{
-        if ([self.viewDeckController respondsToSelector:@selector(openLeftViewAnimated:completion:)])
-        {
-            [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success){
-            }];
-        }
-    }
-    return YES;
-}
 @end

@@ -11,7 +11,7 @@
 #import "UIImage+XPUIImage.h"
 
 static NSString * const kTableViewCellContentView = @"UITableViewCellContentView";
-static const CGFloat  kCellScrollMaxOffset = 100;
+static const CGFloat  kCellScrollMaxOffset = 80;
 
 @interface XPTaskTableViewCell()
 <UIGestureRecognizerDelegate>
@@ -47,24 +47,15 @@ static const CGFloat  kCellScrollMaxOffset = 100;
     if (self) {
         // Initialization code
         self.tableView = tableview;
+        //self.backgroundColor = kWhiteColor;
         
         UIScrollView* scrollcontview = [[UIScrollView alloc] init];
         scrollcontview.frame = CGRectMake(0, 0, 320, 44);
         scrollcontview.delegate      = self;
-        scrollcontview.backgroundColor = [UIColor grayColor];
+        scrollcontview.backgroundColor = kWhiteColor;
         scrollcontview.showsHorizontalScrollIndicator = NO;
         scrollcontview.scrollsToTop  = NO;
         scrollcontview.scrollEnabled = YES;
-        
-        UILabel* finish = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-44, 0, 44, 44)];
-        finish.backgroundColor = kClearColor;
-        finish.numberOfLines = 0;
-        finish.font = [UIFont systemFontOfSize:kTaskCellFontSize];
-        finish.textAlignment = NSTextAlignmentCenter;
-        finish.textColor = kWhiteColor;
-        finish.alpha= 0;
-        [scrollcontview addSubview:finish];
-        self.labFinish = finish;
         
         UITapGestureRecognizer *tapGestureRecognizer =
         [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapHandle:)];
@@ -94,18 +85,22 @@ static const CGFloat  kCellScrollMaxOffset = 100;
         [contentView addSubview:lab];
         self.briefLabel = lab;
         
-        UIImageView* btnEdtie = [[UIImageView alloc] init];
-        btnEdtie.frame = CGRectMake(CGRectGetWidth(self.frame)-44, 0, 44, 44);
-        btnEdtie.image = [UIImage imageNamed:@"nav_btn_menu01"];
-        [contentView addSubview:btnEdtie];
-        [contentView bringSubviewToFront:btnEdtie];
-        self.editBtn = btnEdtie;
         // add to scrollview
         [scrollcontview addSubview:contentView];
-        
         [self insertSubview:scrollcontview atIndex:0];
         self.scrollcontview = scrollcontview;
         scrollcontview.contentSize = CGSizeMake(321, 44);
+        
+        UILabel* finish = [[UILabel alloc] initWithFrame:CGRectMake(320-100,0,100,44)];
+        finish.backgroundColor = [UIColor clearColor];
+        finish.numberOfLines = 0;
+        finish.font = [UIFont systemFontOfSize:kTaskCellFontSize];
+        finish.textAlignment = NSTextAlignmentCenter;
+        finish.textColor = [UIColor blackColor];
+        finish.text = @"完成";
+        finish.alpha= 0;
+        [self addSubview:finish];
+        self.labFinish = finish;
     }
     return self;
 }
@@ -228,21 +223,12 @@ static const CGFloat  kCellScrollMaxOffset = 100;
                      withVelocity:(CGPoint)velocity
               targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    if (scrollView.contentInset.right >= kCellScrollMaxOffset) {
-        return;
-    }
-    [self.scrollcontview setContentOffset:CGPointMake(0,0) animated:YES];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    // TODO:
-    NSLog(@"scrollView.contentOffset.x=%0.2f",scrollView.contentOffset.x);
     if (scrollView.contentOffset.x >= kCellScrollMaxOffset)
     {
         if (scrollView.contentInset.right >= kCellScrollMaxOffset) {
             return;
         }
+        
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, kCellScrollMaxOffset);
         if (_tableView.dataSource && [_tableView.dataSource respondsToSelector:@selector(tableView:commitEditingStyle:forRowAtIndexPath:)]) {
             NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:self];
@@ -250,7 +236,17 @@ static const CGFloat  kCellScrollMaxOffset = 100;
                           commitEditingStyle:UITableViewCellEditingStyleNone
                            forRowAtIndexPath:cellIndexPath];
         }
+    }else
+    {
+        [self.scrollcontview setContentOffset:CGPointMake(0,0) animated:YES];
     }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // TODO:
+    NSLog(@"scrollView.contentOffset.x=%0.2f",scrollView.contentOffset.x);
+    self.labFinish.alpha    = scrollView.contentOffset.x/kCellScrollMaxOffset;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -262,5 +258,7 @@ static const CGFloat  kCellScrollMaxOffset = 100;
 {
     // TODO:
 }
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView{return YES;};
 
 @end

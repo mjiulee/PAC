@@ -193,10 +193,7 @@
     } while (NO);
 }
 
--(void)updateTask:(TaskModel*)task2update
-            brief:(NSString*)brief
-           status:(int)status
-          project:(ProjectModel*)project
+-(void)updateTask:(TaskModel*)task2update project:(ProjectModel*)project
 {
     NSManagedObjectContext *context = [self managedObjectContext];
 
@@ -211,8 +208,8 @@
     //这里获取到的是一个数组，你需要取出你要更新的那个obj
     NSArray *result = [context executeFetchRequest:request error:&error];
     for (TaskModel *info in result){
-        info.brief = brief;
-        info.status= [NSNumber numberWithInteger:status];
+        info.brief = task2update.brief;
+        info.status= task2update.status;
         if ([context save:&error]) {
             NSLog(@"更新成功");
         }else{
@@ -260,7 +257,9 @@
     NSArray *result = [context executeFetchRequest:request error:&error];
     //NSLog(@"result=%@",result.description);
     for (TaskModel* item in result) {
-        NSLog(@"date=%@",item.create_date.description);
+        ///NSLog(@"date=%@",item.create_date.description);
+        //item.status = [NSNumber numberWithInt:XPTask_Type_Normal];
+        //[self updateTask:item project:nil];
     }
     return result;
 }

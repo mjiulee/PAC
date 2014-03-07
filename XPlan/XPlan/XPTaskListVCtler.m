@@ -13,6 +13,8 @@
 #import "FMMoveTableView.h"
 #import "FMMoveTableViewCell.h"
 
+static int kHeadViewBtnStartIdx = 1000;
+
 @interface XPTaskListVCtler ()
 {
     NSMutableArray* _taskListNormal;
@@ -21,14 +23,17 @@
 }
 // NavButtons
 -(void)onNavRightBtuAction:(id)sender;
+// View Buttons
+-(void)onAddTaskButtonAction:(id)sender;
 // Datas
 -(void)reLoadData;
 //ViewDeck
--(BOOL)openLeftView;
+//-(BOOL)openLeftView;
 @end
 
 @implementation XPTaskListVCtler
 static NSString *sCellIdentifier;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -46,35 +51,17 @@ static NSString *sCellIdentifier;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"今日任务";
+    // tableview
+    self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[FMMoveTableView alloc] initWithFrame:self.tableView.frame style:UITableViewStylePlain];
     self.tableView.delegate   = self;
     self.tableView.dataSource = self;
     
-    
-    // Uncomment the following line to preserve selection between presentations.
-    self.view.backgroundColor = [UIColor whiteColor];
-    // navs setting
-    UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_menu01"];
-    UIImage* imhighLight = [UIImage imageNamed:@"nav_btn_menu02"];
-    
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
-    [btn setImage:imgnormal   forState:UIControlStateNormal];
-    [btn setImage:imhighLight forState:UIControlStateHighlighted];
-    [btn addTarget:self action:@selector(openLeftView) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.leftBarButtonItem = leftBtn;
-    
-    UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+    /*UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                               target:self
                                                                               action:@selector(onNavRightBtuAction:)];
-    self.navigationItem.rightBarButtonItem = rightBtn;
-    
-    // tableview
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0)
-    {
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    }
+    self.navigationItem.rightBarButtonItem = rightBtn;*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,6 +73,7 @@ static NSString *sCellIdentifier;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.viewDeckController.panningMode = IIViewDeckNavigationBarPanning;
     [self reLoadData];
     [self.tableView reloadData];
 }
@@ -98,7 +86,7 @@ static NSString *sCellIdentifier;
 
 - (NSInteger)tableView:(FMMoveTableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count = 0;
+    NSInteger count = 0;
     if(section == 0) count = [_taskListNormal count];
     if(section == 1) count = [_taskListImportant count];
     if(section == 2) count = [_taskListFinish count];
@@ -116,12 +104,19 @@ static NSString *sCellIdentifier;
             count--;
         }
     }
+    
     return count;
 }
 
 - (UITableViewCell *)tableView:(FMMoveTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     XPTaskTableViewCell *cell = (XPTaskTableViewCell *)[tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
+    if (!cell) {
+        cell = [[XPTaskTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier tableview:tableView];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.selectionStyle= UITableViewCellSelectionStyleNone;
+    }
+    
     if ([tableView indexPathIsMovingIndexPath:indexPath])
 	{
 		[cell prepareForMove];
@@ -131,22 +126,17 @@ static NSString *sCellIdentifier;
         #warning Implement this check in your table view data source
 		if (tableView.movingIndexPath != nil) {
             indexPath = [tableView adaptedIndexPathForRowAtIndexPath:indexPath];
-		}else{
-            if (!cell){
-                cell = [[XPTaskTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier tableview:tableView];
-                cell.accessoryType = UITableViewCellAccessoryNone;
-                cell.selectionStyle= UITableViewCellSelectionStyleNone;
-            }
-            TaskModel* atask = nil;
-            if([indexPath section] == 0){
-                atask = [_taskListNormal objectAtIndex:[indexPath row]];
-            }else if([indexPath section] == 1){
-                atask = [_taskListImportant objectAtIndex:[indexPath row]];
-            }else if([indexPath section] == 2){
-                atask = [_taskListFinish objectAtIndex:[indexPath row]];
-            }
-            [cell setTask:atask];
+		}
+
+        TaskModel* atask = nil;
+        if([indexPath section] == 0){
+            atask = [_taskListNormal objectAtIndex:[indexPath row]];
+        }else if([indexPath section] == 1){
+            atask = [_taskListImportant objectAtIndex:[indexPath row]];
+        }else if([indexPath section] == 2){
+            atask = [_taskListFinish objectAtIndex:[indexPath row]];
         }
+        [cell setTask:atask];
         cell.shouldIndentWhileEditing = NO;
         cell.showsReorderControl      = NO;
 	}
@@ -170,6 +160,7 @@ static NSString *sCellIdentifier;
     updatevc.viewType    = XPNewTaskViewType_Update;
     updatevc.task2Update = atask;
     [self.navigationController pushViewController:updatevc animated:YES];
+    self.viewDeckController.panningMode = IIViewDeckNoPanning;
 
     //[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -178,25 +169,34 @@ static NSString *sCellIdentifier;
 {
     NSArray  *titleArray  = @[@"普通",@"重要",@"完成"];
     UIView* headview = [[UIView alloc] initWithFrame:CGRectZero];
-    headview.backgroundColor = [UIColor colorWithRed:200/255.0
-                                               green:200/255.0
-                                                blue:200/255.0
-                                               alpha:1.0];
-    headview.alpha = 0.8;
+    headview.backgroundColor = [UIColor whiteColor];
+    headview.layer.borderWidth = 0.5;
+    headview.layer.borderColor = [XPRGBColor(157, 157, 157, 0.8) CGColor];
+    headview.alpha = 0.85;
     
     UILabel* sectionTItle = [UILabel new];
     sectionTItle.frame    = CGRectMake(15, 0, 0, 0);
     sectionTItle.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     sectionTItle.backgroundColor = kClearColor;
     sectionTItle.font       = [UIFont systemFontOfSize:18];
-    sectionTItle.textColor  = [UIColor whiteColor];
+    sectionTItle.textColor  = [UIColor darkTextColor];
     sectionTItle.text = titleArray[section];
     [headview addSubview:sectionTItle];
+    
+    if (section != 2) {
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        btn.tag   = kHeadViewBtnStartIdx + section;
+        btn.frame = CGRectMake(CGRectGetWidth(tableView.frame)-50, 0, 40, 40);
+        btn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+        
+        [btn addTarget:self action:@selector(onAddTaskButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [headview addSubview:btn];
+    }
     return headview;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 36;
+    return 40;
 }
 
 - (NSIndexPath *)moveTableView:(FMMoveTableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
@@ -215,10 +215,24 @@ static NSString *sCellIdentifier;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger se = indexPath.section;
-    if (se == 0) {
+    if (se == 0)
+    {
+        // save to core data
+        TaskModel * task2Done = [_taskListNormal objectAtIndex:[indexPath row]];
+        task2Done.status   = [NSNumber numberWithInt:XPTask_Type_Finish];
         [_taskListNormal removeObjectAtIndex:[indexPath row]];
-    }else if(se == 1){
+        [self performSelector:@selector(reloadListByStatus:) withObject:nil afterDelay:0.5];
+    }else if(se == 1)
+    {
+        // save to core data
+        TaskModel * task2Done = [_taskListImportant objectAtIndex:[indexPath row]];
+        task2Done.status   = [NSNumber numberWithInt:XPTask_Type_Finish];
+        XPAppDelegate* app = [XPAppDelegate shareInstance];
+        [app.coreDataMgr updateTask:task2Done
+                            project:nil];
         [_taskListImportant removeObjectAtIndex:[indexPath row]];
+        NSLog(@"important.count=%d",[_taskListImportant count]);
+        [self performSelector:@selector(reloadListByStatus:) withObject:nil afterDelay:0.5];
     }else if(se == 2){
         [_taskListFinish removeObjectAtIndex:[indexPath row]];
     }
@@ -248,8 +262,6 @@ static NSString *sCellIdentifier;
             [_taskListNormal exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
         }else if(se == 1){
             [_taskListImportant exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
-        }else if(se == 2){
-            [_taskListFinish exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
         }
     }else
     {
@@ -264,7 +276,20 @@ static NSString *sCellIdentifier;
             return;
         }
         TaskModel* task2Move = [tFromArray objectAtIndex:[fromIndexPath row]];
+        // remove to array
         [ToArray insertObject:task2Move atIndex:[toIndexPath row]];
+        // save to core data
+        XPAppDelegate* app = [XPAppDelegate shareInstance];
+        if ([toIndexPath section] == 1)
+        {
+            task2Move.status = [NSNumber numberWithInt:XPTask_Type_Important];
+        }else
+        {
+            task2Move.status = [NSNumber numberWithInt:XPTask_Type_Normal];
+        }
+        [app.coreDataMgr updateTask:task2Move
+                            project:nil];
+        
         [tFromArray removeObject:task2Move];
     }
 }
@@ -303,28 +328,39 @@ static NSString *sCellIdentifier;
     }
 }
 
-#pragma mark - Navigation
--(void)onNavRightBtuAction:(id)sender{
-    XPNewTaskVctler* newTvctl = [[XPNewTaskVctler alloc] init];
-    [self.navigationController pushViewController:newTvctl animated:YES];
+-(void)reloadListByStatus:(int)status
+{
+    XPAppDelegate* app = [XPAppDelegate shareInstance];
+    NSArray* finishList = [app.coreDataMgr selectTaskByDay:[NSDate date] status:2];
+    if (finishList && [finishList count]) {
+        [_taskListFinish removeAllObjects];
+        [_taskListFinish setArray:finishList];
+    }else{
+        [_taskListFinish removeAllObjects];
+    }
+    NSIndexSet* inset = [[NSIndexSet alloc] initWithIndex:2];
+    [self.tableView reloadSections:inset
+                  withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-#pragma mark - ViewDeck
--(BOOL)openLeftView{
-    if ([self.viewDeckController isSideOpen:IIViewDeckLeftSide]) {
-        if ([self.viewDeckController respondsToSelector:@selector(closeLeftViewAnimated:completion:)])
-        {
-            [self.viewDeckController closeLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success){
-            }];
-        }
+
+#pragma mark - Navigation
+-(void)onNavRightBtuAction:(id)sender{
+    
+}
+
+#pragma mark - view Buttons
+-(void)onAddTaskButtonAction:(id)sender{
+    UIButton* btn = (UIButton*)sender;
+
+    XPNewTaskVctler* newTvctl = [[XPNewTaskVctler alloc] init];
+    if (btn.tag == kHeadViewBtnStartIdx) {
+        newTvctl.viewType = XPNewTaskViewType_NewNormal;
     }else{
-        if ([self.viewDeckController respondsToSelector:@selector(openLeftViewAnimated:completion:)])
-        {
-            [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success){
-            }];
-        }
+        newTvctl.viewType = XPNewTaskViewType_NewImportant;
     }
-    return YES;
+    [self.navigationController pushViewController:newTvctl animated:YES];
+    self.viewDeckController.panningMode = IIViewDeckNoPanning;
 }
 
 @end

@@ -17,9 +17,15 @@
 		18ED380518C308D1002565E8 /* NSString+DrawHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380418C308D1002565E8 /* NSString+DrawHelper.m */; };
 		18ED380818C30FBF002565E8 /* XPTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */; };
 		18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */; };
+		431F74A118C758C800B03742 /* XPStartupGuiderVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F74A018C758C800B03742 /* XPStartupGuiderVctler.m */; };
+		431F74A418C75C3A00B03742 /* XPDialyStaticVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F74A318C75C3A00B03742 /* XPDialyStaticVCtler.m */; };
+		431F74A718C75C6900B03742 /* XPBaseViewCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F74A618C75C6900B03742 /* XPBaseViewCtler.m */; };
+		431F74AA18C75D2E00B03742 /* XPBaseTableVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F74A918C75D2E00B03742 /* XPBaseTableVCtler.m */; };
+		431F74AD18C76D1600B03742 /* XPProjectStaticVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F74AC18C76D1600B03742 /* XPProjectStaticVctler.m */; };
 		4321392918B8D78F00613275 /* XPDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321392818B8D78F00613275 /* XPDataManager.m */; };
 		43359AF018C426F700C12617 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 43359AEF18C426F700C12617 /* NSDate+Category.m */; };
 		43359AF218C42A1600C12617 /* TaskInsertTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43359AF118C42A1600C12617 /* TaskInsertTest.m */; };
+		433EDCD118C8B60500746E63 /* UIDevice+Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 433EDCD018C8B60500746E63 /* UIDevice+Resolution.m */; };
 		437A7CC318B71BA20088F1AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC218B71BA20088F1AA /* Foundation.framework */; };
 		437A7CC518B71BA20088F1AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC418B71BA20088F1AA /* CoreGraphics.framework */; };
 		437A7CC718B71BA20088F1AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC618B71BA20088F1AA /* UIKit.framework */; };
@@ -74,11 +80,23 @@
 		18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPTaskTableViewCell.m; sourceTree = "<group>"; };
 		18ED380918C324BA002565E8 /* XPTaskListVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPTaskListVCtler.h; sourceTree = "<group>"; };
 		18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPTaskListVCtler.m; sourceTree = "<group>"; };
+		431F749F18C758C800B03742 /* XPStartupGuiderVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPStartupGuiderVctler.h; sourceTree = "<group>"; };
+		431F74A018C758C800B03742 /* XPStartupGuiderVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPStartupGuiderVctler.m; sourceTree = "<group>"; };
+		431F74A218C75C3A00B03742 /* XPDialyStaticVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPDialyStaticVCtler.h; sourceTree = "<group>"; };
+		431F74A318C75C3A00B03742 /* XPDialyStaticVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPDialyStaticVCtler.m; sourceTree = "<group>"; };
+		431F74A518C75C6900B03742 /* XPBaseViewCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPBaseViewCtler.h; sourceTree = "<group>"; };
+		431F74A618C75C6900B03742 /* XPBaseViewCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPBaseViewCtler.m; sourceTree = "<group>"; };
+		431F74A818C75D2E00B03742 /* XPBaseTableVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPBaseTableVCtler.h; sourceTree = "<group>"; };
+		431F74A918C75D2E00B03742 /* XPBaseTableVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPBaseTableVCtler.m; sourceTree = "<group>"; };
+		431F74AB18C76D1600B03742 /* XPProjectStaticVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPProjectStaticVctler.h; sourceTree = "<group>"; };
+		431F74AC18C76D1600B03742 /* XPProjectStaticVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPProjectStaticVctler.m; sourceTree = "<group>"; };
 		4321392718B8D78F00613275 /* XPDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPDataManager.h; sourceTree = "<group>"; };
 		4321392818B8D78F00613275 /* XPDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPDataManager.m; sourceTree = "<group>"; };
 		43359AEE18C426F700C12617 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
 		43359AEF18C426F700C12617 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		43359AF118C42A1600C12617 /* TaskInsertTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInsertTest.m; sourceTree = "<group>"; };
+		433EDCCF18C8B60500746E63 /* UIDevice+Resolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Resolution.h"; sourceTree = "<group>"; };
+		433EDCD018C8B60500746E63 /* UIDevice+Resolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Resolution.m"; sourceTree = "<group>"; };
 		437A7CBF18B71BA20088F1AA /* XPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437A7CC218B71BA20088F1AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		437A7CC418B71BA20088F1AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -167,6 +185,83 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		431F74AE18C76D2900B03742 /* listview */ = {
+			isa = PBXGroup;
+			children = (
+				18ED380618C30FBF002565E8 /* XPTaskTableViewCell.h */,
+				18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */,
+				437A7CD718B71BA20088F1AA /* XPProjectViewCtler.h */,
+				437A7CD818B71BA20088F1AA /* XPProjectViewCtler.m */,
+				18ED380918C324BA002565E8 /* XPTaskListVCtler.h */,
+				18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */,
+			);
+			name = listview;
+			sourceTree = "<group>";
+		};
+		431F74AF18C76D3E00B03742 /* NewView */ = {
+			isa = PBXGroup;
+			children = (
+				4383D9E418BC8577007F7CA0 /* XPNewTaskVctler.h */,
+				4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */,
+				18CDC91518C2216000459B26 /* XPNewProjectVctler.h */,
+				18CDC91618C2216000459B26 /* XPNewProjectVctler.m */,
+			);
+			name = NewView;
+			sourceTree = "<group>";
+		};
+		431F74B018C76D6700B03742 /* Catogery */ = {
+			isa = PBXGroup;
+			children = (
+				437A7D0A18B750B60088F1AA /* UIImage+XPUIImage.h */,
+				437A7D0B18B750B60088F1AA /* UIImage+XPUIImage.m */,
+				18ED380318C308D1002565E8 /* NSString+DrawHelper.h */,
+				18ED380418C308D1002565E8 /* NSString+DrawHelper.m */,
+				433EDCCF18C8B60500746E63 /* UIDevice+Resolution.h */,
+				433EDCD018C8B60500746E63 /* UIDevice+Resolution.m */,
+			);
+			name = Catogery;
+			sourceTree = "<group>";
+		};
+		431F74B118C76D8700B03742 /* basic-vc */ = {
+			isa = PBXGroup;
+			children = (
+				431F74A518C75C6900B03742 /* XPBaseViewCtler.h */,
+				431F74A618C75C6900B03742 /* XPBaseViewCtler.m */,
+				431F74A818C75D2E00B03742 /* XPBaseTableVCtler.h */,
+				431F74A918C75D2E00B03742 /* XPBaseTableVCtler.m */,
+			);
+			name = "basic-vc";
+			sourceTree = "<group>";
+		};
+		431F74B218C76DB400B03742 /* staitc-vc */ = {
+			isa = PBXGroup;
+			children = (
+				431F74A218C75C3A00B03742 /* XPDialyStaticVCtler.h */,
+				431F74A318C75C3A00B03742 /* XPDialyStaticVCtler.m */,
+				431F74AB18C76D1600B03742 /* XPProjectStaticVctler.h */,
+				431F74AC18C76D1600B03742 /* XPProjectStaticVctler.m */,
+			);
+			name = "staitc-vc";
+			sourceTree = "<group>";
+		};
+		431F74B318C76DEC00B03742 /* custom-v */ = {
+			isa = PBXGroup;
+			children = (
+				4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */,
+				4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */,
+			);
+			name = "custom-v";
+			sourceTree = "<group>";
+		};
+		431F74B418C76F1A00B03742 /* guider */ = {
+			isa = PBXGroup;
+			children = (
+				431F749F18C758C800B03742 /* XPStartupGuiderVctler.h */,
+				431F74A018C758C800B03742 /* XPStartupGuiderVctler.m */,
+			);
+			name = guider;
+			sourceTree = "<group>";
+		};
 		43359AED18C426DA00C12617 /* NSDateHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,28 +308,19 @@
 		437A7CC818B71BA20088F1AA /* XPlan */ = {
 			isa = PBXGroup;
 			children = (
+				431F74B418C76F1A00B03742 /* guider */,
+				431F74B318C76DEC00B03742 /* custom-v */,
+				431F74B218C76DB400B03742 /* staitc-vc */,
+				431F74B118C76D8700B03742 /* basic-vc */,
+				431F74B018C76D6700B03742 /* Catogery */,
+				431F74AF18C76D3E00B03742 /* NewView */,
+				431F74AE18C76D2900B03742 /* listview */,
 				43359AED18C426DA00C12617 /* NSDateHelper */,
 				18EB3F5B18C1F01000400E72 /* Model */,
 				437A7CD118B71BA20088F1AA /* XPAppDelegate.h */,
 				437A7CD218B71BA20088F1AA /* XPAppDelegate.m */,
-				437A7CD718B71BA20088F1AA /* XPProjectViewCtler.h */,
-				437A7CD818B71BA20088F1AA /* XPProjectViewCtler.m */,
-				18ED380918C324BA002565E8 /* XPTaskListVCtler.h */,
-				18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */,
-				4383D9E418BC8577007F7CA0 /* XPNewTaskVctler.h */,
-				4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */,
-				18CDC91518C2216000459B26 /* XPNewProjectVctler.h */,
-				18CDC91618C2216000459B26 /* XPNewProjectVctler.m */,
 				437A7D0318B725AF0088F1AA /* XPLeftMenuViewCtler.h */,
 				437A7D0418B725AF0088F1AA /* XPLeftMenuViewCtler.m */,
-				437A7D0A18B750B60088F1AA /* UIImage+XPUIImage.h */,
-				437A7D0B18B750B60088F1AA /* UIImage+XPUIImage.m */,
-				4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */,
-				4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */,
-				18ED380318C308D1002565E8 /* NSString+DrawHelper.h */,
-				18ED380418C308D1002565E8 /* NSString+DrawHelper.m */,
-				18ED380618C30FBF002565E8 /* XPTaskTableViewCell.h */,
-				18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */,
 				437A7CDA18B71BA20088F1AA /* Images.xcassets */,
 				437A7CC918B71BA20088F1AA /* Supporting Files */,
 			);
@@ -393,17 +479,23 @@
 				437A7D0018B723330088F1AA /* IISideController.m in Sources */,
 				18EB3F5A18C1EF8900400E72 /* TaskModel.m in Sources */,
 				437A7CD318B71BA20088F1AA /* XPAppDelegate.m in Sources */,
+				431F74AD18C76D1600B03742 /* XPProjectStaticVctler.m in Sources */,
 				18A97E4318C1B12200CE3161 /* XPlanModel.xcdatamodeld in Sources */,
 				18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */,
 				1873677418C60D1A003EC3A0 /* FMMoveTableView.m in Sources */,
+				431F74A118C758C800B03742 /* XPStartupGuiderVctler.m in Sources */,
+				433EDCD118C8B60500746E63 /* UIDevice+Resolution.m in Sources */,
 				18A97E4218C1B12200CE3161 /* TestModel.m in Sources */,
 				18ED380818C30FBF002565E8 /* XPTaskTableViewCell.m in Sources */,
+				431F74AA18C75D2E00B03742 /* XPBaseTableVCtler.m in Sources */,
 				4321392918B8D78F00613275 /* XPDataManager.m in Sources */,
 				437A7D0118B723330088F1AA /* IIViewDeckController.m in Sources */,
 				18EB3F5718C1EF8800400E72 /* ProjectModel.m in Sources */,
 				437A7D0C18B750B60088F1AA /* UIImage+XPUIImage.m in Sources */,
 				437A7CD918B71BA20088F1AA /* XPProjectViewCtler.m in Sources */,
+				431F74A418C75C3A00B03742 /* XPDialyStaticVCtler.m in Sources */,
 				437A7D0518B725AF0088F1AA /* XPLeftMenuViewCtler.m in Sources */,
+				431F74A718C75C6900B03742 /* XPBaseViewCtler.m in Sources */,
 				4383D9E918BC9646007F7CA0 /* XPUIRadioButton.m in Sources */,
 				437A7CCF18B71BA20088F1AA /* main.m in Sources */,
 				437A7D0218B723330088F1AA /* IIWrapController.m in Sources */,

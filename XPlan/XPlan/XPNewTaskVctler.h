@@ -10,12 +10,15 @@
 #import "TaskModel.h"
 typedef enum _XPNewTaskViewType{
     XPNewTaskViewType_New   = 10,
+    XPNewTaskViewType_NewNormal,
+    XPNewTaskViewType_NewImportant,
     XPNewTaskViewType_Update
 }XPNewTaskViewType;
 
 @interface XPNewTaskVctler : UIViewController{
     
 }
+
 @property(nonatomic)        XPNewTaskViewType viewType;
 @property(nonatomic,strong) TaskModel* task2Update;
 @end
