@@ -17,7 +17,8 @@
 +(CGSize)taskCellSize:(TaskModel*)task;
 
 -(id)initWithStyle:(UITableViewCellStyle)style
-    reuseIdentifier:(NSString *)reuseIdentifier
-          tableview:(UITableView*)tableview;
+   reuseIdentifier:(NSString *)reuseIdentifier
+         tableview:(UITableView*)tableview;
+
 -(void)setTask:(TaskModel*)atask;
 @end

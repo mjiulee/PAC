@@ -12,6 +12,7 @@
 #import "XPNewProjectVctler.h"
 #import "XPAppDelegate.h"
 #import "NSString+DrawHelper.h"
+#import "XPTaskFinishCell.h"
 
 
 @interface XPProjectViewCtler ()

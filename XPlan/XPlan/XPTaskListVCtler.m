@@ -57,7 +57,7 @@ static NSString *sCellIdentifier;
     self.tableView = [[FMMoveTableView alloc] initWithFrame:self.tableView.frame style:UITableViewStylePlain];
     self.tableView.delegate   = self;
     self.tableView.dataSource = self;
-    
+    self.tableView.rowHeight  = 64;
     /*UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                               target:self
                                                                               action:@selector(onNavRightBtuAction:)];
@@ -91,7 +91,7 @@ static NSString *sCellIdentifier;
     if(section == 1) count = [_taskListImportant count];
     if(section == 2) count = [_taskListFinish count];
 
-    #warning Implement this check in your table data source
+    //#warning Implement this check in your table data source
     // 1. A row is in a moving state
     // 2. The moving row is not in it's initial section
     if (tableView.movingIndexPath && tableView.movingIndexPath.section != tableView.initialIndexPathForMovingRow.section)
@@ -123,11 +123,10 @@ static NSString *sCellIdentifier;
 	}
 	else
 	{
-        #warning Implement this check in your table view data source
+        //#warning Implement this check in your table view data source
 		if (tableView.movingIndexPath != nil) {
             indexPath = [tableView adaptedIndexPathForRowAtIndexPath:indexPath];
 		}
-
         TaskModel* atask = nil;
         if([indexPath section] == 0){
             atask = [_taskListNormal objectAtIndex:[indexPath row]];
@@ -144,10 +143,10 @@ static NSString *sCellIdentifier;
 }
 
 #pragma mark- tableviewdelegate
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 44;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 64;
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

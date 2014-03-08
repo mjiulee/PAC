@@ -15,6 +15,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 
 @interface XPTaskTableViewCell()
 <UIGestureRecognizerDelegate>
+@property(nonatomic)        BOOL      finished;
 @property(nonatomic,strong) UILabel*  briefLabel;
 @property(nonatomic,strong) UILabel*  labFinish;
 @property(nonatomic,strong) UIImageView*  editBtn;
@@ -40,17 +41,17 @@ static const CGFloat  kCellScrollMaxOffset = 80;
     return tsize;
 }
 
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier tableview:(UITableView*)tableview;
-
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier tableview:(UITableView*)tableview
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
         self.tableView = tableview;
         //self.backgroundColor = kWhiteColor;
+        _finished = NO;
         
         UIScrollView* scrollcontview = [[UIScrollView alloc] init];
-        scrollcontview.frame = CGRectMake(0, 0, 320, 44);
+        scrollcontview.frame = CGRectMake(0, 0, 320, tableview.rowHeight);
         scrollcontview.delegate      = self;
         scrollcontview.backgroundColor = kWhiteColor;
         scrollcontview.showsHorizontalScrollIndicator = NO;
@@ -76,7 +77,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
             [contentView addSubview:tv];
         }
         
-        UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10,8, kTaskCellMaxWidth,28)];
+        UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10,8, kTaskCellMaxWidth,tableview.rowHeight-8*2)];
         lab.backgroundColor = kClearColor;
         lab.numberOfLines = 0;
         lab.backgroundColor = kClearColor;
@@ -91,7 +92,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
         self.scrollcontview = scrollcontview;
         scrollcontview.contentSize = CGSizeMake(321, 44);
         
-        UILabel* finish = [[UILabel alloc] initWithFrame:CGRectMake(320-100,0,100,44)];
+        UILabel* finish = [[UILabel alloc] initWithFrame:CGRectMake(320-80,0,80,tableview.rowHeight)];
         finish.backgroundColor = [UIColor clearColor];
         finish.numberOfLines = 0;
         finish.font = [UIFont systemFontOfSize:kTaskCellFontSize];
@@ -118,6 +119,13 @@ static const CGFloat  kCellScrollMaxOffset = 80;
        self.scrollcontview.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     }
     self.briefLabel.text  = atask.brief;
+    if ([atask.status integerValue] == 2) {
+        //self.scrollcontview.scrollEnabled = NO;
+        self.finished = YES;
+    }else{
+        //self.scrollcontview.scrollEnabled = YES;
+        self.finished = NO;
+    }
 }
 
 -(void)onLongPressGesture:(UIPanGestureRecognizer*)panner{
@@ -223,7 +231,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
                      withVelocity:(CGPoint)velocity
               targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    if (scrollView.contentOffset.x >= kCellScrollMaxOffset)
+    if (scrollView.contentOffset.x >= kCellScrollMaxOffset && _finished == NO)
     {
         if (scrollView.contentInset.right >= kCellScrollMaxOffset) {
             return;
@@ -245,8 +253,10 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     // TODO:
-    NSLog(@"scrollView.contentOffset.x=%0.2f",scrollView.contentOffset.x);
-    self.labFinish.alpha    = scrollView.contentOffset.x/kCellScrollMaxOffset;
+    // NSLog(@"scrollView.contentOffset.x=%0.2f",scrollView.contentOffset.x);
+    if (!_finished) {
+        self.labFinish.alpha    = scrollView.contentOffset.x/kCellScrollMaxOffset;
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

@@ -12,6 +12,7 @@
 #import "TaskModel.h"
 
 @interface XPNewTaskVctler ()
+<UITextViewDelegate>
 {
     //XPUIRadioButton* _radioNormal;
     //XPUIRadioButton* _radioImportant;
@@ -69,14 +70,20 @@
     }
     yvalstart += CGRectGetMaxY(self.navigationController.navigationBar.frame);
     
-    // input text view and backgoundview
+    //input text view and backgoundview
     UIView* tfviewbg  = [[UIView alloc] initWithFrame:CGRectMake(15,yvalstart,290, 82)];
     tfviewbg.layer.cornerRadius = 3;
-    tfviewbg.backgroundColor = [UIColor lightGrayColor];
+    tfviewbg.backgroundColor    = [UIColor whiteColor];
+    tfviewbg.layer.borderColor  = XPRGBColor(157,157,157,1).CGColor;
+    tfviewbg.layer.borderWidth  = 1;
     [self.view addSubview:tfviewbg];
     
-    _tfview = [[UITextView alloc] initWithFrame:CGRectMake(16,yvalstart+1,288, 80)];
+    _tfview = [[UITextView alloc] initWithFrame:CGRectMake(16,yvalstart+2,288, 78)];
     _tfview .textContainerInset = UIEdgeInsetsMake(3, 1, 0, 1);
+    _tfview.font = [UIFont systemFontOfSize:15];
+//    _tfview.delegate            = self;
+//    _tfview.layer.borderColor   = XPRGBColor(157,157,157,1).CGColor;
+//    _tfview.layer.borderWidth   = 1;
     _tfview .layer.cornerRadius = 3;
     [self.view addSubview:_tfview];
     
@@ -161,5 +168,31 @@
                         project:nil];
     [_tfview setText:@""];
 }
+
+
+/*#pragma mark - uitextviewdelegate
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    [textView scrollRangeToVisible:range];
+    return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    CGRect line = [textView caretRectForPosition:
+                   textView.selectedTextRange.start];
+    CGFloat overflow = line.origin.y + line.size.height
+    - ( textView.contentOffset.y + textView.bounds.size.height
+       - textView.contentInset.bottom - textView.contentInset.top );
+    if ( overflow > 0 ) {
+        // We are at the bottom of the visible text and introduced a line feed, scroll down (iOS 7 does not do it)
+        // Scroll caret to visible area
+        CGPoint offset = textView.contentOffset;
+        offset.y += overflow + 7; // leave 7 pixels margin
+        // Cannot animate with setContentOffset:animated: or caret will not appear
+        [UIView animateWithDuration:.2 animations:^{
+            [textView setContentOffset:offset];
+        }];
+    }
+}*/
 
 @end
