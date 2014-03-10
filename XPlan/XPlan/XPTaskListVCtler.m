@@ -51,7 +51,6 @@ static NSString *sCellIdentifier;
         _taskListFinish = [[NSMutableArray alloc] init];;
         
         sCellIdentifier = @"MoveCell";
-        
     }
     return self;
 }
@@ -66,15 +65,6 @@ static NSString *sCellIdentifier;
     self.tableView.delegate   = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight  = 64;
-    /*UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                              target:self
-                                                                              action:@selector(onNavRightBtuAction:)];
-    self.navigationItem.rightBarButtonItem = rightBtn;*/
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(orientationChanged:)
-                                                 name:UIDeviceOrientationDidChangeNotification
-                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,21 +78,6 @@ static NSString *sCellIdentifier;
     [super viewWillAppear:animated];
     self.viewDeckController.panningMode = IIViewDeckNavigationBarPanning;
     [self reLoadData];
-    [self.tableView reloadData];
-}
-
-#pragma mark - Rotation
-// -------------------------------------------------------------------------------
-//  supportedInterfaceOrientations
-//  Support only portrait orientation (iOS 6).
-// -------------------------------------------------------------------------------
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscape;
-}
-
-- (void)orientationChanged:(NSNotification *)notification
-{
     [self.tableView reloadData];
 }
 
@@ -171,11 +146,6 @@ static NSString *sCellIdentifier;
 }
 
 #pragma mark- tableviewdelegate
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 64;
-//}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -183,16 +153,13 @@ static NSString *sCellIdentifier;
     TaskModel* atask = nil;
     if([indexPath section] == 0) atask = [_taskListNormal objectAtIndex:[indexPath row]];
     else if([indexPath section] == 1) atask = [_taskListImportant objectAtIndex:[indexPath row]];
-    else if([indexPath section] == 2) atask = [_taskListFinish objectAtIndex:[indexPath row]];
-
-    if([indexPath section] == 2)return;
+    else if([indexPath section] == 2)return;
     
     XPNewTaskVctler* updatevc = [[XPNewTaskVctler alloc] init];
     updatevc.viewType    = XPNewTaskViewType_Update;
     updatevc.task2Update = atask;
     [self.navigationController pushViewController:updatevc animated:YES];
     self.viewDeckController.panningMode = IIViewDeckNoPanning;
-
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

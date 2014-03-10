@@ -21,19 +21,11 @@
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
+/*
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
     if (self.StrikeThrough){
-        // don‘t work
-        /*
-        [[UIColor darkGrayColor] setFill];
-        UIBezierPath *pointShape = [UIBezierPath bezierPath];
-        pointShape.lineWidth = 1;
-        [pointShape moveToPoint:CGPointMake(0.0,rect.size.height/2)];
-        [pointShape addLineToPoint:CGPointMake(rect.size.width, rect.size.height/2)];
-        [pointShape fill];*/
-        
         CGContextRef c = UIGraphicsGetCurrentContext();
         CGFloat red[4] = {.68f,.60f, .68f,0.8f}; //红色
         //CGFloat black[4] = {0.0f, 0.0f, 0.0f, 0.5f};//黑色
@@ -63,5 +55,5 @@
         CGContextStrokePath(c);
     }
     [super drawRect:rect];
-}
+}*/
 @end

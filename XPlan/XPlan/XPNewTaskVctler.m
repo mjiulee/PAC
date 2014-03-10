@@ -40,11 +40,6 @@
     if (self) {
         // Custom initialization
         _viewType = XPNewTaskViewType_New;
-        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(orientationChanged:)
-                                                     name:UIDeviceOrientationDidChangeNotification
-                                                   object:nil];
     }
     return self;
 }
@@ -137,7 +132,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self layoutWithOrientat:[UIDevice currentDevice].orientation];
+    [self layoutWithOrientat:1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,35 +142,21 @@
 }
 
 #pragma mark - Rotation
-// -------------------------------------------------------------------------------
-//  supportedInterfaceOrientations
-//  Support only portrait orientation (iOS 6).
-// -------------------------------------------------------------------------------
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationPortrait|UIInterfaceOrientationMaskLandscape;
-}
-
-- (void)orientationChanged:(NSNotification*)notification
-{
-    [self layoutWithOrientat:[UIDevice currentDevice].orientation];
-}
-
--(void)layoutWithOrientat:(UIDeviceOrientation)orientation
+-(void)layoutWithOrientat:(int)orientation
 {
     CGFloat yvalstart = 25;
     if ([UIDevice isRunningOniPhone]) {
         yvalstart = 15;
     }
     yvalstart += CGRectGetMaxY(self.navigationController.navigationBar.frame);
-    if (orientation == UIInterfaceOrientationPortrait)
+    if (orientation == 1)
     {
         _tfviewbg.frame = CGRectMake(15,yvalstart,290, 82);
         _tfview.frame   = CGRectMake(16,yvalstart+2,288,78);
         _radioNormal.frame    = CGRectMake(20,CGRectGetMaxY(_tfview .frame)+20,80, 24);
         _radioImportant.frame = CGRectMake(120,CGRectGetMaxY(_tfview .frame)+20,80, 24);
         _btnNext.frame  = CGRectMake(CGRectGetMaxX(_radioImportant.frame)+20, CGRectGetMaxY(_tfview .frame)+10,100, 40);
-    }else
+    }else if(orientation == 2)
     {
         yvalstart = CGRectGetMaxY(self.navigationController.navigationBar.frame) + 5;
         _tfviewbg.frame = CGRectMake(15,yvalstart,CGRectGetWidth(self.view.frame)-30, 32);
@@ -187,8 +168,6 @@
         [_radioImportant setNeedsDisplay];
     }
 }
-
-
 
 #pragma mark- navButtons
 -(void)onNavLeftBtnAction:(id)sender{

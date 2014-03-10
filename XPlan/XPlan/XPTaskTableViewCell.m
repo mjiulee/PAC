@@ -9,7 +9,6 @@
 #import "XPTaskTableViewCell.h"
 #import "NSString+DrawHelper.h"
 #import "UIImage+XPUIImage.h"
-#import "XPUILable.h"
 
 static NSString * const kTableViewCellContentView = @"UITableViewCellContentView";
 static const CGFloat  kCellScrollMaxOffset = 80;
@@ -17,7 +16,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 @interface XPTaskTableViewCell()
 <UIGestureRecognizerDelegate>
 @property(nonatomic)        BOOL      finished;
-@property(nonatomic,strong) XPUILable*briefLabel;
+@property(nonatomic,strong) UILabel*  briefLabel;
 @property(nonatomic,strong) UILabel*  labFinish;
 @property(nonatomic,strong) UIImageView*  editBtn;
 @property(nonatomic,strong) UIScrollView* scrollcontview;
@@ -78,11 +77,9 @@ static const CGFloat  kCellScrollMaxOffset = 80;
             [contentView addSubview:tv];
         }
         
-        XPUILable* lab = [[XPUILable alloc] initWithFrame:CGRectMake(10,8, kTaskCellMaxWidth,tableview.rowHeight-8*2)];
+        UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10,8, kTaskCellMaxWidth,tableview.rowHeight-8*2)];
         lab.backgroundColor = kClearColor;
         lab.numberOfLines = 2;
-        lab.StrikeThrough = NO;
-        lab.backgroundColor = kClearColor;
         lab.font = [UIFont systemFontOfSize:kTaskCellFontSize];
         lab.textAlignment = NSTextAlignmentLeft;
         [contentView addSubview:lab];
@@ -118,17 +115,18 @@ static const CGFloat  kCellScrollMaxOffset = 80;
     if (self.scrollcontview.contentInset.right >= kCellScrollMaxOffset) {
        self.scrollcontview.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     }
-    self.briefLabel.text  = atask.brief;
+    
     if ([atask.status integerValue] == 2) {
-        //self.scrollcontview.scrollEnabled = NO;
         self.finished = YES;
-        self.briefLabel.StrikeThrough = YES;
-        [self.briefLabel setNeedsDisplay];
+        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:atask.brief];
+        [attributeString addAttribute:NSStrikethroughStyleAttributeName
+                                value:@1
+                                range:NSMakeRange(0, [attributeString length])];
+        self.briefLabel.attributedText = attributeString;
     }else{
-        //self.scrollcontview.scrollEnabled = YES;
+        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:atask.brief];
+        self.briefLabel.attributedText = attributeString;
         self.finished = NO;
-        self.briefLabel.StrikeThrough = NO;
-        [self.briefLabel setNeedsDisplay];
     }
 }
 
