@@ -18,8 +18,13 @@
     //XPUIRadioButton* _radioImportant;
     XPUIRadioGroup*  _radioGroupPrio;
     
+    UIView*     _tfviewbg;
     UITextView* _tfview;
     UIView* _pikerView;
+    XPUIRadioButton*_radioNormal;
+    XPUIRadioButton*_radioImportant;
+    
+    UIButton* _btnNext;
     UIDatePicker* _timePicker;
 }
 -(void)onNavLeftBtnAction:(id)sender;
@@ -35,6 +40,11 @@
     if (self) {
         // Custom initialization
         _viewType = XPNewTaskViewType_New;
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(orientationChanged:)
+                                                     name:UIDeviceOrientationDidChangeNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -71,28 +81,27 @@
     yvalstart += CGRectGetMaxY(self.navigationController.navigationBar.frame);
     
     //input text view and backgoundview
-    UIView* tfviewbg  = [[UIView alloc] initWithFrame:CGRectMake(15,yvalstart,290, 82)];
-    tfviewbg.layer.cornerRadius = 3;
-    tfviewbg.backgroundColor    = [UIColor whiteColor];
-    tfviewbg.layer.borderColor  = XPRGBColor(157,157,157,1).CGColor;
-    tfviewbg.layer.borderWidth  = 1;
-    [self.view addSubview:tfviewbg];
+    _tfviewbg  = [[UIView alloc] initWithFrame:CGRectZero];
+    _tfviewbg.layer.cornerRadius = 3;
+    _tfviewbg.autoresizingMask   = UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleLeftMargin;
+    _tfviewbg.backgroundColor    = [UIColor whiteColor];
+    _tfviewbg.layer.borderColor  = XPRGBColor(157,157,157,1).CGColor;
+    _tfviewbg.layer.borderWidth  = 1;
+    [self.view addSubview:_tfviewbg];
     
-    _tfview = [[UITextView alloc] initWithFrame:CGRectMake(16,yvalstart+2,288, 78)];
-    _tfview .textContainerInset = UIEdgeInsetsMake(3, 1, 0, 1);
+    _tfview = [[UITextView alloc] initWithFrame:CGRectZero];
+    _tfview.textContainerInset = UIEdgeInsetsMake(3, 1, 0, 1);
+    _tfview.autoresizingMask   = UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleLeftMargin;
     _tfview.font = [UIFont systemFontOfSize:15];
-//    _tfview.delegate            = self;
-//    _tfview.layer.borderColor   = XPRGBColor(157,157,157,1).CGColor;
-//    _tfview.layer.borderWidth   = 1;
     _tfview .layer.cornerRadius = 3;
     [self.view addSubview:_tfview];
     
-    XPUIRadioButton*_radioNormal = [[XPUIRadioButton alloc] initWithFrame:CGRectMake(20,CGRectGetMaxY(_tfview .frame)+20,80, 24)];
+    _radioNormal = [[XPUIRadioButton alloc] initWithFrame:CGRectZero];
     _radioNormal.title = @"普通";
     _radioNormal.value = [NSString stringWithFormat:@"%d",XPTask_Type_Normal];
     [self.view addSubview:_radioNormal];
     
-    XPUIRadioButton*_radioImportant = [[XPUIRadioButton alloc] initWithFrame:CGRectMake(120,CGRectGetMaxY(_tfview .frame)+20,80, 24)];
+    _radioImportant = [[XPUIRadioButton alloc] initWithFrame:CGRectZero];
     _radioImportant.title = @"重要";
     _radioImportant.value = [NSString stringWithFormat:@"%d",XPTask_Type_Important];
     _radioImportant.ifCHeck = YES;
@@ -107,12 +116,12 @@
             [_radioImportant setIfCheck:YES];
         }
         
-        UIButton* btnNext = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        btnNext.frame = CGRectMake(CGRectGetMaxX(_radioImportant.frame)+20, CGRectGetMaxY(_tfview .frame)+10,100, 40);
-        [btnNext setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
-        [btnNext setTitle:@"下一个" forState:UIControlStateNormal];
-        [btnNext addTarget:self action:@selector(onNextBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:btnNext];
+        _btnNext = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        _btnNext.frame = CGRectZero;
+        [_btnNext setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
+        [_btnNext setTitle:@"下一个" forState:UIControlStateNormal];
+        [_btnNext addTarget:self action:@selector(onNextBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_btnNext];
     }else{
         if (_task2Update) {
             _tfview.text = _task2Update.brief;
@@ -126,12 +135,62 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self layoutWithOrientat:[UIDevice currentDevice].orientation];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Rotation
+// -------------------------------------------------------------------------------
+//  supportedInterfaceOrientations
+//  Support only portrait orientation (iOS 6).
+// -------------------------------------------------------------------------------
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationPortrait|UIInterfaceOrientationMaskLandscape;
+}
+
+- (void)orientationChanged:(NSNotification*)notification
+{
+    [self layoutWithOrientat:[UIDevice currentDevice].orientation];
+}
+
+-(void)layoutWithOrientat:(UIDeviceOrientation)orientation
+{
+    CGFloat yvalstart = 25;
+    if ([UIDevice isRunningOniPhone]) {
+        yvalstart = 15;
+    }
+    yvalstart += CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    if (orientation == UIInterfaceOrientationPortrait)
+    {
+        _tfviewbg.frame = CGRectMake(15,yvalstart,290, 82);
+        _tfview.frame   = CGRectMake(16,yvalstart+2,288,78);
+        _radioNormal.frame    = CGRectMake(20,CGRectGetMaxY(_tfview .frame)+20,80, 24);
+        _radioImportant.frame = CGRectMake(120,CGRectGetMaxY(_tfview .frame)+20,80, 24);
+        _btnNext.frame  = CGRectMake(CGRectGetMaxX(_radioImportant.frame)+20, CGRectGetMaxY(_tfview .frame)+10,100, 40);
+    }else
+    {
+        yvalstart = CGRectGetMaxY(self.navigationController.navigationBar.frame) + 5;
+        _tfviewbg.frame = CGRectMake(15,yvalstart,CGRectGetWidth(self.view.frame)-30, 32);
+        _tfview.frame   = CGRectMake(16,yvalstart+2,CGRectGetWidth(self.view.frame)-32,28);
+        _radioNormal.frame    = CGRectMake(20, CGRectGetMaxY(_tfview .frame)+10,80, 20);
+        _radioImportant.frame = CGRectMake(120,CGRectGetMaxY(_tfview .frame)+10,80, 20);
+        _btnNext.frame  = CGRectMake(CGRectGetMaxX(self.view.frame)-80,CGRectGetMaxY(_tfview .frame)+4,100,26);
+        [_radioNormal setNeedsDisplay];
+        [_radioImportant setNeedsDisplay];
+    }
+}
+
+
+
+#pragma mark- navButtons
 -(void)onNavLeftBtnAction:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -168,31 +227,4 @@
                         project:nil];
     [_tfview setText:@""];
 }
-
-
-/*#pragma mark - uitextviewdelegate
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    [textView scrollRangeToVisible:range];
-    return YES;
-}
-
-- (void)textViewDidChange:(UITextView *)textView {
-    CGRect line = [textView caretRectForPosition:
-                   textView.selectedTextRange.start];
-    CGFloat overflow = line.origin.y + line.size.height
-    - ( textView.contentOffset.y + textView.bounds.size.height
-       - textView.contentInset.bottom - textView.contentInset.top );
-    if ( overflow > 0 ) {
-        // We are at the bottom of the visible text and introduced a line feed, scroll down (iOS 7 does not do it)
-        // Scroll caret to visible area
-        CGPoint offset = textView.contentOffset;
-        offset.y += overflow + 7; // leave 7 pixels margin
-        // Cannot animate with setContentOffset:animated: or caret will not appear
-        [UIView animateWithDuration:.2 animations:^{
-            [textView setContentOffset:offset];
-        }];
-    }
-}*/
-
 @end

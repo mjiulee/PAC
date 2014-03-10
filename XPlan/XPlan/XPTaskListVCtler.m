@@ -34,6 +34,13 @@ static int kHeadViewBtnStartIdx = 1000;
 @implementation XPTaskListVCtler
 static NSString *sCellIdentifier;
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    // Instruct the system to stop generating device orientation notifications.
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -44,6 +51,7 @@ static NSString *sCellIdentifier;
         _taskListFinish = [[NSMutableArray alloc] init];;
         
         sCellIdentifier = @"MoveCell";
+        
     }
     return self;
 }
@@ -62,6 +70,11 @@ static NSString *sCellIdentifier;
                                                                               target:self
                                                                               action:@selector(onNavRightBtuAction:)];
     self.navigationItem.rightBarButtonItem = rightBtn;*/
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,6 +88,21 @@ static NSString *sCellIdentifier;
     [super viewWillAppear:animated];
     self.viewDeckController.panningMode = IIViewDeckNavigationBarPanning;
     [self reLoadData];
+    [self.tableView reloadData];
+}
+
+#pragma mark - Rotation
+// -------------------------------------------------------------------------------
+//  supportedInterfaceOrientations
+//  Support only portrait orientation (iOS 6).
+// -------------------------------------------------------------------------------
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscape;
+}
+
+- (void)orientationChanged:(NSNotification *)notification
+{
     [self.tableView reloadData];
 }
 
@@ -114,7 +142,7 @@ static NSString *sCellIdentifier;
     if (!cell) {
         cell = [[XPTaskTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier tableview:tableView];
         cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.selectionStyle= UITableViewCellSelectionStyleNone;
+        //cell.selectionStyle= UITableViewCellSelectionStyleNone;
     }
     
     if ([tableView indexPathIsMovingIndexPath:indexPath])
@@ -150,24 +178,28 @@ static NSString *sCellIdentifier;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     TaskModel* atask = nil;
     if([indexPath section] == 0) atask = [_taskListNormal objectAtIndex:[indexPath row]];
     else if([indexPath section] == 1) atask = [_taskListImportant objectAtIndex:[indexPath row]];
     else if([indexPath section] == 2) atask = [_taskListFinish objectAtIndex:[indexPath row]];
 
+    if([indexPath section] == 2)return;
+    
     XPNewTaskVctler* updatevc = [[XPNewTaskVctler alloc] init];
     updatevc.viewType    = XPNewTaskViewType_Update;
     updatevc.task2Update = atask;
     [self.navigationController pushViewController:updatevc animated:YES];
     self.viewDeckController.panningMode = IIViewDeckNoPanning;
 
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     NSArray  *titleArray  = @[@"普通",@"重要",@"完成"];
     UIView* headview = [[UIView alloc] initWithFrame:CGRectZero];
+    headview.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     headview.backgroundColor = [UIColor whiteColor];
     headview.layer.borderWidth = 0.5;
     headview.layer.borderColor = [XPRGBColor(157, 157, 157, 0.8) CGColor];
@@ -242,13 +274,9 @@ static NSString *sCellIdentifier;
 
 #pragma mark - UITableViewDataSource
 // Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)moveTableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
-    if ([indexPath section] == 2)
-    {
-        return NO;
-    }
     return YES;
 }
 
