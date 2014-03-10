@@ -100,11 +100,12 @@
         titleRect.size.height = tsize.height;
         [_title drawInRect:titleRect withAttributes:attdict];
     }else{
+        /*
         CGSize tsize = [_title sizeWithFont:[UIFont systemFontOfSize:14]];
         CGFloat dy = (titleRect.size.height - tsize.height)/2;
         titleRect.origin.y   += dy;
         titleRect.size.height = tsize.height;
-        [_title drawInRect:titleRect withFont:[UIFont systemFontOfSize:14]];
+        [_title drawInRect:titleRect withFont:[UIFont systemFontOfSize:14]];*/
     }
 #endif
 }

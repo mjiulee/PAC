@@ -9,6 +9,7 @@
 #import "XPTaskTableViewCell.h"
 #import "NSString+DrawHelper.h"
 #import "UIImage+XPUIImage.h"
+#import "XPUILable.h"
 
 static NSString * const kTableViewCellContentView = @"UITableViewCellContentView";
 static const CGFloat  kCellScrollMaxOffset = 80;
@@ -16,7 +17,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 @interface XPTaskTableViewCell()
 <UIGestureRecognizerDelegate>
 @property(nonatomic)        BOOL      finished;
-@property(nonatomic,strong) UILabel*  briefLabel;
+@property(nonatomic,strong) XPUILable*briefLabel;
 @property(nonatomic,strong) UILabel*  labFinish;
 @property(nonatomic,strong) UIImageView*  editBtn;
 @property(nonatomic,strong) UIScrollView* scrollcontview;
@@ -77,9 +78,10 @@ static const CGFloat  kCellScrollMaxOffset = 80;
             [contentView addSubview:tv];
         }
         
-        UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10,8, kTaskCellMaxWidth,tableview.rowHeight-8*2)];
+        XPUILable* lab = [[XPUILable alloc] initWithFrame:CGRectMake(10,8, kTaskCellMaxWidth,tableview.rowHeight-8*2)];
         lab.backgroundColor = kClearColor;
-        lab.numberOfLines = 0;
+        lab.numberOfLines = 2;
+        lab.StrikeThrough = NO;
         lab.backgroundColor = kClearColor;
         lab.font = [UIFont systemFontOfSize:kTaskCellFontSize];
         lab.textAlignment = NSTextAlignmentLeft;
@@ -92,12 +94,11 @@ static const CGFloat  kCellScrollMaxOffset = 80;
         self.scrollcontview = scrollcontview;
         scrollcontview.contentSize = CGSizeMake(321, 44);
         
-        UILabel* finish = [[UILabel alloc] initWithFrame:CGRectMake(320-80,0,80,tableview.rowHeight)];
+        UILabel* finish = [[UILabel alloc] initWithFrame:CGRectMake(320-60,0,80,tableview.rowHeight)];
         finish.backgroundColor = [UIColor clearColor];
-        finish.numberOfLines = 0;
         finish.font = [UIFont systemFontOfSize:kTaskCellFontSize];
         finish.textAlignment = NSTextAlignmentCenter;
-        finish.textColor = [UIColor blackColor];
+        finish.textColor = [UIColor blueColor];
         finish.text = @"完成";
         finish.alpha= 0;
         [self addSubview:finish];
@@ -109,7 +110,6 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
@@ -122,9 +122,13 @@ static const CGFloat  kCellScrollMaxOffset = 80;
     if ([atask.status integerValue] == 2) {
         //self.scrollcontview.scrollEnabled = NO;
         self.finished = YES;
+        self.briefLabel.StrikeThrough = YES;
+        [self.briefLabel setNeedsDisplay];
     }else{
         //self.scrollcontview.scrollEnabled = YES;
         self.finished = NO;
+        self.briefLabel.StrikeThrough = NO;
+        [self.briefLabel setNeedsDisplay];
     }
 }
 
@@ -134,16 +138,10 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 }
 
 #pragma mark - GestureHandel
--(void)onTapHandle:(UITapGestureRecognizer*)tapRecognizer{
+-(void)onTapHandle:(UITapGestureRecognizer*)tapRecognizer
+{
     [self selectCellWithTimedHighlight];
 }
-//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-//    
-//}
-//
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-//    
-//}
 
 #pragma mark - selecthandel
 - (void)selectCell

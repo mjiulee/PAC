@@ -27,6 +27,7 @@
 		43359AF018C426F700C12617 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 43359AEF18C426F700C12617 /* NSDate+Category.m */; };
 		43359AF218C42A1600C12617 /* TaskInsertTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43359AF118C42A1600C12617 /* TaskInsertTest.m */; };
 		433EDCD118C8B60500746E63 /* UIDevice+Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 433EDCD018C8B60500746E63 /* UIDevice+Resolution.m */; };
+		4364B8BA18CDBE500022293A /* XPUILable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4364B8B918CDBE500022293A /* XPUILable.m */; };
 		437A7CC318B71BA20088F1AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC218B71BA20088F1AA /* Foundation.framework */; };
 		437A7CC518B71BA20088F1AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC418B71BA20088F1AA /* CoreGraphics.framework */; };
 		437A7CC718B71BA20088F1AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC618B71BA20088F1AA /* UIKit.framework */; };
@@ -100,6 +101,8 @@
 		43359AF118C42A1600C12617 /* TaskInsertTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInsertTest.m; sourceTree = "<group>"; };
 		433EDCCF18C8B60500746E63 /* UIDevice+Resolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Resolution.h"; sourceTree = "<group>"; };
 		433EDCD018C8B60500746E63 /* UIDevice+Resolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Resolution.m"; sourceTree = "<group>"; };
+		4364B8B818CDBE500022293A /* XPUILable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUILable.h; sourceTree = "<group>"; };
+		4364B8B918CDBE500022293A /* XPUILable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPUILable.m; sourceTree = "<group>"; };
 		437A7CBF18B71BA20088F1AA /* XPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437A7CC218B71BA20088F1AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		437A7CC418B71BA20088F1AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -254,6 +257,8 @@
 			children = (
 				4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */,
 				4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */,
+				4364B8B818CDBE500022293A /* XPUILable.h */,
+				4364B8B918CDBE500022293A /* XPUILable.m */,
 			);
 			name = "custom-v";
 			sourceTree = "<group>";
@@ -486,6 +491,7 @@
 				437A7CD318B71BA20088F1AA /* XPAppDelegate.m in Sources */,
 				431F74AD18C76D1600B03742 /* XPProjectStaticVctler.m in Sources */,
 				18A97E4318C1B12200CE3161 /* XPlanModel.xcdatamodeld in Sources */,
+				4364B8BA18CDBE500022293A /* XPUILable.m in Sources */,
 				18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */,
 				1873677418C60D1A003EC3A0 /* FMMoveTableView.m in Sources */,
 				431F74A118C758C800B03742 /* XPStartupGuiderVctler.m in Sources */,
@@ -624,14 +630,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (VYK2CP9M6D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (27MAMQMVR2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "53489323-1D7D-4C59-A6D8-A12677C9A28A";
+				PROVISIONING_PROFILE = "1DB7B227-04B2-476A-9682-67CCC27835CF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -641,14 +647,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (VYK2CP9M6D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (27MAMQMVR2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "53489323-1D7D-4C59-A6D8-A12677C9A28A";
+				PROVISIONING_PROFILE = "1DB7B227-04B2-476A-9682-67CCC27835CF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
