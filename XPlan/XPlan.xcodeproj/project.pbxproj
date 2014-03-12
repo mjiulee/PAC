@@ -49,6 +49,7 @@
 		437A7D0C18B750B60088F1AA /* UIImage+XPUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A7D0B18B750B60088F1AA /* UIImage+XPUIImage.m */; };
 		4383D9E618BC8577007F7CA0 /* XPNewTaskVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */; };
 		4383D9E918BC9646007F7CA0 /* XPUIRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */; };
+		BCEE7B4EE240439AAD1851E5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 819FEE31D70B48FC9C272777 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,8 @@
 		4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPNewTaskVctler.m; sourceTree = "<group>"; };
 		4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUIRadioButton.h; sourceTree = "<group>"; };
 		4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPUIRadioButton.m; sourceTree = "<group>"; };
+		819FEE31D70B48FC9C272777 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		81C1E589819649A9B058BAB3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,7 @@
 				437A7CC518B71BA20088F1AA /* CoreGraphics.framework in Frameworks */,
 				437A7CC718B71BA20088F1AA /* UIKit.framework in Frameworks */,
 				437A7CC318B71BA20088F1AA /* Foundation.framework in Frameworks */,
+				BCEE7B4EE240439AAD1851E5 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +290,7 @@
 				437A7CE718B71BA20088F1AA /* XPlanTests */,
 				437A7CC118B71BA20088F1AA /* Frameworks */,
 				437A7CC018B71BA20088F1AA /* Products */,
+				81C1E589819649A9B058BAB3 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -306,6 +311,7 @@
 				437A7CC418B71BA20088F1AA /* CoreGraphics.framework */,
 				437A7CC618B71BA20088F1AA /* UIKit.framework */,
 				437A7CE118B71BA20088F1AA /* XCTest.framework */,
+				819FEE31D70B48FC9C272777 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -382,9 +388,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 437A7CF118B71BA20088F1AA /* Build configuration list for PBXNativeTarget "XPlan" */;
 			buildPhases = (
+				B011D7D8DF72443EA84F429C /* Check Pods Manifest.lock */,
 				437A7CBB18B71BA20088F1AA /* Sources */,
 				437A7CBC18B71BA20088F1AA /* Frameworks */,
 				437A7CBD18B71BA20088F1AA /* Resources */,
+				461A7C8F155B49FBBF0880AA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -470,6 +478,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		461A7C8F155B49FBBF0880AA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B011D7D8DF72443EA84F429C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		437A7CBB18B71BA20088F1AA /* Sources */ = {
@@ -621,6 +662,7 @@
 		};
 		437A7CF218B71BA20088F1AA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81C1E589819649A9B058BAB3 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -638,6 +680,7 @@
 		};
 		437A7CF318B71BA20088F1AA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81C1E589819649A9B058BAB3 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
