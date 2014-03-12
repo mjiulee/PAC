@@ -14,7 +14,7 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 static const CGFloat  kCellScrollMaxOffset = 80;
 
 @interface XPTaskTableViewCell()
-<UIGestureRecognizerDelegate>
+<UIGestureRecognizerDelegate,UIScrollViewDelegate>
 @property(nonatomic)        BOOL      finished;
 @property(nonatomic,strong) UILabel*  briefLabel;
 @property(nonatomic,strong) UILabel*  labFinish;
@@ -23,7 +23,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 @property(nonatomic,weak)   UITableView*  tableView;
 // 选中处理
 @property(nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
-@property(nonatomic, assign, getter = isShowingSelection) BOOL showingSelection;
+//@property(nonatomic, assign, getter = isShowingSelection) BOOL showingSelection;
 
 @end
 
@@ -91,7 +91,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
         self.scrollcontview = scrollcontview;
         scrollcontview.contentSize = CGSizeMake(321, 44);
         
-        UILabel* finish = [[UILabel alloc] initWithFrame:CGRectMake(320-60,0,80,tableview.rowHeight)];
+        UILabel* finish = [[UILabel alloc] initWithFrame:CGRectMake(320-60,0,60,tableview.rowHeight)];
         finish.backgroundColor = [UIColor clearColor];
         finish.font = [UIFont systemFontOfSize:kTaskCellFontSize];
         finish.textAlignment = NSTextAlignmentCenter;
@@ -117,12 +117,12 @@ static const CGFloat  kCellScrollMaxOffset = 80;
     }
     
     if ([atask.status integerValue] == 2) {
-        self.finished = YES;
         NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:atask.brief];
         [attributeString addAttribute:NSStrikethroughStyleAttributeName
                                 value:@1
                                 range:NSMakeRange(0, [attributeString length])];
         self.briefLabel.attributedText = attributeString;
+        self.finished = YES;
     }else{
         NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:atask.brief];
         self.briefLabel.attributedText = attributeString;
@@ -130,10 +130,10 @@ static const CGFloat  kCellScrollMaxOffset = 80;
     }
 }
 
--(void)onLongPressGesture:(UIPanGestureRecognizer*)panner{
-    UITableView* tableview = (UITableView*)self.superview;
-    [tableview setEditing:YES];
-}
+//-(void)onLongPressGesture:(UIPanGestureRecognizer*)panner{
+//    UITableView* tableview = (UITableView*)self.superview;
+//    [tableview setEditing:YES];
+//}
 
 #pragma mark - GestureHandel
 -(void)onTapHandle:(UITapGestureRecognizer*)tapRecognizer
@@ -158,18 +158,17 @@ static const CGFloat  kCellScrollMaxOffset = 80;
     if ([self.tableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)])
     {
         NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:self];
-        self.showingSelection = YES;
-        [self setSelected:YES];
+        // self.showingSelection = YES;
+        //[self setSelected:YES];
         [self.tableView selectRowAtIndexPath:cellIndexPath
-                                    animated:YES
+                                    animated:NO
                               scrollPosition:UITableViewScrollPositionNone];
-        [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:cellIndexPath];
         
         // Make the selection visible
-        NSTimer *endHighlightTimer = [NSTimer scheduledTimerWithTimeInterval:0.20
+        NSTimer *endHighlightTimer = [NSTimer scheduledTimerWithTimeInterval:0.10
                                                                       target:self
                                                                     selector:@selector(timerEndCellHighlight:)
-                                                                    userInfo:nil
+                                                                    userInfo:cellIndexPath
                                                                      repeats:NO];
         [[NSRunLoop currentRunLoop] addTimer:endHighlightTimer forMode:NSRunLoopCommonModes];
     }
@@ -182,8 +181,15 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 
 - (void)timerEndCellHighlight:(id)sender
 {
-    self.showingSelection = NO;
-    [self setSelected:NO];
+    NSTimer* timer = (NSTimer*)sender;
+    NSIndexPath *cellIndexPath = timer.userInfo;
+    
+    if ([self.tableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)])
+    {
+        [self.tableView.delegate performSelector:@selector(tableView:didSelectRowAtIndexPath:)
+                                      withObject:self.tableView
+                                      withObject:cellIndexPath];
+    }
 }
 
 #pragma mark UITableViewCell overrides
@@ -214,11 +220,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
     if (highlight) {
         [self setHighlighted:YES animated:animated];
     } else {
-        // We are unhighlighting
-        if (!self.isShowingSelection) {
-            // Make sure we only deselect if we are done showing the selection with a highlight
-            [self setHighlighted:NO];
-        }
+        [self setHighlighted:NO];
     }
 }
 
@@ -248,23 +250,21 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    // TODO:
-    // NSLog(@"scrollView.contentOffset.x=%0.2f",scrollView.contentOffset.x);
     if (!_finished) {
         self.labFinish.alpha    = scrollView.contentOffset.x/kCellScrollMaxOffset;
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    // TODO:
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    // TODO:
-}
-
-- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView{return YES;};
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    // TODO:
+//}
+//
+//- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+//{
+//    // TODO:
+//}
+//
+//- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView{return YES;};
 
 @end

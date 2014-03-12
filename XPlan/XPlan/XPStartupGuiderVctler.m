@@ -8,6 +8,7 @@
 
 #import "XPStartupGuiderVctler.h"
 #import "XPAppDelegate.h"
+#import "NSDate+Category.h"
 
 @interface XPStartupGuiderVctler ()
 @property(nonatomic,strong) UIScrollView* contentScrollview;
@@ -82,12 +83,55 @@
     UIView* weatherview = [[UIView alloc] initWithFrame:self.view.bounds];
     weatherview.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     
-    UILabel* lab = [[UILabel alloc] initWithFrame:self.view.bounds];
-    lab.numberOfLines = 0;
-    lab.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    lab.text = @"开发中\r\n这里显示天气，以及一些提示语";
-    lab.textAlignment = NSTextAlignmentCenter;
-    [weatherview addSubview:lab];
+    UIView*headerview   = [[UIView alloc] initWithFrame:CGRectMake(0,0, CGRectGetWidth(weatherview.frame),200)];
+    //headerview.backgroundColor = XPRGBColor(157, 157, 157, 1.0);
+    {
+        // city:
+        {
+            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20,10,CGRectGetWidth(headerview.frame)-40,20)];
+            lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
+            lab.text = @"广州";
+            lab.font = [UIFont systemFontOfSize:15];
+            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
+            lab.textAlignment = NSTextAlignmentCenter;
+            [headerview addSubview:lab];
+        }
+        // 日期:
+        {
+            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20,40,CGRectGetWidth(headerview.frame)-40,20)];
+            lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
+            lab.text = [[NSDate date] localeFormattedDateString];
+            lab.font = [UIFont fontWithName:@"Snell Roundhand" size:20];
+            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
+            lab.textAlignment = NSTextAlignmentLeft;
+            [headerview addSubview:lab];
+        }
+        // 天气情况:
+        {
+            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20,40,CGRectGetWidth(headerview.frame)-40,20)];
+            lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
+            lab.text = [[NSDate date] localeFormattedDateString];
+            lab.font = [UIFont fontWithName:@"Snell Roundhand" size:20];
+            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
+            lab.textAlignment = NSTextAlignmentLeft;
+            [headerview addSubview:lab];
+        }
+        // 摄氏度：
+        {
+            
+            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20, CGRectGetHeight(headerview.frame)-70,
+                                                                     CGRectGetWidth(headerview.frame)-40,70)];
+            lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
+            lab.text = @"23'C";
+            lab.font = [UIFont fontWithName:@"Snell Roundhand" size:56];
+            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
+            lab.textAlignment = NSTextAlignmentLeft;
+            [headerview addSubview:lab];
+        }
+    }
+    [weatherview addSubview:headerview];
+    
+    
     return  weatherview;
 }
 -(UIView*)initialCalanderPage{

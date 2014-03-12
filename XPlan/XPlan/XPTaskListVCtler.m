@@ -64,7 +64,7 @@ static NSString *sCellIdentifier;
     self.tableView = [[FMMoveTableView alloc] initWithFrame:self.tableView.frame style:UITableViewStylePlain];
     self.tableView.delegate   = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight  = 64;
+    self.tableView.rowHeight  = 54;
 }
 
 - (void)didReceiveMemoryWarning
@@ -168,16 +168,22 @@ static NSString *sCellIdentifier;
     UIView* headview = [[UIView alloc] initWithFrame:CGRectZero];
     headview.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     headview.backgroundColor = [UIColor whiteColor];
-    headview.layer.borderWidth = 0.5;
-    headview.layer.borderColor = [XPRGBColor(157, 157, 157, 0.8) CGColor];
-    headview.alpha = 0.85;
-    
+    NSUInteger count= [tableView numberOfRowsInSection:section];
+    if (count > 0) {
+        headview.layer.shadowColor   = [XPRGBColor(157, 157, 157, 0.8) CGColor];
+        headview.layer.shadowOffset  = CGSizeMake(1,1);
+        headview.layer.shadowOpacity = 1.0;
+    }else{
+        headview.layer.borderWidth = 0.5;
+        headview.layer.borderColor = [XPRGBColor(157, 157, 157, 0.8) CGColor];
+    }
+   
     UILabel* sectionTItle = [UILabel new];
     sectionTItle.frame    = CGRectMake(15, 0, 0, 0);
     sectionTItle.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     sectionTItle.backgroundColor = kClearColor;
     sectionTItle.font       = [UIFont systemFontOfSize:18];
-    sectionTItle.textColor  = [UIColor darkTextColor];
+    sectionTItle.textColor  = XPRGBColor(25, 133, 255, 1.0);
     sectionTItle.text = titleArray[section];
     [headview addSubview:sectionTItle];
     

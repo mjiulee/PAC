@@ -68,13 +68,6 @@
         = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onNavRightBtnAction:)];
         self.navigationItem.rightBarButtonItem = rightBtn;
     }
-    
-    CGFloat yvalstart = 25;
-    if ([UIDevice isRunningOniPhone]) {
-        yvalstart = 15;
-    }
-    yvalstart += CGRectGetMaxY(self.navigationController.navigationBar.frame);
-    
     //input text view and backgoundview
     _tfviewbg  = [[UIView alloc] initWithFrame:CGRectZero];
     _tfviewbg.layer.cornerRadius = 3;
