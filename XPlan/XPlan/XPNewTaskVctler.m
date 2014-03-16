@@ -11,22 +11,22 @@
 #import "XPUIRadioButton.h"
 #import "TaskModel.h"
 
+NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
+
 @interface XPNewTaskVctler ()
 <UITextViewDelegate>
 {
-    //XPUIRadioButton* _radioNormal;
-    //XPUIRadioButton* _radioImportant;
-    XPUIRadioGroup*  _radioGroupPrio;
-    
-    UIView*     _tfviewbg;
-    UITextView* _tfview;
-    UIView* _pikerView;
-    XPUIRadioButton*_radioNormal;
-    XPUIRadioButton*_radioImportant;
-    
-    UIButton* _btnNext;
-    UIDatePicker* _timePicker;
 }
+@property(nonatomic)    BOOL ifChange;
+@property(nonatomic,strong)    XPUIRadioGroup*  radioGroupPrio;
+@property(nonatomic,strong)    UIView*     tfviewbg;
+@property(nonatomic,strong)    UITextView* tfview;
+@property(nonatomic,strong)    UIView* pikerView;
+@property(nonatomic,strong)    XPUIRadioButton*radioNormal;
+@property(nonatomic,strong)    XPUIRadioButton*radioImportant;
+@property(nonatomic,strong)    UIButton* btnNext;
+@property(nonatomic,strong)    UIDatePicker* timePicker;
+
 -(void)onNavLeftBtnAction:(id)sender;
 -(void)onNavRightBtnAction:(id)sender;
 -(void)onNextBtnAction:(id)sender;
@@ -39,6 +39,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _ifChange = NO;
         _viewType = XPNewTaskViewType_New;
     }
     return self;
@@ -173,6 +174,7 @@
     if (!_tfview.text || [_tfview.text length] <= 0) {
         return;
     }
+    self.ifChange = YES;
     // save item to core data
     XPAppDelegate* app = [XPAppDelegate shareInstance];
     NSString* value = [_radioGroupPrio getSelectedValue];
@@ -180,6 +182,7 @@
     _task2Update.status= [NSNumber numberWithInt:[value integerValue]];
     [app.coreDataMgr updateTask:_task2Update
                         project:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMyMsgTaskUpdateNotification object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -189,6 +192,7 @@
     if (!_tfview.text || [_tfview.text length] <= 0) {
         return;
     }
+    self.ifChange = YES;
     // save item to core data
     XPAppDelegate* app = [XPAppDelegate shareInstance];
     NSString* value = [_radioGroupPrio getSelectedValue];
@@ -198,5 +202,6 @@
                            date:[NSDate date]
                         project:nil];
     [_tfview setText:@""];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMyMsgTaskUpdateNotification object:nil];
 }
 @end
