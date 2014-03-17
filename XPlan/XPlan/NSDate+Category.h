@@ -56,6 +56,8 @@
 
 - (NSDate *)endOfYear;
 
+- (NSDate *)dateWithHour:(NSUInteger)hour mintus:(NSInteger)minutes;
+
 #pragma mark Date math
 
 - (NSDate *) dateByAddingMinutes:(NSInteger)minutes;

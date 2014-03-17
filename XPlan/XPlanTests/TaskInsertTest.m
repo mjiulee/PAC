@@ -33,6 +33,18 @@
     [super tearDown];
 }
 
+
+-(void)testForDateHelper{
+    NSDate* today = [NSDate date];
+    NSDate* dateWithHoure = [today dateWithHour:9 mintus:36];
+    NSLog(@"today = %@",[dateWithHoure formattedStringWithFormat:@"yyyy-MM-dd hh:mm"]);
+    for (int i = 0 ; i < 5; i ++) {
+        NSDate* tomorrow = [dateWithHoure dateByAddingDays:1];
+        NSLog(@"tomorrow = %@",[tomorrow formattedStringWithFormat:@"yyyy-MM-dd hh:mm"]);
+    }
+    XCTAssertNotEqual(YES, YES, @"NSDate Helper is Pass");
+}
+
 -(void)testForInsert
 {
     BOOL      ifError = NO;

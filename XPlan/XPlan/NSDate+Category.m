@@ -249,6 +249,14 @@
     return [[kCalendar dateFromComponents:comps] endOfMonth];
 }
 
+- (NSDate *)dateWithHour:(NSUInteger)hour mintus:(NSInteger)minutes
+{
+    NSDateComponents *comps = [kCalendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit| NSCalendarUnitHour|NSCalendarUnitMinute) fromDate:self];
+    [comps setHour:hour];
+    [comps setMinute:minutes];
+    return [kCalendar dateFromComponents:comps];
+}
+
 #pragma mark -
 #pragma mark Date math
 

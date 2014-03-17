@@ -12,7 +12,11 @@
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
 
-static NSString* const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
+// static Strings
+static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
+// static Intergers
+static NSUInteger const kHeadViewPageTagStartIdx = 9000;
+static NSUInteger const kWeatherElementStartIdx  = 100;
 
 @interface XPStartupGuiderVctler ()
 <UIScrollViewDelegate>
@@ -109,14 +113,28 @@ static NSString* const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
 -(UIView*)initialWeatherPage{
     UIView* weatherview = [[UIView alloc] initWithFrame:self.view.bounds];
     weatherview.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    
+    UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)-180)];
+    lab.numberOfLines = 0;
+    lab.layer.masksToBounds = YES;
+    lab.layer.borderColor= XPRGBColor(157, 157, 157, 1.0).CGColor;
+    lab.layer.borderWidth=0.5;
+    lab.layer.cornerRadius = 8;
+    lab.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    lab.text = @"开发中\r\n这里今日事宜做啥";
+    lab.textAlignment = NSTextAlignmentCenter;
+    [weatherview addSubview:lab];
     return  weatherview;
 }
 -(UIView*)initialCalanderPage{
     UIView* calanderView = [[UIView alloc] initWithFrame:self.view.bounds];
     calanderView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     
-    UILabel* lab = [[UILabel alloc] initWithFrame:self.view.bounds];
+    UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)-180)];
     lab.numberOfLines = 0;
+    lab.layer.borderColor= XPRGBColor(157, 157, 157, 1.0).CGColor;
+    lab.layer.borderWidth=0.5;
+    lab.layer.cornerRadius = 8;
     lab.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     lab.text = @"开发中\r\n这里显示星座、日历，以及一些提示语";
     lab.textAlignment = NSTextAlignmentCenter;
@@ -127,8 +145,11 @@ static NSString* const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
     UIView* autoTaskView = [[UIView alloc] initWithFrame:self.view.bounds];
     autoTaskView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     
-    UILabel* lab = [[UILabel alloc] initWithFrame:self.view.bounds];
+    UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)-180)];
     lab.numberOfLines = 0;
+    lab.layer.borderColor= XPRGBColor(157, 157, 157, 1.0).CGColor;
+    lab.layer.borderWidth=0.5;
+    lab.layer.cornerRadius = 8;
     lab.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     lab.text = @"开发中\r\n这里自动生成一个日常任务，给用户当做日常进行";
     lab.textAlignment = NSTextAlignmentCenter;
@@ -148,153 +169,113 @@ static NSString* const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
 
 -(UIView*)getHeaderView
 {
-    UIView*headerview   = [[UIView alloc] initWithFrame:CGRectMake(10,10, CGRectGetWidth(self.view.frame)*2-20,200)];
+    UIView*headerview   = [[UIView alloc] initWithFrame:CGRectMake(10,10, CGRectGetWidth(self.view.frame)*2-20,150)];
     headerview.backgroundColor   = [UIColor whiteColor];
     headerview.layer.shadowColor = XPRGBColor(57, 57, 57, 1.0).CGColor;
     headerview.layer.shadowOffset= CGSizeMake(1.0, 1.0);
     headerview.layer.shadowOpacity = 0.5;
     headerview.layer.shadowPath  = [UIBezierPath bezierPathWithRect:headerview.bounds].CGPath;
-    {
-        // page 1 element
-        // city:
-        {
-            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20,10,CGRectGetWidth(self.view.frame)-40,20)];
-            //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
-            lab.text = @"广州";
-            lab.font = [UIFont systemFontOfSize:15];
-            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
-            lab.textAlignment = NSTextAlignmentLeft;
-            [headerview addSubview:lab];
-        }
-        // 日期:
-        {
-            UILabel* labDate = [[UILabel alloc] initWithFrame:CGRectMake(20,30,CGRectGetWidth(self.view.frame)-40,30)];
-            //labDate.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
-            
-            labDate.text = [[NSDate date] localeFormattedDateString];
-            labDate.font = [UIFont fontWithName:@"Snell Roundhand" size:20];
-            labDate.textColor = XPRGBColor(27, 57, 57, 1.0);
-            labDate.textAlignment = NSTextAlignmentLeft;
-            [headerview addSubview:labDate];
-        }
-        // 天气情况:
-        {
-            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20,65,80,20)];
-            //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
-            lab.text = @"晴";
-            lab.font = [UIFont systemFontOfSize:20];
-            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
-            lab.textAlignment = NSTextAlignmentLeft;
-            [headerview addSubview:lab];
-            self.labWeather = lab;
-        }
-        {
-            UILabel* labup = [[UILabel alloc] initWithFrame:CGRectMake(20,90,60,20)];
-            //labup.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-            labup.text = @"↑ 18'c";
-            labup.font = [UIFont systemFontOfSize:15];
-            labup.textColor = XPRGBColor(27, 57, 57, 1.0);
-            labup.textAlignment = NSTextAlignmentLeft;
-            [headerview addSubview:labup];
-            self.labTemperatureMax = labup;
-            
-            UILabel* labdown = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(labup.frame)+5,90,60,20)];
-            //labdown.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-            labdown.text = @"↓12'c";
-            labdown.font = [UIFont systemFontOfSize:15];
-            labdown.textColor = XPRGBColor(27, 57, 57, 1.0);
-            labdown.textAlignment = NSTextAlignmentLeft;
-            [headerview addSubview:labdown];
-            self.labTemperatureMin = labdown;
-        }
-        
-        // 摄氏度：
-        {
-            
-            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20, 110,CGRectGetWidth(self.view.frame)-40,56)];
-            //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
-            lab.text = @"23'C";
-            lab.font = [UIFont fontWithName:@"Snell Roundhand" size:56];
-            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
-            lab.textAlignment = NSTextAlignmentLeft;
-            [headerview addSubview:lab];
-            self.labTemperatureNow = lab;
-        }
-        // 天气图片
-        {
-            UIImageView* image = [[UIImageView alloc] init];
-            image.frame = CGRectMake((CGRectGetWidth(self.view.frame)-40)/2+20, 20, (CGRectGetWidth(self.view.frame)-40)/2, CGRectGetHeight(headerview.frame)-40);
-            image.backgroundColor = [UIColor lightGrayColor];
-            [headerview addSubview:image];
-            self.imageWeather = image;
-        }
-    }
-    
-    {
-        // page 2 element
-        // city:
-        {
-            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame),10,CGRectGetWidth(self.view.frame)-40,20)];
-            //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
-            lab.text = @"广州";
-            lab.font = [UIFont systemFontOfSize:15];
-            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
-            lab.textAlignment = NSTextAlignmentLeft;
-            [headerview addSubview:lab];
-        }
-        // 日期:
-        {
-            UILabel* labDate = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame),30,CGRectGetWidth(self.view.frame)-40,30)];
-            //labDate.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
-            
-            labDate.text = [[NSDate date] localeFormattedDateString];
-            labDate.font = [UIFont fontWithName:@"Snell Roundhand" size:20];
-            labDate.textColor = XPRGBColor(27, 57, 57, 1.0);
-            labDate.textAlignment = NSTextAlignmentLeft;
-            [headerview addSubview:labDate];
-        }
-        // 天气情况:
-        {
-            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame),65,80,20)];
-            //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
-            lab.text = @"晴";
-            lab.font = [UIFont systemFontOfSize:20];
-            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
-            lab.textAlignment = NSTextAlignmentLeft;
-            [headerview addSubview:lab];
-        }
-        {
-            UILabel* labup = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame),90,60,20)];
-            //labup.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-            labup.text = @"↑ 18'c";
-            labup.font = [UIFont systemFontOfSize:15];
-            labup.textColor = XPRGBColor(27, 57, 57, 1.0);
-            labup.textAlignment = NSTextAlignmentLeft;
-            [headerview addSubview:labup];
-            
-            UILabel* labdown = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(labup.frame)+5,90,60,20)];
-            //labdown.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-            labdown.text = @"↓12'c";
-            labdown.font = [UIFont systemFontOfSize:15];
-            labdown.textColor = XPRGBColor(27, 57, 57, 1.0);
-            labdown.textAlignment = NSTextAlignmentLeft;
-            [headerview addSubview:labdown];
-        }
-        
-        // 摄氏度：
-        {
-            
-            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame), 110,CGRectGetWidth(self.view.frame)-40,56)];
-            //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
-            lab.text = @"23'C";
-            lab.font = [UIFont fontWithName:@"Snell Roundhand" size:56];
-            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
-            lab.textAlignment = NSTextAlignmentLeft;
-            [headerview addSubview:lab];
-        }
+
+    for (NSUInteger i=0 ; i < 4; i ++) {
+        UIView* pagev = [self getHeaderviewPage:i];
+        pagev.tag = kHeadViewPageTagStartIdx + i;
+        [headerview addSubview:pagev];
     }
     return headerview;
 }
+
+-(UIView*)getHeaderviewPage:(NSUInteger)pageIndex{
+    UIView* pageview = [[UIView alloc] init];
+    CGFloat pagewidth= (CGRectGetWidth(self.view.frame)*2-20)/4;
+    CGFloat xval = pagewidth*pageIndex;
+    CGFloat yval = 0;
+    //  pageview.backgroundColor = [UIColor grayColor];
+    pageview.frame = CGRectMake(xval, yval,pagewidth,150);
+    {
+        // city:
+        NSUInteger atag   = kWeatherElementStartIdx;
+        CGFloat    yoffset= 10;
+        {
+            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20,yoffset,pagewidth-40,20)];
+            //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
+            lab.text = @"广州";
+            lab.tag  = atag++;
+            lab.font = [UIFont systemFontOfSize:15];
+            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
+            lab.textAlignment = NSTextAlignmentLeft;
+            [pageview addSubview:lab];
+            yoffset += CGRectGetHeight(lab.frame);
+        }
+        // 日期:
+        {
+            UILabel* labDate = [[UILabel alloc] initWithFrame:CGRectMake(20,yoffset,pagewidth-40,36)];
+            //labDate.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+            labDate.tag  = atag++;
+            labDate.numberOfLines = 2;
+            labDate.text = [[NSDate date] localeFormattedDateString];
+            labDate.font = [UIFont systemFontOfSize:15];
+            labDate.textColor = XPRGBColor(27, 57, 57, 1.0);
+            labDate.textAlignment = NSTextAlignmentLeft;
+            [pageview addSubview:labDate];
+            yoffset += CGRectGetHeight(labDate.frame);
+            //[labDate sizeToFit];
+        }
+        // 天气情况:
+        {
+            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20,yoffset,pagewidth-40,30)];
+            //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
+            lab.tag  = atag++;
+            lab.text = @"晴";
+            lab.font = [UIFont systemFontOfSize:16];
+            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
+            lab.textAlignment = NSTextAlignmentLeft;
+            [pageview addSubview:lab];
+            [lab sizeToFit];
+            yoffset += CGRectGetHeight(lab.frame);
+            
+            UIImageView* weatherimg = [[UIImageView alloc] init];
+            weatherimg.frame = CGRectMake(CGRectGetMaxX(lab.frame)+2,
+                                          CGRectGetMinY(lab.frame)+(CGRectGetHeight(lab.frame)-15)/2,21,15);
+            weatherimg.tag  = atag++;
+            [pageview addSubview:weatherimg];
+        }
+        // 摄氏度：
+        {
+            UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20,yoffset,pagewidth-40,26)];
+            //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
+            lab.tag  = atag++;
+            lab.text = @"23'C";
+            lab.font = [UIFont fontWithName:@"Snell Roundhand" size:26];
+            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
+            lab.textAlignment = NSTextAlignmentLeft;
+            [pageview addSubview:lab];
+        }
+    }
+    return pageview;
+}
+
+-(void)setWeatherToUIElement:(NSArray*)weatherArray
+{
+    for (NSUInteger i = 0;  i < 4; i ++) {
+        UIView* tweatherv = [self.headerview viewWithTag:kHeadViewPageTagStartIdx + i];
+        //UILabel* city   = (UILabel*)[tweatherv viewWithTag:kWeatherElementStartIdx+0];
+        UILabel* date   = (UILabel*)[tweatherv viewWithTag:kWeatherElementStartIdx+1];
+        UILabel*weather = (UILabel*)[tweatherv viewWithTag:kWeatherElementStartIdx+2];
+        UIImageView* weatherimg = (UIImageView*)[tweatherv viewWithTag:kWeatherElementStartIdx+3];
+        UILabel* temp   = (UILabel*)[tweatherv viewWithTag:kWeatherElementStartIdx+4];
+
+        NSDictionary* weatherDict = [weatherArray objectAtIndex:i];
+        //[city setText:[weatherDict objectForKey:@""]]
+        [date setText:[weatherDict objectForKey:@"date"]];
+        [date sizeToFit];
+        [weather setText:[weatherDict objectForKey:@"weather"]];
+        [weather sizeToFit];
+        weatherimg.frame = CGRectMake(CGRectGetMaxX(weather.frame)+2,weatherimg.frame.origin.y,21,15);
+        [weatherimg setImageWithURL:[NSURL URLWithString:[weatherDict objectForKey:@"dayPictureUrl"]]];
+        [temp setText:[weatherDict objectForKey:@"temperature"]];
+    }
+}
+
 
 #pragma mark - status bar hidden
 - (BOOL)prefersStatusBarHidden{
@@ -310,7 +291,7 @@ static NSString* const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
 #pragma mark -  UIScrollviewdelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGRect headframe   = CGRectMake(10,10, CGRectGetWidth(self.view.frame)*2-20,200);
+    CGRect headframe   = CGRectMake(10,10, CGRectGetWidth(self.view.frame)*2-20,150);
     headframe.origin.x+= scrollView.contentOffset.x/2;
     //NSLog(@"contentOffset.x=%.2f,headframe.x=%.2f",scrollView.contentOffset.x,headframe.origin.x);
     _headerview.frame  = headframe;
@@ -331,14 +312,7 @@ static NSString* const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
         NSArray * results    = [responseObject objectForKey:@"results"];
         NSDictionary* result = [results objectAtIndex:0];
         NSArray * weathers = [result objectForKey:@"weather_data"];
-        NSDictionary* todayweather = [weathers objectAtIndex:0];
-        NSString* imageurl = [todayweather objectForKey:@"dayPictureUrl"];
-        NSString* weather  = [todayweather objectForKey:@"weather"];
-        NSString* temperature  = [todayweather objectForKey:@"temperature"];
-        
-        self.labTemperatureNow.text = temperature;
-        self.labWeather.text = weather;
-        [self.imageWeather setImageWithURL:[NSURL URLWithString:imageurl]];
+        [self setWeatherToUIElement:weathers];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
