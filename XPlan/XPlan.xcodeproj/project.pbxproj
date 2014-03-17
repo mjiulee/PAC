@@ -49,6 +49,7 @@
 		437A7D0C18B750B60088F1AA /* UIImage+XPUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A7D0B18B750B60088F1AA /* UIImage+XPUIImage.m */; };
 		4383D9E618BC8577007F7CA0 /* XPNewTaskVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */; };
 		4383D9E918BC9646007F7CA0 /* XPUIRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */; };
+		43BD907318D1B0560007E002 /* XPAlarmClockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BD907218D1B0560007E002 /* XPAlarmClockHelper.m */; };
 		BCEE7B4EE240439AAD1851E5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 819FEE31D70B48FC9C272777 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +136,8 @@
 		4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPNewTaskVctler.m; sourceTree = "<group>"; };
 		4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUIRadioButton.h; sourceTree = "<group>"; };
 		4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPUIRadioButton.m; sourceTree = "<group>"; };
+		43BD907118D1B0560007E002 /* XPAlarmClockHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPAlarmClockHelper.h; sourceTree = "<group>"; };
+		43BD907218D1B0560007E002 /* XPAlarmClockHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPAlarmClockHelper.m; sourceTree = "<group>"; };
 		819FEE31D70B48FC9C272777 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C1E589819649A9B058BAB3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -319,6 +322,7 @@
 		437A7CC818B71BA20088F1AA /* XPlan */ = {
 			isa = PBXGroup;
 			children = (
+				43BD907018D1B0070007E002 /* alarm */,
 				431F74B418C76F1A00B03742 /* guider */,
 				431F74B318C76DEC00B03742 /* custom-v */,
 				431F74B218C76DB400B03742 /* staitc-vc */,
@@ -379,6 +383,15 @@
 				437A7CFF18B723330088F1AA /* IIWrapController.m */,
 			);
 			path = ViewDeck;
+			sourceTree = "<group>";
+		};
+		43BD907018D1B0070007E002 /* alarm */ = {
+			isa = PBXGroup;
+			children = (
+				43BD907118D1B0560007E002 /* XPAlarmClockHelper.h */,
+				43BD907218D1B0560007E002 /* XPAlarmClockHelper.m */,
+			);
+			name = alarm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -519,6 +532,7 @@
 			files = (
 				4383D9E618BC8577007F7CA0 /* XPNewTaskVctler.m in Sources */,
 				1873677518C60D1A003EC3A0 /* FMMoveTableViewCell.m in Sources */,
+				43BD907318D1B0560007E002 /* XPAlarmClockHelper.m in Sources */,
 				18ED380518C308D1002565E8 /* NSString+DrawHelper.m in Sources */,
 				43359AF018C426F700C12617 /* NSDate+Category.m in Sources */,
 				18CDC91718C2216000459B26 /* XPNewProjectVctler.m in Sources */,
@@ -666,14 +680,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (VYK2CP9M6D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (27MAMQMVR2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "53489323-1D7D-4C59-A6D8-A12677C9A28A";
+				PROVISIONING_PROFILE = "1DB7B227-04B2-476A-9682-67CCC27835CF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -684,14 +698,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (VYK2CP9M6D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (27MAMQMVR2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "53489323-1D7D-4C59-A6D8-A12677C9A28A";
+				PROVISIONING_PROFILE = "1DB7B227-04B2-476A-9682-67CCC27835CF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
