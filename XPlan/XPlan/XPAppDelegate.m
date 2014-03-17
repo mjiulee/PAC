@@ -52,7 +52,8 @@
     // alarmhelper setup
     XPAlarmClockHelper* alarmHelper = [[XPAlarmClockHelper alloc] init];
     self.alarmHelper = alarmHelper;
-    
+    // 先取消
+    [self.alarmHelper cancelLocalNotification];
     // 设置每天都要进行一次提醒：在早上9：00进行提醒
     [self.alarmHelper setupMorningAlarm];
     // 设置每天都要进行一次提醒：在晚上19：00进行提醒
