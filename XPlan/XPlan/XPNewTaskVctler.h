@@ -15,6 +15,7 @@ typedef enum _XPNewTaskViewType{
     XPNewTaskViewType_Update
 }XPNewTaskViewType;
 
+extern NSString* const kMyMsgTaskUpdateNotification;
 @interface XPNewTaskVctler : UIViewController{
     
 }
