@@ -18,6 +18,7 @@
     #import "XPBaseViewCtler.h"
     #import "XPBaseTableVCtler.h"
     #import "UIDevice+Resolution.h"
+    #import "XPUserDataHelper.h"
 
 
 #define NLSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)

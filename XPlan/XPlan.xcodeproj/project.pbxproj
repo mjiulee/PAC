@@ -51,6 +51,7 @@
 		437A7D0518B725AF0088F1AA /* XPLeftMenuViewCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A7D0418B725AF0088F1AA /* XPLeftMenuViewCtler.m */; };
 		437A7D0918B74F210088F1AA /* resource in Resources */ = {isa = PBXBuildFile; fileRef = 437A7D0818B74F210088F1AA /* resource */; };
 		437A7D0C18B750B60088F1AA /* UIImage+XPUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A7D0B18B750B60088F1AA /* UIImage+XPUIImage.m */; };
+		437B10B418D9761000A9925D /* XPUserDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 437B10B318D9761000A9925D /* XPUserDataHelper.m */; };
 		4383D9E618BC8577007F7CA0 /* XPNewTaskVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */; };
 		4383D9E918BC9646007F7CA0 /* XPUIRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */; };
 		43BD907318D1B0560007E002 /* XPAlarmClockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BD907218D1B0560007E002 /* XPAlarmClockHelper.m */; };
@@ -144,6 +145,8 @@
 		437A7D0818B74F210088F1AA /* resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resource; sourceTree = "<group>"; };
 		437A7D0A18B750B60088F1AA /* UIImage+XPUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XPUIImage.h"; sourceTree = "<group>"; };
 		437A7D0B18B750B60088F1AA /* UIImage+XPUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+XPUIImage.m"; sourceTree = "<group>"; };
+		437B10B218D9761000A9925D /* XPUserDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUserDataHelper.h; sourceTree = "<group>"; };
+		437B10B318D9761000A9925D /* XPUserDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPUserDataHelper.m; sourceTree = "<group>"; };
 		4383D9E418BC8577007F7CA0 /* XPNewTaskVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPNewTaskVctler.h; sourceTree = "<group>"; };
 		4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPNewTaskVctler.m; sourceTree = "<group>"; };
 		4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUIRadioButton.h; sourceTree = "<group>"; };
@@ -342,6 +345,7 @@
 		437A7CC818B71BA20088F1AA /* XPlan */ = {
 			isa = PBXGroup;
 			children = (
+				437B10B118D9750900A9925D /* userhelper */,
 				43BD907018D1B0070007E002 /* alarm */,
 				431F74B418C76F1A00B03742 /* guider */,
 				431F74B318C76DEC00B03742 /* custom-v */,
@@ -403,6 +407,15 @@
 				437A7CFF18B723330088F1AA /* IIWrapController.m */,
 			);
 			path = ViewDeck;
+			sourceTree = "<group>";
+		};
+		437B10B118D9750900A9925D /* userhelper */ = {
+			isa = PBXGroup;
+			children = (
+				437B10B218D9761000A9925D /* XPUserDataHelper.h */,
+				437B10B318D9761000A9925D /* XPUserDataHelper.m */,
+			);
+			name = userhelper;
 			sourceTree = "<group>";
 		};
 		43BD907018D1B0070007E002 /* alarm */ = {
@@ -566,6 +579,7 @@
 				18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */,
 				4361FC0918D843BB00B40D27 /* XPMathHelper.c in Sources */,
 				1873677418C60D1A003EC3A0 /* FMMoveTableView.m in Sources */,
+				437B10B418D9761000A9925D /* XPUserDataHelper.m in Sources */,
 				431F74A118C758C800B03742 /* XPStartupGuiderVctler.m in Sources */,
 				433EDCD118C8B60500746E63 /* UIDevice+Resolution.m in Sources */,
 				18A97E4218C1B12200CE3161 /* TestModel.m in Sources */,

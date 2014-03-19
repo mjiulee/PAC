@@ -64,9 +64,27 @@
 
     // show the start up guider
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    _guiderVctler   = [self generateStartupGuider];
-    self.window.rootViewController = _guiderVctler;
-    [self.window makeKeyAndVisible];
+    NSNumber* ifHadOpenToday = [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_HadOpenToday];
+    if (ifHadOpenToday != nil && [ifHadOpenToday boolValue] == YES)
+    {
+        // 今日有打开过
+        _deckController = [self generateControllerStack];
+        UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:self.deckController];
+        self.rootNav = nav;
+        self.rootNav.navigationBarHidden = YES;
+        self.window.rootViewController = self.rootNav;
+        [self.window makeKeyAndVisible];
+    }else
+    {
+        // 今日没打开过
+        _guiderVctler   = [self generateStartupGuider];
+        self.window.rootViewController = _guiderVctler;
+        [self.window makeKeyAndVisible];
+        
+        // 在这里设置已经打开过
+        NSNumber* hadOpen = [NSNumber numberWithBool:YES];
+        [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_HadOpenToday value:hadOpen];
+    }
     return YES;
 }
 							
@@ -99,7 +117,6 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    NSLog(@"123123123131231231++++++++++++");
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"时间提醒"
                                                     message:notification.alertBody
                                                    delegate:self
@@ -118,8 +135,8 @@
 #pragma mark- ViewDeck
 - (IIViewDeckController*)generateControllerStack
 {
-    XPTaskListVCtler* centervc = [[XPTaskListVCtler alloc] init];
-    UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
+    XPTaskListVCtler* centervc           = [[XPTaskListVCtler alloc] init];
+    UINavigationController* rootNav      = [[UINavigationController alloc] initWithRootViewController:centervc];
     XPLeftMenuViewCtler*  leftController = [[XPLeftMenuViewCtler alloc] initWithStyle:UITableViewStyleGrouped];
     IIViewDeckController* deckController = [[IIViewDeckController alloc] initWithCenterViewController:rootNav
                                                                                     leftViewController:leftController
