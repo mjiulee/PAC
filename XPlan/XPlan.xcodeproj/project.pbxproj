@@ -11,6 +11,10 @@
 		1873677518C60D1A003EC3A0 /* FMMoveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873677318C60D1A003EC3A0 /* FMMoveTableViewCell.m */; };
 		18A97E4218C1B12200CE3161 /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A97E3F18C1B12200CE3161 /* TestModel.m */; };
 		18A97E4318C1B12200CE3161 /* XPlanModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18A97E4018C1B12200CE3161 /* XPlanModel.xcdatamodeld */; };
+		18B8052F18D9DE9900282D17 /* XPWeatherVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8052D18D9DE9900282D17 /* XPWeatherVctler.m */; };
+		18B8053018D9DE9900282D17 /* XPWeatherVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B8052E18D9DE9900282D17 /* XPWeatherVctler.xib */; };
+		18B8053418D9E0F100282D17 /* XPAboutMeVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8053218D9E0F100282D17 /* XPAboutMeVCtler.m */; };
+		18B8053518D9E0F100282D17 /* XPAboutMeVCtler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B8053318D9E0F100282D17 /* XPAboutMeVCtler.xib */; };
 		18CDC91718C2216000459B26 /* XPNewProjectVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDC91618C2216000459B26 /* XPNewProjectVctler.m */; };
 		18DBA65918CA134D00F98316 /* XPTaskFinishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DBA65818CA134D00F98316 /* XPTaskFinishCell.m */; };
 		18EB3F5718C1EF8800400E72 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB3F5618C1EF8800400E72 /* ProjectModel.m */; };
@@ -76,6 +80,12 @@
 		18A97E3E18C1B12200CE3161 /* TestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestModel.h; sourceTree = "<group>"; };
 		18A97E3F18C1B12200CE3161 /* TestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestModel.m; sourceTree = "<group>"; };
 		18A97E4118C1B12200CE3161 /* XPlanModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XPlanModel.xcdatamodel; sourceTree = "<group>"; };
+		18B8052C18D9DE9900282D17 /* XPWeatherVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPWeatherVctler.h; sourceTree = "<group>"; };
+		18B8052D18D9DE9900282D17 /* XPWeatherVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPWeatherVctler.m; sourceTree = "<group>"; };
+		18B8052E18D9DE9900282D17 /* XPWeatherVctler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPWeatherVctler.xib; sourceTree = "<group>"; };
+		18B8053118D9E0F100282D17 /* XPAboutMeVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPAboutMeVCtler.h; sourceTree = "<group>"; };
+		18B8053218D9E0F100282D17 /* XPAboutMeVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPAboutMeVCtler.m; sourceTree = "<group>"; };
+		18B8053318D9E0F100282D17 /* XPAboutMeVCtler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPAboutMeVCtler.xib; sourceTree = "<group>"; };
 		18CDC91518C2216000459B26 /* XPNewProjectVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPNewProjectVctler.h; sourceTree = "<group>"; };
 		18CDC91618C2216000459B26 /* XPNewProjectVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPNewProjectVctler.m; sourceTree = "<group>"; };
 		18DBA65718CA134D00F98316 /* XPTaskFinishCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPTaskFinishCell.h; sourceTree = "<group>"; };
@@ -293,6 +303,12 @@
 			children = (
 				431F749F18C758C800B03742 /* XPStartupGuiderVctler.h */,
 				431F74A018C758C800B03742 /* XPStartupGuiderVctler.m */,
+				18B8052C18D9DE9900282D17 /* XPWeatherVctler.h */,
+				18B8052D18D9DE9900282D17 /* XPWeatherVctler.m */,
+				18B8052E18D9DE9900282D17 /* XPWeatherVctler.xib */,
+				18B8053118D9E0F100282D17 /* XPAboutMeVCtler.h */,
+				18B8053218D9E0F100282D17 /* XPAboutMeVCtler.m */,
+				18B8053318D9E0F100282D17 /* XPAboutMeVCtler.xib */,
 			);
 			name = guider;
 			sourceTree = "<group>";
@@ -509,6 +525,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B8053518D9E0F100282D17 /* XPAboutMeVCtler.xib in Resources */,
+				18B8053018D9DE9900282D17 /* XPWeatherVctler.xib in Resources */,
 				437A7CDB18B71BA20088F1AA /* Images.xcassets in Resources */,
 				437A7CCD18B71BA20088F1AA /* InfoPlist.strings in Resources */,
 				437A7D0918B74F210088F1AA /* resource in Resources */,
@@ -563,6 +581,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B8052F18D9DE9900282D17 /* XPWeatherVctler.m in Sources */,
 				4383D9E618BC8577007F7CA0 /* XPNewTaskVctler.m in Sources */,
 				1873677518C60D1A003EC3A0 /* FMMoveTableViewCell.m in Sources */,
 				43BD907318D1B0560007E002 /* XPAlarmClockHelper.m in Sources */,
@@ -579,6 +598,7 @@
 				18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */,
 				4361FC0918D843BB00B40D27 /* XPMathHelper.c in Sources */,
 				1873677418C60D1A003EC3A0 /* FMMoveTableView.m in Sources */,
+				18B8053418D9E0F100282D17 /* XPAboutMeVCtler.m in Sources */,
 				437B10B418D9761000A9925D /* XPUserDataHelper.m in Sources */,
 				431F74A118C758C800B03742 /* XPStartupGuiderVctler.m in Sources */,
 				433EDCD118C8B60500746E63 /* UIDevice+Resolution.m in Sources */,
@@ -718,14 +738,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (VYK2CP9M6D)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FE7F0F49-326B-4D8F-A678-B9EB277AC5CC";
+				PROVISIONING_PROFILE = "53489323-1D7D-4C59-A6D8-A12677C9A28A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -736,14 +756,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (VYK2CP9M6D)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FE7F0F49-326B-4D8F-A678-B9EB277AC5CC";
+				PROVISIONING_PROFILE = "53489323-1D7D-4C59-A6D8-A12677C9A28A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

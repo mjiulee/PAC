@@ -11,6 +11,7 @@
 #import "XPHistoryTaskDataHelper.h"
 #import "XPTaskTableViewCell.h"
 #import "XPNewTaskVctler.h"
+#import "XPDialyStaticVCtler.h"
 
 static const NSUInteger kTableViewTagStartIdx = 1000;
 
@@ -22,6 +23,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 @property(nonatomic,strong) UIScrollView *            rootScrollview;
 @property(nonatomic,strong) XPHistoryTaskDataHelper * dataHelper;
 // functions
+-(void)onNavRightBtuAction:(id)sender;
 -(void)onSegmentVSelectChange:(NSUInteger)selIdx;     //void SegmentView Select Change
 @end
 
@@ -32,6 +34,9 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        UIBarButtonItem* rightBtn =
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(onNavRightBtuAction:)];
+        self.navigationItem.rightBarButtonItem = rightBtn;
     }
     return self;
 }
@@ -39,6 +44,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"历史任务";
     // data helper init
     XPHistoryTaskDataHelper * dataHelper = [[XPHistoryTaskDataHelper alloc] init];
     self.dataHelper = dataHelper;
@@ -47,12 +53,18 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.navigationController.navigationBar.frame),
                                                                                 CGRectGetWidth(self.view.frame), 36)
                                                                items:@"普通",@"重要",@"已完成",nil];
+    segview.backgroundColor     = [UIColor whiteColor];
+    segview.layer.shadowColor   = XPRGBColor(157, 157, 157, 1.0).CGColor;
+    segview.layer.shadowOffset  = CGSizeMake(0,1);
+    segview.layer.shadowOpacity = 1.0;
+    segview.layer.shadowPath    = [[UIBezierPath bezierPathWithRect:segview.bounds] CGPath];
+    
     [self.view addSubview:segview];
     self.segmentView = segview;
     self.segmentView.segmentedBlock = ^(NSUInteger selidx){
         [_weakself onSegmentVSelectChange:selidx];
     };
-    
+
     //
     UIScrollView* scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(segview.frame), CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-CGRectGetMaxY(segview.frame))];
     scrollview.delegate      = self;
@@ -81,6 +93,21 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.view bringSubviewToFront:self.segmentView];
+    if (self.segmentView.curSelectIndex < 0)
+    {
+        [self.segmentView selectAtIndex:0];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
 
 #pragma mark - UItableviewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -185,6 +212,23 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 -(void)onSegmentVSelectChange:(NSUInteger)selIdx
 {
     [self.rootScrollview setContentOffset:CGPointMake(selIdx*CGRectGetWidth(self.rootScrollview.frame), 0) animated:NO];
+}
+
+-(void)onNavRightBtuAction:(id)sender{
+    NSUInteger total = [self.dataHelper.listFinished count] + [self.dataHelper.listImportant count] + [self.dataHelper.listNormal count];
+    NSUInteger fnish = [self.dataHelper.listFinished count];
+    NSUInteger normal= [self.dataHelper.listNormal count];
+    NSUInteger important = [self.dataHelper.listImportant count];
+    
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:[NSNumber numberWithInt:total]     forKey:@"total"];
+    [dict setObject:[NSNumber numberWithInt:fnish]     forKey:@"finished"];
+    [dict setObject:[NSNumber numberWithInt:normal]    forKey:@"normal"];
+    [dict setObject:[NSNumber numberWithInt:important] forKey:@"important"];
+    
+    XPDialyStaticVCtler* diarystv = [[XPDialyStaticVCtler alloc] init];
+    diarystv.taskDatas = dict;
+    [self.navigationController  pushViewController:diarystv animated:YES];
 }
 
 @end

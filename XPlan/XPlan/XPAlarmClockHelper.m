@@ -44,9 +44,9 @@ static NSString* const kSTREveningAlarm = @"xp-evening-call";
 {
     UILocalNotification *notification=[[UILocalNotification alloc] init];
     if (notification!=nil) {
-        notification.fireDate  = date;      //触发通知的时间
-        notification.repeatInterval=2;      //循环次数，kCFCalendarUnitWeekday一周一次
-        
+        notification.fireDate   = date;      //触发通知的时间
+        notification.repeatCalendar = [NSCalendar currentCalendar];
+        notification.repeatInterval = NSDayCalendarUnit;//kCFCalendarUnitDay;一天一次
         notification.timeZone   = [NSTimeZone defaultTimeZone];
         notification.soundName  = UILocalNotificationDefaultSoundName;
         notification.alertBody  = msg;

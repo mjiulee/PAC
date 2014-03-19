@@ -13,6 +13,8 @@
 #import "XPDialyStaticVCtler.h"
 #import "XPProjectStaticVctler.h"
 #import "XPHistoryListVctler.h"
+#import "XPWeatherVctler.h"
+#import "XPAboutMeVCtler.h"
 
 @interface XPLeftMenuViewCtler ()
 
@@ -25,8 +27,6 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        //self.automaticallyAdjustsScrollViewInsets = YES;
-        //self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     return self;
 }
@@ -36,11 +36,6 @@
     [super viewDidLoad];
     [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,7 +59,7 @@
 {
     static NSString *CellIdentifier = @"Cell";
     NSArray  *section1TextArray  = @[@"今日任务",@"历史任务"];
-    NSArray  *section2TextArray  = @[@"日常统计图表",@"统计图表"];
+    NSArray  *section2TextArray  = @[@"天气情况",@"关于"];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell)
@@ -76,7 +71,7 @@
     if ([indexPath section] == 0)
     {
         cell.textLabel.text = section1TextArray[[indexPath row]];
-    }else
+    }else if([indexPath section] == 1)
     {
         cell.textLabel.text = section2TextArray[[indexPath row]];
     }
@@ -86,7 +81,7 @@
 #pragma mark- tableviewdelegate
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSArray  *titleArray  = @[@"任务列表",@"统计图标"];
+    NSArray  *titleArray  = @[@"任务列表",@"其他"];
     UIView* headview = [UIView new];
     headview.backgroundColor = kClearColor;
     
@@ -106,18 +101,30 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40;
+    if (section == 0) {
+        return 40;
+    }
+    return 20;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([indexPath section] == 1 && [indexPath row] == 1) {
-        XPProjectStaticVctler* projStaticVc = [[XPProjectStaticVctler alloc] init];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([indexPath section] == 1 && [indexPath row] == 0)
+    {
+        XPWeatherVctler* projStaticVc = [[XPWeatherVctler alloc] initWithNibName:@"XPWeatherVctler" bundle:nil];
+        XPAppDelegate* app = [XPAppDelegate shareInstance];
+        [app.rootNav pushViewController:projStaticVc animated:YES];
+        return;
+    }else if([indexPath section] == 1 && [indexPath row] == 1)
+    {
+        XPAboutMeVCtler* projStaticVc = [[XPAboutMeVCtler alloc] initWithNibName:@"XPAboutMeVCtler" bundle:nil];
         XPAppDelegate* app = [XPAppDelegate shareInstance];
         [app.rootNav pushViewController:projStaticVc animated:YES];
         return;
     }
 
-    [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller){
+    [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller)
+    {
         if ([indexPath section] == 0 && [indexPath row] == 0)
         {
             XPTaskListVCtler*centervc = [[XPTaskListVCtler alloc] init];
@@ -127,14 +134,6 @@
         {
             XPHistoryListVctler* centervc = [[XPHistoryListVctler alloc] init];
             UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
-            [self.viewDeckController setCenterController:rootNav];
-        }else if([indexPath section] == 1 && [indexPath row] == 0){
-            XPDialyStaticVCtler* dialystaticVc = [[XPDialyStaticVCtler alloc] init];
-            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:dialystaticVc];
-            [self.viewDeckController setCenterController:rootNav];
-        }else if([indexPath section] == 1 && [indexPath row] == 1){
-            XPProjectStaticVctler* projStaticVc = [[XPProjectStaticVctler alloc] init];
-            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:projStaticVc];
             [self.viewDeckController setCenterController:rootNav];
         }
     }];

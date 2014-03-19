@@ -10,7 +10,6 @@
 #import "XPMathHelper.h"
 
 @interface XPSegmentedView()
-@property(nonatomic)NSUInteger curSelectIndex;
 @property(nonatomic)BOOL       selectAnimating;
 @property(nonatomic,strong) UIView* indexView;
 @end
@@ -22,8 +21,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor    = XPRGBColor(245, 245, 245, 1.0);
-        
+        self.curSelectIndex = -1;
         NSMutableArray* tempAry = [[NSMutableArray alloc] init];
         [tempAry addObject:firstObj];
 
@@ -48,7 +46,7 @@
             CGFloat height = CGRectGetHeight(frame);
             UIFont* font   = [UIFont systemFontOfSize:15];
             UIColor* colorNormal = XPRGBColor(57, 57, 57, 1.0);
-            UIColor* colorSelect = XPRGBColor(255, 255, 255, 1.0);
+            UIColor* colorSelect = XPRGBColor(249, 137, 50, 1.0);
             NSUInteger tagidx = 0;
             CGFloat  xval = 0;
             for (NSString* title in tempAry)
@@ -70,20 +68,15 @@
                 if (tagidx == 0)
                 {
                     UIView* indexView   = [UIView new];
-                    indexView.frame = CGRectZoom(btn.frame, 2,2);
+                    indexView.frame     = CGRectMake(CGRectGetMinX(btn.frame) + (CGRectGetWidth(btn.frame) - CGRectGetWidth(btn.frame)/2)/2,
+                                                     CGRectGetMaxY(btn.frame)-4,
+                                                     CGRectGetWidth(btn.frame)/2,4);
                     NSLog(@"indexView.frame=%@",NSStringFromCGRect(indexView.frame));
-                    indexView.backgroundColor  = [UIColor colorWithRed:249/255.0
-                                                                 green:137/255.0
-                                                                  blue:50/255.0
-                                                                 alpha:1.0];
-                    indexView.layer.shadowColor  = XPRGBColor(57,57,57, 1.0).CGColor;
-                    indexView.layer.shadowOffset = CGSizeMake(.5,.5);
-                    indexView.layer.shadowOpacity= 1;
-                    indexView.layer.shadowPath  = [UIBezierPath bezierPathWithRect:indexView.bounds].CGPath;
+                    indexView.backgroundColor  = XPRGBColor(249, 137, 50, 1.0);
                     [self addSubview:indexView];
                     
                     self.indexView      = indexView;
-                    self.curSelectIndex = 0;
+                    //self.curSelectIndex = 0;
                     [self sendSubviewToBack:indexView];
                 }
                 btn.tag   = tagidx ++ ;
@@ -146,7 +139,9 @@
     [UIView animateWithDuration:0.25 animations:^(void)
     {
         self.selectAnimating = YES;
-        self.indexView.frame = CGRectZoom(btn.frame, 2,2);
+        self.indexView.frame = CGRectMake(CGRectGetMinX(btn.frame) + (CGRectGetWidth(btn.frame) - CGRectGetWidth(btn.frame)/2)/2,
+                                         CGRectGetMaxY(btn.frame)-4,
+                                         CGRectGetWidth(btn.frame)/2,4);
     } completion:^(BOOL finish)
     {
         [btn setSelected:YES];

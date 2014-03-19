@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"日常任务统计";
+    self.title = @"任务统计";
 	// Do any additional setup after loading the view.
     // nav left
     UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_back_1"];

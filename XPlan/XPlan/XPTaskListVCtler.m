@@ -189,7 +189,7 @@ static NSString *sCellIdentifier;
     NSUInteger count= [tableView numberOfRowsInSection:section];
     if (count > 0) {
         headview.layer.shadowColor   = [XPRGBColor(157, 157, 157, 0.8) CGColor];
-        headview.layer.shadowOffset  = CGSizeMake(1,1);
+        headview.layer.shadowOffset  = CGSizeMake(0,1);
         headview.layer.shadowOpacity = 1.0;
     }else{
         headview.layer.borderWidth = 0.5;
