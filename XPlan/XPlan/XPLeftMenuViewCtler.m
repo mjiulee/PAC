@@ -12,6 +12,7 @@
 #import "XPTaskListVCtler.h"
 #import "XPDialyStaticVCtler.h"
 #import "XPProjectStaticVctler.h"
+#import "XPHistoryListVctler.h"
 
 @interface XPLeftMenuViewCtler ()
 
@@ -62,8 +63,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    NSArray  *section1TextArray  = @[@"今日任务",@"任务项目"];
-    NSArray  *section2TextArray  = @[@"日常统计图表",@"项目统计图表"];
+    NSArray  *section1TextArray  = @[@"今日任务",@"历史任务"];
+    NSArray  *section2TextArray  = @[@"日常统计图表",@"统计图表"];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell)
@@ -109,6 +110,13 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([indexPath section] == 1 && [indexPath row] == 1) {
+        XPProjectStaticVctler* projStaticVc = [[XPProjectStaticVctler alloc] init];
+        XPAppDelegate* app = [XPAppDelegate shareInstance];
+        [app.rootNav pushViewController:projStaticVc animated:YES];
+        return;
+    }
+
     [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller){
         if ([indexPath section] == 0 && [indexPath row] == 0)
         {
@@ -117,7 +125,7 @@
             [self.viewDeckController setCenterController:rootNav];
         }else if([indexPath section] == 0 && [indexPath row] == 1)
         {
-            XPProjectViewCtler* centervc = [[XPProjectViewCtler alloc] init];
+            XPHistoryListVctler* centervc = [[XPHistoryListVctler alloc] init];
             UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
             [self.viewDeckController setCenterController:rootNav];
         }else if([indexPath section] == 1 && [indexPath row] == 0){

@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) XPDataManager*    coreDataMgr;
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UINavigationController*rootNav;
 @property (strong, nonatomic) IIViewDeckController*  deckController;
 @property (strong, nonatomic) XPStartupGuiderVctler* guiderVctler;
 

@@ -31,6 +31,9 @@
 {
     // 初始化
     _deckController = [self generateControllerStack];
+    UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:self.deckController];
+    self.rootNav = nav;
+    self.rootNav.navigationBarHidden = YES;
     
     // 动画
     CATransition *animation = [CATransition animation];
@@ -39,7 +42,7 @@
     animation.type = kCATransitionFade;//淡入淡出效果
     // view插入、移出
     [self.guiderVctler.view removeFromSuperview];
-    self.window.rootViewController = self.deckController;
+    self.window.rootViewController = self.rootNav;
     [[_window layer] addAnimation:animation forKey:@"animation"];
 }
 

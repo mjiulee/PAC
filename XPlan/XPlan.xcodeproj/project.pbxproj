@@ -27,6 +27,9 @@
 		43359AF018C426F700C12617 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 43359AEF18C426F700C12617 /* NSDate+Category.m */; };
 		43359AF218C42A1600C12617 /* TaskInsertTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43359AF118C42A1600C12617 /* TaskInsertTest.m */; };
 		433EDCD118C8B60500746E63 /* UIDevice+Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 433EDCD018C8B60500746E63 /* UIDevice+Resolution.m */; };
+		4361FC0318D835E300B40D27 /* XPHistoryListVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4361FC0218D835E300B40D27 /* XPHistoryListVctler.m */; };
+		4361FC0618D837BA00B40D27 /* XPSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4361FC0518D837BA00B40D27 /* XPSegmentedView.m */; };
+		4361FC0918D843BB00B40D27 /* XPMathHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 4361FC0818D843BB00B40D27 /* XPMathHelper.c */; };
 		437A7CC318B71BA20088F1AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC218B71BA20088F1AA /* Foundation.framework */; };
 		437A7CC518B71BA20088F1AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC418B71BA20088F1AA /* CoreGraphics.framework */; };
 		437A7CC718B71BA20088F1AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC618B71BA20088F1AA /* UIKit.framework */; };
@@ -102,6 +105,12 @@
 		43359AF118C42A1600C12617 /* TaskInsertTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInsertTest.m; sourceTree = "<group>"; };
 		433EDCCF18C8B60500746E63 /* UIDevice+Resolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Resolution.h"; sourceTree = "<group>"; };
 		433EDCD018C8B60500746E63 /* UIDevice+Resolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Resolution.m"; sourceTree = "<group>"; };
+		4361FC0118D835E300B40D27 /* XPHistoryListVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPHistoryListVctler.h; sourceTree = "<group>"; };
+		4361FC0218D835E300B40D27 /* XPHistoryListVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPHistoryListVctler.m; sourceTree = "<group>"; };
+		4361FC0418D837BA00B40D27 /* XPSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPSegmentedView.h; sourceTree = "<group>"; };
+		4361FC0518D837BA00B40D27 /* XPSegmentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPSegmentedView.m; sourceTree = "<group>"; };
+		4361FC0718D8433100B40D27 /* XPMathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPMathHelper.h; sourceTree = "<group>"; };
+		4361FC0818D843BB00B40D27 /* XPMathHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = XPMathHelper.c; sourceTree = "<group>"; };
 		437A7CBF18B71BA20088F1AA /* XPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437A7CC218B71BA20088F1AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		437A7CC418B71BA20088F1AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -206,6 +215,8 @@
 				18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */,
 				18DBA65718CA134D00F98316 /* XPTaskFinishCell.h */,
 				18DBA65818CA134D00F98316 /* XPTaskFinishCell.m */,
+				4361FC0118D835E300B40D27 /* XPHistoryListVctler.h */,
+				4361FC0218D835E300B40D27 /* XPHistoryListVctler.m */,
 			);
 			name = listview;
 			sourceTree = "<group>";
@@ -230,6 +241,8 @@
 				18ED380418C308D1002565E8 /* NSString+DrawHelper.m */,
 				433EDCCF18C8B60500746E63 /* UIDevice+Resolution.h */,
 				433EDCD018C8B60500746E63 /* UIDevice+Resolution.m */,
+				4361FC0718D8433100B40D27 /* XPMathHelper.h */,
+				4361FC0818D843BB00B40D27 /* XPMathHelper.c */,
 			);
 			name = Catogery;
 			sourceTree = "<group>";
@@ -261,6 +274,8 @@
 			children = (
 				4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */,
 				4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */,
+				4361FC0418D837BA00B40D27 /* XPSegmentedView.h */,
+				4361FC0518D837BA00B40D27 /* XPSegmentedView.m */,
 			);
 			name = "custom-v";
 			sourceTree = "<group>";
@@ -541,7 +556,9 @@
 				437A7CD318B71BA20088F1AA /* XPAppDelegate.m in Sources */,
 				431F74AD18C76D1600B03742 /* XPProjectStaticVctler.m in Sources */,
 				18A97E4318C1B12200CE3161 /* XPlanModel.xcdatamodeld in Sources */,
+				4361FC0618D837BA00B40D27 /* XPSegmentedView.m in Sources */,
 				18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */,
+				4361FC0918D843BB00B40D27 /* XPMathHelper.c in Sources */,
 				1873677418C60D1A003EC3A0 /* FMMoveTableView.m in Sources */,
 				431F74A118C758C800B03742 /* XPStartupGuiderVctler.m in Sources */,
 				433EDCD118C8B60500746E63 /* UIDevice+Resolution.m in Sources */,
@@ -554,6 +571,7 @@
 				437A7D0C18B750B60088F1AA /* UIImage+XPUIImage.m in Sources */,
 				437A7CD918B71BA20088F1AA /* XPProjectViewCtler.m in Sources */,
 				18DBA65918CA134D00F98316 /* XPTaskFinishCell.m in Sources */,
+				4361FC0318D835E300B40D27 /* XPHistoryListVctler.m in Sources */,
 				431F74A418C75C3A00B03742 /* XPDialyStaticVCtler.m in Sources */,
 				437A7D0518B725AF0088F1AA /* XPLeftMenuViewCtler.m in Sources */,
 				431F74A718C75C6900B03742 /* XPBaseViewCtler.m in Sources */,
