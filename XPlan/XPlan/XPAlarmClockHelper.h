@@ -16,4 +16,6 @@
 -(void)setupMorningAlarm;
 // 设置闹钟：夜晚
 -(void)setupEveningAlarm;
+// 取消本地消息
+-(void)cancelLocalNotification;
 @end
