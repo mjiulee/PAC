@@ -7,9 +7,10 @@
 //
 
 #import "XPDialyStaticVCtler.h"
+#import "PNChart.h"
 
 @interface XPDialyStaticVCtler ()
-
+-(void)onNavLeftBtnAction:(id)sender;
 @end
 
 @implementation XPDialyStaticVCtler
@@ -28,17 +29,45 @@
     [super viewDidLoad];
     self.title = @"日常任务统计";
 	// Do any additional setup after loading the view.
-    UILabel* lab = [[UILabel alloc] initWithFrame:self.view.bounds];
-    lab.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    lab.text = @"开发中";
-    lab.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:lab];
+    // nav left
+    UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_back_1"];
+    UIImage* imhighLight = [UIImage imageNamed:@"nav_btn_back_2"];
+    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
+    [btn setImage:imgnormal   forState:UIControlStateNormal];
+    [btn setImage:imhighLight forState:UIControlStateHighlighted];
+    [btn setContentEdgeInsets:UIEdgeInsetsMake(0,-10, 0, 0)];
+    [btn addTarget:self action:@selector(onNavLeftBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.leftBarButtonItem = leftBtn;
+    
+    if(self.taskDatas)
+    {
+        NSNumber* total     = [self.taskDatas objectForKey:@"total"];
+        NSNumber* finished  = [self.taskDatas objectForKey:@"finished"];
+        CGFloat fpercent = [finished unsignedIntegerValue]/[total floatValue];
+        
+        PNCircleChart * circleChart
+        = [[PNCircleChart alloc] initWithFrame:CGRectMake(0, 80.0, CGRectGetWidth(self.view.frame), 100.0)
+                                      andTotal:[NSNumber numberWithInt:1]
+                                    andCurrent:[NSNumber numberWithFloat:fpercent]];
+        circleChart.backgroundColor = [UIColor clearColor];
+        [circleChart setStrokeColor:PNGreen];
+        [circleChart strokeChart];
+        [self.view addSubview:circleChart];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - nav button actions
+-(void)onNavLeftBtnAction:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

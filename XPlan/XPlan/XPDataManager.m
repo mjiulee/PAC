@@ -242,6 +242,24 @@
     return result;
 }
 
+-(NSArray*)selectTaskByStatus:(int)status
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    // 查询条件
+    NSNumber* _ptrStatus = [NSNumber numberWithInt:status];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"status=%@",_ptrStatus];
+    
+    //首先你需要建立一个request
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
+                                   inManagedObjectContext:context]];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    return result;
+}
+
 -(NSArray*)selectTaskAll
 {
     NSManagedObjectContext *context = [self managedObjectContext];

@@ -30,6 +30,7 @@
 		4361FC0318D835E300B40D27 /* XPHistoryListVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4361FC0218D835E300B40D27 /* XPHistoryListVctler.m */; };
 		4361FC0618D837BA00B40D27 /* XPSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4361FC0518D837BA00B40D27 /* XPSegmentedView.m */; };
 		4361FC0918D843BB00B40D27 /* XPMathHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 4361FC0818D843BB00B40D27 /* XPMathHelper.c */; };
+		4361FC0C18D8540F00B40D27 /* XPHistoryTaskDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4361FC0B18D8540F00B40D27 /* XPHistoryTaskDataHelper.m */; };
 		437A7CC318B71BA20088F1AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC218B71BA20088F1AA /* Foundation.framework */; };
 		437A7CC518B71BA20088F1AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC418B71BA20088F1AA /* CoreGraphics.framework */; };
 		437A7CC718B71BA20088F1AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC618B71BA20088F1AA /* UIKit.framework */; };
@@ -111,6 +112,8 @@
 		4361FC0518D837BA00B40D27 /* XPSegmentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPSegmentedView.m; sourceTree = "<group>"; };
 		4361FC0718D8433100B40D27 /* XPMathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPMathHelper.h; sourceTree = "<group>"; };
 		4361FC0818D843BB00B40D27 /* XPMathHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = XPMathHelper.c; sourceTree = "<group>"; };
+		4361FC0A18D8540F00B40D27 /* XPHistoryTaskDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPHistoryTaskDataHelper.h; sourceTree = "<group>"; };
+		4361FC0B18D8540F00B40D27 /* XPHistoryTaskDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPHistoryTaskDataHelper.m; sourceTree = "<group>"; };
 		437A7CBF18B71BA20088F1AA /* XPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437A7CC218B71BA20088F1AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		437A7CC418B71BA20088F1AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -217,6 +220,8 @@
 				18DBA65818CA134D00F98316 /* XPTaskFinishCell.m */,
 				4361FC0118D835E300B40D27 /* XPHistoryListVctler.h */,
 				4361FC0218D835E300B40D27 /* XPHistoryListVctler.m */,
+				4361FC0A18D8540F00B40D27 /* XPHistoryTaskDataHelper.h */,
+				4361FC0B18D8540F00B40D27 /* XPHistoryTaskDataHelper.m */,
 			);
 			name = listview;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 				43BD907318D1B0560007E002 /* XPAlarmClockHelper.m in Sources */,
 				18ED380518C308D1002565E8 /* NSString+DrawHelper.m in Sources */,
 				43359AF018C426F700C12617 /* NSDate+Category.m in Sources */,
+				4361FC0C18D8540F00B40D27 /* XPHistoryTaskDataHelper.m in Sources */,
 				18CDC91718C2216000459B26 /* XPNewProjectVctler.m in Sources */,
 				437A7D0018B723330088F1AA /* IISideController.m in Sources */,
 				18EB3F5A18C1EF8900400E72 /* TaskModel.m in Sources */,
@@ -698,14 +704,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (27MAMQMVR2)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1DB7B227-04B2-476A-9682-67CCC27835CF";
+				PROVISIONING_PROFILE = "FE7F0F49-326B-4D8F-A678-B9EB277AC5CC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -716,14 +722,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (27MAMQMVR2)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1DB7B227-04B2-476A-9682-67CCC27835CF";
+				PROVISIONING_PROFILE = "FE7F0F49-326B-4D8F-A678-B9EB277AC5CC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

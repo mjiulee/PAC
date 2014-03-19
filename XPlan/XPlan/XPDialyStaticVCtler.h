@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface XPDialyStaticVCtler : XPBaseViewCtler
-
+@property(nonatomic,strong) NSDictionary* taskDatas;
 @end

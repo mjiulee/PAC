@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface XPHistoryTaskDataHelper : NSObject
-
+@property(nonatomic,strong) NSMutableArray* listNormal;
+@property(nonatomic,strong) NSMutableArray* listImportant;
+@property(nonatomic,strong) NSMutableArray* listFinished;
 @end

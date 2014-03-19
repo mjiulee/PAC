@@ -51,6 +51,12 @@ enum {
  */
 -(NSArray*)selectTaskByDay:(NSDate*)day status:(int)status;
 
+
+/* brief:根据任务的优先级进行查询
+ * @param:status- 需要查询的状态，0.普通 1.重要
+ */
+-(NSArray*)selectTaskByStatus:(int)status;
+
 // TEST
 -(NSArray*)selectTaskAll;
 

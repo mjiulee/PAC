@@ -18,11 +18,17 @@ PODS:
   - AFNetworking/UIKit (2.2.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - PNChart (0.3.3):
+    - UICountingLabel (~> 1.0.0)
+  - UICountingLabel (1.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - PNChart (~> 0.3.3)
 
 SPEC CHECKSUMS:
   AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56
+  PNChart: dc66d8bb6da180223438b949aa281c8dc890590e
+  UICountingLabel: bb976960c0130785a600aac592954c23eb395096
 
 COCOAPODS: 0.29.0

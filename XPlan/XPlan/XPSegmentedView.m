@@ -22,7 +22,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor   = XPRGBColor(220, 220, 220, 1.0);
+        self.backgroundColor    = XPRGBColor(245, 245, 245, 1.0);
         
         NSMutableArray* tempAry = [[NSMutableArray alloc] init];
         [tempAry addObject:firstObj];
@@ -72,9 +72,9 @@
                     UIView* indexView   = [UIView new];
                     indexView.frame = CGRectZoom(btn.frame, 2,2);
                     NSLog(@"indexView.frame=%@",NSStringFromCGRect(indexView.frame));
-                    indexView.backgroundColor  = [UIColor colorWithRed:157/255.0
-                                                                 green:157/255.0
-                                                                  blue:157/255.0
+                    indexView.backgroundColor  = [UIColor colorWithRed:249/255.0
+                                                                 green:137/255.0
+                                                                  blue:50/255.0
                                                                  alpha:1.0];
                     indexView.layer.shadowColor  = XPRGBColor(57,57,57, 1.0).CGColor;
                     indexView.layer.shadowOffset = CGSizeMake(.5,.5);
@@ -92,6 +92,30 @@
         }
     }
     return self;
+}
+
+-(void)selectAtIndex:(NSUInteger)index
+{
+    if (self.curSelectIndex == index) {
+        return ;
+    }
+    
+    UIButton* btnTarget = nil;
+    for (UIView* tv in [self subviews])
+    {
+        if ([tv isKindOfClass:[UIButton class]] == NO)
+        {
+            continue;
+        }
+        UIButton* tbtn = (UIButton*)tv;
+        if (tbtn.tag == index) {
+            btnTarget = tbtn;
+            break;
+        }
+    }
+    if (btnTarget) {
+        [self onBtnAction:btnTarget];
+    }
 }
 
 -(void)onBtnAction:(id)sender
@@ -122,7 +146,7 @@
     [UIView animateWithDuration:0.25 animations:^(void)
     {
         self.selectAnimating = YES;
-        self.indexView.frame = CGRectZoom(btn.frame, 2,2);;//CGRectMake(btn.frame.origin.x,btn.frame.origin.y, btn.frame.size.width, btn.frame.size.height);
+        self.indexView.frame = CGRectZoom(btn.frame, 2,2);
     } completion:^(BOOL finish)
     {
         [btn setSelected:YES];

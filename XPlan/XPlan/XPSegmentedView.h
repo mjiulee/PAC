@@ -14,5 +14,5 @@ typedef void (^XPSegmentedSelectBlock)(NSUInteger selectIdx);
 @property(nonatomic,copy)XPSegmentedSelectBlock segmentedBlock;
 
 -(id)initWithFrame:(CGRect)frame items:(NSString*)firstObj, ...NS_REQUIRES_NIL_TERMINATION;
-
+-(void)selectAtIndex:(NSUInteger)index;
 @end
