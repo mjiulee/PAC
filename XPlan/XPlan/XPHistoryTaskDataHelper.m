@@ -22,21 +22,21 @@
         
         XPDataManager* dmg = [XPAppDelegate shareInstance].coreDataMgr;
         {
-            NSArray* tary = [dmg selectTaskByStatus:0];
+            NSArray* tary = [dmg queryHistoryTask:XPTask_PriorityLevel_normal status:XPTask_Status_ongoing];
             if (tary && [tary count]) {
                 [self.listNormal setArray:tary];
             }
         }
         
         {
-            NSArray* tary = [dmg selectTaskByStatus:1];
+            NSArray* tary = [dmg queryHistoryTask:XPTask_PriorityLevel_important status:XPTask_Status_ongoing];
             if (tary && [tary count]) {
                 [self.listImportant setArray:tary];
             }
         }
         
         {
-            NSArray* tary = [dmg selectTaskByStatus:2];
+            NSArray* tary = [dmg queryHistoryTask:XPTask_PriorityLevel_all status:XPTask_Status_Done];
             if (tary && [tary count]) {
                 [self.listFinished setArray:tary];
             }

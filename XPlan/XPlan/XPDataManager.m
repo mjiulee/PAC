@@ -119,57 +119,9 @@
 }
 
 #pragma mark - Data CURD
-#pragma mark - test 
--(BOOL)insertTest:(NSString*)title date:(NSDate*)adate
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    TestModel* newtest  = [NSEntityDescription insertNewObjectForEntityForName:@"TestModel"
-                                                       inManagedObjectContext:context];
-    
-    do
-    {
-        if (!newtest){
-            break;
-        }
-        [newtest setValue:title forKey:@"title"];
-        [newtest setValue:adate forKey:@"date"];
-        NSError *error;
-        if(![context save:&error]){
-            NSLog(@"Task Add fail：%@",[error localizedDescription]);
-            break;
-        }else{
-            NSLog(@"Task Add succes");
-        }
-        return YES;
-    } while (NO);
-    return NO;
-}
-
--(BOOL)queryTest:(int)page size:(int)asize
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    [fetchRequest setFetchLimit:asize];
-    [fetchRequest setFetchOffset:page];
-    
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TestModel"
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSError* error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (TestModel *info in fetchedObjects) {
-        NSLog(@"title:%@", [info valueForKey:@"title"]);
-        NSLog(@"date:%@", [info valueForKey:@"date"]);
-    }
-    return YES;
-}
-
 #pragma mark - task-list-curd
--(void)insertTask:(NSString*)brief
-           status:(int)status
-             date:(NSDate*)adate
-          project:(ProjectModel*)project;
+-(void)insertTask:(NSString*)content date:(NSDate*)datecreate type:(XPTaskType)taskType prLevel:(XPTaskPriorityLevel)prLevel
+          project:(ProjectModel*)project
 {
    NSManagedObjectContext *context = [self managedObjectContext];
    TaskModel* newTask  = [NSEntityDescription insertNewObjectForEntityForName:@"TaskModel"
@@ -179,11 +131,13 @@
         if (!newTask){
             break;
         }
-        newTask.content = brief;
-        newTask.dateCreate = adate;
-        newTask.status   = [NSNumber numberWithInteger:status];
-        newTask.dateDone = nil;
-        newTask.project  = nil;
+        newTask.content    = content;
+        newTask.dateCreate = datecreate;
+        newTask.status     = [NSNumber numberWithInteger:XPTask_Status_ongoing];
+        newTask.type       = [NSNumber numberWithInteger:taskType];
+        newTask.prLevel    = [NSNumber numberWithInteger:prLevel];
+        newTask.dateDone   = nil;
+        newTask.project    = nil;
         
         NSError *error;
         if(![context save:&error]){
@@ -193,11 +147,11 @@
     } while (NO);
 }
 
--(void)updateTask:(TaskModel*)task2update project:(ProjectModel*)project
+-(void)updateTask:(TaskModel*)task2update
 {
     NSManagedObjectContext *context = [self managedObjectContext];
 
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"brief=%@",task2update.content];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"content=%@",task2update.content];
     //首先建立一个request,这里相当于sqlite中的查询条件，具体格式参考苹果文档
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
@@ -208,8 +162,13 @@
     //这里获取到的是一个数组，你需要取出你要更新的那个obj
     NSArray *result = [context executeFetchRequest:request error:&error];
     for (TaskModel *info in result){
-        info.content = task2update.content;
-        info.status  = task2update.status;
+        info.content    = task2update.content;
+        info.dateCreate = task2update.dateCreate;
+        info.status     = task2update.status;
+        info.type       = task2update.type;
+        info.prLevel    = task2update.prLevel;
+        info.dateDone   = task2update.dateDone;
+        info.project    = task2update.project;
         if ([context save:&error]) {
             NSLog(@"更新成功");
         }else{
@@ -217,207 +176,131 @@
         }
     }
 }
-//-(void)deleteTask:(NSNumber*)taskId{
+
+-(void)deleteTask:(NSString*)content
+{
+    
+}
+
+-(NSArray*)queryTaskByDay:(NSDate*)day prLevel:(XPTaskPriorityLevel)alevel status:(XPTaskStatus)astatus
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    // 查询条件
+    NSDate* dayBegin  = [day startOfDay];
+    NSDate* dayEnd    = [day endOfDay];
+    NSNumber* status  = [NSNumber numberWithInt:astatus];
+    NSNumber* plLevel = [NSNumber numberWithInt:alevel];
+    NSPredicate * predicate= nil;
+    if (alevel == XPTask_PriorityLevel_all) {
+        predicate = [NSPredicate predicateWithFormat:@"(dateCreate >= %@) AND (dateCreate <= %@) AND status=%@ AND prLevel!=%@", dayBegin,dayEnd,status,plLevel];
+    }else{
+        predicate = [NSPredicate predicateWithFormat:@"(dateCreate >= %@) AND (dateCreate <= %@) AND status=%@ AND prLevel=%@", dayBegin,dayEnd,status,plLevel];
+    }
+    
+    //首先你需要建立一个request
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
+                                   inManagedObjectContext:context]];
+    [request setPredicate:predicate];
+
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    return result;
+}
+
+-(NSArray*)queryHistoryTask:(XPTaskPriorityLevel)alevel status:(int)astatus
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    // 查询条件
+    NSDate* day = [NSDate date];
+    NSDate* dayBegin  = [day startOfDay];
+    NSDate* dayEnd    = [day endOfDay];
+    NSNumber* status = [NSNumber numberWithInt:astatus];
+    NSNumber* level  = [NSNumber numberWithInt:alevel];
+    NSPredicate *predicate = nil;
+    if (alevel == XPTask_PriorityLevel_all) {
+        predicate = [NSPredicate predicateWithFormat:@"status=%@ AND prLevel!=%@ AND ((dateCreate < %@) OR (dateCreate > %@))",status,level,dayBegin,dayEnd];
+    }else{
+        predicate = [NSPredicate predicateWithFormat:@"status=%@ AND prLevel=%@ AND ((dateCreate < %@) OR (dateCreate > %@))",status,level,dayBegin,dayEnd];
+    }
+    
+    //首先你需要建立一个request
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
+                                   inManagedObjectContext:context]];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    return result;
+}
+
+//-(NSArray*)selectTaskAll
+//{
+//    NSManagedObjectContext *context = [self managedObjectContext];
+//    // 查询条件
+//    //首先你需要建立一个request
+//    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+//    [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
+//                                   inManagedObjectContext:context]];
+//    [request setFetchLimit:100];
+//    [request setFetchOffset:1];
 //    
+//    NSError *error = nil;
+//    NSArray *result = [context executeFetchRequest:request error:&error];
+//    //NSLog(@"result=%@",result.description);
+//    for (TaskModel* item in result) {
+//        ///NSLog(@"date=%@",item.create_date.description);
+//        //item.status = [NSNumber numberWithInt:XPTask_Type_Normal];
+//        //[self updateTask:item project:nil];
+//    }
+//    return result;
+//}
+
+#pragma mark - test
+//-(BOOL)insertTest:(NSString*)title date:(NSDate*)adate
+//{
+//    NSManagedObjectContext *context = [self managedObjectContext];
+//    TestModel* newtest  = [NSEntityDescription insertNewObjectForEntityForName:@"TestModel"
+//                                                       inManagedObjectContext:context];
+//
+//    do
+//    {
+//        if (!newtest){
+//            break;
+//        }
+//        [newtest setValue:title forKey:@"title"];
+//        [newtest setValue:adate forKey:@"date"];
+//        NSError *error;
+//        if(![context save:&error]){
+//            NSLog(@"Task Add fail：%@",[error localizedDescription]);
+//            break;
+//        }else{
+//            NSLog(@"Task Add succes");
+//        }
+//        return YES;
+//    } while (NO);
+//    return NO;
 //}
 //
--(NSArray*)selectTaskByDay:(NSDate*)day status:(int)status
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    // 查询条件
-    NSDate* dayBegin = [day startOfDay];
-    NSDate* dayEnd   = [day endOfDay];
-    NSNumber* _ptrStatus = [NSNumber numberWithInt:status];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(create_date >= %@) AND (create_date <= %@) AND status=%@", dayBegin,dayEnd,_ptrStatus];
-    
-    //首先你需要建立一个request
-    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
-                                   inManagedObjectContext:context]];
-    [request setPredicate:predicate];
+//-(BOOL)queryTest:(int)page size:(int)asize
+//{
+//    NSManagedObjectContext *context = [self managedObjectContext];
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//
+//    [fetchRequest setFetchLimit:asize];
+//    [fetchRequest setFetchOffset:page];
+//
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TestModel"
+//                                              inManagedObjectContext:context];
+//    [fetchRequest setEntity:entity];
+//    NSError* error;
+//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//    for (TestModel *info in fetchedObjects) {
+//        NSLog(@"title:%@", [info valueForKey:@"title"]);
+//        NSLog(@"date:%@", [info valueForKey:@"date"]);
+//    }
+//    return YES;
+//}
 
-    NSError *error = nil;
-    NSArray *result = [context executeFetchRequest:request error:&error];
-    //NSLog(@"result=%@",result.description);
-    return result;
-}
-
--(NSArray*)selectTaskByStatus:(int)status
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    // 查询条件
-    NSNumber* _ptrStatus = [NSNumber numberWithInt:status];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"status=%@",_ptrStatus];
-    
-    //首先你需要建立一个request
-    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
-                                   inManagedObjectContext:context]];
-    [request setPredicate:predicate];
-    
-    NSError *error = nil;
-    NSArray *result = [context executeFetchRequest:request error:&error];
-    return result;
-}
-
--(NSArray*)selectTaskAll
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    // 查询条件
-    //首先你需要建立一个request
-    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
-                                   inManagedObjectContext:context]];
-    [request setFetchLimit:100];
-    [request setFetchOffset:1];
-    
-    NSError *error = nil;
-    NSArray *result = [context executeFetchRequest:request error:&error];
-    //NSLog(@"result=%@",result.description);
-    for (TaskModel* item in result) {
-        ///NSLog(@"date=%@",item.create_date.description);
-        //item.status = [NSNumber numberWithInt:XPTask_Type_Normal];
-        //[self updateTask:item project:nil];
-    }
-    return result;
-}
-
-
-#pragma mark - project-list-curd
--(void)insertProject:(NSString*)name
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    ProjectModel* project  = [NSEntityDescription insertNewObjectForEntityForName:@"ProjectModel"
-                                                        inManagedObjectContext:context];
-    do
-    {
-        if (!project){
-            break;
-        }
-        project.name = name;
-        NSError *error;
-        if(![context save:&error]){
-            NSLog(@"Project Add fail：%@",[error localizedDescription]);
-            break;
-        }
-    } while (NO);
-}
-
--(NSArray*)selectProject:(NSInteger)page size:(NSInteger)size
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    // 查询条件
-    //首先你需要建立一个request
-    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"ProjectModel"
-                                   inManagedObjectContext:context]];
-    [request setFetchLimit:size];
-    [request setFetchOffset:page];
-
-    
-    NSError *error = nil;
-    NSArray *result = [context executeFetchRequest:request error:&error];
-    return result;
-}
-
-/*
-- (void)insertCoreData:(NSMutableArray*)dataArray
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    /*for (News *info in dataArray) {
-        News *newsInfo = [NSEntityDescription insertNewObjectForEntityForName:TableName inManagedObjectContext:context];
-        newsInfo.newsid = info.newsid;
-        newsInfo.title = info.title;
-        newsInfo.imgurl = info.imgurl;
-        newsInfo.descr = info.descr;
-        newsInfo.islook = info.islook;
-        
-        NSError *error;
-        if(![context save:&error])
-        {
-            NSLog(@"不能保存：%@",[error localizedDescription]);
-        }
-    }
-}
-
-//查询
-- (NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    
-    // 限定查询结果的数量
-    //setFetchLimit
-    // 查询的偏移量
-    //setFetchOffset
-    
-    /*
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    [fetchRequest setFetchLimit:pageSize];
-    [fetchRequest setFetchOffset:currentPage];
-    
-    NSEntityDescription *entity = [NSEntityDescription entityForName:TableName inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    NSMutableArray *resultArray = [NSMutableArray array];
-    
-    for (News *info in fetchedObjects) {
-        NSLog(@"id:%@", info.newsid);
-        NSLog(@"title:%@", info.title);
-        [resultArray addObject:info];
-    }
-    return resultArray;
-}
-
-//删除
--(void)deleteData
-{
-    /*NSManagedObjectContext *context = [self managedObjectContext];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:TableName inManagedObjectContext:context];
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setIncludesPropertyValues:NO];
-    [request setEntity:entity];
-    NSError *error = nil;
-    NSArray *datas = [context executeFetchRequest:request error:&error];
-    if (!error && datas && [datas count])
-    {
-        for (NSManagedObject *obj in datas)
-        {
-            [context deleteObject:obj];
-        }
-        if (![context save:&error])
-        {
-            NSLog(@"error:%@",error);
-        }
-    }
-}
-//更新
-- (void)updateData:(NSString*)newsId  withIsLook:(NSString*)islook
-{
-    /*NSManagedObjectContext *context = [self managedObjectContext];
-    
-    NSPredicate *predicate = [NSPredicate
-                              predicateWithFormat:@"newsid like[cd] %@",newsId];
-    
-    //首先你需要建立一个request
-    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:TableName inManagedObjectContext:context]];
-    [request setPredicate:predicate];//这里相当于sqlite中的查询条件，具体格式参考苹果文档
-    
-    //https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/Predicates/Articles/pCreating.html
-    NSError *error = nil;
-    NSArray *result = [context executeFetchRequest:request error:&error];//这里获取到的是一个数组，你需要取出你要更新的那个obj
-    for (News *info in result) {
-        info.islook = islook;
-    }
-    
-    //保存
-    if ([context save:&error]) {
-        //更新成功
-        NSLog(@"更新成功");
-    }
-}
-*/
 @end

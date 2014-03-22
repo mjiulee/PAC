@@ -8,7 +8,6 @@
 
 #import "XPLeftMenuViewCtler.h"
 #import "XPAppDelegate.h"
-#import "XPProjectViewCtler.h"
 #import "XPTaskListVCtler.h"
 #import "XPDialyStaticVCtler.h"
 #import "XPProjectStaticVctler.h"

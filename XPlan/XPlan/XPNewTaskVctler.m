@@ -180,8 +180,7 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     NSString* value = [_radioGroupPrio getSelectedValue];
     _task2Update.content = _tfview.text;
     _task2Update.status  = [NSNumber numberWithInt:[value integerValue]];
-    [app.coreDataMgr updateTask:_task2Update
-                        project:nil];
+    [app.coreDataMgr updateTask:_task2Update];
     [[NSNotificationCenter defaultCenter] postNotificationName:kMyMsgTaskUpdateNotification object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -196,10 +195,20 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     // save item to core data
     XPAppDelegate* app = [XPAppDelegate shareInstance];
     NSString* value = [_radioGroupPrio getSelectedValue];
-
-    [app.coreDataMgr insertTask:_tfview.text
-                         status:[value integerValue]
-                           date:[NSDate date]
+    XPTaskPriorityLevel priority;
+    if ([value integerValue] == 1)
+    {
+        priority = XPTask_PriorityLevel_normal;
+    }
+    
+    if([value integerValue] == 2)
+    {
+        priority = XPTask_PriorityLevel_important;
+    }
+    
+    [app.coreDataMgr insertTask:_tfview.text date:[NSDate date]
+                           type:XPTask_Type_User
+                        prLevel:priority
                         project:nil];
     [_tfview setText:@""];
     [[NSNotificationCenter defaultCenter] postNotificationName:kMyMsgTaskUpdateNotification object:nil];

@@ -53,11 +53,11 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.navigationController.navigationBar.frame),
                                                                                 CGRectGetWidth(self.view.frame), 36)
                                                                items:@"普通",@"重要",@"已完成",nil];
-    segview.backgroundColor     = [UIColor whiteColor];
-    segview.layer.shadowColor   = XPRGBColor(157, 157, 157, 1.0).CGColor;
-    segview.layer.shadowOffset  = CGSizeMake(0,1);
-    segview.layer.shadowOpacity = 1.0;
-    segview.layer.shadowPath    = [[UIBezierPath bezierPathWithRect:segview.bounds] CGPath];
+    segview.backgroundColor     = XPRGBColor(248, 248, 248, 0.88);
+//    segview.layer.shadowColor   = XPRGBColor(157, 157, 157, 1.0).CGColor;
+//    segview.layer.shadowOffset  = CGSizeMake(0,1);
+//    segview.layer.shadowOpacity = 1.0;
+//    segview.layer.shadowPath    = [[UIBezierPath bezierPathWithRect:segview.bounds] CGPath];
     
     [self.view addSubview:segview];
     self.segmentView = segview;
@@ -81,7 +81,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
                                                                                CGRectGetHeight(scrollview.frame))];
         tableView.delegate   = self;
         tableView.dataSource = self;
-        tableView.rowHeight  = 54;
+        tableView.rowHeight  = 50;
         tableView.tag        = kTableViewTagStartIdx + i;
         [scrollview addSubview:tableView];
     }
@@ -149,9 +149,9 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     NSInteger tagidx = tableView.tag - kTableViewTagStartIdx;
     if(tagidx == 0) {
         atask = [self.dataHelper.listNormal    objectAtIndex:[indexPath row]];
-        atask.status   = [NSNumber numberWithInt:XPTask_Type_Finish];
+        atask.status   = [NSNumber numberWithInt:XPTask_Status_Done];
         XPAppDelegate* app = [XPAppDelegate shareInstance];
-        [app.coreDataMgr updateTask:atask project:nil];
+        [app.coreDataMgr updateTask:atask];
 
         [self.dataHelper.listFinished addObject:atask];
         [self.dataHelper.listNormal removeObjectAtIndex:[indexPath row]];
@@ -163,9 +163,9 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     }
     if(tagidx == 1){
         atask = [self.dataHelper.listImportant objectAtIndex:[indexPath row]];
-        atask.status   = [NSNumber numberWithInt:XPTask_Type_Finish];
+        atask.status   = [NSNumber numberWithInt:XPTask_Status_Done];
         XPAppDelegate* app = [XPAppDelegate shareInstance];
-        [app.coreDataMgr updateTask:atask project:nil];
+        [app.coreDataMgr updateTask:atask];
         [self.dataHelper.listFinished addObject:atask];
         [self.dataHelper.listImportant removeObjectAtIndex:[indexPath row]];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];

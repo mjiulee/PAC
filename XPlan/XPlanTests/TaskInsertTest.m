@@ -56,18 +56,24 @@
     for (int i = 0 ; i < 5; i ++) {
         // test:
         status = [NSNumber numberWithInt:1];
-        [self getItem:&title date:&date status:&status ext:0];
+        [self getItem:&title date:&date status:&status ext:i];
+//        [self.coreDataManger insertTask:title
+//                                 status:0
+//                                   date:date
+//                                project:nil];
         [self.coreDataManger insertTask:title
-                                 status:0
                                    date:date
+                                   type:XPTask_Type_User
+                                prLevel:XPTask_PriorityLevel_normal
                                 project:nil];
         
         // test:
         status = [NSNumber numberWithInt:0];
-        [self getItem:&title date:&date status:&status ext:0];
+        [self getItem:&title date:&date status:&status ext:-i];
         [self.coreDataManger insertTask:title
-                                 status:0
                                    date:date
+                                   type:XPTask_Type_User
+                                prLevel:XPTask_PriorityLevel_important
                                 project:nil];
         continue;
         
@@ -76,7 +82,7 @@
             ifError = YES;
             break;
         }
-        [self.coreDataManger insertTask:title
+        /*[self.coreDataManger insertTask:title
                                  status:1
                                    date:date
                                 project:nil];
@@ -84,7 +90,7 @@
         if (!days || [days count] != 1) {
             ifError = YES;
             break;
-        }
+        }*/
         ext ++;
     }
     /*

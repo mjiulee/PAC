@@ -84,7 +84,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
         lab.textAlignment = NSTextAlignmentLeft;
         [contentView addSubview:lab];
         self.briefLabel = lab;
-        
+
         // add to scrollview
         [scrollcontview addSubview:contentView];
         [self insertSubview:scrollcontview atIndex:0];
@@ -100,6 +100,10 @@ static const CGFloat  kCellScrollMaxOffset = 80;
         finish.alpha= 0;
         [self addSubview:finish];
         self.labFinish = finish;
+        
+        UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(0,tableview.rowHeight-0.5, CGRectGetWidth(tableview.frame),0.5)];
+        divLine.backgroundColor = XPRGBColor(220, 220, 220, 1.0);
+        [self addSubview:divLine];
     }
     return self;
 }

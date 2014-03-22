@@ -80,6 +80,9 @@
                 xval += width;
             }
         }
+        UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(0,CGRectGetHeight(frame)-0.5, CGRectGetWidth(frame), 0.5)];
+        divLine.backgroundColor = XPRGBColor(220, 220, 220, 1.0);
+        [self addSubview:divLine];
     }
     return self;
 }

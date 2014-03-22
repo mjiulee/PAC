@@ -55,7 +55,8 @@ static NSString *sCellIdentifier;
         _taskListNormal    = [[NSMutableArray alloc] init];
         _taskListImportant = [[NSMutableArray alloc] init];;
         _taskListFinish    = [[NSMutableArray alloc] init];;
-        
+        // data load from core date
+        [self reLoadData];
         sCellIdentifier = @"MoveCell";
     }
     return self;
@@ -71,10 +72,9 @@ static NSString *sCellIdentifier;
     //self.tableView = [[FMMoveTableView alloc] initWithFrame:self.tableView.frame style:UITableViewStylePlain];
     self.tableView.delegate   = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight  = 54;
-
+    self.tableView.rowHeight  = 50;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.viewDeckController.panningMode = IIViewDeckNavigationBarPanning;
-    [self reLoadData];
     [self.tableView reloadData];
 
     // register the task list change
@@ -124,9 +124,6 @@ static NSString *sCellIdentifier;
         atask = [_taskListFinish objectAtIndex:[indexPath row]];
     }
     [cell setTask:atask];
-    cell.shouldIndentWhileEditing = NO;
-    cell.showsReorderControl      = NO;
-
     return cell;
 }
 
@@ -143,8 +140,7 @@ static NSString *sCellIdentifier;
         TaskModel * task2Done = [_taskListNormal objectAtIndex:[indexPath row]];
         task2Done.status   = [NSNumber numberWithInt:XPTask_Status_Done];
         XPAppDelegate* app = [XPAppDelegate shareInstance];
-        [app.coreDataMgr updateTask:task2Done
-                            project:nil];
+        [app.coreDataMgr updateTask:task2Done];
         [_taskListNormal removeObjectAtIndex:[indexPath row]];
         [self performSelector:@selector(reloadListByStatus:) withObject:nil afterDelay:0.5];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -154,8 +150,7 @@ static NSString *sCellIdentifier;
         TaskModel * task2Done = [_taskListImportant objectAtIndex:[indexPath row]];
         task2Done.status   = [NSNumber numberWithInt:XPTask_Status_Done];
         XPAppDelegate* app = [XPAppDelegate shareInstance];
-        [app.coreDataMgr updateTask:task2Done
-                            project:nil];
+        [app.coreDataMgr updateTask:task2Done];
         [_taskListImportant removeObjectAtIndex:[indexPath row]];
         [self performSelector:@selector(reloadListByStatus:) withObject:nil afterDelay:0.5];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -184,8 +179,9 @@ static NSString *sCellIdentifier;
 {
     NSArray  *titleArray  = @[@"普通",@"重要",@"完成"];
     UIView* headview = [[UIView alloc] initWithFrame:CGRectZero];
-    headview.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    headview.backgroundColor = [UIColor whiteColor];
+    headview.autoresizingMask= UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    headview.backgroundColor = XPRGBColor(248, 248, 248, 0.88);
+    /*
     NSUInteger count= [tableView numberOfRowsInSection:section];
     if (count > 0) {
         headview.layer.shadowColor   = [XPRGBColor(157, 157, 157, 0.8) CGColor];
@@ -194,7 +190,7 @@ static NSString *sCellIdentifier;
     }else{
         headview.layer.borderWidth = 0.5;
         headview.layer.borderColor = [XPRGBColor(157, 157, 157, 0.8) CGColor];
-    }
+    }*/
     
     UILabel* sectionTItle = [UILabel new];
     sectionTItle.frame    = CGRectMake(15, 0, 0, 0);
@@ -214,6 +210,10 @@ static NSString *sCellIdentifier;
         [btn addTarget:self action:@selector(onAddTaskButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [headview addSubview:btn];
     }
+    
+    UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(0,39.5, CGRectGetWidth(tableView.frame), 0.5)];
+    divLine.backgroundColor = XPRGBColor(220, 220, 220, 1.0);
+    [headview addSubview:divLine];
     return headview;
 }
 
@@ -225,7 +225,9 @@ static NSString *sCellIdentifier;
 -(void)reLoadData{
     XPAppDelegate* app = [XPAppDelegate shareInstance];
     {   // Normal
-        NSArray* normalList = [app.coreDataMgr selectTaskByDay:[NSDate date] status:0];
+        NSArray* normalList = [app.coreDataMgr queryTaskByDay:[NSDate date]
+                                                      prLevel:XPTask_PriorityLevel_normal
+                                                       status:XPTask_Status_ongoing];
         if (normalList && [normalList count]) {
             [_taskListNormal removeAllObjects];
             [_taskListNormal setArray:normalList];
@@ -235,7 +237,9 @@ static NSString *sCellIdentifier;
     }
     
     {
-        NSArray* importantList = [app.coreDataMgr selectTaskByDay:[NSDate date] status:1];
+        NSArray* importantList = [app.coreDataMgr queryTaskByDay:[NSDate date]
+                                                         prLevel:XPTask_PriorityLevel_important
+                                                          status:XPTask_Status_ongoing];
         if (importantList && [importantList count]) {
             [_taskListImportant removeAllObjects];
             [_taskListImportant setArray:importantList];
@@ -245,7 +249,9 @@ static NSString *sCellIdentifier;
     }
     
     {
-        NSArray* finishList = [app.coreDataMgr selectTaskByDay:[NSDate date] status:2];
+        NSArray* finishList = [app.coreDataMgr queryTaskByDay:[NSDate date]
+                                                      prLevel:XPTask_PriorityLevel_all
+                                                       status:XPTask_Status_Done];
         if (finishList && [finishList count]) {
             [_taskListFinish removeAllObjects];
             [_taskListFinish setArray:finishList];
@@ -258,7 +264,9 @@ static NSString *sCellIdentifier;
 -(void)reloadListByStatus:(int)status
 {
     XPAppDelegate* app = [XPAppDelegate shareInstance];
-    NSArray* finishList = [app.coreDataMgr selectTaskByDay:[NSDate date] status:2];
+    NSArray* finishList = [app.coreDataMgr queryTaskByDay:[NSDate date]
+                                                  prLevel:XPTask_PriorityLevel_all
+                                                   status:XPTask_Status_Done];
     if (finishList && [finishList count]) {
         [_taskListFinish removeAllObjects];
         [_taskListFinish setArray:finishList];

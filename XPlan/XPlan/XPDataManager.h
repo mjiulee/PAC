@@ -22,64 +22,60 @@ typedef enum {
 
 
 typedef enum {
-    XPTask_Status_ongoing= 0, // task that on going
+    XPTask_Status_ongoing= 1, // task that on going
     XPTask_Status_Done   = 2  // task that have done
 }XPTaskStatus;
 
 typedef enum {
-    XPTask_PriorityLevel_normal    = 0,
-    XPTask_PriorityLevel_important = 1
+    XPTask_PriorityLevel_all       = 0,
+    XPTask_PriorityLevel_normal    = 1,
+    XPTask_PriorityLevel_important = 2
 }XPTaskPriorityLevel;
 
 
-@interface XPDataManager : NSObject
-{
+@interface XPDataManager : NSObject{
 }
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
 #pragma mark - test
--(BOOL)insertTest:(NSString*)title date:(NSDate*)adate;
--(BOOL)queryTest:(int)page size:(int)asize;
 
-//#pragma mark - Task-List
-// * 任务表的增删改查
--(void)insertTask:(NSString*)brief
-           status:(int)status
-             date:(NSDate*)adate
+#pragma mark - Task-List
+/* 插入一项任务:
+ * params
+ * @content     --- 任务内容
+ * @datecreate  --- 创建时间
+ * @taskType    --- 类型：系统、用户自建
+ * @prLevel     --- 优先级：普通、重要
+ * @project     --- 所属项目,暂时不用 */
+-(void)insertTask:(NSString*)content date:(NSDate*)datecreate type:(XPTaskType)taskType prLevel:(XPTaskPriorityLevel)prLevel
           project:(ProjectModel*)project;
 
--(void)updateTask:(TaskModel*)task2update
-          project:(ProjectModel*)project;
+/* 更新一项任务:
+ * params
+ * @task2update --- 任务内容 */
+-(void)updateTask:(TaskModel*)task2update;
 
--(void)deleteTask:(NSString*)brief;
+/* 删除一项任务:
+ * params
+ * @content     --- 任务内容*/
+-(void)deleteTask:(NSString*)content;
+
+/* 根据任务的优先级进行查询
+ * @param:day      --- 需要查询的日期
+ * @param:level    --- 优先级
+ * @param:taskType --- 类型
+ * @param:status   --- 状态 */
+-(NSArray*)queryTaskByDay:(NSDate*)day prLevel:(XPTaskPriorityLevel)alevel status:(XPTaskStatus)astatus;
+
+
 /* brief:根据任务的优先级进行查询
- * @param:day --- 需要查询的日期
- * @param:status- 需要查询的状态，0.普通 1.重要
+ * @param:level - 0.普通 1.重要
+ * @param:status- 状态
  */
--(NSArray*)selectTaskByDay:(NSDate*)day status:(int)status;
+-(NSArray*)queryHistoryTask:(XPTaskPriorityLevel)alevel status:(int)status;
 
-
-/* brief:根据任务的优先级进行查询
- * @param:status- 需要查询的状态，0.普通 1.重要
- */
--(NSArray*)selectTaskByStatus:(int)status;
-
-// TEST
--(NSArray*)selectTaskAll;
-
-//
-//#pragma mark - Project-List
-///* 项目表的增删改查
-// */
--(void)insertProject:(NSString*)name;
--(NSArray*)selectProject:(NSInteger)page size:(NSInteger)size;
-
-// others:
-//-(NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage;
-//-(void)updateData:(NSString*)newsId  withIsLook:(NSString*)islook;
-//-(void)deleteData;
-
+//TODO: #pragma mark - Project-List
 @end
 

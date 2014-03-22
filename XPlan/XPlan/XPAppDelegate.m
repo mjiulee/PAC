@@ -9,10 +9,7 @@
 #import "XPAppDelegate.h"
 #import "IIViewDeckController.h"
 #import "XPLeftMenuViewCtler.h"
-
-#import "XPProjectViewCtler.h"
 #import "XPTaskListVCtler.h"
-
 #import "XPStartupGuiderVctler.h"
 #import "XPAlarmClockHelper.h"
 
