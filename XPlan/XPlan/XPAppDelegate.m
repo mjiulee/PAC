@@ -64,7 +64,7 @@
     NSDate * today      = [NSDate date];
     NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
     //if (ifHadOpenToday != nil && [ifHadOpenToday boolValue] == YES)
-    if([today isTheSameDay:lastOpenDate] == NO)
+    if([today isTheSameDay:lastOpenDate] == YES)
     {
         // 今日有打开过
         _deckController = [self generateControllerStack];
