@@ -17,7 +17,8 @@
 #import "XPAboutMeVCtler.h"
 
 @interface XPLeftMenuViewCtler ()
-
+@property(nonatomic,strong) UINavigationController* dailyVctler;
+@property(nonatomic,strong) UINavigationController* historyVctler;
 @end
 
 @implementation XPLeftMenuViewCtler
@@ -127,14 +128,20 @@
     {
         if ([indexPath section] == 0 && [indexPath row] == 0)
         {
-            XPTaskListVCtler*centervc = [[XPTaskListVCtler alloc] init];
-            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
-            [self.viewDeckController setCenterController:rootNav];
+            if (!self.dailyVctler) {
+                XPTaskListVCtler*centervc = [[XPTaskListVCtler alloc] init];
+                UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
+                self.dailyVctler = rootNav;
+            }
+            [self.viewDeckController setCenterController:self.dailyVctler];
         }else if([indexPath section] == 0 && [indexPath row] == 1)
         {
-            XPHistoryListVctler* centervc = [[XPHistoryListVctler alloc] init];
-            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
-            [self.viewDeckController setCenterController:rootNav];
+            if (!self.historyVctler) {
+                XPHistoryListVctler* centervc = [[XPHistoryListVctler alloc] init];
+                UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
+                self.historyVctler = rootNav;
+            }
+            [self.viewDeckController setCenterController:self.historyVctler];
         }
     }];
 }

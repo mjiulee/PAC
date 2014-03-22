@@ -51,16 +51,20 @@
 
 #pragma mark - ViewDeck
 -(BOOL)openLeftView{
-    if ([self.viewDeckController isSideOpen:IIViewDeckLeftSide]) {
+    if ([self.viewDeckController isSideOpen:IIViewDeckLeftSide])
+    {
         if ([self.viewDeckController respondsToSelector:@selector(closeLeftViewAnimated:completion:)])
         {
             [self.viewDeckController closeLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success){
+                self.viewDeckController.panningMode = IIViewDeckNavigationBarPanning;
             }];
         }
-    }else{
+    }else
+    {
         if ([self.viewDeckController respondsToSelector:@selector(openLeftViewAnimated:completion:)])
         {
             [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success){
+                self.viewDeckController.panningMode = IIViewDeckAllViewsPanning;
             }];
         }
     }

@@ -15,13 +15,22 @@
 #define IfCoreDataDebug 0
 
 
-enum {
-    // Task Normal
-    XPTask_Type_Normal      = 0,
-    // Task Important
-    XPTask_Type_Important   = 1,
-    XPTask_Type_Finish      = 2
-};typedef NSUInteger XPTaskType;
+typedef enum {
+    XPTask_Type_User   = 0,    // Task Create by User
+    XPTask_Type_System = 1     // Task Create By system
+}XPTaskType;
+
+
+typedef enum {
+    XPTask_Status_ongoing= 0, // task that on going
+    XPTask_Status_Done   = 2  // task that have done
+}XPTaskStatus;
+
+typedef enum {
+    XPTask_PriorityLevel_normal    = 0,
+    XPTask_PriorityLevel_important = 1
+}XPTaskPriorityLevel;
+
 
 @interface XPDataManager : NSObject
 {

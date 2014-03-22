@@ -46,7 +46,7 @@
             CGFloat height = CGRectGetHeight(frame);
             UIFont* font   = [UIFont systemFontOfSize:15];
             UIColor* colorNormal = XPRGBColor(57, 57, 57, 1.0);
-            UIColor* colorSelect = XPRGBColor(249, 137, 50, 1.0);
+            UIColor* colorSelect = XPRGBColor(255, 255, 255, 1.0);
             NSUInteger tagidx = 0;
             CGFloat  xval = 0;
             for (NSString* title in tempAry)
@@ -68,15 +68,12 @@
                 if (tagidx == 0)
                 {
                     UIView* indexView   = [UIView new];
-                    indexView.frame     = CGRectMake(CGRectGetMinX(btn.frame) + (CGRectGetWidth(btn.frame) - CGRectGetWidth(btn.frame)/2)/2,
-                                                     CGRectGetMaxY(btn.frame)-4,
-                                                     CGRectGetWidth(btn.frame)/2,4);
-                    NSLog(@"indexView.frame=%@",NSStringFromCGRect(indexView.frame));
+                    indexView.frame     = CGRectZoom(btn.frame, 38, 8);
+                    indexView.layer.cornerRadius = CGRectGetHeight(indexView.frame)/2 - 1;
                     indexView.backgroundColor  = XPRGBColor(249, 137, 50, 1.0);
                     [self addSubview:indexView];
                     
                     self.indexView      = indexView;
-                    //self.curSelectIndex = 0;
                     [self sendSubviewToBack:indexView];
                 }
                 btn.tag   = tagidx ++ ;
@@ -139,9 +136,7 @@
     [UIView animateWithDuration:0.25 animations:^(void)
     {
         self.selectAnimating = YES;
-        self.indexView.frame = CGRectMake(CGRectGetMinX(btn.frame) + (CGRectGetWidth(btn.frame) - CGRectGetWidth(btn.frame)/2)/2,
-                                         CGRectGetMaxY(btn.frame)-4,
-                                         CGRectGetWidth(btn.frame)/2,4);
+        self.indexView.frame = CGRectZoom(btn.frame, 38, 8);
     } completion:^(BOOL finish)
     {
         [btn setSelected:YES];

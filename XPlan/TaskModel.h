@@ -13,7 +13,7 @@
 
 @interface TaskModel : NSManagedObject
 
-@property (nonatomic, retain) NSString * content;
+@property (nonatomic, retain) NSNumber * content;
 @property (nonatomic, retain) NSDate * dateCreate;
 @property (nonatomic, retain) NSDate * dateDone;
 @property (nonatomic, retain) NSNumber * status;

@@ -36,8 +36,8 @@
         case XPUserDataKey_HadShowGuider:
             keyName = @"XPUserDataKey_HadShowGuider";
             break;
-        case XPUserDataKey_HadOpenToday:
-            keyName = @"XPUserDataKey_HadOpenToday";
+        case XPUserDataKey_LastOpenDate:
+            keyName = @"XPUserDataKey_LastOpenDate";
             break;
         default:
             NSAssert(NO, @"你所要保存的信息，未在预定义的id中，请先定义再保存，此举为了防止信息乱存放");
@@ -59,8 +59,8 @@
         case XPUserDataKey_HadShowGuider:
             keyName = @"XPUserDataKey_HadShowGuider";
             break;
-        case XPUserDataKey_HadOpenToday:
-            keyName = @"XPUserDataKey_HadOpenToday";
+        case XPUserDataKey_LastOpenDate:
+            keyName = @"XPUserDataKey_LastOpenDate";
             break;
         default:
             NSAssert(NO, @"你所要读取的信息，未在预定义的id中，请先定义再保存，此举为了防止信息乱存放");

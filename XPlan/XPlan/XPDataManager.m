@@ -179,11 +179,11 @@
         if (!newTask){
             break;
         }
-        newTask.brief = brief;
-        newTask.create_date = adate;
-        newTask.status= [NSNumber numberWithInteger:status];
-        newTask.finish_date = nil;
-        newTask.project = nil;
+        newTask.content = brief;
+        newTask.dateCreate = adate;
+        newTask.status   = [NSNumber numberWithInteger:status];
+        newTask.dateDone = nil;
+        newTask.project  = nil;
         
         NSError *error;
         if(![context save:&error]){
@@ -197,7 +197,7 @@
 {
     NSManagedObjectContext *context = [self managedObjectContext];
 
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"brief=%@",task2update.brief];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"brief=%@",task2update.content];
     //首先建立一个request,这里相当于sqlite中的查询条件，具体格式参考苹果文档
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
@@ -208,8 +208,8 @@
     //这里获取到的是一个数组，你需要取出你要更新的那个obj
     NSArray *result = [context executeFetchRequest:request error:&error];
     for (TaskModel *info in result){
-        info.brief = task2update.brief;
-        info.status= task2update.status;
+        info.content = task2update.content;
+        info.status  = task2update.status;
         if ([context save:&error]) {
             NSLog(@"更新成功");
         }else{

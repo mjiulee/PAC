@@ -64,8 +64,10 @@
 
     // show the start up guider
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    NSNumber* ifHadOpenToday = [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_HadOpenToday];
-    if (ifHadOpenToday != nil && [ifHadOpenToday boolValue] == YES)
+    NSDate * today      = [NSDate date];
+    NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
+    //if (ifHadOpenToday != nil && [ifHadOpenToday boolValue] == YES)
+    if([today isTheSameDay:lastOpenDate] == NO)
     {
         // 今日有打开过
         _deckController = [self generateControllerStack];
@@ -80,10 +82,8 @@
         _guiderVctler   = [self generateStartupGuider];
         self.window.rootViewController = _guiderVctler;
         [self.window makeKeyAndVisible];
-        
         // 在这里设置已经打开过
-        NSNumber* hadOpen = [NSNumber numberWithBool:YES];
-        [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_HadOpenToday value:hadOpen];
+        [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_LastOpenDate value:today];
     }
     return YES;
 }
@@ -149,20 +149,4 @@
     [deckController disablePanOverViewsOfClass:NSClassFromString(@"_UITableViewHeaderFooterContentView")];
     return deckController;
 }
-
-/*
--(void)testPage:(NSString*)datas total:(CGFloat)total pageidx:(int)page{
-    NSArray* ary = [datas componentsSeparatedByString:@","];
-
-    CGFloat totalValue = 0;
-    for (NSString* item in ary) {
-        totalValue += [item floatValue];
-    }
-    if (total != totalValue) {
-        NSLog(@"第%d页不对,total=%.02f,total2=%.02f",page,total,totalValue);
-    }else{
-        NSLog(@"第%d页正确,total=%0.2f",page,totalValue);
-    }
-}*/
-
 @end

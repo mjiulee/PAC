@@ -141,7 +141,7 @@ static NSString *sCellIdentifier;
     {
         // save to core data
         TaskModel * task2Done = [_taskListNormal objectAtIndex:[indexPath row]];
-        task2Done.status   = [NSNumber numberWithInt:XPTask_Type_Finish];
+        task2Done.status   = [NSNumber numberWithInt:XPTask_Status_Done];
         XPAppDelegate* app = [XPAppDelegate shareInstance];
         [app.coreDataMgr updateTask:task2Done
                             project:nil];
@@ -152,7 +152,7 @@ static NSString *sCellIdentifier;
     {
         // save to core data
         TaskModel * task2Done = [_taskListImportant objectAtIndex:[indexPath row]];
-        task2Done.status   = [NSNumber numberWithInt:XPTask_Type_Finish];
+        task2Done.status   = [NSNumber numberWithInt:XPTask_Status_Done];
         XPAppDelegate* app = [XPAppDelegate shareInstance];
         [app.coreDataMgr updateTask:task2Done
                             project:nil];

@@ -17,6 +17,14 @@
 
 #pragma mark -
 #pragma mark Comparing dates
+- (BOOL) isTheSameDay: (NSDate *) aDate
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString* selfFormatstr = [formatter stringFromDate:self];
+    NSString* adateFormatstr= [formatter stringFromDate:aDate];
+    return [selfFormatstr isEqualToString:adateFormatstr];
+}
 
 - (BOOL) isEarlierDate: (NSDate *) aDate
 {

@@ -87,12 +87,12 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     
     _radioNormal = [[XPUIRadioButton alloc] initWithFrame:CGRectZero];
     _radioNormal.title = @"普通";
-    _radioNormal.value = [NSString stringWithFormat:@"%d",XPTask_Type_Normal];
+    _radioNormal.value = [NSString stringWithFormat:@"%d",XPTask_PriorityLevel_normal];
     [self.view addSubview:_radioNormal];
     
     _radioImportant = [[XPUIRadioButton alloc] initWithFrame:CGRectZero];
     _radioImportant.title = @"重要";
-    _radioImportant.value = [NSString stringWithFormat:@"%d",XPTask_Type_Important];
+    _radioImportant.value = [NSString stringWithFormat:@"%d",XPTask_PriorityLevel_important];
     _radioImportant.ifCHeck = YES;
     [self.view addSubview:_radioImportant];
     
@@ -113,7 +113,7 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
         [self.view addSubview:_btnNext];
     }else{
         if (_task2Update) {
-            _tfview.text = _task2Update.brief;
+            _tfview.text = _task2Update.content;
             int status   = [_task2Update.status integerValue];
             if (status == 0) {
                 [_radioNormal setIfCheck:YES];
@@ -178,8 +178,8 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     // save item to core data
     XPAppDelegate* app = [XPAppDelegate shareInstance];
     NSString* value = [_radioGroupPrio getSelectedValue];
-    _task2Update.brief = _tfview.text;
-    _task2Update.status= [NSNumber numberWithInt:[value integerValue]];
+    _task2Update.content = _tfview.text;
+    _task2Update.status  = [NSNumber numberWithInt:[value integerValue]];
     [app.coreDataMgr updateTask:_task2Update
                         project:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:kMyMsgTaskUpdateNotification object:nil];

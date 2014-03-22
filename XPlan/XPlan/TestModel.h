@@ -2,7 +2,7 @@
 //  TestModel.h
 //  XPlan
 //
-//  Created by mjlee on 14-2-28.
+//  Created by mjlee on 14-3-22.
 //  Copyright (c) 2014年 mjlee. All rights reserved.
 //
 
@@ -10,12 +10,9 @@
 #import <CoreData/CoreData.h>
 
 
-@interface TestModel : NSManagedObject{
-    NSString* title;
-    NSDate*   date;
-}
+@interface TestModel : NSManagedObject
 
-//@property (nonatomic, retain,setter = setTitle:,getter = getTitle) NSString * title;
-//@property (nonatomic, retain,setter = setCdate:,getter = getCdate) NSDate * cdate;
+@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSString * title;
 
 @end

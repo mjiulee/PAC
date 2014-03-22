@@ -32,7 +32,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 
 +(CGSize)taskCellSize:(TaskModel*)task
 {
-    CGSize tsize = [task.brief sizeThatNeed2Draw:kTaskCellMaxWidth
+    CGSize tsize = [task.content sizeThatNeed2Draw:kTaskCellMaxWidth
                                             font:[UIFont systemFontOfSize:kTaskCellFontSize]];
     tsize.height += 8*2;
     if (tsize.height < 44) {
@@ -117,14 +117,14 @@ static const CGFloat  kCellScrollMaxOffset = 80;
     }
     
     if ([atask.status integerValue] == 2) {
-        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:atask.brief];
+        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:atask.content];
         [attributeString addAttribute:NSStrikethroughStyleAttributeName
                                 value:@1
                                 range:NSMakeRange(0, [attributeString length])];
         self.briefLabel.attributedText = attributeString;
         self.finished = YES;
     }else{
-        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:atask.brief];
+        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:atask.content];
         self.briefLabel.attributedText = attributeString;
         self.finished = NO;
     }

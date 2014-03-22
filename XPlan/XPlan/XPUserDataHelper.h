@@ -10,7 +10,7 @@
 
 typedef enum{
     XPUserDataKey_HadShowGuider = 0, // 今日已经显示过导读图
-    XPUserDataKey_HadOpenToday  = 1  // 今日是否打开过程序
+    XPUserDataKey_LastOpenDate  = 1  // 今日是否打开过程序
 }XPUserDataKey;
 
 @interface XPUserDataHelper : NSObject

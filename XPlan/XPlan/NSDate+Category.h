@@ -17,7 +17,7 @@
 @interface NSDate (Category)
 
 #pragma mark Comparing dates
-
+- (BOOL) isTheSameDay: (NSDate *) aDate;
 - (BOOL) isEarlierDate: (NSDate *) aDate;
 - (BOOL) isLaterDate: (NSDate *) aDate;
 - (BOOL) dateBetweenStartDate:(NSDate*)start andEndDate:(NSDate*)end;
