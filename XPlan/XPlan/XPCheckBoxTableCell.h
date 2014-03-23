@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DiaryTaskModel.h"
 
 @interface XPCheckBoxTableCell : UITableViewCell
+@property(nonatomic,setter = setCheck:)        BOOL ifCheck;
+
+-(void)setDialyTask:(DiaryTaskModel*)task;
 
 @end

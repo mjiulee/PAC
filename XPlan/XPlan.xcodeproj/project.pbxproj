@@ -219,8 +219,6 @@
 		431F74AE18C76D2900B03742 /* listview */ = {
 			isa = PBXGroup;
 			children = (
-				18ED380618C30FBF002565E8 /* XPTaskTableViewCell.h */,
-				18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */,
 				18ED380918C324BA002565E8 /* XPTaskListVCtler.h */,
 				18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */,
 				4361FC0118D835E300B40D27 /* XPHistoryListVctler.h */,
@@ -278,6 +276,8 @@
 		431F74B318C76DEC00B03742 /* custom-v */ = {
 			isa = PBXGroup;
 			children = (
+				18ED380618C30FBF002565E8 /* XPTaskTableViewCell.h */,
+				18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */,
 				4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */,
 				4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */,
 				4361FC0418D837BA00B40D27 /* XPSegmentedView.h */,

@@ -30,7 +30,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     // view setting
     UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_menu"];
-    
     UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
     [btn setImage:imgnormal   forState:UIControlStateNormal];
@@ -61,7 +60,7 @@
         if ([self.viewDeckController respondsToSelector:@selector(openLeftViewAnimated:completion:)])
         {
             [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success){
-                self.viewDeckController.panningMode = IIViewDeckAllViewsPanning;
+                //self.viewDeckController.panningMode = IIViewDeckAllViewsPanning;
             }];
         }
     }

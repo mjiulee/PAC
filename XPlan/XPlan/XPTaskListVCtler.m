@@ -47,8 +47,17 @@ static NSString *sCellIdentifier;
     if (self) {
         // Custom initialization，load data From Core Data
         // nav setting
-        UIBarButtonItem* rightBtn =
-        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(onNavRightBtuAction:)];
+//        UIBarButtonItem* rightBtn =
+//        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(onNavRightBtuAction:)];
+//        self.navigationItem.rightBarButtonItem = rightBtn;
+        UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_static"];
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
+        [btn setImage:imgnormal forState:UIControlStateNormal];
+        [btn addTarget:self
+                action:@selector(onNavRightBtuAction:)
+      forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.rightBarButtonItem = rightBtn;
 
         // data prepare
@@ -74,7 +83,6 @@ static NSString *sCellIdentifier;
     self.tableView.dataSource = self;
     self.tableView.rowHeight  = 50;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.viewDeckController.panningMode = IIViewDeckNavigationBarPanning;
     [self.tableView reloadData];
 
     // register the task list change

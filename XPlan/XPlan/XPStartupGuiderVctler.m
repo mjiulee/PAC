@@ -11,12 +11,15 @@
 #import "NSDate+Category.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
+#import "XPCheckBoxTableCell.h"
+#import <objc/runtime.h>
 
 // static Strings
 static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
 // static Intergers
 static NSUInteger const kHeadViewPageTagStartIdx = 9000;
 static NSUInteger const kWeatherElementStartIdx  = 100;
+static char kCharCellCheckKey;
 
 @interface XPStartupGuiderVctler ()
 <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -167,10 +170,7 @@ static NSUInteger const kWeatherElementStartIdx  = 100;
     tableview.layer.borderColor = XPRGBColor(157, 157, 157, 1.0).CGColor;
     tableview.layer.borderWidth = 0.5;
     tableview.layer.cornerRadius= 4;
-    tableview.layer.shadowColor = XPRGBColor(57, 57, 57, 1.0).CGColor;
-    tableview.layer.shadowOffset= CGSizeMake(1.0, 1.0);
-    tableview.layer.shadowOpacity = 0.5;
-    tableview.layer.shadowPath  = [UIBezierPath bezierPathWithRect:tableview.bounds].CGPath;
+    tableview.rowHeight  = 50;
     tableview.delegate   = self;
     tableview.dataSource = self;
     tableview.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
@@ -307,19 +307,39 @@ static NSUInteger const kWeatherElementStartIdx  = 100;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString* cellid = @"autotaskcell";
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellid];
+    XPCheckBoxTableCell *cell = (XPCheckBoxTableCell *)[tableView dequeueReusableCellWithIdentifier:cellid];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        cell = [[XPCheckBoxTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     DiaryTaskModel* task = [self.dialyTaskList objectAtIndex:[indexPath row]];
-    cell.textLabel.text  = task.content;
+    [cell setDialyTask:task];
+    NSString* ifcheck = (NSString*)objc_getAssociatedObject(task ,&kCharCellCheckKey);
+    if (ifcheck == nil){
+        [cell setCheck:NO];
+    }else {
+        [cell setCheck:YES];
+    }
     return cell;
 }
 
 #pragma mark- tableviewdelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    XPCheckBoxTableCell* cell = (XPCheckBoxTableCell* )[tableView cellForRowAtIndexPath:indexPath];
+    DiaryTaskModel* task = [self.dialyTaskList objectAtIndex:[indexPath row]];
+    NSString* ifcheck = (NSString*)objc_getAssociatedObject(task ,&kCharCellCheckKey);
+    if (ifcheck == nil)
+    {
+        NSString *ifcheck = @"check";
+        objc_setAssociatedObject(task,&kCharCellCheckKey,ifcheck, OBJC_ASSOCIATION_RETAIN);
+        [cell setCheck:YES];
+    }else
+    {
+        objc_setAssociatedObject(task,&kCharCellCheckKey,nil, OBJC_ASSOCIATION_RETAIN);
+        [cell setCheck:NO];
+    }
 }
 
 #pragma makr - dataHandel
@@ -339,6 +359,20 @@ static NSUInteger const kWeatherElementStartIdx  = 100;
 #pragma mark - function 
 -(void)onEnterTaskList:(id)sender{
     XPAppDelegate* app = [XPAppDelegate shareInstance];
+    
+    for (DiaryTaskModel* task in self.dialyTaskList)
+    {
+        NSString* ifcheck = (NSString*)objc_getAssociatedObject(task ,&kCharCellCheckKey);
+        if (ifcheck != nil)
+        {
+            XPTaskPriorityLevel priority = XPTask_PriorityLevel_normal;
+            [app.coreDataMgr insertTask:task.content
+                                   date:[NSDate date]
+                                   type:XPTask_Type_User
+                                prLevel:priority
+                                project:nil];
+        }
+    }
     [app showTaskListDeckVctler];
 }
 

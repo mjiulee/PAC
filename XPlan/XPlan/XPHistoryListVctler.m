@@ -20,7 +20,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 {
 }
 @property(nonatomic,strong) XPSegmentedView *         segmentView;
-@property(nonatomic,strong) UIScrollView *            rootScrollview;
+@property(nonatomic,strong) UITableView*              tableview;
 @property(nonatomic,strong) XPHistoryTaskDataHelper * dataHelper;
 // functions
 -(void)onNavRightBtuAction:(id)sender;
@@ -34,8 +34,14 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        UIBarButtonItem* rightBtn =
-        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(onNavRightBtuAction:)];
+        UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_static"];
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
+        [btn setImage:imgnormal forState:UIControlStateNormal];
+        [btn addTarget:self
+                action:@selector(onNavRightBtuAction:)
+      forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.rightBarButtonItem = rightBtn;
     }
     return self;
@@ -49,43 +55,31 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     XPHistoryTaskDataHelper * dataHelper = [[XPHistoryTaskDataHelper alloc] init];
     self.dataHelper = dataHelper;
 	// Do any additional setup after loading the view.
+    
+    CGFloat width   = CGRectGetWidth(self.view.frame);
+    CGFloat heidht  = CGRectGetHeight(self.view.frame);
+    CGFloat yoffset = CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    
     __weak typeof(self) _weakself = self;
-    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.navigationController.navigationBar.frame),
-                                                                                CGRectGetWidth(self.view.frame), 36)
+    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(0,yoffset,width,36)
                                                                items:@"普通",@"重要",@"已完成",nil];
     segview.backgroundColor     = XPRGBColor(248, 248, 248, 0.88);
-//    segview.layer.shadowColor   = XPRGBColor(157, 157, 157, 1.0).CGColor;
-//    segview.layer.shadowOffset  = CGSizeMake(0,1);
-//    segview.layer.shadowOpacity = 1.0;
-//    segview.layer.shadowPath    = [[UIBezierPath bezierPathWithRect:segview.bounds] CGPath];
-    
     [self.view addSubview:segview];
     self.segmentView = segview;
     self.segmentView.segmentedBlock = ^(NSUInteger selidx){
         [_weakself onSegmentVSelectChange:selidx];
     };
-
-    //
-    UIScrollView* scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(segview.frame), CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-CGRectGetMaxY(segview.frame))];
-    scrollview.delegate      = self;
-    scrollview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    scrollview.pagingEnabled = YES;
-    scrollview.showsHorizontalScrollIndicator = NO;
-    scrollview.scrollEnabled = NO;
-    [self.view addSubview:scrollview];
-    self.rootScrollview = scrollview;
+    yoffset += CGRectGetHeight(segview.frame);
     
-    for (int i = 0; i < 3; i ++) {
-        UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(i*CGRectGetWidth(scrollview.frame), 0,
-                                                                               CGRectGetWidth(scrollview.frame),
-                                                                               CGRectGetHeight(scrollview.frame))];
-        tableView.delegate   = self;
-        tableView.dataSource = self;
-        tableView.rowHeight  = 50;
-        tableView.tag        = kTableViewTagStartIdx + i;
-        [scrollview addSubview:tableView];
-    }
-    scrollview.contentSize = CGSizeMake(3*CGRectGetWidth(scrollview.frame), CGRectGetHeight(scrollview.frame));
+    UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,yoffset,width,heidht-yoffset)];
+    tableView.dataSource = self;
+    tableView.delegate   = self;
+    tableView.rowHeight  = 50;
+    tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
+    tableView.tag        = kTableViewTagStartIdx;
+    [self.view addSubview:tableView];
+    self.tableview = tableView;
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,9 +90,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.view bringSubviewToFront:self.segmentView];
-    if (self.segmentView.curSelectIndex < 0)
-    {
+    if (self.segmentView.curSelectIndex < 0){
         [self.segmentView selectAtIndex:0];
     }
 }
@@ -112,7 +104,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 #pragma mark - UItableviewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger tagidx = tableView.tag - kTableViewTagStartIdx;
+    NSInteger tagidx = self.segmentView.curSelectIndex;
     NSInteger count  = 0;
     if(tagidx == 0) count = [self.dataHelper.listNormal    count];
     if(tagidx == 1) count = [self.dataHelper.listImportant count];
@@ -129,13 +121,11 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     TaskModel* atask = nil;
-    NSInteger tagidx = tableView.tag - kTableViewTagStartIdx;
+    NSInteger tagidx = self.segmentView.curSelectIndex;
     if(tagidx == 0) atask = [self.dataHelper.listNormal    objectAtIndex:[indexPath row]];
     if(tagidx == 1) atask = [self.dataHelper.listImportant objectAtIndex:[indexPath row]];
     if(tagidx == 2) atask = [self.dataHelper.listFinished  objectAtIndex:[indexPath row]];
     [cell setTask:atask];
-    cell.shouldIndentWhileEditing = NO;
-    cell.showsReorderControl      = NO;
     return cell;
 }
 
@@ -146,7 +136,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TaskModel* atask = nil;
-    NSInteger tagidx = tableView.tag - kTableViewTagStartIdx;
+    NSInteger tagidx = self.segmentView.curSelectIndex;
     if(tagidx == 0) {
         atask = [self.dataHelper.listNormal    objectAtIndex:[indexPath row]];
         atask.status   = [NSNumber numberWithInt:XPTask_Status_Done];
@@ -155,11 +145,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 
         [self.dataHelper.listFinished addObject:atask];
         [self.dataHelper.listNormal removeObjectAtIndex:[indexPath row]];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
-        UITableView* finishTable = (UITableView*)[self.rootScrollview viewWithTag:kTableViewTagStartIdx+2];
-        if(finishTable){
-            [finishTable performSelector:@selector(reloadData) withObject:nil];
-        }
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
     if(tagidx == 1){
         atask = [self.dataHelper.listImportant objectAtIndex:[indexPath row]];
@@ -168,11 +154,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
         [app.coreDataMgr updateTask:atask];
         [self.dataHelper.listFinished addObject:atask];
         [self.dataHelper.listImportant removeObjectAtIndex:[indexPath row]];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
-        UITableView* finishTable = (UITableView*)[self.rootScrollview viewWithTag:kTableViewTagStartIdx+2];
-        if(finishTable){
-            [finishTable performSelector:@selector(reloadData) withObject:nil];
-        }
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
 
@@ -180,7 +162,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TaskModel* atask = nil;
-    NSInteger tagidx = tableView.tag - kTableViewTagStartIdx;
+    NSInteger tagidx = self.segmentView.curSelectIndex;
     if(tagidx == 0) atask = [self.dataHelper.listNormal    objectAtIndex:[indexPath row]];
     if(tagidx == 1) atask = [self.dataHelper.listImportant objectAtIndex:[indexPath row]];
     if(tagidx == 2) return;
@@ -189,29 +171,13 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     updatevc.viewType    = XPNewTaskViewType_Update;
     updatevc.task2Update = atask;
     [self.navigationController pushViewController:updatevc animated:YES];
-    self.viewDeckController.panningMode = IIViewDeckNoPanning;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-#pragma mark -  UIScrollviewdelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView == self.rootScrollview) {
-        NSUInteger page = floor((scrollView.contentOffset.x - scrollView.frame.size.width/2)/scrollView.frame.size.width)+1;
-        NSLog(@"page=%d",page);
-        [self.segmentView selectAtIndex:page];
-    }
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    NSLog(@"scrollViewDidEndScrollingAnimation");
 }
 
 #pragma mark - segment select change 
 -(void)onSegmentVSelectChange:(NSUInteger)selIdx
 {
-    [self.rootScrollview setContentOffset:CGPointMake(selIdx*CGRectGetWidth(self.rootScrollview.frame), 0) animated:NO];
+    [self.tableview reloadData];
 }
 
 -(void)onNavRightBtuAction:(id)sender{

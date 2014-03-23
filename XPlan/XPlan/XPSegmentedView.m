@@ -68,7 +68,7 @@
                 if (tagidx == 0)
                 {
                     UIView* indexView   = [UIView new];
-                    indexView.frame     = CGRectZoom(btn.frame, 38, 8);
+                    indexView.frame     = CGRectZoom(btn.frame, 42,12);
                     indexView.layer.cornerRadius = CGRectGetHeight(indexView.frame)/2 - 1;
                     indexView.backgroundColor  = XPRGBColor(249, 137, 50, 1.0);
                     [self addSubview:indexView];
@@ -139,7 +139,7 @@
     [UIView animateWithDuration:0.25 animations:^(void)
     {
         self.selectAnimating = YES;
-        self.indexView.frame = CGRectZoom(btn.frame, 38, 8);
+        self.indexView.frame = CGRectZoom(btn.frame, 42,12);
     } completion:^(BOOL finish)
     {
         [btn setSelected:YES];

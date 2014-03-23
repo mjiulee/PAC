@@ -135,7 +135,7 @@
         if ([self.viewDeckController respondsToSelector:@selector(openLeftViewAnimated:completion:)])
         {
             [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success){
-                self.viewDeckController.panningMode = IIViewDeckAllViewsPanning;
+                //self.viewDeckController.panningMode = IIViewDeckAllViewsPanning;
             }];
         }
     }

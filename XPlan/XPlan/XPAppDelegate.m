@@ -63,8 +63,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     NSDate * today      = [NSDate date];
     NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
-    //if (ifHadOpenToday != nil && [ifHadOpenToday boolValue] == YES)
-    /*if([today isTheSameDay:lastOpenDate] == YES)
+    if([today isTheSameDay:lastOpenDate] == YES)
     {
         // 今日有打开过
         _deckController = [self generateControllerStack];
@@ -73,7 +72,7 @@
         self.rootNav.navigationBarHidden = YES;
         self.window.rootViewController = self.rootNav;
         [self.window makeKeyAndVisible];
-    }else*/
+    }else
     {
         // 今日没打开过
         _guiderVctler   = [self generateStartupGuider];
@@ -138,7 +137,7 @@
     IIViewDeckController* deckController = [[IIViewDeckController alloc] initWithCenterViewController:rootNav
                                                                                     leftViewController:leftController
                                                                                    rightViewController:nil];
-    //deckController.panningMode = IIViewDeckNavigationBarPanning;
+    deckController.panningMode = IIViewDeckNavigationBarPanning;
     deckController.leftSize = 100;
     deckController.openSlideAnimationDuration = 0.25f;
     deckController.closeSlideAnimationDuration= 0.25f;

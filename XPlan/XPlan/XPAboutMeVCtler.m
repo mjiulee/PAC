@@ -10,6 +10,7 @@
 
 @interface XPAboutMeVCtler ()
 -(void)onNavLeftBtnAction:(id)sender;
+@property(nonatomic,strong) IBOutlet UIImageView* usericon;
 @end
 
 @implementation XPAboutMeVCtler
@@ -42,6 +43,9 @@
     UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = leftBtn;
 
+    
+    self.usericon.image = [UIImage imageNamed:@"myself"];
+    
 }
 
 - (void)didReceiveMemoryWarning

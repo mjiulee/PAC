@@ -182,7 +182,6 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
     [super setBackgroundColor:backgroundColor];
-    _tableView.backgroundColor = backgroundColor;
 }
 
 - (void)setHighlighted:(BOOL)highlighted
@@ -240,17 +239,4 @@ static const CGFloat  kCellScrollMaxOffset = 80;
        self.finishimg.alpha    = scrollView.contentOffset.x/kCellScrollMaxOffset;
     }
 }
-
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-//{
-//    // TODO:
-//}
-//
-//- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-//{
-//    // TODO:
-//}
-//
-//- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView{return YES;};
-
 @end
