@@ -17,30 +17,16 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 <UIGestureRecognizerDelegate,UIScrollViewDelegate>
 @property(nonatomic)        BOOL      finished;
 @property(nonatomic,strong) UILabel*  briefLabel;
-@property(nonatomic,strong) UILabel*  labFinish;
-@property(nonatomic,strong) UIImageView*  editBtn;
+@property(nonatomic,strong) UIImageView*  finishimg;
 @property(nonatomic,strong) UIScrollView* scrollcontview;
 @property(nonatomic,weak)   UITableView*  tableView;
 // 选中处理
-@property(nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
-//@property(nonatomic, assign, getter = isShowingSelection) BOOL showingSelection;
+@property(nonatomic,strong) UITapGestureRecognizer *tapGestureRecognizer;
 
 @end
 
 
 @implementation XPTaskTableViewCell
-
-+(CGSize)taskCellSize:(TaskModel*)task
-{
-    CGSize tsize = [task.content sizeThatNeed2Draw:kTaskCellMaxWidth
-                                            font:[UIFont systemFontOfSize:kTaskCellFontSize]];
-    tsize.height += 8*2;
-    if (tsize.height < 44) {
-        tsize.height = 44;
-    }
-    return tsize;
-}
-
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier tableview:(UITableView*)tableview
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -77,7 +63,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
             [contentView addSubview:tv];
         }
         
-        UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10,8, kTaskCellMaxWidth,tableview.rowHeight-8*2)];
+        UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10,4, kTaskCellMaxWidth,tableview.rowHeight-4*2)];
         lab.backgroundColor = kClearColor;
         lab.numberOfLines = 2;
         lab.font = [UIFont systemFontOfSize:kTaskCellFontSize];
@@ -91,15 +77,11 @@ static const CGFloat  kCellScrollMaxOffset = 80;
         self.scrollcontview = scrollcontview;
         scrollcontview.contentSize = CGSizeMake(321, 44);
         
-        UILabel* finish = [[UILabel alloc] initWithFrame:CGRectMake(320-60,0,60,tableview.rowHeight)];
-        finish.backgroundColor = [UIColor clearColor];
-        finish.font = [UIFont systemFontOfSize:kTaskCellFontSize];
-        finish.textAlignment = NSTextAlignmentCenter;
-        finish.textColor = [UIColor blueColor];
-        finish.text = @"完成";
+        UIImageView* finish = [[UIImageView alloc] initWithFrame:CGRectMake(320-40,11,28,28)];
+        finish.image = [UIImage imageNamed:@"icon_check_01"];
         finish.alpha= 0;
         [self addSubview:finish];
-        self.labFinish = finish;
+        self.finishimg   = finish;
         
         UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(0,tableview.rowHeight-0.5, CGRectGetWidth(tableview.frame),0.5)];
         divLine.backgroundColor = XPRGBColor(220, 220, 220, 1.0);
@@ -255,7 +237,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (!_finished) {
-        self.labFinish.alpha    = scrollView.contentOffset.x/kCellScrollMaxOffset;
+       self.finishimg.alpha    = scrollView.contentOffset.x/kCellScrollMaxOffset;
     }
 }
 

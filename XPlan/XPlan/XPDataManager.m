@@ -235,72 +235,45 @@
     return result;
 }
 
-//-(NSArray*)selectTaskAll
-//{
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    // 查询条件
-//    //首先你需要建立一个request
-//    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-//    [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
-//                                   inManagedObjectContext:context]];
-//    [request setFetchLimit:100];
-//    [request setFetchOffset:1];
-//    
-//    NSError *error = nil;
-//    NSArray *result = [context executeFetchRequest:request error:&error];
-//    //NSLog(@"result=%@",result.description);
-//    for (TaskModel* item in result) {
-//        ///NSLog(@"date=%@",item.create_date.description);
-//        //item.status = [NSNumber numberWithInt:XPTask_Type_Normal];
-//        //[self updateTask:item project:nil];
-//    }
-//    return result;
-//}
 
-#pragma mark - test
-//-(BOOL)insertTest:(NSString*)title date:(NSDate*)adate
-//{
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    TestModel* newtest  = [NSEntityDescription insertNewObjectForEntityForName:@"TestModel"
-//                                                       inManagedObjectContext:context];
-//
-//    do
-//    {
-//        if (!newtest){
-//            break;
-//        }
-//        [newtest setValue:title forKey:@"title"];
-//        [newtest setValue:adate forKey:@"date"];
-//        NSError *error;
-//        if(![context save:&error]){
-//            NSLog(@"Task Add fail：%@",[error localizedDescription]);
-//            break;
-//        }else{
-//            NSLog(@"Task Add succes");
-//        }
-//        return YES;
-//    } while (NO);
-//    return NO;
-//}
-//
-//-(BOOL)queryTest:(int)page size:(int)asize
-//{
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//
-//    [fetchRequest setFetchLimit:asize];
-//    [fetchRequest setFetchOffset:page];
-//
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TestModel"
-//                                              inManagedObjectContext:context];
-//    [fetchRequest setEntity:entity];
-//    NSError* error;
-//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//    for (TestModel *info in fetchedObjects) {
-//        NSLog(@"title:%@", [info valueForKey:@"title"]);
-//        NSLog(@"date:%@", [info valueForKey:@"date"]);
-//    }
-//    return YES;
-//}
+#pragma mark - Dialy Task
+-(NSArray*)queryDialyTask:(NSUInteger)aweekday
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    // 查询条件
+    NSNumber* weekday = [NSNumber numberWithUnsignedLong:aweekday];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"weekday=%@",weekday];
+    
+    //首先你需要建立一个request
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"DiaryTaskModel"
+                                   inManagedObjectContext:context]];
+    [request setPredicate:predicate];
+
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    return result;
+}
+
+-(void)insertDialyTask:(NSString*)content weekday:(NSUInteger)weekday
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    DiaryTaskModel* newTask  = [NSEntityDescription insertNewObjectForEntityForName:@"DiaryTaskModel"
+                                                        inManagedObjectContext:context];
+    do
+    {
+        if (!newTask){
+            break;
+        }
+        newTask.content    = content;
+        newTask.weekday    = [NSNumber numberWithInteger:weekday];
+        
+        NSError *error;
+        if(![context save:&error]){
+            NSLog(@"Task Add fail：%@",[error localizedDescription]);
+            break;
+        }
+    } while (NO);
+}
 
 @end

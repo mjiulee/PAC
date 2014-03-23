@@ -193,7 +193,7 @@ static NSString *sCellIdentifier;
     }*/
     
     UILabel* sectionTItle = [UILabel new];
-    sectionTItle.frame    = CGRectMake(15, 0, 0, 0);
+    sectionTItle.frame    = CGRectMake(18, 0, 0, 0);
     sectionTItle.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     sectionTItle.backgroundColor = kClearColor;
     sectionTItle.font       = [UIFont systemFontOfSize:18];
@@ -204,7 +204,7 @@ static NSString *sCellIdentifier;
     if (section != 2) {
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
         btn.tag   = kHeadViewBtnStartIdx + section;
-        btn.frame = CGRectMake(CGRectGetWidth(tableView.frame)-50, 0, 40, 40);
+        btn.frame = CGRectMake(CGRectGetWidth(tableView.frame)-46, 0, 40, 40);
         btn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         
         [btn addTarget:self action:@selector(onAddTaskButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -287,10 +287,10 @@ static NSString *sCellIdentifier;
     NSUInteger important = [_taskListImportant count];
     
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:[NSNumber numberWithInt:total]     forKey:@"total"];
-    [dict setObject:[NSNumber numberWithInt:fnish]     forKey:@"finished"];
-    [dict setObject:[NSNumber numberWithInt:normal]    forKey:@"normal"];
-    [dict setObject:[NSNumber numberWithInt:important] forKey:@"important"];
+    [dict setObject:[NSNumber numberWithInteger:total]     forKey:@"total"];
+    [dict setObject:[NSNumber numberWithInteger:fnish]     forKey:@"finished"];
+    [dict setObject:[NSNumber numberWithInteger:normal]    forKey:@"normal"];
+    [dict setObject:[NSNumber numberWithInteger:important] forKey:@"important"];
     
     XPDialyStaticVCtler* diarystv = [[XPDialyStaticVCtler alloc] init];
     diarystv.taskDatas = dict;

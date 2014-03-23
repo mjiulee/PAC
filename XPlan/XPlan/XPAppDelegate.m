@@ -64,7 +64,7 @@
     NSDate * today      = [NSDate date];
     NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
     //if (ifHadOpenToday != nil && [ifHadOpenToday boolValue] == YES)
-    if([today isTheSameDay:lastOpenDate] == YES)
+    /*if([today isTheSameDay:lastOpenDate] == YES)
     {
         // 今日有打开过
         _deckController = [self generateControllerStack];
@@ -73,7 +73,7 @@
         self.rootNav.navigationBarHidden = YES;
         self.window.rootViewController = self.rootNav;
         [self.window makeKeyAndVisible];
-    }else
+    }else*/
     {
         // 今日没打开过
         _guiderVctler   = [self generateStartupGuider];

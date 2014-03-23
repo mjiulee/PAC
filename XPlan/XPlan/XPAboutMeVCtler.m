@@ -28,8 +28,8 @@
     [super viewDidLoad];
     self.title = @"关于";
     // Do any additional setup after loading the view from its nib.
-    UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_back_1"];
-    UIImage* imhighLight = [UIImage imageNamed:@"nav_btn_back_2"];
+    UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_back_1"];
+    UIImage* imhighLight = [UIImage imageNamed:@"nav_icon_back_2"];
     
     // nav left
     UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];

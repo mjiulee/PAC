@@ -19,7 +19,7 @@ static NSUInteger const kHeadViewPageTagStartIdx = 9000;
 static NSUInteger const kWeatherElementStartIdx  = 100;
 
 @interface XPStartupGuiderVctler ()
-<UIScrollViewDelegate>
+<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
 }
 @property(nonatomic) BOOL          scolling2Page;
@@ -32,12 +32,15 @@ static NSUInteger const kWeatherElementStartIdx  = 100;
 @property(nonatomic,strong) UILabel*     labTemperatureNow;
 @property(nonatomic,strong) UILabel*     labTemperatureMin;
 @property(nonatomic,strong) UILabel*     labTemperatureMax;
-
-
+// datas
+@property(nonatomic,strong) NSMutableArray* dialyTaskList;
 -(void)initialScrollViewPages;
 -(UIView*)initialWeatherPage;  // 天气
 -(UIView*)initialCalanderPage; // 星座日历
 -(UIView*)initialAutoTaskPage; // 系统自动分发日常任务
+
+// data handel
+-(void)getDialyTaskList;
 @end
 
 @implementation XPStartupGuiderVctler
@@ -47,6 +50,9 @@ static NSUInteger const kWeatherElementStartIdx  = 100;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        NSMutableArray* tmtarray = [[NSMutableArray alloc] init];
+        self.dialyTaskList = tmtarray;
+        [self getDialyTaskList];
     }
     return self;
 }
@@ -74,6 +80,10 @@ static NSUInteger const kWeatherElementStartIdx  = 100;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 #pragma mark - page initial 
@@ -145,21 +155,32 @@ static NSUInteger const kWeatherElementStartIdx  = 100;
     UIView* autoTaskView = [[UIView alloc] initWithFrame:self.view.bounds];
     autoTaskView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     
-    UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)-180)];
-    lab.numberOfLines = 0;
-    lab.layer.borderColor= XPRGBColor(157, 157, 157, 1.0).CGColor;
-    lab.layer.borderWidth=0.5;
-    lab.layer.cornerRadius = 8;
-    lab.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    lab.text = @"开发中\r\n这里自动生成一个日常任务，给用户当做日常进行";
-    lab.textAlignment = NSTextAlignmentCenter;
+    UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 175, CGRectGetWidth(self.view.frame)-20, 15)];
+    lab.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    lab.text = @"选择几个日常任务任务吧";
+    lab.font = [UIFont systemFontOfSize:15];
+    lab.textAlignment = NSTextAlignmentLeft;
     [autoTaskView addSubview:lab];
+ 
+    UITableView* tableview = [[UITableView alloc] initWithFrame:CGRectMake(10, 200, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)-244)
+                                                          style:UITableViewStylePlain];
+    tableview.layer.borderColor = XPRGBColor(157, 157, 157, 1.0).CGColor;
+    tableview.layer.borderWidth = 0.5;
+    tableview.layer.cornerRadius= 4;
+    tableview.layer.shadowColor = XPRGBColor(57, 57, 57, 1.0).CGColor;
+    tableview.layer.shadowOffset= CGSizeMake(1.0, 1.0);
+    tableview.layer.shadowOpacity = 0.5;
+    tableview.layer.shadowPath  = [UIBezierPath bezierPathWithRect:tableview.bounds].CGPath;
+    tableview.delegate   = self;
+    tableview.dataSource = self;
+    tableview.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    tableview.separatorInset   = UIEdgeInsetsZero;
+    [autoTaskView addSubview:tableview];
     
     // next
     UIButton* btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     btn.frame = CGRectMake(CGRectGetWidth(autoTaskView.frame) -60-20,
-                           CGRectGetHeight(autoTaskView.frame)-44-20,
-                           60,44);
+                           CGRectGetHeight(autoTaskView.frame)-44-5,60,44);
     btn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
     [btn setTitle:@"进入应用" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(onEnterTaskList:) forControlEvents:UIControlEventTouchUpInside];
@@ -265,7 +286,6 @@ static NSUInteger const kWeatherElementStartIdx  = 100;
         UILabel* temp   = (UILabel*)[tweatherv viewWithTag:kWeatherElementStartIdx+4];
 
         NSDictionary* weatherDict = [weatherArray objectAtIndex:i];
-        //[city setText:[weatherDict objectForKey:@""]]
         [date setText:[weatherDict objectForKey:@"date"]];
         [date sizeToFit];
         [weather setText:[weatherDict objectForKey:@"weather"]];
@@ -277,9 +297,43 @@ static NSUInteger const kWeatherElementStartIdx  = 100;
 }
 
 
-#pragma mark - status bar hidden
-- (BOOL)prefersStatusBarHidden{
-    return YES;
+#pragma mark - UItableviewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger count = [self.dialyTaskList count];
+    return count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString* cellid = @"autotaskcell";
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellid];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    DiaryTaskModel* task = [self.dialyTaskList objectAtIndex:[indexPath row]];
+    cell.textLabel.text  = task.content;
+    return cell;
+}
+
+#pragma mark- tableviewdelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma makr - dataHandel
+-(void)getDialyTaskList
+{
+    XPAppDelegate* app = [XPAppDelegate shareInstance];
+    NSDate* today  = [NSDate date];
+    NSArray * tary = [app.coreDataMgr queryDialyTask:[today weekday]];
+    if (tary && [tary count]) {
+        [self.dialyTaskList setArray:tary];
+    }
+    for (DiaryTaskModel* task in self.dialyTaskList) {
+        NSLog(@"task.weakday=%@",task.weekday);
+    }
 }
 
 #pragma mark - function 
@@ -291,12 +345,14 @@ static NSUInteger const kWeatherElementStartIdx  = 100;
 #pragma mark -  UIScrollviewdelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGRect headframe   = CGRectMake(10,10, CGRectGetWidth(self.view.frame)*2-20,150);
-    headframe.origin.x+= scrollView.contentOffset.x/2;
-    //NSLog(@"contentOffset.x=%.2f,headframe.x=%.2f",scrollView.contentOffset.x,headframe.origin.x);
-    _headerview.frame  = headframe;
-    NSUInteger page = floor((scrollView.contentOffset.x - scrollView.frame.size.width / 2) / scrollView.frame.size.width) + 1;
-    self.pageIndex = page;
+    if (scrollView == self.contentScrollview) {
+        CGRect headframe   = CGRectMake(10,10, CGRectGetWidth(self.view.frame)*2-20,150);
+        headframe.origin.x+= scrollView.contentOffset.x/2;
+        //NSLog(@"contentOffset.x=%.2f,headframe.x=%.2f",scrollView.contentOffset.x,headframe.origin.x);
+        _headerview.frame  = headframe;
+        NSUInteger page = floor((scrollView.contentOffset.x - scrollView.frame.size.width / 2) / scrollView.frame.size.width) + 1;
+        self.pageIndex = page;
+    }
 }
 
 #pragma mark - AFNetworking

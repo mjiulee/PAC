@@ -30,8 +30,8 @@
     self.title = @"任务统计";
 	// Do any additional setup after loading the view.
     // nav left
-    UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_back_1"];
-    UIImage* imhighLight = [UIImage imageNamed:@"nav_btn_back_2"];
+    UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_back_1"];
+    UIImage* imhighLight = [UIImage imageNamed:@"nav_icon_back_2"];
     UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
     [btn setImage:imgnormal   forState:UIControlStateNormal];

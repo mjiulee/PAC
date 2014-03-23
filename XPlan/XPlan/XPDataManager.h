@@ -10,7 +10,7 @@
 #import "TestModel.h"
 #import "TaskModel.h"
 #import "ProjectModel.h"
-
+#import "DiaryTaskModel.h"
 
 #define IfCoreDataDebug 0
 
@@ -77,5 +77,9 @@ typedef enum {
 -(NSArray*)queryHistoryTask:(XPTaskPriorityLevel)alevel status:(int)status;
 
 //TODO: #pragma mark - Project-List
+#pragma mark - dialy task 
+-(void)insertDialyTask:(NSString*)content weekday:(NSUInteger)weekday;
+-(NSArray*)queryDialyTask:(NSUInteger)weekday;
+
 @end
 

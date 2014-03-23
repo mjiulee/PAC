@@ -30,13 +30,10 @@
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     // view setting
-    UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_menu01"];
-    UIImage* imhighLight = [UIImage imageNamed:@"nav_btn_menu02"];
-    
+    UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_menu"];
     UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
     [btn setImage:imgnormal   forState:UIControlStateNormal];
-    [btn setImage:imhighLight forState:UIControlStateHighlighted];
     [btn addTarget:self action:@selector(openLeftView) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];

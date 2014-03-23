@@ -12,10 +12,8 @@
 #define kTaskCellMaxWidth 300
 #define kTaskCellFontSize 15.0
 
-//@interface XPTaskTableViewCell : FMMoveTableViewCell{
 @interface XPTaskTableViewCell : UITableViewCell{
 }
-+(CGSize)taskCellSize:(TaskModel*)task;
 
 -(id)initWithStyle:(UITableViewCellStyle)style
    reuseIdentifier:(NSString *)reuseIdentifier

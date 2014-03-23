@@ -10,7 +10,6 @@
 #import "XPAppDelegate.h"
 #import "XPTaskListVCtler.h"
 #import "XPDialyStaticVCtler.h"
-#import "XPProjectStaticVctler.h"
 #import "XPHistoryListVctler.h"
 #import "XPWeatherVctler.h"
 #import "XPAboutMeVCtler.h"

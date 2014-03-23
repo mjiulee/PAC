@@ -29,8 +29,8 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"天气情况";
     // Custom initialization
-    UIImage* imgnormal   = [UIImage imageNamed:@"nav_btn_back_1"];
-    UIImage* imhighLight = [UIImage imageNamed:@"nav_btn_back_2"];
+    UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_back_1"];
+    UIImage* imhighLight = [UIImage imageNamed:@"nav_icon_back_2"];
     
     // nav left
     UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
