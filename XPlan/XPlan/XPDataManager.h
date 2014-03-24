@@ -75,11 +75,14 @@ typedef enum {
  * @param:status- 状态
  */
 -(NSArray*)queryHistoryTask:(XPTaskPriorityLevel)alevel status:(int)status;
+-(BOOL)checkIfHasHistoryTask:(XPTaskPriorityLevel)alevel;
+
 
 //TODO: #pragma mark - Project-List
 #pragma mark - dialy task 
 -(void)insertDialyTask:(NSString*)content weekday:(NSUInteger)weekday;
 -(NSArray*)queryDialyTask:(NSUInteger)weekday;
+
 
 @end
 

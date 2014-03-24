@@ -235,6 +235,31 @@
     return result;
 }
 
+-(BOOL)checkIfHasHistoryTask:(XPTaskPriorityLevel)alevel
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    // 查询条件
+    NSDate* day = [NSDate date];
+    NSDate* dayBegin  = [day startOfDay];
+    NSNumber* level  = [NSNumber numberWithInt:alevel];
+    NSPredicate *predicate = nil;
+    predicate = [NSPredicate predicateWithFormat:@"prLevel=%@ AND dateCreate < %@",level,dayBegin];
+    
+    //首先你需要建立一个request
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
+                                   inManagedObjectContext:context]];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    if (result && [result count])
+    {
+        return YES;
+    }
+    return NO;
+}
+
 
 #pragma mark - Dialy Task
 -(NSArray*)queryDialyTask:(NSUInteger)aweekday

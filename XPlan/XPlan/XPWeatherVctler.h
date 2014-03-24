@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XPWeatherVctler : UIViewController
+@interface XPWeatherVctler : XPBaseViewCtler
 
 @end

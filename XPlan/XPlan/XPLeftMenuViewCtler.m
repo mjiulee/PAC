@@ -15,8 +15,8 @@
 #import "XPAboutMeVCtler.h"
 
 @interface XPLeftMenuViewCtler ()
-@property(nonatomic,strong) UINavigationController* dailyVctler;
-@property(nonatomic,strong) UINavigationController* historyVctler;
+//@property(nonatomic,strong) UINavigationController* dailyVctler;
+//@property(nonatomic,strong) UINavigationController* historyVctler;
 @end
 
 @implementation XPLeftMenuViewCtler
@@ -108,39 +108,36 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([indexPath section] == 1 && [indexPath row] == 0)
-    {
-        XPWeatherVctler* projStaticVc = [[XPWeatherVctler alloc] initWithNibName:@"XPWeatherVctler" bundle:nil];
-        XPAppDelegate* app = [XPAppDelegate shareInstance];
-        [app.rootNav pushViewController:projStaticVc animated:YES];
-        return;
-    }else if([indexPath section] == 1 && [indexPath row] == 1)
-    {
-        XPAboutMeVCtler* projStaticVc = [[XPAboutMeVCtler alloc] initWithNibName:@"XPAboutMeVCtler" bundle:nil];
-        XPAppDelegate* app = [XPAppDelegate shareInstance];
-        [app.rootNav pushViewController:projStaticVc animated:YES];
-        return;
-    }
-
     [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller)
     {
         if ([indexPath section] == 0 && [indexPath row] == 0)
         {
-            if (!self.dailyVctler) {
-                XPTaskListVCtler*centervc = [[XPTaskListVCtler alloc] init];
-                UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
-                self.dailyVctler = rootNav;
-            }
-            [self.viewDeckController setCenterController:self.dailyVctler];
+            XPTaskListVCtler*centervc = [[XPTaskListVCtler alloc] init];
+            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
+            [self.viewDeckController setCenterController:rootNav];
         }else if([indexPath section] == 0 && [indexPath row] == 1)
         {
-            if (!self.historyVctler) {
-                XPHistoryListVctler* centervc = [[XPHistoryListVctler alloc] init];
-                UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
-                self.historyVctler = rootNav;
-            }
-            [self.viewDeckController setCenterController:self.historyVctler];
+            XPHistoryListVctler* centervc = [[XPHistoryListVctler alloc] init];
+            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
+            [self.viewDeckController setCenterController:rootNav];
+        }else if([indexPath section] == 1 && [indexPath row] == 0)
+        {
+            XPWeatherVctler* projStaticVc = [[XPWeatherVctler alloc] initWithNibName:@"XPWeatherVctler" bundle:nil];
+            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:projStaticVc];
+            [self.viewDeckController setCenterController:rootNav];
+            //XPAppDelegate* app = [XPAppDelegate shareInstance];
+            //[app.rootNav pushViewController:projStaticVc animated:YES];
+            return;
+        }else if([indexPath section] == 1 && [indexPath row] == 1)
+        {
+            XPAboutMeVCtler* projStaticVc = [[XPAboutMeVCtler alloc] initWithNibName:@"XPAboutMeVCtler" bundle:nil];
+            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:projStaticVc];
+            [self.viewDeckController setCenterController:rootNav];
+            //XPAppDelegate* app = [XPAppDelegate shareInstance];
+            //[app.rootNav pushViewController:projStaticVc animated:YES];
+            return;
         }
+
     }];
 }
 

@@ -63,7 +63,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     NSDate * today      = [NSDate date];
     NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
-    if([today isTheSameDay:lastOpenDate] == YES)
+    if([today isTheSameDay:lastOpenDate] == NO)
     {
         // 今日有打开过
         _deckController = [self generateControllerStack];

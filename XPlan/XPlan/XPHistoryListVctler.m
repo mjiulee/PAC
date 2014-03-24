@@ -22,6 +22,9 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 @property(nonatomic,strong) XPSegmentedView *         segmentView;
 @property(nonatomic,strong) UITableView*              tableview;
 @property(nonatomic,strong) XPHistoryTaskDataHelper * dataHelper;
+@property(nonatomic,strong) UIView*                   EmptyView;
+@property(nonatomic,strong) UILabel*                  labEmpty;
+
 // functions
 -(void)onNavRightBtuAction:(id)sender;
 -(void)onSegmentVSelectChange:(NSUInteger)selIdx;     //void SegmentView Select Change
@@ -38,9 +41,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
         [btn setImage:imgnormal forState:UIControlStateNormal];
-        [btn addTarget:self
-                action:@selector(onNavRightBtuAction:)
-      forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(onNavRightBtuAction:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.rightBarButtonItem = rightBtn;
     }
@@ -80,6 +81,27 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     tableView.tag        = kTableViewTagStartIdx;
     [self.view addSubview:tableView];
     self.tableview = tableView;
+    
+    {
+        UIView* emptyv = [[UIView alloc] init];
+        emptyv.frame = tableView.frame;
+        [self.view addSubview:emptyv];
+        self.EmptyView = emptyv;
+        
+        UILabel* labEmpty = [[UILabel alloc] init];
+        labEmpty.tag   = 100;
+        labEmpty.font  = [UIFont systemFontOfSize:15];
+        labEmpty.textAlignment = NSTextAlignmentCenter;
+        labEmpty.numberOfLines = 0;
+        if ([UIDevice isRunningOniPhone5]) {
+            labEmpty.frame = CGRectMake(20, 0, CGRectGetWidth(self.EmptyView.frame)-40, CGRectGetHeight(self.EmptyView.frame)/2);
+        }else{
+            labEmpty.frame = CGRectMake(20, 0, CGRectGetWidth(self.EmptyView.frame)-40, CGRectGetHeight(self.EmptyView.frame)*2/3);
+        }
+        labEmpty.textColor= XPRGBColor(157,157, 157, 1.0);
+        [self.EmptyView addSubview:labEmpty];
+        self.labEmpty = labEmpty;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,6 +131,19 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     if(tagidx == 0) count = [self.dataHelper.listNormal    count];
     if(tagidx == 1) count = [self.dataHelper.listImportant count];
     if(tagidx == 2) count = [self.dataHelper.listFinished  count];
+    if (count <= 0)
+    {
+        if ([self.dataHelper checkIfHadHistoryTask:XPTask_PriorityLevel_normal])
+        {
+            self.labEmpty.text  = @"恭喜你，你的任务都完成了。\r您是高效的人，本屌看好你哦~";
+        }else
+        {
+            self.labEmpty.text  = @"我插咧，爷！\r你高吗？你富吗？你帅吗？\r您不用干活的吗？\r不是高富帅就赶紧滚回去干活。";
+        }
+        [self.EmptyView setHidden:NO];
+    }else{
+        [self.EmptyView setHidden:YES];
+    }
     return count;
 }
 
@@ -187,10 +222,10 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     NSUInteger important = [self.dataHelper.listImportant count];
     
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:[NSNumber numberWithInt:total]     forKey:@"total"];
-    [dict setObject:[NSNumber numberWithInt:fnish]     forKey:@"finished"];
-    [dict setObject:[NSNumber numberWithInt:normal]    forKey:@"normal"];
-    [dict setObject:[NSNumber numberWithInt:important] forKey:@"important"];
+    [dict setObject:[NSNumber numberWithUnsignedInteger:total]     forKey:@"total"];
+    [dict setObject:[NSNumber numberWithUnsignedInteger:fnish]     forKey:@"finished"];
+    [dict setObject:[NSNumber numberWithUnsignedInteger:normal]    forKey:@"normal"];
+    [dict setObject:[NSNumber numberWithUnsignedInteger:important] forKey:@"important"];
     
     XPDialyStaticVCtler* diarystv = [[XPDialyStaticVCtler alloc] init];
     diarystv.taskDatas = dict;

@@ -12,4 +12,8 @@
 @property(nonatomic,strong) NSMutableArray* listNormal;
 @property(nonatomic,strong) NSMutableArray* listImportant;
 @property(nonatomic,strong) NSMutableArray* listFinished;
+
+// 检查是否有
+-(BOOL)checkIfHadHistoryTask:(XPTaskPriorityLevel)priority;
+
 @end

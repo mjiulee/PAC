@@ -9,6 +9,16 @@
 #import "XPWeatherVctler.h"
 
 @interface XPWeatherVctler ()
+@property(nonatomic,strong)IBOutlet UIScrollView* rootScrollview;
+@property(nonatomic,strong)IBOutlet UILabel* labTemperatureMax;
+@property(nonatomic,strong)IBOutlet UILabel* labWeekday;
+@property(nonatomic,strong)IBOutlet UILabel* labWeather;
+@property(nonatomic,strong)IBOutlet UIImageView* imgweather;
+
+@property(nonatomic,strong)IBOutlet UIView* day1View;
+@property(nonatomic,strong)IBOutlet UIView* day2View;
+@property(nonatomic,strong)IBOutlet UIView* day3View;
+
 -(void)onNavLeftBtnAction:(id)sender;
 @end
 
@@ -29,19 +39,14 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"天气情况";
     // Custom initialization
-    UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_back_1"];
-    UIImage* imhighLight = [UIImage imageNamed:@"nav_icon_back_2"];
+//    _day1View.layer.borderWidth =0.5;
+//    _day1View.layer.borderColor =XPRGBColor(157, 157, 157, 1).CGColor;
+//    _day2View.layer.borderWidth =0.5;
+//    _day2View.layer.borderColor =XPRGBColor(157, 157, 157, 1).CGColor;
+//    _day3View.layer.borderWidth =0.5;
+//    _day3View.layer.borderColor =XPRGBColor(157, 157, 157, 1).CGColor;
     
-    // nav left
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
-    [btn setImage:imgnormal   forState:UIControlStateNormal];
-    [btn setImage:imhighLight forState:UIControlStateHighlighted];
-    [btn addTarget:self
-            action:@selector(onNavLeftBtnAction:)
-  forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.leftBarButtonItem = leftBtn;
+    self.rootScrollview.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetMaxY(self.day3View.frame)+100);
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,12 +57,12 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
+    //self.navigationController.navigationBarHidden = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = YES;
+    //self.navigationController.navigationBarHidden = YES;
 }
 
 

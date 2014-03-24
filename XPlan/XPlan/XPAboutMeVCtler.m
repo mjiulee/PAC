@@ -29,19 +29,18 @@
     [super viewDidLoad];
     self.title = @"关于";
     // Do any additional setup after loading the view from its nib.
-    UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_back_1"];
-    UIImage* imhighLight = [UIImage imageNamed:@"nav_icon_back_2"];
-    
-    // nav left
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
-    [btn setImage:imgnormal   forState:UIControlStateNormal];
-    [btn setImage:imhighLight forState:UIControlStateHighlighted];
-    [btn addTarget:self
-            action:@selector(onNavLeftBtnAction:)
-  forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.leftBarButtonItem = leftBtn;
+//    UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_back_1"];
+//    UIImage* imhighLight = [UIImage imageNamed:@"nav_icon_back_2"];
+//    // nav left
+//    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
+//    [btn setImage:imgnormal   forState:UIControlStateNormal];
+//    [btn setImage:imhighLight forState:UIControlStateHighlighted];
+//    [btn addTarget:self
+//            action:@selector(onNavLeftBtnAction:)
+//  forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
+//    self.navigationItem.leftBarButtonItem = leftBtn;
 
     
     self.usericon.image = [UIImage imageNamed:@"myself"];

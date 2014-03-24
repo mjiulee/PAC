@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XPAboutMeVCtler : UIViewController
+@interface XPAboutMeVCtler : XPBaseViewCtler
 
 @end

@@ -44,4 +44,15 @@
     }
     return self;
 }
+
+-(BOOL)checkIfHadHistoryTask:(XPTaskPriorityLevel)priority
+{
+    XPDataManager* dmg = [XPAppDelegate shareInstance].coreDataMgr;
+    NSArray* tary = [dmg queryHistoryTask:XPTask_PriorityLevel_normal status:XPTask_Status_Done];
+    if (tary && [tary count]) {
+        return YES;
+    }
+    return NO;
+}
+
 @end
