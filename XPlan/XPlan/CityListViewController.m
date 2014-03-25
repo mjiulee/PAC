@@ -56,6 +56,13 @@
     self.tableView.delegate        = self;
     self.tableView.dataSource      = self;
     self.tableView.sectionIndexBackgroundColor = kClearColor;
+    
+    self.szcity = [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_WeatherCity];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_WeatherCity value:self.szcity];
 }
 
 #pragma mark - 获取城市数据
@@ -139,8 +146,13 @@
         [cell.textLabel setTextColor:[UIColor blackColor]];
         cell.textLabel.font = [UIFont systemFontOfSize:18];
     }
-    cell.labContent.text = [[_cities objectForKey:key] objectAtIndex:indexPath.row];
-    if ([indexPath isEqual:self.selectedCityIndexPath]) {
+    NSString* citystr = [[_cities objectForKey:key] objectAtIndex:indexPath.row];
+    cell.labContent.text = citystr;
+    if ([indexPath isEqual:self.selectedCityIndexPath] || [citystr isEqualToString:self.szcity])
+    {
+        if (self.selectedCityIndexPath == nil) {
+            self.selectedCityIndexPath = indexPath;
+        }
         [cell setCheck:YES];
     }else{
         [cell setCheck:NO];
@@ -159,8 +171,8 @@
     XPCheckBoxTableCell* cell = (XPCheckBoxTableCell* )[tableView cellForRowAtIndexPath:self.selectedCityIndexPath];
     [cell setCheck:YES];
     
-    
-    
+    NSString *key = [_keys objectAtIndex:indexPath.section];
+    self.szcity  = [NSString stringWithString:[[_cities objectForKey:key] objectAtIndex:[indexPath row]]];
 }
 
 

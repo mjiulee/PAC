@@ -83,7 +83,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
         [self addSubview:finish];
         self.finishimg   = finish;
         
-        UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(0,tableview.rowHeight-0.5, CGRectGetWidth(tableview.frame),0.5)];
+        UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(10,tableview.rowHeight-1, CGRectGetWidth(tableview.frame)-20,1)];
         divLine.backgroundColor = XPRGBColor(220, 220, 220, 1.0);
         [self addSubview:divLine];
     }

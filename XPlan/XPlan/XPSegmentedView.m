@@ -21,7 +21,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        CGFloat height = CGRectGetHeight(frame);
         self.curSelectIndex = -1;
+        self.clipsToBounds = YES;
+        self.layer.cornerRadius = height/2;
+        self.layer.borderColor = XPRGBColor(25, 133, 255, 1.0).CGColor;
+        self.layer.borderWidth = 1;
+        
         NSMutableArray* tempAry = [[NSMutableArray alloc] init];
         [tempAry addObject:firstObj];
 
@@ -43,7 +49,6 @@
         if (count > 0)
         {
             CGFloat width  = CGRectGetWidth(frame)/count;
-            CGFloat height = CGRectGetHeight(frame);
             UIFont* font   = [UIFont systemFontOfSize:15];
             UIColor* colorNormal = XPRGBColor(57, 57, 57, 1.0);
             UIColor* colorSelect = XPRGBColor(255, 255, 255, 1.0);
@@ -52,7 +57,11 @@
             for (NSString* title in tempAry)
             {
                 UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-                btn.frame = CGRectMake(xval,0,width,height);
+                if (tagidx != 0 || tagidx != [tempAry count]-1) {
+                    btn.frame = CGRectMake(xval-1,0,width+2,height);
+                }else{
+                    btn.frame = CGRectMake(xval,0,width,height);
+                }
                 [btn.titleLabel setFont:font];
                 [btn.titleLabel setNumberOfLines:2];
                 [btn.titleLabel setTextAlignment:NSTextAlignmentCenter];
@@ -61,23 +70,28 @@
                 [btn setTitleColor:colorNormal forState:UIControlStateNormal];
                 [btn setTitleColor:colorSelect forState:UIControlStateSelected];
                 
-                [btn addTarget:self
-                        action:@selector(onBtnAction:)
-              forControlEvents:UIControlEventTouchUpInside];
+                [btn addTarget:self action:@selector(onBtnAction:) forControlEvents:UIControlEventTouchUpInside];
                 [self addSubview:btn];
                 if (tagidx == 0)
                 {
                     UIView* indexView   = [UIView new];
-                    indexView.frame     = CGRectZoom(btn.frame, 42,12);
-                    indexView.layer.cornerRadius = CGRectGetHeight(indexView.frame)/2 - 1;
-                    indexView.backgroundColor  = XPRGBColor(249, 137, 50, 1.0);
+                    indexView.frame     = btn.frame;//CGRectZoom(btn.frame, 42,12);
+                    //indexView.layer.cornerRadius = CGRectGetHeight(indexView.frame)/2 - 1;
+                    indexView.backgroundColor= XPRGBColor(25, 133, 255, 1.0);
                     [self addSubview:indexView];
-                    
                     self.indexView      = indexView;
                     [self sendSubviewToBack:indexView];
                 }
-                btn.tag   = tagidx ++ ;
-                xval += width;
+                
+                btn.tag   = tagidx++ ;
+                xval     += width;
+                if (tagidx != [tempAry count])
+                {
+                    UIView* divLine = [[UIView alloc] init];
+                    divLine.frame = CGRectMake(xval-1,5,1, height-10);
+                    divLine.backgroundColor = XPRGBColor(25, 133, 255, 1.0);
+                    [self addSubview:divLine];
+                }
             }
         }
         UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(0,CGRectGetHeight(frame)-0.5, CGRectGetWidth(frame), 0.5)];
@@ -139,7 +153,7 @@
     [UIView animateWithDuration:0.25 animations:^(void)
     {
         self.selectAnimating = YES;
-        self.indexView.frame = CGRectZoom(btn.frame, 42,12);
+        self.indexView.frame = btn.frame;//CGRectZoom(btn.frame, 42,12);
     } completion:^(BOOL finish)
     {
         [btn setSelected:YES];

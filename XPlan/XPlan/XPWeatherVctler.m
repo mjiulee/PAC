@@ -24,16 +24,10 @@ static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
 @property(nonatomic,strong)IBOutlet UIView* day1View;
 @property(nonatomic,strong)IBOutlet UIView* day2View;
 @property(nonatomic,strong)IBOutlet UIView* day3View;
+@property(nonatomic,strong)NSString* szcity;
+@property(nonatomic,strong)UIButton* rightNavBtn;
 
-@property(nonatomic,strong)IBOutlet UIView* ViewForPicker;
-@property(nonatomic,strong)IBOutlet UIPickerView* cityPicker;
-@property(nonatomic)       BOOL showingPicker;
-
--(void)hiddenPickerView;
--(void)showPickerView;
-
--(IBAction)cancel:(id)sender;
--(IBAction)selectOk:(id)sender;
+@property(nonatomic,strong)IBOutlet UILabel* areaNotSuport;
 
 @end
 
@@ -44,7 +38,6 @@ static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.showingPicker = NO;
     }
     return self;
 }
@@ -54,14 +47,24 @@ static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"天气情况";
+    self.view.backgroundColor = [UIColor whiteColor];
     // Custom initialization
-    UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onCityBtnSelect:)];
+    NSString* str = [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_WeatherCity];
+    if (!str) {
+        str= @"广州";
+    }
+    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 80, 40);
+    [btn setTitle:str forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [btn setTitleColor:XPRGBColor(25, 133, 255, 1.0) forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(onCityBtnSelect:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = rightBtn;
-    
-    
-    self.rootScrollview.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetMaxY(self.day3View.frame)+100);
-    // get weather
-    [self getWeatherOfToday];
+    self.rightNavBtn = btn;
+    // set content size
+    self.rootScrollview.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetMaxY(self.day3View.frame)+60);
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +75,25 @@ static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //self.navigationController.navigationBarHidden = NO;
+    BOOL needToReload = NO;
+    NSString* str = [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_WeatherCity];
+    if (!str) {
+        str= @"广州";
+    }
+    
+    if (!self.szcity)
+    {
+        self.szcity  = str;
+        needToReload = YES;
+    }else if (NO == [str isEqualToString:self.szcity])
+    {
+        self.szcity = str;
+        needToReload = YES;
+    }
+    if (needToReload) {
+        [self.rightNavBtn setTitle:self.szcity forState:UIControlStateNormal];
+        [self getWeatherOfToday];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -95,14 +116,24 @@ static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
     NSString* urlFormat = @"http://api.map.baidu.com/telematics/v3/weather";
     //?location=%@&output=json&ak=%@
     NSLog(@"url=%@",urlFormat);
-    NSDictionary* param = [NSDictionary dictionaryWithObjectsAndKeys:@"广州",@"location",@"json",@"output",kBaiduAppKey,@"ak",nil];
+    NSDictionary* param = [NSDictionary dictionaryWithObjectsAndKeys:self.szcity,@"location",@"json",@"output",kBaiduAppKey,@"ak",nil];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:urlFormat parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
-        NSArray * results    = [responseObject objectForKey:@"results"];
-        NSDictionary* result = [results objectAtIndex:0];
-        NSArray * weathers = [result objectForKey:@"weather_data"];
-        [self setWeather2Views:weathers];
+        id error = [responseObject objectForKey:@"error"];
+        if ([error integerValue] != 0)
+        {
+            self.rootScrollview.hidden = YES;
+            self.areaNotSuport.hidden = NO;
+        }else
+        {
+            self.rootScrollview.hidden = NO;
+            self.areaNotSuport.hidden = YES;
+            NSArray * results    = [responseObject objectForKey:@"results"];
+            NSDictionary* result = [results objectAtIndex:0];
+            NSArray * weathers = [result objectForKey:@"weather_data"];
+            [self setWeather2Views:weathers];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
@@ -155,89 +186,5 @@ static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
         counter ++;
     }
 }
-#pragma mark - pickerview
--(void)hiddenPickerView
-{
-    if (NO == [self.ViewForPicker isDescendantOfView:self.view])
-    {
-        return;
-    }
-    
-    if (self.showingPicker == NO) {
-        return;
-    }
-    [UIView animateWithDuration:0.35 animations:^()
-    {
-        self.showingPicker = NO;
-        self.ViewForPicker.frame
-        = CGRectMake(0, self.view.frame.size.height,self.ViewForPicker.frame.size.width, self.ViewForPicker.frame.size.height);
-    }completion:^(BOOL finished){
-        [self.ViewForPicker removeFromSuperview];
-    }];
-}
-
--(void)showPickerView
-{
-    if (YES == [self.ViewForPicker isDescendantOfView:self.view])
-    {
-        return;
-    }
-    
-    if (self.showingPicker == YES) {
-        return;
-    }
-    self.ViewForPicker.frame
-    = CGRectMake(0, self.view.frame.size.height,self.ViewForPicker.frame.size.width, self.ViewForPicker.frame.size.height);
-    [self.view addSubview:self.ViewForPicker];
-    
-    [UIView animateWithDuration:0.35 animations:^(){
-        self.showingPicker = YES;
-        self.ViewForPicker.frame = CGRectMake(0, self.view.frame.size.height-self.ViewForPicker.frame.size.height, self.ViewForPicker.frame.size.width, self.ViewForPicker.frame.size.height);
-    }completion:^(BOOL finished){
-    }];
-}
-
--(IBAction)cancel:(id)sender
-{
-    [self hiddenPickerView];
-}
-
--(IBAction)selectOk:(id)sender
-{
-    // TODO:
-    [self hiddenPickerView];
-}
-
-
-
-#pragma mark - UIPickerviewDataSource
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    switch (component) {
-        case 0:
-            return 24;
-            break;
-        default:
-            break;
-    }
-    return 0;
-}
-#pragma mark - UIPickerviewDelegate
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
-    return CGRectGetWidth(pickerView.frame)-10;
-}
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
-    return 44;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NSString * title = [NSString stringWithFormat:@"%d:00",row];
-    return title;
-}
-
 
 @end

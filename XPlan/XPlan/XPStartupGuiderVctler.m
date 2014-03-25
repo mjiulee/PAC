@@ -13,6 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "XPCheckBoxTableCell.h"
 #import <objc/runtime.h>
+#import "XPUserDataHelper.h"
 
 // static Strings
 static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
@@ -392,10 +393,16 @@ static char kCharCellCheckKey;
 #pragma mark - AFNetworking
 -(void)getWeatherOfToday
 {
+    NSString* str = [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_WeatherCity];
+    if (!str) {
+        str= @"广州市";
+        [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_WeatherCity value:str];
+    }
+    
     NSString* urlFormat = @"http://api.map.baidu.com/telematics/v3/weather";
     //?location=%@&output=json&ak=%@
     NSLog(@"url=%@",urlFormat);
-    NSDictionary* param = [NSDictionary dictionaryWithObjectsAndKeys:@"广州",@"location",@"json",@"output",kBaiduAppKey,@"ak",nil];
+    NSDictionary* param = [NSDictionary dictionaryWithObjectsAndKeys:str,@"location",@"json",@"output",kBaiduAppKey,@"ak",nil];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:urlFormat parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);

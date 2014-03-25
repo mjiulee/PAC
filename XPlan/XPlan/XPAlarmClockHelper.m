@@ -57,7 +57,7 @@ static NSString* const kSTREveningAlarm = @"xp-evening-call";
         //notification.applicationIconBadgeNumber = 1; //设置app图标右上角的数字
         
         //下面设置本地通知发送的消息，这个消息可以接受
-        NSDictionary* infoDic = [NSDictionary dictionaryWithObject:@"name" forKey:@"key"];
+        NSDictionary* infoDic = [NSDictionary dictionaryWithObject:name forKey:@"key"];
         notification.userInfo = infoDic;
         //发送通知
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
@@ -72,7 +72,8 @@ static NSString* const kSTREveningAlarm = @"xp-evening-call";
     for (UILocalNotification * loc in array)
     {
         if ([[loc.userInfo objectForKey:@"key"] isEqualToString:kSTREveningAlarm]||
-            [[loc.userInfo objectForKey:@"key"] isEqualToString:kSTRmorningAlarm])
+            [[loc.userInfo objectForKey:@"key"] isEqualToString:kSTRmorningAlarm]||
+            [[loc.userInfo objectForKey:@"key"] isEqualToString:@"name"])
         {
             [[UIApplication sharedApplication] cancelLocalNotification:loc];//取消 本地推送
         }

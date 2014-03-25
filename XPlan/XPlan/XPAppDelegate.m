@@ -63,7 +63,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     NSDate * today      = [NSDate date];
     NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
-    if([today isTheSameDay:lastOpenDate] == NO)
+    if([today isTheSameDay:lastOpenDate] == YES)
     {
         // 今日有打开过
         _deckController = [self generateControllerStack];
@@ -104,6 +104,29 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    // 常驻内存打开的情况
+    NSDate * today      = [NSDate date];
+    NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
+    if([today isTheSameDay:lastOpenDate] == YES)
+    {
+        // 今日有打开过
+        if (self.window.rootViewController != self.rootNav) {
+            _deckController = [self generateControllerStack];
+            UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:self.deckController];
+            self.rootNav = nav;
+            self.rootNav.navigationBarHidden = YES;
+            self.window.rootViewController = self.rootNav;
+            [self.window makeKeyAndVisible];            
+        }
+    }else
+    {
+        // 今日没打开过
+        _guiderVctler   = [self generateStartupGuider];
+        self.window.rootViewController = _guiderVctler;
+        [self.window makeKeyAndVisible];
+        // 在这里设置已经打开过
+        [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_LastOpenDate value:today];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

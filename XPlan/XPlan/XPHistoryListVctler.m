@@ -59,10 +59,10 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     
     CGFloat width   = CGRectGetWidth(self.view.frame);
     CGFloat heidht  = CGRectGetHeight(self.view.frame);
-    CGFloat yoffset = CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    CGFloat yoffset = CGRectGetMaxY(self.navigationController.navigationBar.frame)+8;
     
     __weak typeof(self) _weakself = self;
-    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(0,yoffset,width,36)
+    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(2,yoffset,width-4,36)
                                                                items:@"普通",@"重要",@"已完成",nil];
     segview.backgroundColor     = XPRGBColor(248, 248, 248, 0.88);
     [self.view addSubview:segview];
@@ -70,7 +70,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     self.segmentView.segmentedBlock = ^(NSUInteger selidx){
         [_weakself onSegmentVSelectChange:selidx];
     };
-    yoffset += CGRectGetHeight(segview.frame);
+    yoffset += CGRectGetHeight(segview.frame)+4;
     
     UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,yoffset,width,heidht-yoffset)];
     tableView.dataSource = self;

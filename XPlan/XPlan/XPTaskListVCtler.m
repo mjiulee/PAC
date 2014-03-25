@@ -219,7 +219,7 @@ static NSString *sCellIdentifier;
         [headview addSubview:btn];
     }
     
-    UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(0,39.5, CGRectGetWidth(tableView.frame), 0.5)];
+    UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(0,39, CGRectGetWidth(tableView.frame),1)];
     divLine.backgroundColor = XPRGBColor(220, 220, 220, 1.0);
     [headview addSubview:divLine];
     return headview;
