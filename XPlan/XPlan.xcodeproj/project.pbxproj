@@ -57,6 +57,7 @@
 		439623FA18DDC8290051183F /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 439623F918DDC8290051183F /* ProjectModel.m */; };
 		439623FD18DDC8290051183F /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 439623FC18DDC8290051183F /* TestModel.m */; };
 		43BD907318D1B0560007E002 /* XPAlarmClockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BD907218D1B0560007E002 /* XPAlarmClockHelper.m */; };
+		43E2460718E14D7400E91C8B /* CityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E2460618E14D7400E91C8B /* CityListViewController.m */; };
 		BCEE7B4EE240439AAD1851E5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 819FEE31D70B48FC9C272777 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +158,8 @@
 		439623FC18DDC8290051183F /* TestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestModel.m; sourceTree = "<group>"; };
 		43BD907118D1B0560007E002 /* XPAlarmClockHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPAlarmClockHelper.h; sourceTree = "<group>"; };
 		43BD907218D1B0560007E002 /* XPAlarmClockHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPAlarmClockHelper.m; sourceTree = "<group>"; };
+		43E2460518E14D7400E91C8B /* CityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityListViewController.h; sourceTree = "<group>"; };
+		43E2460618E14D7400E91C8B /* CityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityListViewController.m; sourceTree = "<group>"; };
 		819FEE31D70B48FC9C272777 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C1E589819649A9B058BAB3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -291,6 +294,8 @@
 		431F74B418C76F1A00B03742 /* guider */ = {
 			isa = PBXGroup;
 			children = (
+				43E2460518E14D7400E91C8B /* CityListViewController.h */,
+				43E2460618E14D7400E91C8B /* CityListViewController.m */,
 				431F749F18C758C800B03742 /* XPStartupGuiderVctler.h */,
 				431F74A018C758C800B03742 /* XPStartupGuiderVctler.m */,
 				18B8052C18D9DE9900282D17 /* XPWeatherVctler.h */,
@@ -602,6 +607,7 @@
 				431F74A418C75C3A00B03742 /* XPDialyStaticVCtler.m in Sources */,
 				437A7D0518B725AF0088F1AA /* XPLeftMenuViewCtler.m in Sources */,
 				431F74A718C75C6900B03742 /* XPBaseViewCtler.m in Sources */,
+				43E2460718E14D7400E91C8B /* CityListViewController.m in Sources */,
 				18BFD18618DDE9B0003F86F3 /* DiaryTaskModel.m in Sources */,
 				4383D9E918BC9646007F7CA0 /* XPUIRadioButton.m in Sources */,
 				437A7CCF18B71BA20088F1AA /* main.m in Sources */,

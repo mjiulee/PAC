@@ -9,7 +9,6 @@
 #import "XPCheckBoxTableCell.h"
 
 @interface XPCheckBoxTableCell()
-@property(nonatomic,strong) UILabel* labContent;
 @property(nonatomic,strong) UIImageView* checkImageview;
 @end
 

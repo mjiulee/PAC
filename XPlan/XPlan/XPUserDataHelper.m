@@ -39,6 +39,9 @@
         case XPUserDataKey_LastOpenDate:
             keyName = @"XPUserDataKey_LastOpenDate";
             break;
+        case XPUserDataKey_WeatherCity:
+            keyName = @"XPUserDataKey_WeatherCity";
+            break;
         default:
             NSAssert(NO, @"你所要保存的信息，未在预定义的id中，请先定义再保存，此举为了防止信息乱存放");
             break;
@@ -61,6 +64,9 @@
             break;
         case XPUserDataKey_LastOpenDate:
             keyName = @"XPUserDataKey_LastOpenDate";
+            break;
+        case XPUserDataKey_WeatherCity:
+            keyName = @"XPUserDataKey_WeatherCity";
             break;
         default:
             NSAssert(NO, @"你所要读取的信息，未在预定义的id中，请先定义再保存，此举为了防止信息乱存放");

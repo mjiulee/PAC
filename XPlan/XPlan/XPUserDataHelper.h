@@ -10,7 +10,8 @@
 
 typedef enum{
     XPUserDataKey_HadShowGuider = 0, // 今日已经显示过导读图
-    XPUserDataKey_LastOpenDate  = 1  // 今日是否打开过程序
+    XPUserDataKey_LastOpenDate  = 1, // 今日是否打开过程序
+    XPUserDataKey_WeatherCity   = 2  // 天气信息的所在城市，默认广州
 }XPUserDataKey;
 
 @interface XPUserDataHelper : NSObject

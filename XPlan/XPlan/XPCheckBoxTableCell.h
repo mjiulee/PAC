@@ -11,6 +11,7 @@
 
 @interface XPCheckBoxTableCell : UITableViewCell
 @property(nonatomic,setter = setCheck:)        BOOL ifCheck;
+@property(nonatomic,strong) UILabel* labContent;
 
 -(void)setDialyTask:(DiaryTaskModel*)task;
 
