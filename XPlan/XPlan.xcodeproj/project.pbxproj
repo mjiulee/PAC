@@ -16,6 +16,14 @@
 		18B8053518D9E0F100282D17 /* XPAboutMeVCtler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B8053318D9E0F100282D17 /* XPAboutMeVCtler.xib */; };
 		18BFD18618DDE9B0003F86F3 /* DiaryTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BFD18518DDE9B0003F86F3 /* DiaryTaskModel.m */; };
 		18E5DDB818DEA99100E97158 /* XPCheckBoxTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5DDB718DEA99100E97158 /* XPCheckBoxTableCell.m */; };
+		18E874B418E32A5B0094376E /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B318E32A5B0094376E /* libGoogleAdMobAds.a */; };
+		18E874B618E32A870094376E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B518E32A870094376E /* AdSupport.framework */; };
+		18E874B818E32A950094376E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B718E32A950094376E /* AudioToolbox.framework */; };
+		18E874BA18E32A9B0094376E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B918E32A9B0094376E /* AVFoundation.framework */; };
+		18E874BC18E32AAB0094376E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874BB18E32AAB0094376E /* CoreTelephony.framework */; };
+		18E874BE18E32AB60094376E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874BD18E32AB60094376E /* MessageUI.framework */; };
+		18E874C018E32ABD0094376E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874BF18E32ABD0094376E /* StoreKit.framework */; };
+		18E874C218E32ACC0094376E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874C118E32ACC0094376E /* SystemConfiguration.framework */; };
 		18ED380518C308D1002565E8 /* NSString+DrawHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380418C308D1002565E8 /* NSString+DrawHelper.m */; };
 		18ED380818C30FBF002565E8 /* XPTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */; };
 		18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */; };
@@ -87,6 +95,23 @@
 		18BFD18518DDE9B0003F86F3 /* DiaryTaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryTaskModel.m; sourceTree = "<group>"; };
 		18E5DDB618DEA99100E97158 /* XPCheckBoxTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPCheckBoxTableCell.h; sourceTree = "<group>"; };
 		18E5DDB718DEA99100E97158 /* XPCheckBoxTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPCheckBoxTableCell.m; sourceTree = "<group>"; };
+		18E874AA18E32A5B0094376E /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
+		18E874AB18E32A5B0094376E /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
+		18E874AC18E32A5B0094376E /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
+		18E874AD18E32A5B0094376E /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
+		18E874AE18E32A5B0094376E /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
+		18E874AF18E32A5B0094376E /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
+		18E874B018E32A5B0094376E /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
+		18E874B118E32A5B0094376E /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
+		18E874B218E32A5B0094376E /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		18E874B318E32A5B0094376E /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
+		18E874B518E32A870094376E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		18E874B718E32A950094376E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		18E874B918E32A9B0094376E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		18E874BB18E32AAB0094376E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		18E874BD18E32AB60094376E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		18E874BF18E32ABD0094376E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		18E874C118E32ACC0094376E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		18ED380318C308D1002565E8 /* NSString+DrawHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DrawHelper.h"; sourceTree = "<group>"; };
 		18ED380418C308D1002565E8 /* NSString+DrawHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DrawHelper.m"; sourceTree = "<group>"; };
 		18ED380618C30FBF002565E8 /* XPTaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPTaskTableViewCell.h; sourceTree = "<group>"; };
@@ -169,11 +194,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E874C218E32ACC0094376E /* SystemConfiguration.framework in Frameworks */,
+				18E874C018E32ABD0094376E /* StoreKit.framework in Frameworks */,
+				18E874BE18E32AB60094376E /* MessageUI.framework in Frameworks */,
+				18E874BC18E32AAB0094376E /* CoreTelephony.framework in Frameworks */,
+				18E874BA18E32A9B0094376E /* AVFoundation.framework in Frameworks */,
+				18E874B818E32A950094376E /* AudioToolbox.framework in Frameworks */,
+				18E874B618E32A870094376E /* AdSupport.framework in Frameworks */,
 				437A7CF818B71D250088F1AA /* CoreData.framework in Frameworks */,
 				437A7CC518B71BA20088F1AA /* CoreGraphics.framework in Frameworks */,
 				437A7CC718B71BA20088F1AA /* UIKit.framework in Frameworks */,
 				437A7CC318B71BA20088F1AA /* Foundation.framework in Frameworks */,
 				BCEE7B4EE240439AAD1851E5 /* libPods.a in Frameworks */,
+				18E874B418E32A5B0094376E /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +232,23 @@
 				1873677318C60D1A003EC3A0 /* FMMoveTableViewCell.m */,
 			);
 			path = FMMoveCell;
+			sourceTree = "<group>";
+		};
+		18E874A918E32A5B0094376E /* ads-sdk */ = {
+			isa = PBXGroup;
+			children = (
+				18E874AA18E32A5B0094376E /* GADAdMobExtras.h */,
+				18E874AB18E32A5B0094376E /* GADAdNetworkExtras.h */,
+				18E874AC18E32A5B0094376E /* GADAdSize.h */,
+				18E874AD18E32A5B0094376E /* GADBannerView.h */,
+				18E874AE18E32A5B0094376E /* GADBannerViewDelegate.h */,
+				18E874AF18E32A5B0094376E /* GADInterstitial.h */,
+				18E874B018E32A5B0094376E /* GADInterstitialDelegate.h */,
+				18E874B118E32A5B0094376E /* GADRequest.h */,
+				18E874B218E32A5B0094376E /* GADRequestError.h */,
+				18E874B318E32A5B0094376E /* libGoogleAdMobAds.a */,
+			);
+			path = "ads-sdk";
 			sourceTree = "<group>";
 		};
 		18EB3F5B18C1F01000400E72 /* Model */ = {
@@ -321,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				437A7D0818B74F210088F1AA /* resource */,
+				18E874A918E32A5B0094376E /* ads-sdk */,
 				1873676F18C60D1A003EC3A0 /* FMMoveCell */,
 				437A7CF918B723330088F1AA /* ViewDeck */,
 				437A7CC818B71BA20088F1AA /* XPlan */,
@@ -343,6 +394,13 @@
 		437A7CC118B71BA20088F1AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18E874C118E32ACC0094376E /* SystemConfiguration.framework */,
+				18E874BF18E32ABD0094376E /* StoreKit.framework */,
+				18E874BD18E32AB60094376E /* MessageUI.framework */,
+				18E874BB18E32AAB0094376E /* CoreTelephony.framework */,
+				18E874B918E32A9B0094376E /* AVFoundation.framework */,
+				18E874B718E32A950094376E /* AudioToolbox.framework */,
+				18E874B518E32A870094376E /* AdSupport.framework */,
 				437A7CF718B71D250088F1AA /* CoreData.framework */,
 				437A7CC218B71BA20088F1AA /* Foundation.framework */,
 				437A7CC418B71BA20088F1AA /* CoreGraphics.framework */,
@@ -738,6 +796,10 @@
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Apple/mycode/PNC/XPlan/ads-sdk",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "53489323-1D7D-4C59-A6D8-A12677C9A28A";
 				WRAPPER_EXTENSION = app;
@@ -756,6 +818,10 @@
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Apple/mycode/PNC/XPlan/ads-sdk",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "53489323-1D7D-4C59-A6D8-A12677C9A28A";
 				WRAPPER_EXTENSION = app;

@@ -98,10 +98,13 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     
     _radioGroupPrio = [[XPUIRadioGroup alloc] initWithRadios:_radioNormal,_radioImportant,nil];
     
-    if (_viewType != XPNewTaskViewType_Update) {
-        if (_viewType == XPNewTaskViewType_NewNormal) {
+    if (_viewType != XPNewTaskViewType_Update)
+    {
+        if (_viewType == XPNewTaskViewType_NewNormal)
+        {
             [_radioNormal setIfCheck:YES];
-        }else if(_viewType == XPNewTaskViewType_NewImportant){
+        }else if(_viewType == XPNewTaskViewType_NewImportant)
+        {
             [_radioImportant setIfCheck:YES];
         }
         
@@ -112,10 +115,11 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
         [_btnNext addTarget:self action:@selector(onNextBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_btnNext];
     }else{
-        if (_task2Update) {
+        if (_task2Update)
+        {
             _tfview.text = _task2Update.content;
-            int status   = [_task2Update.status integerValue];
-            if (status == 0) {
+            NSUInteger priority   = [_task2Update.prLevel unsignedIntegerValue];
+            if (priority == 0) {
                 [_radioNormal setIfCheck:YES];
             }else{
                 [_radioImportant setIfCheck:YES];
@@ -127,6 +131,11 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self layoutWithOrientat:1];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [_tfview becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -179,7 +188,7 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     XPAppDelegate* app = [XPAppDelegate shareInstance];
     NSString* value = [_radioGroupPrio getSelectedValue];
     _task2Update.content = _tfview.text;
-    _task2Update.status  = [NSNumber numberWithInt:[value integerValue]];
+    _task2Update.prLevel = [NSNumber numberWithInt:[value integerValue]];
     [app.coreDataMgr updateTask:_task2Update];
     [[NSNotificationCenter defaultCenter] postNotificationName:kMyMsgTaskUpdateNotification object:nil];
     [self.navigationController popViewControllerAnimated:YES];

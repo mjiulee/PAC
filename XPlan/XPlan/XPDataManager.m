@@ -198,10 +198,13 @@
     }
     
     //首先你需要建立一个request
+    NSSortDescriptor *dateSort = [[NSSortDescriptor alloc] initWithKey:@"dateCreate" ascending:NO selector:nil];
+    NSArray *sortDescriptors   = [NSArray arrayWithObjects:dateSort,nil];
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
                                    inManagedObjectContext:context]];
     [request setPredicate:predicate];
+    [request setSortDescriptors:sortDescriptors];
 
     NSError *error = nil;
     NSArray *result = [context executeFetchRequest:request error:&error];
@@ -224,13 +227,16 @@
         predicate = [NSPredicate predicateWithFormat:@"status=%@ AND prLevel=%@ AND ((dateCreate < %@) OR (dateCreate > %@))",status,level,dayBegin,dayEnd];
     }
     
-    //首先你需要建立一个request
-    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    //首先你需要建立一个request:排序
+    NSSortDescriptor *dateSort = [[NSSortDescriptor alloc] initWithKey:@"dateCreate" ascending:NO selector:nil];
+    NSArray *sortDescriptors   = [NSArray arrayWithObjects:dateSort,nil];
+    NSFetchRequest * request   = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
                                    inManagedObjectContext:context]];
     [request setPredicate:predicate];
-    [request setFetchOffset:page*20];
-    [request setFetchLimit:20];
+    [request setFetchOffset:page*10];
+    [request setFetchLimit:10];
+    [request setSortDescriptors:sortDescriptors];
     
     NSError *error = nil;
     NSArray *result = [context executeFetchRequest:request error:&error];

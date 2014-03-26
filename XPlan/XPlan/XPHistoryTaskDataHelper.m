@@ -77,8 +77,8 @@
 -(BOOL)hasNextPage:(XPTaskPriorityLevel)priority
 {
     if (priority == XPTask_PriorityLevel_normal) {
-        int page = _totalNormal/20;
-        if (_totalNormal%20 != 0) {
+        int page = _totalNormal/10;
+        if (_totalNormal%10 != 0) {
             page ++;
         }
         if (_curPageNormal >= page-1)
@@ -90,8 +90,8 @@
         }
     }
     if (priority == XPTask_PriorityLevel_important) {
-        int page = _totalImportant/20;
-        if (_totalImportant%20 != 0) {
+        int page = _totalImportant/10;
+        if (_totalImportant%10 != 0) {
             page ++;
         }
         if (_curPageImportant >= page-1)
@@ -103,8 +103,8 @@
         }
     }
     if (priority == XPTask_PriorityLevel_all) {
-        int page = _totalFinished/20;
-        if (_totalFinished%20 != 0) {
+        int page = _totalFinished/10;
+        if (_totalFinished%10 != 0) {
             page ++;
         }
         if (_curPageFinished >= page-1)
@@ -123,10 +123,30 @@
     if (NO == [self hasNextPage:priority]) {
         return;
     }
+    XPDataManager* dmg = [XPAppDelegate shareInstance].coreDataMgr;
+    if (priority == XPTask_PriorityLevel_normal) {
+        NSArray* tary = [dmg queryHistoryTask:priority status:XPTask_Status_ongoing page:_curPageNormal+1];
+        if (tary && [tary count]){
+            [self.listNormal addObjectsFromArray:tary];
+        }
+        _curPageNormal ++ ;
+    }
     
-//    NSArray* tary = [dmg queryHistoryTask:priority status:XPTask_Status_ongoing page:_curPageNormal];
-//    if (tary && [tary count]) {
-//    }
+    if (priority == XPTask_PriorityLevel_important) {
+        NSArray* tary = [dmg queryHistoryTask:priority status:XPTask_Status_ongoing page:_curPageImportant+1];
+        if (tary && [tary count]){
+            [self.listImportant addObjectsFromArray:tary];
+        }
+        _curPageImportant++;
+    }
+
+    if (priority == XPTask_PriorityLevel_all) {
+        NSArray* tary = [dmg queryHistoryTask:priority status:XPTask_Status_Done page:_curPageFinished+1];
+        if (tary && [tary count]){
+            [self.listFinished addObjectsFromArray:tary];
+        }
+        _curPageFinished++;
+    }
 }
 
 @end

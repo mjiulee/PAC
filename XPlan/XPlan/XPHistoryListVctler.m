@@ -124,44 +124,85 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 
 
 #pragma mark - UItableviewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    NSInteger tagidx = self.segmentView.curSelectIndex;
+    NSInteger count  = 1;
+    if(tagidx == 0) count = [self.dataHelper hasNextPage:XPTask_PriorityLevel_normal]?2:1;
+    if(tagidx == 1) count = [self.dataHelper hasNextPage:XPTask_PriorityLevel_important]?2:1;
+    if(tagidx == 2) count = [self.dataHelper hasNextPage:XPTask_PriorityLevel_all]?2:1;
+    return count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger tagidx = self.segmentView.curSelectIndex;
     NSInteger count  = 0;
-    if(tagidx == 0) count = [self.dataHelper.listNormal    count];
-    if(tagidx == 1) count = [self.dataHelper.listImportant count];
-    if(tagidx == 2) count = [self.dataHelper.listFinished  count];
-    if (count <= 0)
-    {
-        if ([self.dataHelper checkIfHadHistoryTask:XPTask_PriorityLevel_normal])
+    if (section == 0) {
+        if(tagidx == 0) count = [self.dataHelper.listNormal    count];
+        if(tagidx == 1) count = [self.dataHelper.listImportant count];
+        if(tagidx == 2) count = [self.dataHelper.listFinished  count];
+        if (count <= 0)
         {
-            self.labEmpty.text  = @"恭喜你，你的任务都完成了。\r您是高效的人，本屌看好你哦~";
-        }else
-        {
-            self.labEmpty.text  = @"我插咧，爷！\r你高吗？你富吗？你帅吗？\r您不用干活的吗？\r不是高富帅就赶紧滚回去干活。";
+            if ([self.dataHelper checkIfHadHistoryTask:XPTask_PriorityLevel_normal])
+            {
+                self.labEmpty.text  = @"恭喜你，你的任务都完成了。\r您是高效的人，本屌看好你哦~";
+            }else
+            {
+                self.labEmpty.text  = @"我插咧，爷！\r你高吗？你富吗？你帅吗？\r您不用干活的吗？\r不是高富帅就赶紧滚回去干活。";
+            }
+            [self.EmptyView setHidden:NO];
+        }else{
+            [self.EmptyView setHidden:YES];
         }
-        [self.EmptyView setHidden:NO];
     }else{
-        [self.EmptyView setHidden:YES];
+        count = 1;
     }
     return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * sCellIdentifier = @"TaskCell";
-    XPTaskTableViewCell *cell = (XPTaskTableViewCell *)[tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
-    if (!cell) {
-        cell = [[XPTaskTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier tableview:tableView];
-        cell.accessoryType = UITableViewCellAccessoryNone;
+    if ([indexPath section] == 0)
+    {
+        static NSString * sCellIdentifier = @"TaskCell";
+        XPTaskTableViewCell *cell = (XPTaskTableViewCell *)[tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
+        if (!cell) {
+            cell = [[XPTaskTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier tableview:tableView];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        TaskModel* atask = nil;
+        NSInteger tagidx = self.segmentView.curSelectIndex;
+        if(tagidx == 0) atask = [self.dataHelper.listNormal    objectAtIndex:[indexPath row]];
+        if(tagidx == 1) atask = [self.dataHelper.listImportant objectAtIndex:[indexPath row]];
+        if(tagidx == 2) atask = [self.dataHelper.listFinished  objectAtIndex:[indexPath row]];
+        [cell setTask:atask];
+        return cell;
+    }else
+    {
+        static NSString * sCellIdentifier = @"loadingcell";
+        UITableViewCell*cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+            UIActivityIndicatorView* active  = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            active.tag = 100;
+            active.backgroundColor = [UIColor whiteColor];
+            active.frame = CGRectMake(145,7,30,30);
+            [cell addSubview:active];
+            [active startAnimating];
+        }
+        UIActivityIndicatorView* active = (UIActivityIndicatorView*)[cell viewWithTag:100];
+        if (active) {
+            [active startAnimating];
+        }
+        [self performSelector:@selector(getNextPage)
+                   withObject:nil
+                   afterDelay:0.25];
+        return cell;
     }
-    TaskModel* atask = nil;
-    NSInteger tagidx = self.segmentView.curSelectIndex;
-    if(tagidx == 0) atask = [self.dataHelper.listNormal    objectAtIndex:[indexPath row]];
-    if(tagidx == 1) atask = [self.dataHelper.listImportant objectAtIndex:[indexPath row]];
-    if(tagidx == 2) atask = [self.dataHelper.listFinished  objectAtIndex:[indexPath row]];
-    [cell setTask:atask];
-    return cell;
+    return nil;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -175,6 +216,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     if(tagidx == 0) {
         atask = [self.dataHelper.listNormal    objectAtIndex:[indexPath row]];
         atask.status   = [NSNumber numberWithInt:XPTask_Status_Done];
+        atask.dateDone = [NSDate date];
         XPAppDelegate* app = [XPAppDelegate shareInstance];
         [app.coreDataMgr updateTask:atask];
 
@@ -185,6 +227,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     if(tagidx == 1){
         atask = [self.dataHelper.listImportant objectAtIndex:[indexPath row]];
         atask.status   = [NSNumber numberWithInt:XPTask_Status_Done];
+        atask.dateDone = [NSDate date];
         XPAppDelegate* app = [XPAppDelegate shareInstance];
         [app.coreDataMgr updateTask:atask];
         [self.dataHelper.listFinished addObject:atask];
@@ -207,6 +250,22 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     updatevc.task2Update = atask;
     [self.navigationController pushViewController:updatevc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - getNext page
+-(void)getNextPage
+{
+    NSUInteger tabIdx =  self.segmentView.curSelectIndex;
+    XPTaskPriorityLevel priority = XPTask_PriorityLevel_normal;
+    if (tabIdx == 0) {
+        priority = XPTask_PriorityLevel_normal;
+    }else if(tabIdx == 1){
+        priority = XPTask_PriorityLevel_important;
+    }else{
+        priority = XPTask_PriorityLevel_all;
+    }
+    [self.dataHelper getNextPage:priority];
+    [self.tableview reloadData];
 }
 
 #pragma mark - segment select change 

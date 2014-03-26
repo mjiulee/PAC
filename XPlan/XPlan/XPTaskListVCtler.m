@@ -11,8 +11,7 @@
 #import "IIViewDeckController.h"
 #import "XPTaskTableViewCell.h"
 #import "XPDialyStaticVCtler.h"
-//#import "FMMoveTableView.h"
-//#import "FMMoveTableViewCell.h"
+#import "GADBannerView.h"
 
 static int kHeadViewBtnStartIdx = 1000;
 @interface XPTaskListVCtler ()
@@ -21,6 +20,7 @@ static int kHeadViewBtnStartIdx = 1000;
     NSMutableArray* _taskListImportant;
     NSMutableArray* _taskListFinish;
 }
+@property(nonatomic,strong) GADBannerView* adsBannerView;
 // NavButtons
 -(void)onNavRightBtuAction:(id)sender;
 // View Buttons
@@ -88,6 +88,19 @@ static NSString *sCellIdentifier;
     // register the task list change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onTaskUpdateNotification:) name:kMyMsgTaskUpdateNotification object:nil];
+    
+    //adsBannerView = []
+    GADBannerView * bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    // Specify the ad unit ID.
+    bannerView.adUnitID = @"a15332320048fb4";
+    bannerView.delegate = (id<GADBannerViewDelegate>)self;
+    // Let the runtime know which UIViewController to restore after taking
+    // the user wherever the ad goes and add it to the view hierarchy.
+    bannerView.rootViewController = self;
+    //self.tableView.tableHeaderView = bannerView;
+    self.adsBannerView = bannerView;
+    // Initiate a generic request to load it with an ad.
+    [self.adsBannerView loadRequest:[GADRequest request]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,6 +160,7 @@ static NSString *sCellIdentifier;
         // save to core data
         TaskModel * task2Done = [_taskListNormal objectAtIndex:[indexPath row]];
         task2Done.status   = [NSNumber numberWithInt:XPTask_Status_Done];
+        task2Done.dateDone = [NSDate date];
         XPAppDelegate* app = [XPAppDelegate shareInstance];
         [app.coreDataMgr updateTask:task2Done];
         [_taskListNormal removeObjectAtIndex:[indexPath row]];
@@ -157,6 +171,7 @@ static NSString *sCellIdentifier;
         // save to core data
         TaskModel * task2Done = [_taskListImportant objectAtIndex:[indexPath row]];
         task2Done.status   = [NSNumber numberWithInt:XPTask_Status_Done];
+        task2Done.dateDone = [NSDate date];
         XPAppDelegate* app = [XPAppDelegate shareInstance];
         [app.coreDataMgr updateTask:task2Done];
         [_taskListImportant removeObjectAtIndex:[indexPath row]];
@@ -323,6 +338,20 @@ static NSString *sCellIdentifier;
 -(void)onTaskUpdateNotification:(NSNotification*)notice{
     [self reLoadData];
     [self.tableView reloadData];
+}
+
+#pragma mark - 
+- (void)adViewDidReceiveAd:(GADBannerView *)bannerView {
+    /*[UIView beginAnimations:@"BannerSlide" context:nil];
+    bannerView.frame = CGRectMake(0.0,self.view.frame.size.height - bannerView.frame.size.height,
+                                  bannerView.frame.size.width,
+                                  bannerView.frame.size.height);
+    [UIView commitAnimations];*/
+    //self.tableView.tableFooterView = self.adsBannerView;
+}
+- (void)adView:(GADBannerView *)bannerView didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    NSLog(@"adView:didFailToReceiveAdWithError:%@", [error localizedDescription]);
 }
 
 @end
