@@ -73,10 +73,11 @@ typedef enum {
 /* brief:根据任务的优先级进行查询
  * @param:level - 0.普通 1.重要
  * @param:status- 状态
+ * @param:page  - 分页
  */
--(NSArray*)queryHistoryTask:(XPTaskPriorityLevel)alevel status:(int)status;
+-(NSArray*)queryHistoryTask:(XPTaskPriorityLevel)alevel status:(int)status page:(NSUInteger)page;
 -(BOOL)checkIfHasHistoryTask:(XPTaskPriorityLevel)alevel;
-
+-(NSUInteger)getHistoryTaskCount:(XPTaskPriorityLevel)alevel status:(int)status;
 
 //TODO: #pragma mark - Project-List
 #pragma mark - dialy task 

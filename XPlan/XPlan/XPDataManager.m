@@ -208,7 +208,7 @@
     return result;
 }
 
--(NSArray*)queryHistoryTask:(XPTaskPriorityLevel)alevel status:(int)astatus
+-(NSArray*)queryHistoryTask:(XPTaskPriorityLevel)alevel status:(int)astatus page:(NSUInteger)page
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     // 查询条件
@@ -229,6 +229,8 @@
     [request setEntity:[NSEntityDescription entityForName:@"TaskModel"
                                    inManagedObjectContext:context]];
     [request setPredicate:predicate];
+    [request setFetchOffset:page*20];
+    [request setFetchLimit:20];
     
     NSError *error = nil;
     NSArray *result = [context executeFetchRequest:request error:&error];
@@ -260,6 +262,35 @@
     return NO;
 }
 
+-(NSUInteger)getHistoryTaskCount:(XPTaskPriorityLevel)alevel status:(int)astatus
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSUInteger entityCount = 0;
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TaskModel" inManagedObjectContext:context];
+    NSDate* day = [NSDate date];
+    NSDate* dayBegin = [day startOfDay];
+    NSNumber* level  = [NSNumber numberWithInt:alevel];
+    NSNumber* status = [NSNumber numberWithInt:astatus];
+    NSPredicate *predicate = nil;
+    
+    if (alevel == XPTask_PriorityLevel_all) {
+        predicate = [NSPredicate predicateWithFormat:@"status=%@ AND prLevel!=%@ AND dateCreate < %@",status,level,dayBegin];
+    }else{
+        predicate = [NSPredicate predicateWithFormat:@"status=%@ AND prLevel=%@ AND dateCreate < %@",status,level,dayBegin];
+    }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setIncludesPropertyValues:NO];
+    [fetchRequest setIncludesSubentities:NO];
+    NSError *error = nil;
+    NSUInteger count = [context countForFetchRequest:fetchRequest error:&error];
+    if(error == nil){
+        entityCount = count;
+    }
+    return entityCount;
+}
 
 #pragma mark - Dialy Task
 -(NSArray*)queryDialyTask:(NSUInteger)aweekday

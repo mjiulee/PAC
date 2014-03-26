@@ -15,5 +15,8 @@
 
 // 检查是否有
 -(BOOL)checkIfHadHistoryTask:(XPTaskPriorityLevel)priority;
+// 分页处理
+-(BOOL)hasNextPage:(XPTaskPriorityLevel)priority;
+-(void)getNextPage:(XPTaskPriorityLevel)priority;
 
 @end
