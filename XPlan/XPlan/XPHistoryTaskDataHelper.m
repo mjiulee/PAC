@@ -81,10 +81,8 @@
         if (_totalNormal%10 != 0) {
             page ++;
         }
-        if (_curPageNormal >= page-1)
-        {
-            return NO;
-        }else
+        
+        if (_curPageNormal < page)
         {
             return YES;
         }
@@ -94,10 +92,7 @@
         if (_totalImportant%10 != 0) {
             page ++;
         }
-        if (_curPageImportant >= page-1)
-        {
-            return NO;
-        }else
+        if (_curPageImportant < page)
         {
             return YES;
         }
@@ -107,10 +102,7 @@
         if (_totalFinished%10 != 0) {
             page ++;
         }
-        if (_curPageFinished >= page-1)
-        {
-            return NO;
-        }else
+        if (_curPageFinished < page)
         {
             return YES;
         }

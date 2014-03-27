@@ -39,7 +39,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
         // Custom initialization
         UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_static"];
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
+        btn.frame = CGRectMake(0, 0, 38,38);
         [btn setImage:imgnormal forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(onNavRightBtuAction:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];

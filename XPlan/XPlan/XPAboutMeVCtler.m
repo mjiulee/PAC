@@ -10,7 +10,7 @@
 
 @interface XPAboutMeVCtler ()
 -(void)onNavLeftBtnAction:(id)sender;
-@property(nonatomic,strong) IBOutlet UIImageView* usericon;
+@property(nonatomic,strong) IBOutlet UIWebView* webview;
 @end
 
 @implementation XPAboutMeVCtler
@@ -28,7 +28,6 @@
 {
     [super viewDidLoad];
     self.title = @"关于";
-    self.usericon.image = [UIImage imageNamed:@"myself"];
 }
 
 - (void)didReceiveMemoryWarning

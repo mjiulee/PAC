@@ -11,7 +11,7 @@
 #import "IIViewDeckController.h"
 #import "XPTaskTableViewCell.h"
 #import "XPDialyStaticVCtler.h"
-#import "GADBannerView.h"
+#import "XPAdBannerVer.h"
 
 static int kHeadViewBtnStartIdx = 1000;
 @interface XPTaskListVCtler ()
@@ -20,7 +20,7 @@ static int kHeadViewBtnStartIdx = 1000;
     NSMutableArray* _taskListImportant;
     NSMutableArray* _taskListFinish;
 }
-@property(nonatomic,strong) GADBannerView* adsBannerView;
+@property(nonatomic,strong) XPAdBannerVer* adBannerview;
 // NavButtons
 -(void)onNavRightBtuAction:(id)sender;
 // View Buttons
@@ -52,7 +52,7 @@ static NSString *sCellIdentifier;
 //        self.navigationItem.rightBarButtonItem = rightBtn;
         UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_static"];
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
+        btn.frame = CGRectMake(0, 0, 38,38);
         [btn setImage:imgnormal forState:UIControlStateNormal];
         [btn addTarget:self
                 action:@selector(onNavRightBtuAction:)
@@ -85,22 +85,25 @@ static NSString *sCellIdentifier;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView reloadData];
 
+    {
+        __block typeof(self) wself = self;
+        XPAdBannerVer* bannerv = [[XPAdBannerVer alloc] initWithFrame:CGRectMake(0, 0, kGADAdSizeBanner.size.width, kGADAdSizeBanner.size.height)
+                                                            controler:self];
+        self.adBannerview = bannerv;
+
+        bannerv.closeBlock = ^(){
+            wself.tableView.tableHeaderView = nil;
+        };
+        bannerv.adViewReceive = ^(){
+            wself.tableView.tableHeaderView = wself.adBannerview;
+        };
+    }
+    
     // register the task list change
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onTaskUpdateNotification:) name:kMyMsgTaskUpdateNotification object:nil];
-    
-    //adsBannerView = []
-    GADBannerView * bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-    // Specify the ad unit ID.
-    bannerView.adUnitID = @"a15332320048fb4";
-    bannerView.delegate = (id<GADBannerViewDelegate>)self;
-    // Let the runtime know which UIViewController to restore after taking
-    // the user wherever the ad goes and add it to the view hierarchy.
-    bannerView.rootViewController = self;
-    //self.tableView.tableHeaderView = bannerView;
-    self.adsBannerView = bannerView;
-    // Initiate a generic request to load it with an ad.
-    [self.adsBannerView loadRequest:[GADRequest request]];
+                                             selector:@selector(onTaskUpdateNotification:)
+                                                 name:kMyMsgTaskUpdateNotification
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -338,20 +341,6 @@ static NSString *sCellIdentifier;
 -(void)onTaskUpdateNotification:(NSNotification*)notice{
     [self reLoadData];
     [self.tableView reloadData];
-}
-
-#pragma mark - 
-- (void)adViewDidReceiveAd:(GADBannerView *)bannerView {
-    /*[UIView beginAnimations:@"BannerSlide" context:nil];
-    bannerView.frame = CGRectMake(0.0,self.view.frame.size.height - bannerView.frame.size.height,
-                                  bannerView.frame.size.width,
-                                  bannerView.frame.size.height);
-    [UIView commitAnimations];*/
-    //self.tableView.tableFooterView = self.adsBannerView;
-}
-- (void)adView:(GADBannerView *)bannerView didFailToReceiveAdWithError:(GADRequestError *)error
-{
-    NSLog(@"adView:didFailToReceiveAdWithError:%@", [error localizedDescription]);
 }
 
 @end

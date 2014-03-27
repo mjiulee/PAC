@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180C5FDB18E45F410032F67B /* XPAdBannerVer.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C5FDA18E45F410032F67B /* XPAdBannerVer.m */; };
 		1873677418C60D1A003EC3A0 /* FMMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873677118C60D1A003EC3A0 /* FMMoveTableView.m */; };
 		1873677518C60D1A003EC3A0 /* FMMoveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873677318C60D1A003EC3A0 /* FMMoveTableViewCell.m */; };
 		18A97E4318C1B12200CE3161 /* XPlanModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18A97E4018C1B12200CE3161 /* XPlanModel.xcdatamodeld */; };
@@ -80,6 +81,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180C5FD918E45F410032F67B /* XPAdBannerVer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPAdBannerVer.h; sourceTree = "<group>"; };
+		180C5FDA18E45F410032F67B /* XPAdBannerVer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPAdBannerVer.m; sourceTree = "<group>"; };
 		1873677018C60D1A003EC3A0 /* FMMoveTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMMoveTableView.h; sourceTree = "<group>"; };
 		1873677118C60D1A003EC3A0 /* FMMoveTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMMoveTableView.m; sourceTree = "<group>"; };
 		1873677218C60D1A003EC3A0 /* FMMoveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMMoveTableViewCell.h; sourceTree = "<group>"; };
@@ -337,6 +340,8 @@
 				4361FC0518D837BA00B40D27 /* XPSegmentedView.m */,
 				18E5DDB618DEA99100E97158 /* XPCheckBoxTableCell.h */,
 				18E5DDB718DEA99100E97158 /* XPCheckBoxTableCell.m */,
+				180C5FD918E45F410032F67B /* XPAdBannerVer.h */,
+				180C5FDA18E45F410032F67B /* XPAdBannerVer.m */,
 			);
 			name = "custom-v";
 			sourceTree = "<group>";
@@ -646,6 +651,7 @@
 				18A97E4318C1B12200CE3161 /* XPlanModel.xcdatamodeld in Sources */,
 				4361FC0618D837BA00B40D27 /* XPSegmentedView.m in Sources */,
 				18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */,
+				180C5FDB18E45F410032F67B /* XPAdBannerVer.m in Sources */,
 				4361FC0918D843BB00B40D27 /* XPMathHelper.c in Sources */,
 				1873677418C60D1A003EC3A0 /* FMMoveTableView.m in Sources */,
 				18B8053418D9E0F100282D17 /* XPAboutMeVCtler.m in Sources */,
