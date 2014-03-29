@@ -14,7 +14,6 @@
 		18B8052F18D9DE9900282D17 /* XPWeatherVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8052D18D9DE9900282D17 /* XPWeatherVctler.m */; };
 		18B8053018D9DE9900282D17 /* XPWeatherVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B8052E18D9DE9900282D17 /* XPWeatherVctler.xib */; };
 		18B8053418D9E0F100282D17 /* XPAboutMeVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8053218D9E0F100282D17 /* XPAboutMeVCtler.m */; };
-		18B8053518D9E0F100282D17 /* XPAboutMeVCtler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B8053318D9E0F100282D17 /* XPAboutMeVCtler.xib */; };
 		18BFD18618DDE9B0003F86F3 /* DiaryTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BFD18518DDE9B0003F86F3 /* DiaryTaskModel.m */; };
 		18E5DDB818DEA99100E97158 /* XPCheckBoxTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5DDB718DEA99100E97158 /* XPCheckBoxTableCell.m */; };
 		18E874B418E32A5B0094376E /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B318E32A5B0094376E /* libGoogleAdMobAds.a */; };
@@ -28,6 +27,8 @@
 		18ED380518C308D1002565E8 /* NSString+DrawHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380418C308D1002565E8 /* NSString+DrawHelper.m */; };
 		18ED380818C30FBF002565E8 /* XPTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */; };
 		18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */; };
+		18EE742F18E5B13D00BC1631 /* XPSettingVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE742D18E5B13D00BC1631 /* XPSettingVctler.m */; };
+		18EE743018E5B13D00BC1631 /* XPSettingVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE742E18E5B13D00BC1631 /* XPSettingVctler.xib */; };
 		431F74A118C758C800B03742 /* XPStartupGuiderVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F74A018C758C800B03742 /* XPStartupGuiderVctler.m */; };
 		431F74A418C75C3A00B03742 /* XPDialyStaticVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F74A318C75C3A00B03742 /* XPDialyStaticVCtler.m */; };
 		431F74A718C75C6900B03742 /* XPBaseViewCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F74A618C75C6900B03742 /* XPBaseViewCtler.m */; };
@@ -93,7 +94,6 @@
 		18B8052E18D9DE9900282D17 /* XPWeatherVctler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPWeatherVctler.xib; sourceTree = "<group>"; };
 		18B8053118D9E0F100282D17 /* XPAboutMeVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPAboutMeVCtler.h; sourceTree = "<group>"; };
 		18B8053218D9E0F100282D17 /* XPAboutMeVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPAboutMeVCtler.m; sourceTree = "<group>"; };
-		18B8053318D9E0F100282D17 /* XPAboutMeVCtler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPAboutMeVCtler.xib; sourceTree = "<group>"; };
 		18BFD18418DDE9B0003F86F3 /* DiaryTaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryTaskModel.h; sourceTree = "<group>"; };
 		18BFD18518DDE9B0003F86F3 /* DiaryTaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryTaskModel.m; sourceTree = "<group>"; };
 		18E5DDB618DEA99100E97158 /* XPCheckBoxTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPCheckBoxTableCell.h; sourceTree = "<group>"; };
@@ -121,6 +121,9 @@
 		18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPTaskTableViewCell.m; sourceTree = "<group>"; };
 		18ED380918C324BA002565E8 /* XPTaskListVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPTaskListVCtler.h; sourceTree = "<group>"; };
 		18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPTaskListVCtler.m; sourceTree = "<group>"; };
+		18EE742C18E5B13D00BC1631 /* XPSettingVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPSettingVctler.h; sourceTree = "<group>"; };
+		18EE742D18E5B13D00BC1631 /* XPSettingVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPSettingVctler.m; sourceTree = "<group>"; };
+		18EE742E18E5B13D00BC1631 /* XPSettingVctler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPSettingVctler.xib; sourceTree = "<group>"; };
 		431F749F18C758C800B03742 /* XPStartupGuiderVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPStartupGuiderVctler.h; sourceTree = "<group>"; };
 		431F74A018C758C800B03742 /* XPStartupGuiderVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPStartupGuiderVctler.m; sourceTree = "<group>"; };
 		431F74A218C75C3A00B03742 /* XPDialyStaticVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPDialyStaticVCtler.h; sourceTree = "<group>"; };
@@ -358,7 +361,9 @@
 				18B8052E18D9DE9900282D17 /* XPWeatherVctler.xib */,
 				18B8053118D9E0F100282D17 /* XPAboutMeVCtler.h */,
 				18B8053218D9E0F100282D17 /* XPAboutMeVCtler.m */,
-				18B8053318D9E0F100282D17 /* XPAboutMeVCtler.xib */,
+				18EE742C18E5B13D00BC1631 /* XPSettingVctler.h */,
+				18EE742D18E5B13D00BC1631 /* XPSettingVctler.m */,
+				18EE742E18E5B13D00BC1631 /* XPSettingVctler.xib */,
 			);
 			name = guider;
 			sourceTree = "<group>";
@@ -583,8 +588,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18B8053518D9E0F100282D17 /* XPAboutMeVCtler.xib in Resources */,
 				18B8053018D9DE9900282D17 /* XPWeatherVctler.xib in Resources */,
+				18EE743018E5B13D00BC1631 /* XPSettingVctler.xib in Resources */,
 				437A7CDB18B71BA20088F1AA /* Images.xcassets in Resources */,
 				437A7CCD18B71BA20088F1AA /* InfoPlist.strings in Resources */,
 				437A7D0918B74F210088F1AA /* resource in Resources */,
@@ -675,6 +680,7 @@
 				18BFD18618DDE9B0003F86F3 /* DiaryTaskModel.m in Sources */,
 				4383D9E918BC9646007F7CA0 /* XPUIRadioButton.m in Sources */,
 				437A7CCF18B71BA20088F1AA /* main.m in Sources */,
+				18EE742F18E5B13D00BC1631 /* XPSettingVctler.m in Sources */,
 				437A7D0218B723330088F1AA /* IIWrapController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

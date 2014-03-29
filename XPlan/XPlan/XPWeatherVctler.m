@@ -119,7 +119,7 @@ static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
     NSDictionary* param = [NSDictionary dictionaryWithObjectsAndKeys:self.szcity,@"location",@"json",@"output",kBaiduAppKey,@"ak",nil];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:urlFormat parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        //NSLog(@"JSON: %@", responseObject);
         id error = [responseObject objectForKey:@"error"];
         if ([error integerValue] != 0)
         {

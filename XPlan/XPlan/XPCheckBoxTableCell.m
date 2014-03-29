@@ -20,7 +20,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10,4, 300,42)];
+        UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10,4, 260,42)];
         lab.backgroundColor = kClearColor;
         lab.numberOfLines = 2;
         lab.font = [UIFont systemFontOfSize:15];
@@ -44,9 +44,9 @@
     // Configure the view for the selected state
 }
 
--(void)setDialyTask:(DiaryTaskModel*)task
+-(void)setDialyTaskContent:(NSString*)content
 {
-    self.labContent.text = task.content;
+    self.labContent.text = content;
 }
 
 -(void)setCheck:(BOOL)check{

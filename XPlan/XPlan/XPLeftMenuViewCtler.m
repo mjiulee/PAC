@@ -13,6 +13,7 @@
 #import "XPHistoryListVctler.h"
 #import "XPWeatherVctler.h"
 #import "XPAboutMeVCtler.h"
+#import "XPSettingVctler.h"
 
 @interface XPLeftMenuViewCtler ()
 //@property(nonatomic,strong) UINavigationController* dailyVctler;
@@ -51,6 +52,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 1) {
+        return 3;
+    }
     return 2;
 }
 
@@ -58,7 +62,7 @@
 {
     static NSString *CellIdentifier = @"Cell";
     NSArray  *section1TextArray  = @[@"今日任务",@"历史任务"];
-    NSArray  *section2TextArray  = @[@"天气情况",@"关于"];
+    NSArray  *section2TextArray  = @[@"天气情况",@"提醒时间设定",@"关于"];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell)
@@ -125,16 +129,18 @@
             XPWeatherVctler* projStaticVc = [[XPWeatherVctler alloc] initWithNibName:@"XPWeatherVctler" bundle:nil];
             UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:projStaticVc];
             [self.viewDeckController setCenterController:rootNav];
-            //XPAppDelegate* app = [XPAppDelegate shareInstance];
-            //[app.rootNav pushViewController:projStaticVc animated:YES];
             return;
         }else if([indexPath section] == 1 && [indexPath row] == 1)
         {
-            XPAboutMeVCtler* projStaticVc = [[XPAboutMeVCtler alloc] initWithNibName:@"XPAboutMeVCtler" bundle:nil];
+            XPSettingVctler* settingvc = [[XPSettingVctler alloc] initWithNibName:@"XPSettingVctler" bundle:nil];
+            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:settingvc];
+            [self.viewDeckController setCenterController:rootNav];
+            return;
+        }else if([indexPath section] == 1 && [indexPath row] == 2)
+        {
+            XPAboutMeVCtler* projStaticVc = [[XPAboutMeVCtler alloc] init];
             UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:projStaticVc];
             [self.viewDeckController setCenterController:rootNav];
-            //XPAppDelegate* app = [XPAppDelegate shareInstance];
-            //[app.rootNav pushViewController:projStaticVc animated:YES];
             return;
         }
 

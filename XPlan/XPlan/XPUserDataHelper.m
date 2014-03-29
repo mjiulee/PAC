@@ -42,6 +42,12 @@
         case XPUserDataKey_WeatherCity:
             keyName = @"XPUserDataKey_WeatherCity";
             break;
+        case XPUserDataKey_MorningNotify:
+            keyName = @"XPUserDataKey_MorningNotify";
+            break;
+        case XPUserDataKey_NightNotify:
+            keyName = @"XPUserDataKey_NightNotify";
+            break;
         default:
             NSAssert(NO, @"你所要保存的信息，未在预定义的id中，请先定义再保存，此举为了防止信息乱存放");
             break;
@@ -67,6 +73,12 @@
             break;
         case XPUserDataKey_WeatherCity:
             keyName = @"XPUserDataKey_WeatherCity";
+            break;
+        case XPUserDataKey_MorningNotify:
+            keyName = @"XPUserDataKey_MorningNotify";
+            break;
+        case XPUserDataKey_NightNotify:
+            keyName = @"XPUserDataKey_NightNotify";
             break;
         default:
             NSAssert(NO, @"你所要读取的信息，未在预定义的id中，请先定义再保存，此举为了防止信息乱存放");

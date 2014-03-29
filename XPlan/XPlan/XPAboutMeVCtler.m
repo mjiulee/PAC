@@ -10,7 +10,7 @@
 
 @interface XPAboutMeVCtler ()
 -(void)onNavLeftBtnAction:(id)sender;
-@property(nonatomic,strong) IBOutlet UIWebView* webview;
+@property(nonatomic,strong)UIWebView* webview;
 @end
 
 @implementation XPAboutMeVCtler
@@ -28,6 +28,23 @@
 {
     [super viewDidLoad];
     self.title = @"关于";
+
+    CGFloat yof  = CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    CGRect frame = CGRectMake(0,yof, CGRectGetWidth(self.view.frame),CGRectGetHeight(self.view.frame)-yof);
+    UIWebView* webv = [[UIWebView alloc] initWithFrame:frame];
+    webv.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    webv.scrollView.contentSize = CGSizeMake(webv.frame.size.width,0);
+    [self.view addSubview:webv];
+    self.webview = webv;
+    
+    NSString *basePath = [[NSBundle mainBundle] resourcePath];
+    basePath = [NSString stringWithFormat:@"%@/resource",basePath];
+    NSURL *   baseURL  = [NSURL fileURLWithPath:basePath];
+
+    NSError* error;
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"resource/about" ofType:@"html"];
+    NSString* htmlstr  = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    [self.webview loadHTMLString:htmlstr baseURL:baseURL];
 }
 
 - (void)didReceiveMemoryWarning

@@ -313,9 +313,9 @@ static char kCharCellCheckKey;
         cell = [[XPCheckBoxTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    DiaryTaskModel* task = [self.dialyTaskList objectAtIndex:[indexPath row]];
-    [cell setDialyTask:task];
-    NSString* ifcheck = (NSString*)objc_getAssociatedObject(task ,&kCharCellCheckKey);
+    NSString*taskContent = [self.dialyTaskList objectAtIndex:[indexPath row]];
+    [cell setDialyTaskContent:taskContent];
+    NSString* ifcheck = (NSString*)objc_getAssociatedObject(taskContent ,&kCharCellCheckKey);
     if (ifcheck == nil){
         [cell setCheck:NO];
     }else {
@@ -329,16 +329,16 @@ static char kCharCellCheckKey;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     XPCheckBoxTableCell* cell = (XPCheckBoxTableCell* )[tableView cellForRowAtIndexPath:indexPath];
-    DiaryTaskModel* task = [self.dialyTaskList objectAtIndex:[indexPath row]];
-    NSString* ifcheck = (NSString*)objc_getAssociatedObject(task ,&kCharCellCheckKey);
+    NSString*taskContent = [self.dialyTaskList objectAtIndex:[indexPath row]];
+    NSString* ifcheck = (NSString*)objc_getAssociatedObject(taskContent ,&kCharCellCheckKey);
     if (ifcheck == nil)
     {
         NSString *ifcheck = @"check";
-        objc_setAssociatedObject(task,&kCharCellCheckKey,ifcheck, OBJC_ASSOCIATION_RETAIN);
+        objc_setAssociatedObject(taskContent,&kCharCellCheckKey,ifcheck, OBJC_ASSOCIATION_RETAIN);
         [cell setCheck:YES];
     }else
     {
-        objc_setAssociatedObject(task,&kCharCellCheckKey,nil, OBJC_ASSOCIATION_RETAIN);
+        objc_setAssociatedObject(taskContent,&kCharCellCheckKey,nil, OBJC_ASSOCIATION_RETAIN);
         [cell setCheck:NO];
     }
 }
@@ -346,14 +346,13 @@ static char kCharCellCheckKey;
 #pragma makr - dataHandel
 -(void)getDialyTaskList
 {
-    XPAppDelegate* app = [XPAppDelegate shareInstance];
-    NSDate* today  = [NSDate date];
-    NSArray * tary = [app.coreDataMgr queryDialyTask:[today weekday]];
-    if (tary && [tary count]) {
-        [self.dialyTaskList setArray:tary];
-    }
-    for (DiaryTaskModel* task in self.dialyTaskList) {
-        NSLog(@"task.weakday=%@",task.weekday);
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"resource/systemtask"
+                                                   ofType:@"plist"];
+    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithContentsOfFile:path];
+    NSDate* today = [NSDate date];
+    NSArray* todayTask = [dict objectForKey:[NSString stringWithFormat:@"%d",today.weekday]];
+    if (todayTask && [todayTask count]) {
+        [self.dialyTaskList setArray:todayTask];
     }
 }
 
@@ -361,13 +360,13 @@ static char kCharCellCheckKey;
 -(void)onEnterTaskList:(id)sender{
     XPAppDelegate* app = [XPAppDelegate shareInstance];
     
-    for (DiaryTaskModel* task in self.dialyTaskList)
+    for (NSString* task in self.dialyTaskList)
     {
         NSString* ifcheck = (NSString*)objc_getAssociatedObject(task ,&kCharCellCheckKey);
         if (ifcheck != nil)
         {
             XPTaskPriorityLevel priority = XPTask_PriorityLevel_normal;
-            [app.coreDataMgr insertTask:task.content
+            [app.coreDataMgr insertTask:task
                                    date:[NSDate date]
                                    type:XPTask_Type_User
                                 prLevel:priority

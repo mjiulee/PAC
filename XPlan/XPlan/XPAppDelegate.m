@@ -14,7 +14,6 @@
 #import "XPAlarmClockHelper.h"
 
 @interface XPAppDelegate()
-@property(nonatomic,strong) XPAlarmClockHelper* alarmHelper;
 @end
 
 @implementation XPAppDelegate
@@ -41,6 +40,10 @@
     [self.guiderVctler.view removeFromSuperview];
     self.window.rootViewController = self.rootNav;
     [[_window layer] addAnimation:animation forKey:@"animation"];
+    
+    // 在这里设置已经打开过
+    NSDate * today      = [NSDate date];
+    [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_LastOpenDate value:today];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -50,14 +53,7 @@
     _coreDataMgr= [[XPDataManager alloc] init];
     
     // alarmhelper setup
-    XPAlarmClockHelper* alarmHelper = [[XPAlarmClockHelper alloc] init];
-    self.alarmHelper = alarmHelper;
-    // 先取消
-    [self.alarmHelper cancelLocalNotification];
-    // 设置每天都要进行一次提醒：在早上9：00进行提醒
-    [self.alarmHelper setupMorningAlarm];
-    // 设置每天都要进行一次提醒：在晚上19：00进行提醒
-    [self.alarmHelper setupEveningAlarm];
+    [[XPAlarmClockHelper shareInstance] setupNotification];
 
     // show the start up guider
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -78,8 +74,6 @@
         _guiderVctler   = [self generateStartupGuider];
         self.window.rootViewController = _guiderVctler;
         [self.window makeKeyAndVisible];
-        // 在这里设置已经打开过
-        [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_LastOpenDate value:today];
     }
     return YES;
 }
@@ -105,7 +99,7 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     // 常驻内存打开的情况
-    NSDate * today      = [NSDate date];
+    /*NSDate * today      = [NSDate date];
     NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
     if([today isTheSameDay:lastOpenDate] == YES)
     {
@@ -126,7 +120,29 @@
         [self.window makeKeyAndVisible];
         // 在这里设置已经打开过
         [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_LastOpenDate value:today];
+    }*/
+    
+    NSDate * today      = [NSDate date];
+    NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
+    if([today isTheSameDay:lastOpenDate] == YES)
+    {
+        // 今日有打开过
+        if (self.window.rootViewController != self.rootNav) {
+            _deckController = [self generateControllerStack];
+            UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:self.deckController];
+            self.rootNav = nav;
+            self.rootNav.navigationBarHidden = YES;
+            self.window.rootViewController = self.rootNav;
+            [self.window makeKeyAndVisible];
+        }
+    }else
+    {
+        // 今日没打开过
+        _guiderVctler   = [self generateStartupGuider];
+        self.window.rootViewController = _guiderVctler;
+        [self.window makeKeyAndVisible];
     }
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

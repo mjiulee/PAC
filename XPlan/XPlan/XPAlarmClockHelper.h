@@ -12,10 +12,6 @@
 @interface XPAlarmClockHelper : NSObject
 @property(nonatomic)SystemSoundID soundFileObject;
 
-// 设置闹钟:早晨
--(void)setupMorningAlarm;
-// 设置闹钟：夜晚
--(void)setupEveningAlarm;
-// 取消本地消息
--(void)cancelLocalNotification;
++(instancetype)shareInstance;
+-(void)setupNotification;
 @end

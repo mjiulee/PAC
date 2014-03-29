@@ -8,11 +8,42 @@
 
 #import "XPAlarmClockHelper.h"
 #import "NSDate+Category.h"
+#import "XPUserDataHelper.h"
 
 static NSString* const kSTRmorningAlarm = @"xp-morning-call";
 static NSString* const kSTREveningAlarm = @"xp-evening-call";
 
+@interface XPAlarmClockHelper()
+// 设置闹钟:早晨
+-(void)setupMorningAlarm;
+// 设置闹钟：夜晚
+-(void)setupEveningAlarm;
+// 取消本地消息
+-(void)cancelLocalNotification;
+@end;
+
 @implementation XPAlarmClockHelper
+
++(instancetype)shareInstance
+{
+    static XPAlarmClockHelper * instance;
+    static dispatch_once_t  dpn_task;
+    dispatch_once(&dpn_task,^(){
+        instance = [[XPAlarmClockHelper alloc] init];
+    });
+    return instance;
+}
+
+-(void)setupNotification
+{
+    // 先取消
+    [self cancelLocalNotification];
+    // 设置每天都要进行一次提醒：在早上9：00进行提醒
+    [self setupMorningAlarm];
+    // 设置每天都要进行一次提醒：在晚上19：00进行提醒
+    [self setupEveningAlarm];
+}
+
 -(void)PlayAlarm{
     CFBundleRef mainBundle;
 	mainBundle = CFBundleGetMainBundle ();
@@ -28,16 +59,32 @@ static NSString* const kSTREveningAlarm = @"xp-evening-call";
 
 -(void)setupMorningAlarm
 {
+    NSUInteger hour=9,minute = 0;
+    NSDictionary* dict = [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_MorningNotify];
+    if (dict) {
+        NSNumber* hourNumber   = [dict objectForKey:@"hour"];
+        NSNumber* miniteNumber = [dict objectForKey:@"minute"];
+        hour   = [hourNumber unsignedIntegerValue];
+        minute = [miniteNumber unsignedIntegerValue];
+    }
     NSDate* today = [NSDate date];
-    NSDate* morningcall = [today dateWithHour:9 mintus:0];
-    [self setAlarm:morningcall message:@"一日之计在于晨,今天你有啥计划吗？" name:kSTRmorningAlarm];
+    NSDate* morningcall = [today dateWithHour:hour mintus:minute];
+    [self setAlarm:morningcall message:@"一日之计在于晨,今天你有想做的事情吗？快来计划一下吧~" name:kSTRmorningAlarm];
 }
 
 -(void)setupEveningAlarm
 {
+    NSUInteger hour=19,minute = 0;
+    NSDictionary* dict = [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_NightNotify];
+    if (dict) {
+        NSNumber* hourNumber   = [dict objectForKey:@"hour"];
+        NSNumber* miniteNumber = [dict objectForKey:@"minute"];
+        hour   = [hourNumber unsignedIntegerValue];
+        minute = [miniteNumber unsignedIntegerValue];
+    }
     NSDate* today = [NSDate date];
-    NSDate* morningcall = [today dateWithHour:19 mintus:0];
-    [self setAlarm:morningcall message:@"时光如梭，一天已经过去,今天你的计划都完成了吗？" name:kSTREveningAlarm];
+    NSDate* morningcall = [today dateWithHour:hour mintus:minute];
+    [self setAlarm:morningcall message:@"时光如梭，一天已经过去,今天你的计划都完成了吗？快来总结吧~" name:kSTREveningAlarm];
 }
 
 -(void)setAlarm:(NSDate*)date message:(NSString*)msg name:(NSString*)name

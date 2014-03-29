@@ -120,31 +120,37 @@
 
 - (void)testDialyInsert
 {
-    NSString* array[]={
-        @"睡到自然醒",
-        @"运动",
-        @"每天看几页书",
-        @"殴打上司",
-        @"马路上捡到捡钱",
-        @"早睡早起",
-        @"看一场电影",
-        @"聚集一帮朋友一起玩三国杀",
-        @"去旅游",
-        @"睡到自然醒",
-        @"运动",
-        @"每天看几页书",
-        @"殴打上司",
-        @"马路上捡到捡钱",
-        @"早睡早起",
-        @"看一场电影",
-        @"聚集一帮朋友一起玩三国杀",
-        @"去旅游"
-    };
     NSDate* today = [NSDate date];
-    for (int i = 0 ; i < 18; i ++) {
-        NSDate* date = [today dateByAddingDays:i];
-        [self.coreDataManger insertDialyTask:array[i] weekday:[date weekday]];
+    for (int i= 0; i < 7; i ++) {
+        NSDate*tempDay = [today dateByAddingDays:i];
+        NSLog(@"today.weekday=%ld",[tempDay weekday]);
     }
+
+//    NSString* array[]={
+//        @"睡到自然醒",
+//        @"运动",
+//        @"每天看几页书",
+//        @"殴打上司",
+//        @"马路上捡到捡钱",
+//        @"早睡早起",
+//        @"看一场电影",
+//        @"聚集一帮朋友一起玩三国杀",
+//        @"去旅游",
+//        @"睡到自然醒",
+//        @"运动",
+//        @"每天看几页书",
+//        @"殴打上司",
+//        @"马路上捡到捡钱",
+//        @"早睡早起",
+//        @"看一场电影",
+//        @"聚集一帮朋友一起玩三国杀",
+//        @"去旅游"
+//    };
+//    NSDate* today = [NSDate date];
+//    for (int i = 0 ; i < 18; i ++) {
+//        NSDate* date = [today dateByAddingDays:i];
+//        [self.coreDataManger insertDialyTask:array[i] weekday:[date weekday]];
+//    }
 }
 
 - (void)testExample

@@ -1,0 +1,54 @@
+* {
+  margin: 0px;
+  padding:0px;
+  font-family: helvetica, sans-serif;
+  font-size: 12pt;
+  line-height: 18pt;
+  letter-spacing: -0.05px;
+  word-wrap: break-word;
+  -webkit-touch-callout:none;
+}
+
+body 
+{
+  margin: 8px;
+  padding:0px;
+  background: white;
+}
+
+a 
+{
+  padding:5px;
+  font-weight: bold;
+  color: #236ed8;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(200,220,255,0.5);
+}
+
+p
+{
+	text-indent: 1.5em; /*em是相对单位，2em即现在一个字大小的两倍*/
+}
+
+img
+{
+  max-width:290px;
+}
+
+
+.footer {
+  height: 40px;
+  text-align: left;
+  color: #aaa;
+  font-size: 11pt;
+  margin-top: 8px;
+  line-height: 12pt;
+  -webkit-user-select: none;
+}
+
+.footer a {
+  font-weight: bold;
+  font-size: 11pt;
+  color: #789;
+  line-height: 12pt;
+}
