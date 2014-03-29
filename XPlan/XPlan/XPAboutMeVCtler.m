@@ -29,7 +29,7 @@
     [super viewDidLoad];
     self.title = @"关于";
 
-    CGFloat yof  = CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    CGFloat yof  = 0;//CGRectGetMaxY(self.navigationController.navigationBar.frame);
     CGRect frame = CGRectMake(0,yof, CGRectGetWidth(self.view.frame),CGRectGetHeight(self.view.frame)-yof);
     UIWebView* webv = [[UIWebView alloc] initWithFrame:frame];
     webv.autoresizingMask = UIViewAutoresizingFlexibleHeight;

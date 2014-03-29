@@ -42,7 +42,7 @@
         NSDate* tomorrow = [dateWithHoure dateByAddingDays:1];
         NSLog(@"tomorrow = %@",[tomorrow formattedStringWithFormat:@"yyyy-MM-dd hh:mm"]);
     }
-    XCTAssertNotEqual(YES, YES, @"NSDate Helper is Pass");
+    //XCTAssertNotEqual(YES, YES, @"NSDate Helper is Pass");
 }
 
 -(void)testForInsert

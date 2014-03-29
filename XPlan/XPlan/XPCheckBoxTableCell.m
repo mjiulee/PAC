@@ -33,6 +33,10 @@
         checkv.hidden = YES;
         [self addSubview:checkv];
         self.checkImageview = checkv;
+        
+        UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(10,49.5,280,0.5)];
+        divLine.backgroundColor = XPRGBColor(220, 220, 220, 1.0);
+        [self addSubview:divLine];
     }
     return self;
 }

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FMMoveTableViewCell.h"
 
 #define kTaskCellMaxWidth 300
 #define kTaskCellFontSize 15.0

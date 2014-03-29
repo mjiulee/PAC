@@ -181,6 +181,7 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     // Save to core data
     // [self.navigationController popViewControllerAnimated:YES];
     if (!_tfview.text || [_tfview.text length] <= 0) {
+        [OMGToast showWithText:@"请输入任务内容" topOffset:146];
         return;
     }
     self.ifChange = YES;
@@ -198,6 +199,7 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
 {
     //[_tfview setText:@""];
     if (!_tfview.text || [_tfview.text length] <= 0) {
+        [OMGToast showWithText:@"请输入任务内容" topOffset:146];
         return;
     }
     self.ifChange = YES;
@@ -221,5 +223,6 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
                         project:nil];
     [_tfview setText:@""];
     [[NSNotificationCenter defaultCenter] postNotificationName:kMyMsgTaskUpdateNotification object:nil];
+    [OMGToast showWithText:@"任务添加成功" topOffset:146];
 }
 @end

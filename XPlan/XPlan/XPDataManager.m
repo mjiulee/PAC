@@ -297,45 +297,4 @@
     }
     return entityCount;
 }
-
-#pragma mark - Dialy Task
--(NSArray*)queryDialyTask:(NSUInteger)aweekday
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    // 查询条件
-    NSNumber* weekday = [NSNumber numberWithUnsignedLong:aweekday];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"weekday=%@",weekday];
-    
-    //首先你需要建立一个request
-    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"DiaryTaskModel"
-                                   inManagedObjectContext:context]];
-    [request setPredicate:predicate];
-
-    NSError *error = nil;
-    NSArray *result = [context executeFetchRequest:request error:&error];
-    return result;
-}
-
--(void)insertDialyTask:(NSString*)content weekday:(NSUInteger)weekday
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    DiaryTaskModel* newTask  = [NSEntityDescription insertNewObjectForEntityForName:@"DiaryTaskModel"
-                                                        inManagedObjectContext:context];
-    do
-    {
-        if (!newTask){
-            break;
-        }
-        newTask.content    = content;
-        newTask.weekday    = [NSNumber numberWithInteger:weekday];
-        
-        NSError *error;
-        if(![context save:&error]){
-            NSLog(@"Task Add fail：%@",[error localizedDescription]);
-            break;
-        }
-    } while (NO);
-}
-
 @end

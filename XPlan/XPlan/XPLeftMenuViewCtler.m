@@ -62,7 +62,7 @@
 {
     static NSString *CellIdentifier = @"Cell";
     NSArray  *section1TextArray  = @[@"今日任务",@"历史任务"];
-    NSArray  *section2TextArray  = @[@"天气情况",@"提醒时间设定",@"关于"];
+    NSArray  *section2TextArray  = @[@"天气情况",@"提醒设定",@"关于"];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell)

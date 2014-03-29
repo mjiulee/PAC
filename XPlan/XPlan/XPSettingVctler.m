@@ -118,6 +118,7 @@
         
         NSString * tipstr = [NSString stringWithFormat:@"应用将在%ld点%ld分提醒你做每日计划",hour,minute];
         [self setText2TextField:tipstr];
+        [OMGToast showWithText:@"早上提醒时间设定成功，\r我们将会在指定时间提醒你。" duration:3];
     }else
     {
         hour += 12;
@@ -129,6 +130,7 @@
 
         NSString * tipstr = [NSString stringWithFormat:@"应用将在%ld点%ld分提醒你做每日总结",hour,minute];
         [self setText2TextField:tipstr];
+        [OMGToast showWithText:@"下午提醒时间设定成功，\r我们将会在指定时间提醒你。" duration:3];
     }
 }
 

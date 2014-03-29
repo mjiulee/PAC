@@ -128,45 +128,62 @@ static char kCharCellCheckKey;
     UIView* weatherview = [[UIView alloc] initWithFrame:self.view.bounds];
     weatherview.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     
-    UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)-180)];
-    lab.numberOfLines = 0;
-    lab.layer.masksToBounds = YES;
-    lab.layer.borderColor= XPRGBColor(157, 157, 157, 1.0).CGColor;
-    lab.layer.borderWidth=0.5;
-    lab.layer.cornerRadius = 8;
-    lab.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    lab.text = @"开发中\r\n这里今日事宜做啥";
-    lab.textAlignment = NSTextAlignmentCenter;
-    [weatherview addSubview:lab];
+    UIView* framev = [[UIView alloc] initWithFrame:CGRectMake(10, 170, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)-180)];
+    framev.layer.masksToBounds = YES;
+    framev.layer.borderColor  = XPRGBColor(157, 157, 157, 1.0).CGColor;
+    framev.layer.borderWidth  =0.5;
+    framev.layer.cornerRadius = 8;
+    framev.autoresizingMask   = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    
+    {
+        UILabel* labtitle = [[UILabel alloc] initWithFrame:CGRectMake(0,0,CGRectGetWidth(self.view.frame),30)];
+        labtitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        labtitle.text = @"警世名言-每天念一遍";
+        labtitle.textColor = XPRGBColor(35, 135, 255, 1.0);
+        labtitle.font = [UIFont systemFontOfSize:16];
+        labtitle.textAlignment = NSTextAlignmentCenter;
+        labtitle.backgroundColor = XPRGBColor(220,220,220,0.78);
+        [framev addSubview:labtitle];
+
+        UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(80,60,CGRectGetWidth(framev.frame)-90,138)];
+        //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        lab.numberOfLines = 0;
+        lab.text      = @"一年之计在于春，\r一生之计在于勤，\r一日之计在于寅。\r春若不耕，秋无所望；\r寅若不起，日无所办；\r少若不勤，老无所归。";
+        lab.textColor = XPRGBColor(27, 57, 57, 1.0);
+        lab.font = [UIFont systemFontOfSize:18];
+        lab.textAlignment = NSTextAlignmentLeft;
+        [framev addSubview:lab];
+        
+        UILabel* lab2 = [[UILabel alloc] initWithFrame:CGRectMake(40,CGRectGetMaxY(lab.frame)+10,CGRectGetWidth(framev.frame)-90,50)];
+        //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        lab2.text      = @"--《白兔记.牧牛》";
+        lab2.textColor = XPRGBColor(35, 135, 255, 1.0);
+        lab2.font = [UIFont systemFontOfSize:15];
+        lab2.textAlignment = NSTextAlignmentRight;
+        [framev addSubview:lab2];
+    }
+    
+    [weatherview addSubview:framev];
     return  weatherview;
 }
 -(UIView*)initialCalanderPage{
     UIView* calanderView = [[UIView alloc] initWithFrame:self.view.bounds];
     calanderView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     
-    UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)-180)];
-    lab.numberOfLines = 0;
-    lab.layer.borderColor= XPRGBColor(157, 157, 157, 1.0).CGColor;
-    lab.layer.borderWidth=0.5;
-    lab.layer.cornerRadius = 8;
-    lab.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    lab.text = @"开发中\r\n这里显示星座、日历，以及一些提示语";
-    lab.textAlignment = NSTextAlignmentCenter;
-    [calanderView addSubview:lab];
+    CGFloat yof = 170+((CGRectGetHeight(self.view.frame)-180)-(CGRectGetWidth(self.view.frame)-20))/2;
+    UIView* cycleView = [[UIView alloc] initWithFrame:CGRectMake(10, yof, CGRectGetWidth(self.view.frame)-20,CGRectGetWidth(self.view.frame)-20)];
+    cycleView.layer.borderColor= XPRGBColor(157, 157, 157, 1.0).CGColor;
+    cycleView.layer.borderWidth=0.5;
+    cycleView.layer.cornerRadius = CGRectGetWidth(cycleView.frame)/2;
+    cycleView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    [calanderView addSubview:cycleView];
     return  calanderView;
 }
 -(UIView*)initialAutoTaskPage{
     UIView* autoTaskView = [[UIView alloc] initWithFrame:self.view.bounds];
     autoTaskView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     
-    UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 175, CGRectGetWidth(self.view.frame)-20, 15)];
-    lab.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    lab.text = @"选择几个日常任务任务吧";
-    lab.font = [UIFont systemFontOfSize:15];
-    lab.textAlignment = NSTextAlignmentLeft;
-    [autoTaskView addSubview:lab];
- 
-    UITableView* tableview = [[UITableView alloc] initWithFrame:CGRectMake(10, 200, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)-244)
+    UITableView* tableview = [[UITableView alloc] initWithFrame:CGRectMake(10, 170, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)-215)
                                                           style:UITableViewStylePlain];
     tableview.layer.borderColor = XPRGBColor(157, 157, 157, 1.0).CGColor;
     tableview.layer.borderWidth = 0.5;
@@ -176,13 +193,18 @@ static char kCharCellCheckKey;
     tableview.dataSource = self;
     tableview.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     tableview.separatorInset   = UIEdgeInsetsZero;
+    tableview.separatorStyle   = UITableViewCellSeparatorStyleNone;
     [autoTaskView addSubview:tableview];
     
     // next
     UIButton* btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    btn.frame = CGRectMake(CGRectGetWidth(autoTaskView.frame) -60-20,
-                           CGRectGetHeight(autoTaskView.frame)-44-5,60,44);
+    btn.frame = CGRectMake(CGRectGetWidth(autoTaskView.frame) -80-20,
+                           CGRectGetHeight(autoTaskView.frame)-30-5,80,30);
+    btn.layer.borderColor = XPRGBColor(25, 133, 255, 1.0).CGColor;
+    btn.layer.borderWidth = 0.5;
+    btn.layer.cornerRadius= 4;
     btn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
+    btn.titleLabel.font = [UIFont systemFontOfSize:15];
     [btn setTitle:@"进入应用" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(onEnterTaskList:) forControlEvents:UIControlEventTouchUpInside];
     [autoTaskView addSubview:btn];
@@ -219,22 +241,20 @@ static char kCharCellCheckKey;
         CGFloat    yoffset= 10;
         {
             UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20,yoffset,pagewidth-40,20)];
-            //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
             lab.text = @"广州";
             lab.tag  = atag++;
             lab.font = [UIFont systemFontOfSize:15];
             lab.textColor = XPRGBColor(27, 57, 57, 1.0);
             lab.textAlignment = NSTextAlignmentLeft;
             [pageview addSubview:lab];
-            yoffset += CGRectGetHeight(lab.frame);
+            yoffset += CGRectGetHeight(lab.frame)+5;
         }
         // 日期:
         {
             UILabel* labDate = [[UILabel alloc] initWithFrame:CGRectMake(20,yoffset,pagewidth-40,36)];
-            //labDate.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
             labDate.tag  = atag++;
             labDate.numberOfLines = 2;
-            labDate.text = [[NSDate date] localeFormattedDateString];
+            labDate.text = [[[NSDate date] dateByAddingDays:pageIndex] localeFormattedDateString];
             labDate.font = [UIFont systemFontOfSize:15];
             labDate.textColor = XPRGBColor(27, 57, 57, 1.0);
             labDate.textAlignment = NSTextAlignmentLeft;
@@ -244,16 +264,16 @@ static char kCharCellCheckKey;
         }
         // 天气情况:
         {
+            yoffset  = 80;
             UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20,yoffset,pagewidth-40,30)];
-            //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
             lab.tag  = atag++;
             lab.text = @"晴";
-            lab.font = [UIFont systemFontOfSize:16];
+            lab.font = [UIFont systemFontOfSize:15];
             lab.textColor = XPRGBColor(27, 57, 57, 1.0);
             lab.textAlignment = NSTextAlignmentLeft;
             [pageview addSubview:lab];
             [lab sizeToFit];
-            yoffset += CGRectGetHeight(lab.frame);
+            yoffset += CGRectGetHeight(lab.frame)+5;
             
             UIImageView* weatherimg = [[UIImageView alloc] init];
             weatherimg.frame = CGRectMake(CGRectGetMaxX(lab.frame)+2,
@@ -264,11 +284,10 @@ static char kCharCellCheckKey;
         // 摄氏度：
         {
             UILabel* lab = [[UILabel alloc] initWithFrame:CGRectMake(20,yoffset,pagewidth-40,26)];
-            //lab.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin;
             lab.tag  = atag++;
             lab.text = @"23'C";
-            lab.font = [UIFont fontWithName:@"Snell Roundhand" size:26];
-            lab.textColor = XPRGBColor(27, 57, 57, 1.0);
+            lab.font = [UIFont systemFontOfSize:22];
+            lab.textColor = XPRGBColor(35, 135,255, 1.0);
             lab.textAlignment = NSTextAlignmentLeft;
             [pageview addSubview:lab];
         }
@@ -287,8 +306,8 @@ static char kCharCellCheckKey;
         UILabel* temp   = (UILabel*)[tweatherv viewWithTag:kWeatherElementStartIdx+4];
 
         NSDictionary* weatherDict = [weatherArray objectAtIndex:i];
-        [date setText:[weatherDict objectForKey:@"date"]];
-        [date sizeToFit];
+        [date    setText:[weatherDict objectForKey:@"date"]];
+        [date    sizeToFit];
         [weather setText:[weatherDict objectForKey:@"weather"]];
         [weather sizeToFit];
         weatherimg.frame = CGRectMake(CGRectGetMaxX(weather.frame)+2,weatherimg.frame.origin.y,21,15);
@@ -342,6 +361,29 @@ static char kCharCellCheckKey;
         [cell setCheck:NO];
     }
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView* headview = [[UIView alloc] initWithFrame:CGRectZero];
+    headview.autoresizingMask= UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    headview.backgroundColor = XPRGBColor(220,220,220, 0.78);
+    
+    UILabel* sectionTItle = [UILabel new];
+    sectionTItle.frame    = CGRectMake(0, 0, 0, 0);
+    sectionTItle.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    sectionTItle.backgroundColor = kClearColor;
+    sectionTItle.font       = [UIFont systemFontOfSize:15];
+    sectionTItle.textColor  = XPRGBColor(25, 133, 255, 1.0);
+    sectionTItle.text = @"新的一天，来完成几个日常事项吧";
+    sectionTItle.textAlignment = NSTextAlignmentCenter;
+    [headview addSubview:sectionTItle];
+    return headview;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 30;
+}
+
 
 #pragma makr - dataHandel
 -(void)getDialyTaskList
