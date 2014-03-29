@@ -14,6 +14,7 @@
 #import "XPCheckBoxTableCell.h"
 #import <objc/runtime.h>
 #import "XPUserDataHelper.h"
+#import "PNChart.h"
 
 // static Strings
 static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
@@ -136,7 +137,7 @@ static char kCharCellCheckKey;
     framev.autoresizingMask   = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     
     {
-        UILabel* labtitle = [[UILabel alloc] initWithFrame:CGRectMake(0,0,CGRectGetWidth(self.view.frame),30)];
+        UILabel* labtitle = [[UILabel alloc] initWithFrame:CGRectMake(0,0,CGRectGetWidth(framev.frame),30)];
         labtitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         labtitle.text = @"警世名言-每天念一遍";
         labtitle.textColor = XPRGBColor(35, 135, 255, 1.0);
@@ -173,9 +174,95 @@ static char kCharCellCheckKey;
     CGFloat yof = 170+((CGRectGetHeight(self.view.frame)-180)-(CGRectGetWidth(self.view.frame)-20))/2;
     UIView* cycleView = [[UIView alloc] initWithFrame:CGRectMake(10, yof, CGRectGetWidth(self.view.frame)-20,CGRectGetWidth(self.view.frame)-20)];
     cycleView.layer.borderColor= XPRGBColor(157, 157, 157, 1.0).CGColor;
-    cycleView.layer.borderWidth=0.5;
-    cycleView.layer.cornerRadius = CGRectGetWidth(cycleView.frame)/2;
-    cycleView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    cycleView.layer.borderWidth =0.5;
+    cycleView.layer.cornerRadius= 8;
+    cycleView.clipsToBounds     = YES;
+    cycleView.autoresizingMask  = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    
+    /// data prepare
+    NSDate* yestoday = [[NSDate date] dateBySubtractingDays:1];
+    XPAppDelegate* app = [XPAppDelegate shareInstance];
+    NSUInteger normal_ongoing=0,normal_done=0;
+    NSUInteger important_ongoing=0,important_done=0;
+    {
+        // 普通
+        NSArray* arr = nil;
+        arr = [app.coreDataMgr queryTaskByDay:yestoday
+                                      prLevel:XPTask_PriorityLevel_normal
+                                       status:XPTask_Status_ongoing];
+        if (arr && [arr count]) {
+            normal_ongoing = [arr count];
+        }
+        arr = [app.coreDataMgr queryTaskByDay:yestoday
+                                      prLevel:XPTask_PriorityLevel_normal
+                                       status:XPTask_Status_Done];
+        if (arr && [arr count]) {
+            normal_done = [arr count];
+        }
+        // 总要
+        arr = [app.coreDataMgr queryTaskByDay:yestoday
+                                      prLevel:XPTask_PriorityLevel_important
+                                       status:XPTask_Status_ongoing];
+        if (arr && [arr count]) {
+            important_ongoing = [arr count];
+        }
+        arr = [app.coreDataMgr queryTaskByDay:yestoday
+                                      prLevel:XPTask_PriorityLevel_important
+                                       status:XPTask_Status_Done];
+        if (arr && [arr count]) {
+            important_done = [arr count];
+        }
+    }
+    NSUInteger total   = (normal_done+normal_ongoing+important_done+important_ongoing);
+    NSUInteger done    = normal_done+important_done;
+    NSUInteger notdone = normal_ongoing+important_ongoing;
+    {
+        UILabel* labtitle = [[UILabel alloc] initWithFrame:CGRectMake(0,0,CGRectGetWidth(cycleView.frame),30)];
+        labtitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        labtitle.text = @"昨天任务完成情况";
+        labtitle.textColor = XPRGBColor(35, 135, 255, 1.0);
+        labtitle.font = [UIFont systemFontOfSize:16];
+        labtitle.textAlignment = NSTextAlignmentCenter;
+        labtitle.backgroundColor = XPRGBColor(220,220,220,0.78);
+        [cycleView addSubview:labtitle];
+        
+        CGFloat fpercent = 0.0;
+        if (total > 0) {
+            fpercent = (normal_done+important_done)/total;
+        }
+        PNCircleChart * circleChart
+        = [[PNCircleChart alloc] initWithFrame:CGRectMake(0,30,CGRectGetWidth(cycleView.frame),130)
+                                      andTotal:[NSNumber numberWithInt:1]
+                                    andCurrent:[NSNumber numberWithFloat:fpercent]];
+        circleChart.backgroundColor = [UIColor clearColor];
+        [circleChart setStrokeColor:PNGreen];
+        [circleChart strokeChart];
+        [cycleView addSubview:circleChart];
+    }
+    
+    {
+        CGFloat yof = cycleView.frame.size.height - 80;
+        for(int i = 0;i < 3;i++)
+        {
+            UILabel* labtitle = [[UILabel alloc] initWithFrame:CGRectMake(40,yof,CGRectGetWidth(cycleView.frame)-80,20)];
+            labtitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            //labtitle.text = @"昨天任务完成情况";
+            if (i == 0) {
+                labtitle.text = [NSString stringWithFormat:@"普通：%u条，已完成：%u条，未完成：%u",normal_done+normal_ongoing,normal_done,normal_ongoing];
+            }else if(i==1){
+                labtitle.text = [NSString stringWithFormat:@"重要：%u条，已完成：%u条，未完成：%u",important_ongoing+important_done,important_done,important_ongoing];
+            }else{
+                labtitle.text = [NSString stringWithFormat:@"全部：%u条，已完成：%u条，未完成：%u",total,done,notdone];
+            }
+            labtitle.textColor = XPRGBColor(157,157,157, 1.0);
+            labtitle.font = [UIFont systemFontOfSize:13];
+            labtitle.textAlignment   = NSTextAlignmentLeft;
+            labtitle.backgroundColor = kClearColor;
+            [cycleView addSubview:labtitle];
+            yof +=25;
+        }
+    }
+    
     [calanderView addSubview:cycleView];
     return  calanderView;
 }
