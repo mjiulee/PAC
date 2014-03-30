@@ -207,16 +207,6 @@ static NSString *sCellIdentifier;
     UIView* headview = [[UIView alloc] initWithFrame:CGRectZero];
     headview.autoresizingMask= UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     headview.backgroundColor = XPRGBColor(248, 248, 248, 0.88);
-    /*
-    NSUInteger count= [tableView numberOfRowsInSection:section];
-    if (count > 0) {
-        headview.layer.shadowColor   = [XPRGBColor(157, 157, 157, 0.8) CGColor];
-        headview.layer.shadowOffset  = CGSizeMake(0,1);
-        headview.layer.shadowOpacity = 1.0;
-    }else{
-        headview.layer.borderWidth = 0.5;
-        headview.layer.borderColor = [XPRGBColor(157, 157, 157, 0.8) CGColor];
-    }*/
     
     UILabel* sectionTItle = [UILabel new];
     sectionTItle.frame    = CGRectMake(18, 0, 0, 0);
@@ -307,19 +297,19 @@ static NSString *sCellIdentifier;
 
 #pragma mark - Navigation
 -(void)onNavRightBtuAction:(id)sender{
-    NSUInteger total = [_taskListFinish count] + [_taskListImportant count] + [_taskListNormal count];
-    NSUInteger fnish = [_taskListFinish count];
-    NSUInteger normal= [_taskListNormal count];
-    NSUInteger important = [_taskListImportant count];
-    
-    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:[NSNumber numberWithInteger:total]     forKey:@"total"];
-    [dict setObject:[NSNumber numberWithInteger:fnish]     forKey:@"finished"];
-    [dict setObject:[NSNumber numberWithInteger:normal]    forKey:@"normal"];
-    [dict setObject:[NSNumber numberWithInteger:important] forKey:@"important"];
+//    NSUInteger total     = [_taskListFinish count] + [_taskListImportant count] + [_taskListNormal count];
+//    NSUInteger fnish     = [_taskListFinish count];
+//    NSUInteger normal    = [_taskListNormal count];
+//    NSUInteger important = [_taskListImportant count];
+//    
+//    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+//    [dict setObject:[NSNumber numberWithInteger:total]     forKey:@"total"];
+//    [dict setObject:[NSNumber numberWithInteger:fnish]     forKey:@"finished"];
+//    [dict setObject:[NSNumber numberWithInteger:normal]    forKey:@"normal"];
+//    [dict setObject:[NSNumber numberWithInteger:important] forKey:@"important"];
     
     XPDialyStaticVCtler* diarystv = [[XPDialyStaticVCtler alloc] init];
-    diarystv.taskDatas = dict;
+    diarystv.date2Statistic = [NSDate date];
     [self.navigationController  pushViewController:diarystv animated:YES];
 }
 

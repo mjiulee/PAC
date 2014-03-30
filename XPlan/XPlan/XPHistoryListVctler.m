@@ -59,10 +59,10 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     
     CGFloat width   = CGRectGetWidth(self.view.frame);
     CGFloat heidht  = CGRectGetHeight(self.view.frame);
-    CGFloat yoffset = CGRectGetMaxY(self.navigationController.navigationBar.frame)+8;
+    CGFloat yoffset = 10;//CGRectGetMaxY(self.navigationController.navigationBar.frame)+8;
     
     __weak typeof(self) _weakself = self;
-    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(2,yoffset,width-4,36)
+    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(2,yoffset,width-4,30)
                                                                items:@"普通",@"重要",@"已完成",nil];
     segview.backgroundColor     = XPRGBColor(248, 248, 248, 0.88);
     [self.view addSubview:segview];
@@ -70,7 +70,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     self.segmentView.segmentedBlock = ^(NSUInteger selidx){
         [_weakself onSegmentVSelectChange:selidx];
     };
-    yoffset += CGRectGetHeight(segview.frame)+4;
+    yoffset += CGRectGetHeight(segview.frame)+10;
     
     UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,yoffset,width,heidht-yoffset)];
     tableView.dataSource = self;
@@ -275,19 +275,18 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 }
 
 -(void)onNavRightBtuAction:(id)sender{
-    NSUInteger total = [self.dataHelper.listFinished count] + [self.dataHelper.listImportant count] + [self.dataHelper.listNormal count];
-    NSUInteger fnish = [self.dataHelper.listFinished count];
-    NSUInteger normal= [self.dataHelper.listNormal count];
-    NSUInteger important = [self.dataHelper.listImportant count];
-    
-    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:[NSNumber numberWithUnsignedInteger:total]     forKey:@"total"];
-    [dict setObject:[NSNumber numberWithUnsignedInteger:fnish]     forKey:@"finished"];
-    [dict setObject:[NSNumber numberWithUnsignedInteger:normal]    forKey:@"normal"];
-    [dict setObject:[NSNumber numberWithUnsignedInteger:important] forKey:@"important"];
+//    NSUInteger total = [self.dataHelper.listFinished count] + [self.dataHelper.listImportant count] + [self.dataHelper.listNormal count];
+//    NSUInteger fnish = [self.dataHelper.listFinished count];
+//    NSUInteger normal= [self.dataHelper.listNormal count];
+//    NSUInteger important = [self.dataHelper.listImportant count];
+//    
+//    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+//    [dict setObject:[NSNumber numberWithUnsignedInteger:total]     forKey:@"total"];
+//    [dict setObject:[NSNumber numberWithUnsignedInteger:fnish]     forKey:@"finished"];
+//    [dict setObject:[NSNumber numberWithUnsignedInteger:normal]    forKey:@"normal"];
+//    [dict setObject:[NSNumber numberWithUnsignedInteger:important] forKey:@"important"];
     
     XPDialyStaticVCtler* diarystv = [[XPDialyStaticVCtler alloc] init];
-    diarystv.taskDatas = dict;
     [self.navigationController  pushViewController:diarystv animated:YES];
 }
 

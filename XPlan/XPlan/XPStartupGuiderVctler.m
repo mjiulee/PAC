@@ -184,38 +184,19 @@ static char kCharCellCheckKey;
     XPAppDelegate* app = [XPAppDelegate shareInstance];
     NSUInteger normal_ongoing=0,normal_done=0;
     NSUInteger important_ongoing=0,important_done=0;
+    NSUInteger all_total =0,all_done=0,all_notdone = 0;
     {
         // 普通
-        NSArray* arr = nil;
-        arr = [app.coreDataMgr queryTaskByDay:yestoday
-                                      prLevel:XPTask_PriorityLevel_normal
-                                       status:XPTask_Status_ongoing];
-        if (arr && [arr count]) {
-            normal_ongoing = [arr count];
-        }
-        arr = [app.coreDataMgr queryTaskByDay:yestoday
-                                      prLevel:XPTask_PriorityLevel_normal
-                                       status:XPTask_Status_Done];
-        if (arr && [arr count]) {
-            normal_done = [arr count];
-        }
+        normal_ongoing = [app.coreDataMgr taskCoutByDay:yestoday prLevel:XPTask_PriorityLevel_normal status:XPTask_Status_ongoing];
+        normal_done    = [app.coreDataMgr taskCoutByDay:yestoday prLevel:XPTask_PriorityLevel_normal status:XPTask_Status_Done];
         // 总要
-        arr = [app.coreDataMgr queryTaskByDay:yestoday
-                                      prLevel:XPTask_PriorityLevel_important
-                                       status:XPTask_Status_ongoing];
-        if (arr && [arr count]) {
-            important_ongoing = [arr count];
-        }
-        arr = [app.coreDataMgr queryTaskByDay:yestoday
-                                      prLevel:XPTask_PriorityLevel_important
-                                       status:XPTask_Status_Done];
-        if (arr && [arr count]) {
-            important_done = [arr count];
-        }
+        important_ongoing=[app.coreDataMgr taskCoutByDay:yestoday prLevel:XPTask_PriorityLevel_important status:XPTask_Status_ongoing];
+        important_done   =[app.coreDataMgr taskCoutByDay:yestoday prLevel:XPTask_PriorityLevel_important status:XPTask_Status_Done];
+        // 全部
+       all_total   = (normal_done+normal_ongoing+important_done+important_ongoing);
+       all_done    = normal_done+important_done;
+       all_notdone = normal_ongoing+important_ongoing;
     }
-    NSUInteger total   = (normal_done+normal_ongoing+important_done+important_ongoing);
-    NSUInteger done    = normal_done+important_done;
-    NSUInteger notdone = normal_ongoing+important_ongoing;
     {
         UILabel* labtitle = [[UILabel alloc] initWithFrame:CGRectMake(0,0,CGRectGetWidth(cycleView.frame),30)];
         labtitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -227,8 +208,8 @@ static char kCharCellCheckKey;
         [cycleView addSubview:labtitle];
         
         CGFloat fpercent = 0.0;
-        if (total > 0) {
-            fpercent = (normal_done+important_done)/total;
+        if (all_total > 0) {
+            fpercent = (normal_done+important_done)/all_total;
         }
         PNCircleChart * circleChart
         = [[PNCircleChart alloc] initWithFrame:CGRectMake(0,30,CGRectGetWidth(cycleView.frame),130)
@@ -246,13 +227,12 @@ static char kCharCellCheckKey;
         {
             UILabel* labtitle = [[UILabel alloc] initWithFrame:CGRectMake(40,yof,CGRectGetWidth(cycleView.frame)-80,20)];
             labtitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-            //labtitle.text = @"昨天任务完成情况";
             if (i == 0) {
                 labtitle.text = [NSString stringWithFormat:@"普通：%u条，已完成：%u条，未完成：%u",normal_done+normal_ongoing,normal_done,normal_ongoing];
             }else if(i==1){
                 labtitle.text = [NSString stringWithFormat:@"重要：%u条，已完成：%u条，未完成：%u",important_ongoing+important_done,important_done,important_ongoing];
             }else{
-                labtitle.text = [NSString stringWithFormat:@"全部：%u条，已完成：%u条，未完成：%u",total,done,notdone];
+                labtitle.text = [NSString stringWithFormat:@"全部：%u条，已完成：%u条，未完成：%u",all_total,all_done,all_notdone];
             }
             labtitle.textColor = XPRGBColor(157,157,157, 1.0);
             labtitle.font = [UIFont systemFontOfSize:13];

@@ -151,7 +151,7 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     if ([UIDevice isRunningOniPhone]) {
         yvalstart = 15;
     }
-    yvalstart += CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    yvalstart += 0;//CGRectGetMaxY(self.navigationController.navigationBar.frame);
     if (orientation == 1)
     {
         _tfviewbg.frame = CGRectMake(15,yvalstart,290, 82);

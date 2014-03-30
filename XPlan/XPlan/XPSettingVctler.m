@@ -45,7 +45,6 @@
     self.setButton.layer.borderWidth = 0.5;
     self.setButton.layer.cornerRadius= 4;
     
-    
     {
         NSDictionary* dict = [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_MorningNotify];
         if (!dict) {

@@ -67,6 +67,7 @@ typedef enum {
  * @param:status   --- 状态 */
 -(NSArray*)queryTaskByDay:(NSDate*)day prLevel:(XPTaskPriorityLevel)alevel status:(XPTaskStatus)astatus;
 
+-(NSUInteger)taskCoutByDay:(NSDate*)day prLevel:(XPTaskPriorityLevel)alevel status:(XPTaskStatus)astatus;
 
 /* brief:根据任务的优先级进行查询
  * @param:level - 0.普通 1.重要

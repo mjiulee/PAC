@@ -50,6 +50,7 @@
 {
     // Override point for customization after application launch.
     // core Data setup
+    [[UINavigationBar appearance] setBarTintColor:XPRGBColor(236,236,236,0.88)] ;
     _coreDataMgr= [[XPDataManager alloc] init];
     
     // alarmhelper setup

@@ -24,7 +24,7 @@
         CGFloat height = CGRectGetHeight(frame);
         self.curSelectIndex = -1;
         self.clipsToBounds = YES;
-        self.layer.cornerRadius = height/2;
+        self.layer.cornerRadius = 6;//height/2;
         self.layer.borderColor = XPRGBColor(25, 133, 255, 1.0).CGColor;
         self.layer.borderWidth = 1;
         

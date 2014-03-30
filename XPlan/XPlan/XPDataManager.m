@@ -211,6 +211,36 @@
     return result;
 }
 
+-(NSUInteger)taskCoutByDay:(NSDate*)day prLevel:(XPTaskPriorityLevel)alevel status:(XPTaskStatus)astatus
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSUInteger entityCount = 0;
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TaskModel" inManagedObjectContext:context];
+    NSDate* dayBegin = [day startOfDay];
+    NSDate* dayEnd    = [day endOfDay];
+    NSNumber* level  = [NSNumber numberWithInt:alevel];
+    NSNumber* status = [NSNumber numberWithInt:astatus];
+    NSPredicate *predicate = nil;
+    
+    if (alevel == XPTask_PriorityLevel_all) {
+        predicate = [NSPredicate predicateWithFormat:@"status=%@ AND prLevel!=%@ AND dateCreate > %@ AND dateCreate < %@ ",status,level,dayBegin,dayEnd];
+    }else{
+        predicate = [NSPredicate predicateWithFormat:@"status=%@ AND prLevel=%@ AND dateCreate > %@ AND dateCreate < %@ ",status,level,dayBegin,dayEnd];
+    }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setIncludesPropertyValues:NO];
+    [fetchRequest setIncludesSubentities:NO];
+    NSError *error = nil;
+    NSUInteger count = [context countForFetchRequest:fetchRequest error:&error];
+    if(error == nil){
+        entityCount = count;
+    }
+    return entityCount;
+}
+
 -(NSArray*)queryHistoryTask:(XPTaskPriorityLevel)alevel status:(int)astatus page:(NSUInteger)page
 {
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -274,7 +304,7 @@
     NSUInteger entityCount = 0;
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"TaskModel" inManagedObjectContext:context];
-    NSDate* day = [NSDate date];
+    NSDate* day      = [NSDate date];
     NSDate* dayBegin = [day startOfDay];
     NSNumber* level  = [NSNumber numberWithInt:alevel];
     NSNumber* status = [NSNumber numberWithInt:astatus];
