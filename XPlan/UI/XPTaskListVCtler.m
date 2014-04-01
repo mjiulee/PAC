@@ -45,11 +45,6 @@ static NSString *sCellIdentifier;
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization，load data From Core Data
-        // nav setting
-//        UIBarButtonItem* rightBtn =
-//        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(onNavRightBtuAction:)];
-//        self.navigationItem.rightBarButtonItem = rightBtn;
         UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_static"];
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 38,38);
@@ -85,6 +80,7 @@ static NSString *sCellIdentifier;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView reloadData];
 
+    if( kIfShowGoogleAdBanner == 1)
     {
         __block typeof(self) wself = self;
         XPAdBannerVer* bannerv = [[XPAdBannerVer alloc] initWithFrame:CGRectMake(0, 0, kGADAdSizeBanner.size.width, kGADAdSizeBanner.size.height)
@@ -164,8 +160,7 @@ static NSString *sCellIdentifier;
         TaskModel * task2Done = [_taskListNormal objectAtIndex:[indexPath row]];
         task2Done.status   = [NSNumber numberWithInt:XPTask_Status_Done];
         task2Done.dateDone = [NSDate date];
-        XPAppDelegate* app = [XPAppDelegate shareInstance];
-        [app.coreDataMgr updateTask:task2Done];
+        [[XPDataManager shareInstance] updateTask:task2Done];
         [_taskListNormal removeObjectAtIndex:[indexPath row]];
         [self performSelector:@selector(reloadListByStatus:) withObject:nil afterDelay:0.5];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -175,8 +170,7 @@ static NSString *sCellIdentifier;
         TaskModel * task2Done = [_taskListImportant objectAtIndex:[indexPath row]];
         task2Done.status   = [NSNumber numberWithInt:XPTask_Status_Done];
         task2Done.dateDone = [NSDate date];
-        XPAppDelegate* app = [XPAppDelegate shareInstance];
-        [app.coreDataMgr updateTask:task2Done];
+        [[XPDataManager shareInstance] updateTask:task2Done];
         [_taskListImportant removeObjectAtIndex:[indexPath row]];
         [self performSelector:@selector(reloadListByStatus:) withObject:nil afterDelay:0.5];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -220,7 +214,7 @@ static NSString *sCellIdentifier;
     if (section != 2) {
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
         btn.tag   = kHeadViewBtnStartIdx + section;
-        btn.frame = CGRectMake(CGRectGetWidth(tableView.frame)-46, 0, 40, 40);
+        btn.frame = CGRectMake(CGRectGetWidth(tableView.frame)-52, 0, 40, 40);
         btn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         
         [btn addTarget:self action:@selector(onAddTaskButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -239,9 +233,8 @@ static NSString *sCellIdentifier;
 
 #pragma mark - datas
 -(void)reLoadData{
-    XPAppDelegate* app = [XPAppDelegate shareInstance];
     {   // Normal
-        NSArray* normalList = [app.coreDataMgr queryTaskByDay:[NSDate date]
+        NSArray* normalList = [[XPDataManager shareInstance] queryTaskByDay:[NSDate date]
                                                       prLevel:XPTask_PriorityLevel_normal
                                                        status:XPTask_Status_ongoing];
         if (normalList && [normalList count]) {
@@ -253,7 +246,7 @@ static NSString *sCellIdentifier;
     }
     
     {
-        NSArray* importantList = [app.coreDataMgr queryTaskByDay:[NSDate date]
+        NSArray* importantList = [[XPDataManager shareInstance] queryTaskByDay:[NSDate date]
                                                          prLevel:XPTask_PriorityLevel_important
                                                           status:XPTask_Status_ongoing];
         if (importantList && [importantList count]) {
@@ -265,7 +258,7 @@ static NSString *sCellIdentifier;
     }
     
     {
-        NSArray* finishList = [app.coreDataMgr queryTaskByDay:[NSDate date]
+        NSArray* finishList = [[XPDataManager shareInstance] queryTaskByDay:[NSDate date]
                                                       prLevel:XPTask_PriorityLevel_all
                                                        status:XPTask_Status_Done];
         if (finishList && [finishList count]) {
@@ -279,8 +272,7 @@ static NSString *sCellIdentifier;
 
 -(void)reloadListByStatus:(int)status
 {
-    XPAppDelegate* app = [XPAppDelegate shareInstance];
-    NSArray* finishList = [app.coreDataMgr queryTaskByDay:[NSDate date]
+    NSArray* finishList = [[XPDataManager shareInstance] queryTaskByDay:[NSDate date]
                                                   prLevel:XPTask_PriorityLevel_all
                                                    status:XPTask_Status_Done];
     if (finishList && [finishList count]) {
@@ -297,17 +289,6 @@ static NSString *sCellIdentifier;
 
 #pragma mark - Navigation
 -(void)onNavRightBtuAction:(id)sender{
-//    NSUInteger total     = [_taskListFinish count] + [_taskListImportant count] + [_taskListNormal count];
-//    NSUInteger fnish     = [_taskListFinish count];
-//    NSUInteger normal    = [_taskListNormal count];
-//    NSUInteger important = [_taskListImportant count];
-//    
-//    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-//    [dict setObject:[NSNumber numberWithInteger:total]     forKey:@"total"];
-//    [dict setObject:[NSNumber numberWithInteger:fnish]     forKey:@"finished"];
-//    [dict setObject:[NSNumber numberWithInteger:normal]    forKey:@"normal"];
-//    [dict setObject:[NSNumber numberWithInteger:important] forKey:@"important"];
-    
     XPDialyStaticVCtler* diarystv = [[XPDialyStaticVCtler alloc] init];
     diarystv.date2Statistic = [NSDate date];
     [self.navigationController  pushViewController:diarystv animated:YES];

@@ -6,15 +6,15 @@
 
 #import <Availability.h>
 
-#ifndef __IPHONE_5_0
-#warning "This project uses features only available in iOS SDK 5.0 and later."
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
 #endif
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
-    #import "XPAppDelegate.h"
+    #import "XPADAppDelegate.h"
     #import "XPBaseViewCtler.h"
     #import "XPBaseTableVCtler.h"
     #import "UIDevice+Resolution.h"
@@ -33,6 +33,6 @@
 #define kWhiteColor [UIColor whiteColor]
 
 // if need ad show
-#define kIfShowGoogleAdBanner 0
+#define kIfShowGoogleAdBanner 1
 
 #endif

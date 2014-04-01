@@ -7,39 +7,114 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18015F6A18E719C600BAD721 /* OMGToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 18015F6918E719C600BAD721 /* OMGToast.m */; };
-		180C5FDB18E45F410032F67B /* XPAdBannerVer.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C5FDA18E45F410032F67B /* XPAdBannerVer.m */; };
-		1897FE7218E9AC2000DC0172 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 1897FE7118E9AC2000DC0172 /* icon80.png */; };
 		1897FE7418E9AC5B00DC0172 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1897FE7318E9AC5B00DC0172 /* StoreKit.framework */; };
-		18A97E4318C1B12200CE3161 /* XPlanModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18A97E4018C1B12200CE3161 /* XPlanModel.xcdatamodeld */; };
-		18B8052F18D9DE9900282D17 /* XPWeatherVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8052D18D9DE9900282D17 /* XPWeatherVctler.m */; };
-		18B8053018D9DE9900282D17 /* XPWeatherVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B8052E18D9DE9900282D17 /* XPWeatherVctler.xib */; };
-		18B8053418D9E0F100282D17 /* XPAboutMeVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8053218D9E0F100282D17 /* XPAboutMeVCtler.m */; };
-		18E5DDB818DEA99100E97158 /* XPCheckBoxTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5DDB718DEA99100E97158 /* XPCheckBoxTableCell.m */; };
-		18E874B418E32A5B0094376E /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B318E32A5B0094376E /* libGoogleAdMobAds.a */; };
 		18E874B618E32A870094376E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B518E32A870094376E /* AdSupport.framework */; };
 		18E874B818E32A950094376E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B718E32A950094376E /* AudioToolbox.framework */; };
 		18E874BA18E32A9B0094376E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B918E32A9B0094376E /* AVFoundation.framework */; };
 		18E874BC18E32AAB0094376E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874BB18E32AAB0094376E /* CoreTelephony.framework */; };
 		18E874BE18E32AB60094376E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874BD18E32AB60094376E /* MessageUI.framework */; };
 		18E874C218E32ACC0094376E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874C118E32ACC0094376E /* SystemConfiguration.framework */; };
-		18ED380518C308D1002565E8 /* NSString+DrawHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380418C308D1002565E8 /* NSString+DrawHelper.m */; };
-		18ED380818C30FBF002565E8 /* XPTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */; };
-		18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */; };
-		18EE742F18E5B13D00BC1631 /* XPSettingVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE742D18E5B13D00BC1631 /* XPSettingVctler.m */; };
-		18EE743018E5B13D00BC1631 /* XPSettingVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE742E18E5B13D00BC1631 /* XPSettingVctler.xib */; };
-		431F74A118C758C800B03742 /* XPStartupGuiderVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F74A018C758C800B03742 /* XPStartupGuiderVctler.m */; };
-		431F74A418C75C3A00B03742 /* XPDialyStaticVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F74A318C75C3A00B03742 /* XPDialyStaticVCtler.m */; };
-		431F74A718C75C6900B03742 /* XPBaseViewCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F74A618C75C6900B03742 /* XPBaseViewCtler.m */; };
-		431F74AA18C75D2E00B03742 /* XPBaseTableVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F74A918C75D2E00B03742 /* XPBaseTableVCtler.m */; };
-		4321392918B8D78F00613275 /* XPDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321392818B8D78F00613275 /* XPDataManager.m */; };
-		43359AF018C426F700C12617 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 43359AEF18C426F700C12617 /* NSDate+Category.m */; };
+		39CD6053479F442884C8B94B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 819FEE31D70B48FC9C272777 /* libPods.a */; };
+		43239CC418EAEBD70048FF9E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874C118E32ACC0094376E /* SystemConfiguration.framework */; };
+		43239CC518EAEBDE0048FF9E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874BD18E32AB60094376E /* MessageUI.framework */; };
+		43239CC618EAEBE90048FF9E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874BB18E32AAB0094376E /* CoreTelephony.framework */; };
+		43239CC718EAEBF10048FF9E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B918E32A9B0094376E /* AVFoundation.framework */; };
+		43239CC818EAEC050048FF9E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B718E32A950094376E /* AudioToolbox.framework */; };
+		43239CC918EAEC130048FF9E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B518E32A870094376E /* AdSupport.framework */; };
+		43239CCA18EAEC220048FF9E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CF718B71D250088F1AA /* CoreData.framework */; };
+		43239CCB18EAEC320048FF9E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1897FE7318E9AC5B00DC0172 /* StoreKit.framework */; };
+		43239CDB18EAF06D0048FF9E /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43239CDA18EAF06D0048FF9E /* libGoogleAdMobAds.a */; };
+		43239CDC18EAF06D0048FF9E /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43239CDA18EAF06D0048FF9E /* libGoogleAdMobAds.a */; };
 		43359AF218C42A1600C12617 /* TaskInsertTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43359AF118C42A1600C12617 /* TaskInsertTest.m */; };
-		433EDCD118C8B60500746E63 /* UIDevice+Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 433EDCD018C8B60500746E63 /* UIDevice+Resolution.m */; };
-		4361FC0318D835E300B40D27 /* XPHistoryListVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4361FC0218D835E300B40D27 /* XPHistoryListVctler.m */; };
-		4361FC0618D837BA00B40D27 /* XPSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4361FC0518D837BA00B40D27 /* XPSegmentedView.m */; };
-		4361FC0918D843BB00B40D27 /* XPMathHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 4361FC0818D843BB00B40D27 /* XPMathHelper.c */; };
-		4361FC0C18D8540F00B40D27 /* XPHistoryTaskDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4361FC0B18D8540F00B40D27 /* XPHistoryTaskDataHelper.m */; };
+		436D193B18EAB3290099A690 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC218B71BA20088F1AA /* Foundation.framework */; };
+		436D193C18EAB3290099A690 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC418B71BA20088F1AA /* CoreGraphics.framework */; };
+		436D193D18EAB3290099A690 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC618B71BA20088F1AA /* UIKit.framework */; };
+		436D194318EAB3290099A690 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 436D194118EAB3290099A690 /* InfoPlist.strings */; };
+		436D194518EAB3290099A690 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D194418EAB3290099A690 /* main.m */; };
+		436D194918EAB3290099A690 /* XPADAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D194818EAB3290099A690 /* XPADAppDelegate.m */; };
+		436D194B18EAB3290099A690 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436D194A18EAB3290099A690 /* Images.xcassets */; };
+		436D195118EAB3290099A690 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CE118B71BA20088F1AA /* XCTest.framework */; };
+		436D195218EAB3290099A690 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC218B71BA20088F1AA /* Foundation.framework */; };
+		436D195318EAB3290099A690 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC618B71BA20088F1AA /* UIKit.framework */; };
+		436D195B18EAB3290099A690 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 436D195918EAB3290099A690 /* InfoPlist.strings */; };
+		436D195D18EAB3290099A690 /* XPlanAdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D195C18EAB3290099A690 /* XPlanAdTests.m */; };
+		436D1B0018EAC2F50099A690 /* CityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AAB18EAC2F50099A690 /* CityListViewController.m */; };
+		436D1B0118EAC2F50099A690 /* CityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AAB18EAC2F50099A690 /* CityListViewController.m */; };
+		436D1B0218EAC2F50099A690 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AAD18EAC2F50099A690 /* NSDate+Category.m */; };
+		436D1B0318EAC2F50099A690 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AAD18EAC2F50099A690 /* NSDate+Category.m */; };
+		436D1B0418EAC2F50099A690 /* NSString+DrawHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AAF18EAC2F50099A690 /* NSString+DrawHelper.m */; };
+		436D1B0518EAC2F50099A690 /* NSString+DrawHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AAF18EAC2F50099A690 /* NSString+DrawHelper.m */; };
+		436D1B0618EAC2F50099A690 /* OMGToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB118EAC2F50099A690 /* OMGToast.m */; };
+		436D1B0718EAC2F50099A690 /* OMGToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB118EAC2F50099A690 /* OMGToast.m */; };
+		436D1B0818EAC2F50099A690 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB318EAC2F50099A690 /* ProjectModel.m */; };
+		436D1B0918EAC2F50099A690 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB318EAC2F50099A690 /* ProjectModel.m */; };
+		436D1B0A18EAC2F50099A690 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB518EAC2F50099A690 /* TaskModel.m */; };
+		436D1B0B18EAC2F50099A690 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB518EAC2F50099A690 /* TaskModel.m */; };
+		436D1B0C18EAC2F50099A690 /* UIDevice+Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB718EAC2F50099A690 /* UIDevice+Resolution.m */; };
+		436D1B0D18EAC2F50099A690 /* UIDevice+Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB718EAC2F50099A690 /* UIDevice+Resolution.m */; };
+		436D1B0E18EAC2F50099A690 /* UIImage+XPUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB918EAC2F50099A690 /* UIImage+XPUIImage.m */; };
+		436D1B0F18EAC2F50099A690 /* UIImage+XPUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB918EAC2F50099A690 /* UIImage+XPUIImage.m */; };
+		436D1B1018EAC2F50099A690 /* XPAboutMeVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ABB18EAC2F50099A690 /* XPAboutMeVCtler.m */; };
+		436D1B1118EAC2F50099A690 /* XPAboutMeVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ABB18EAC2F50099A690 /* XPAboutMeVCtler.m */; };
+		436D1B1218EAC2F50099A690 /* XPAdBannerVer.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ABD18EAC2F50099A690 /* XPAdBannerVer.m */; };
+		436D1B1318EAC2F50099A690 /* XPAdBannerVer.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ABD18EAC2F50099A690 /* XPAdBannerVer.m */; };
+		436D1B1418EAC2F50099A690 /* XPAlarmClockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ABF18EAC2F50099A690 /* XPAlarmClockHelper.m */; };
+		436D1B1518EAC2F50099A690 /* XPAlarmClockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ABF18EAC2F50099A690 /* XPAlarmClockHelper.m */; };
+		436D1B1618EAC2F50099A690 /* XPBaseTableVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AC118EAC2F50099A690 /* XPBaseTableVCtler.m */; };
+		436D1B1718EAC2F50099A690 /* XPBaseTableVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AC118EAC2F50099A690 /* XPBaseTableVCtler.m */; };
+		436D1B1818EAC2F50099A690 /* XPBaseViewCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AC318EAC2F50099A690 /* XPBaseViewCtler.m */; };
+		436D1B1918EAC2F50099A690 /* XPBaseViewCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AC318EAC2F50099A690 /* XPBaseViewCtler.m */; };
+		436D1B1A18EAC2F50099A690 /* XPCheckBoxTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AC518EAC2F50099A690 /* XPCheckBoxTableCell.m */; };
+		436D1B1B18EAC2F50099A690 /* XPCheckBoxTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AC518EAC2F50099A690 /* XPCheckBoxTableCell.m */; };
+		436D1B1C18EAC2F50099A690 /* XPDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AC718EAC2F50099A690 /* XPDataManager.m */; };
+		436D1B1D18EAC2F50099A690 /* XPDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AC718EAC2F50099A690 /* XPDataManager.m */; };
+		436D1B1E18EAC2F50099A690 /* XPDialyStaticVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AC918EAC2F50099A690 /* XPDialyStaticVCtler.m */; };
+		436D1B1F18EAC2F50099A690 /* XPDialyStaticVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AC918EAC2F50099A690 /* XPDialyStaticVCtler.m */; };
+		436D1B2018EAC2F50099A690 /* XPHistoryListVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ACB18EAC2F50099A690 /* XPHistoryListVctler.m */; };
+		436D1B2118EAC2F50099A690 /* XPHistoryListVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ACB18EAC2F50099A690 /* XPHistoryListVctler.m */; };
+		436D1B2218EAC2F50099A690 /* XPHistoryTaskDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ACD18EAC2F50099A690 /* XPHistoryTaskDataHelper.m */; };
+		436D1B2318EAC2F50099A690 /* XPHistoryTaskDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ACD18EAC2F50099A690 /* XPHistoryTaskDataHelper.m */; };
+		436D1B2418EAC2F50099A690 /* XPlanModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ACE18EAC2F50099A690 /* XPlanModel.xcdatamodeld */; };
+		436D1B2518EAC2F50099A690 /* XPlanModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ACE18EAC2F50099A690 /* XPlanModel.xcdatamodeld */; };
+		436D1B2618EAC2F50099A690 /* XPLeftMenuViewCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AD118EAC2F50099A690 /* XPLeftMenuViewCtler.m */; };
+		436D1B2718EAC2F50099A690 /* XPLeftMenuViewCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AD118EAC2F50099A690 /* XPLeftMenuViewCtler.m */; };
+		436D1B2818EAC2F50099A690 /* XPMathHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AD218EAC2F50099A690 /* XPMathHelper.c */; };
+		436D1B2918EAC2F50099A690 /* XPMathHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AD218EAC2F50099A690 /* XPMathHelper.c */; };
+		436D1B2A18EAC2F50099A690 /* XPNewTaskVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AD518EAC2F50099A690 /* XPNewTaskVctler.m */; };
+		436D1B2B18EAC2F50099A690 /* XPNewTaskVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AD518EAC2F50099A690 /* XPNewTaskVctler.m */; };
+		436D1B2C18EAC2F50099A690 /* XPSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AD718EAC2F50099A690 /* XPSegmentedView.m */; };
+		436D1B2D18EAC2F50099A690 /* XPSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AD718EAC2F50099A690 /* XPSegmentedView.m */; };
+		436D1B2E18EAC2F50099A690 /* XPSettingVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AD918EAC2F50099A690 /* XPSettingVctler.m */; };
+		436D1B2F18EAC2F50099A690 /* XPSettingVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AD918EAC2F50099A690 /* XPSettingVctler.m */; };
+		436D1B3018EAC2F50099A690 /* XPSettingVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436D1ADA18EAC2F50099A690 /* XPSettingVctler.xib */; };
+		436D1B3118EAC2F50099A690 /* XPSettingVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436D1ADA18EAC2F50099A690 /* XPSettingVctler.xib */; };
+		436D1B3218EAC2F50099A690 /* XPStartupGuiderVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ADC18EAC2F50099A690 /* XPStartupGuiderVctler.m */; };
+		436D1B3318EAC2F50099A690 /* XPStartupGuiderVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ADC18EAC2F50099A690 /* XPStartupGuiderVctler.m */; };
+		436D1B3418EAC2F50099A690 /* XPTaskListVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ADE18EAC2F50099A690 /* XPTaskListVCtler.m */; };
+		436D1B3518EAC2F50099A690 /* XPTaskListVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ADE18EAC2F50099A690 /* XPTaskListVCtler.m */; };
+		436D1B3618EAC2F50099A690 /* XPTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AE018EAC2F50099A690 /* XPTaskTableViewCell.m */; };
+		436D1B3718EAC2F50099A690 /* XPTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AE018EAC2F50099A690 /* XPTaskTableViewCell.m */; };
+		436D1B3A18EAC2F50099A690 /* XPUILable.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AE418EAC2F50099A690 /* XPUILable.m */; };
+		436D1B3B18EAC2F50099A690 /* XPUILable.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AE418EAC2F50099A690 /* XPUILable.m */; };
+		436D1B3C18EAC2F50099A690 /* XPUIRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AE618EAC2F50099A690 /* XPUIRadioButton.m */; };
+		436D1B3D18EAC2F50099A690 /* XPUIRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AE618EAC2F50099A690 /* XPUIRadioButton.m */; };
+		436D1B3E18EAC2F50099A690 /* XPUserDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AE818EAC2F50099A690 /* XPUserDataHelper.m */; };
+		436D1B3F18EAC2F50099A690 /* XPUserDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AE818EAC2F50099A690 /* XPUserDataHelper.m */; };
+		436D1B4018EAC2F50099A690 /* XPWeatherVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AEA18EAC2F50099A690 /* XPWeatherVctler.m */; };
+		436D1B4118EAC2F50099A690 /* XPWeatherVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AEA18EAC2F50099A690 /* XPWeatherVctler.m */; };
+		436D1B4218EAC2F50099A690 /* XPWeatherVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436D1AEB18EAC2F50099A690 /* XPWeatherVctler.xib */; };
+		436D1B4318EAC2F50099A690 /* XPWeatherVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436D1AEB18EAC2F50099A690 /* XPWeatherVctler.xib */; };
+		436D1B4618EAC2F50099A690 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 436D1AF718EAC2F50099A690 /* icon80.png */; };
+		436D1B4718EAC2F50099A690 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 436D1AF718EAC2F50099A690 /* icon80.png */; };
+		436D1B4818EAC2F50099A690 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 436D1AF818EAC2F50099A690 /* icon120.png */; };
+		436D1B4918EAC2F50099A690 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 436D1AF818EAC2F50099A690 /* icon120.png */; };
+		436D1B4A18EAC2F50099A690 /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AFB18EAC2F50099A690 /* IISideController.m */; };
+		436D1B4B18EAC2F50099A690 /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AFB18EAC2F50099A690 /* IISideController.m */; };
+		436D1B4C18EAC2F50099A690 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AFD18EAC2F50099A690 /* IIViewDeckController.m */; };
+		436D1B4D18EAC2F50099A690 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AFD18EAC2F50099A690 /* IIViewDeckController.m */; };
+		436D1B4E18EAC2F50099A690 /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AFF18EAC2F50099A690 /* IIWrapController.m */; };
+		436D1B4F18EAC2F50099A690 /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AFF18EAC2F50099A690 /* IIWrapController.m */; };
+		436D1B5018EAC7670099A690 /* resource in Resources */ = {isa = PBXBuildFile; fileRef = 437A7D0818B74F210088F1AA /* resource */; };
 		437A7CC318B71BA20088F1AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC218B71BA20088F1AA /* Foundation.framework */; };
 		437A7CC518B71BA20088F1AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC418B71BA20088F1AA /* CoreGraphics.framework */; };
 		437A7CC718B71BA20088F1AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CC618B71BA20088F1AA /* UIKit.framework */; };
@@ -53,23 +128,18 @@
 		437A7CEC18B71BA20088F1AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437A7CEA18B71BA20088F1AA /* InfoPlist.strings */; };
 		437A7CEE18B71BA20088F1AA /* XPlanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A7CED18B71BA20088F1AA /* XPlanTests.m */; };
 		437A7CF818B71D250088F1AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A7CF718B71D250088F1AA /* CoreData.framework */; };
-		437A7D0018B723330088F1AA /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A7CFB18B723330088F1AA /* IISideController.m */; };
-		437A7D0118B723330088F1AA /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A7CFD18B723330088F1AA /* IIViewDeckController.m */; };
-		437A7D0218B723330088F1AA /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A7CFF18B723330088F1AA /* IIWrapController.m */; };
-		437A7D0518B725AF0088F1AA /* XPLeftMenuViewCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A7D0418B725AF0088F1AA /* XPLeftMenuViewCtler.m */; };
 		437A7D0918B74F210088F1AA /* resource in Resources */ = {isa = PBXBuildFile; fileRef = 437A7D0818B74F210088F1AA /* resource */; };
-		437A7D0C18B750B60088F1AA /* UIImage+XPUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A7D0B18B750B60088F1AA /* UIImage+XPUIImage.m */; };
-		437B10B418D9761000A9925D /* XPUserDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 437B10B318D9761000A9925D /* XPUserDataHelper.m */; };
-		4383D9E618BC8577007F7CA0 /* XPNewTaskVctler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */; };
-		4383D9E918BC9646007F7CA0 /* XPUIRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */; };
-		439623F718DDC8280051183F /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 439623F618DDC8280051183F /* TaskModel.m */; };
-		439623FA18DDC8290051183F /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 439623F918DDC8290051183F /* ProjectModel.m */; };
-		43BD907318D1B0560007E002 /* XPAlarmClockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BD907218D1B0560007E002 /* XPAlarmClockHelper.m */; };
-		43E2460718E14D7400E91C8B /* CityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E2460618E14D7400E91C8B /* CityListViewController.m */; };
 		BCEE7B4EE240439AAD1851E5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 819FEE31D70B48FC9C272777 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		436D195418EAB3290099A690 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 437A7CB718B71BA20088F1AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 436D193918EAB3290099A690;
+			remoteInfo = XPlanAd;
+		};
 		437A7CE518B71BA20088F1AA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 437A7CB718B71BA20088F1AA /* Project object */;
@@ -80,69 +150,107 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		18015F6818E719C600BAD721 /* OMGToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMGToast.h; sourceTree = "<group>"; };
-		18015F6918E719C600BAD721 /* OMGToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMGToast.m; sourceTree = "<group>"; };
-		180C5FD918E45F410032F67B /* XPAdBannerVer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPAdBannerVer.h; sourceTree = "<group>"; };
-		180C5FDA18E45F410032F67B /* XPAdBannerVer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPAdBannerVer.m; sourceTree = "<group>"; };
-		1897FE7018E9AA9600DC0172 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
-		1897FE7118E9AC2000DC0172 /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon80.png; sourceTree = "<group>"; };
 		1897FE7318E9AC5B00DC0172 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		18A97E4118C1B12200CE3161 /* XPlanModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XPlanModel.xcdatamodel; sourceTree = "<group>"; };
-		18B8052C18D9DE9900282D17 /* XPWeatherVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPWeatherVctler.h; sourceTree = "<group>"; };
-		18B8052D18D9DE9900282D17 /* XPWeatherVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPWeatherVctler.m; sourceTree = "<group>"; };
-		18B8052E18D9DE9900282D17 /* XPWeatherVctler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPWeatherVctler.xib; sourceTree = "<group>"; };
-		18B8053118D9E0F100282D17 /* XPAboutMeVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPAboutMeVCtler.h; sourceTree = "<group>"; };
-		18B8053218D9E0F100282D17 /* XPAboutMeVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPAboutMeVCtler.m; sourceTree = "<group>"; };
-		18E5DDB618DEA99100E97158 /* XPCheckBoxTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPCheckBoxTableCell.h; sourceTree = "<group>"; };
-		18E5DDB718DEA99100E97158 /* XPCheckBoxTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPCheckBoxTableCell.m; sourceTree = "<group>"; };
-		18E874AA18E32A5B0094376E /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
-		18E874AB18E32A5B0094376E /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
-		18E874AC18E32A5B0094376E /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
-		18E874AD18E32A5B0094376E /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
-		18E874AE18E32A5B0094376E /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		18E874AF18E32A5B0094376E /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
-		18E874B018E32A5B0094376E /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
-		18E874B118E32A5B0094376E /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
-		18E874B218E32A5B0094376E /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		18E874B318E32A5B0094376E /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		18E874B518E32A870094376E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		18E874B718E32A950094376E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		18E874B918E32A9B0094376E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		18E874BB18E32AAB0094376E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		18E874BD18E32AB60094376E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		18E874C118E32ACC0094376E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		18ED380318C308D1002565E8 /* NSString+DrawHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DrawHelper.h"; sourceTree = "<group>"; };
-		18ED380418C308D1002565E8 /* NSString+DrawHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DrawHelper.m"; sourceTree = "<group>"; };
-		18ED380618C30FBF002565E8 /* XPTaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPTaskTableViewCell.h; sourceTree = "<group>"; };
-		18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPTaskTableViewCell.m; sourceTree = "<group>"; };
-		18ED380918C324BA002565E8 /* XPTaskListVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPTaskListVCtler.h; sourceTree = "<group>"; };
-		18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPTaskListVCtler.m; sourceTree = "<group>"; };
-		18EE742C18E5B13D00BC1631 /* XPSettingVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPSettingVctler.h; sourceTree = "<group>"; };
-		18EE742D18E5B13D00BC1631 /* XPSettingVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPSettingVctler.m; sourceTree = "<group>"; };
-		18EE742E18E5B13D00BC1631 /* XPSettingVctler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPSettingVctler.xib; sourceTree = "<group>"; };
-		431F749F18C758C800B03742 /* XPStartupGuiderVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPStartupGuiderVctler.h; sourceTree = "<group>"; };
-		431F74A018C758C800B03742 /* XPStartupGuiderVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPStartupGuiderVctler.m; sourceTree = "<group>"; };
-		431F74A218C75C3A00B03742 /* XPDialyStaticVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPDialyStaticVCtler.h; sourceTree = "<group>"; };
-		431F74A318C75C3A00B03742 /* XPDialyStaticVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPDialyStaticVCtler.m; sourceTree = "<group>"; };
-		431F74A518C75C6900B03742 /* XPBaseViewCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPBaseViewCtler.h; sourceTree = "<group>"; };
-		431F74A618C75C6900B03742 /* XPBaseViewCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPBaseViewCtler.m; sourceTree = "<group>"; };
-		431F74A818C75D2E00B03742 /* XPBaseTableVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPBaseTableVCtler.h; sourceTree = "<group>"; };
-		431F74A918C75D2E00B03742 /* XPBaseTableVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPBaseTableVCtler.m; sourceTree = "<group>"; };
-		4321392718B8D78F00613275 /* XPDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPDataManager.h; sourceTree = "<group>"; };
-		4321392818B8D78F00613275 /* XPDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPDataManager.m; sourceTree = "<group>"; };
-		43359AEE18C426F700C12617 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
-		43359AEF18C426F700C12617 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
+		43239CD118EAF06D0048FF9E /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
+		43239CD218EAF06D0048FF9E /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
+		43239CD318EAF06D0048FF9E /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
+		43239CD418EAF06D0048FF9E /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
+		43239CD518EAF06D0048FF9E /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
+		43239CD618EAF06D0048FF9E /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
+		43239CD718EAF06D0048FF9E /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
+		43239CD818EAF06D0048FF9E /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
+		43239CD918EAF06D0048FF9E /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		43239CDA18EAF06D0048FF9E /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		43359AF118C42A1600C12617 /* TaskInsertTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInsertTest.m; sourceTree = "<group>"; };
-		433EDCCF18C8B60500746E63 /* UIDevice+Resolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Resolution.h"; sourceTree = "<group>"; };
-		433EDCD018C8B60500746E63 /* UIDevice+Resolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Resolution.m"; sourceTree = "<group>"; };
-		4361FC0118D835E300B40D27 /* XPHistoryListVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPHistoryListVctler.h; sourceTree = "<group>"; };
-		4361FC0218D835E300B40D27 /* XPHistoryListVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPHistoryListVctler.m; sourceTree = "<group>"; };
-		4361FC0418D837BA00B40D27 /* XPSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPSegmentedView.h; sourceTree = "<group>"; };
-		4361FC0518D837BA00B40D27 /* XPSegmentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPSegmentedView.m; sourceTree = "<group>"; };
-		4361FC0718D8433100B40D27 /* XPMathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPMathHelper.h; sourceTree = "<group>"; };
-		4361FC0818D843BB00B40D27 /* XPMathHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = XPMathHelper.c; sourceTree = "<group>"; };
-		4361FC0A18D8540F00B40D27 /* XPHistoryTaskDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPHistoryTaskDataHelper.h; sourceTree = "<group>"; };
-		4361FC0B18D8540F00B40D27 /* XPHistoryTaskDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPHistoryTaskDataHelper.m; sourceTree = "<group>"; };
+		436D193A18EAB3290099A690 /* XPlanAd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPlanAd.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		436D194018EAB3290099A690 /* XPlanAd-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "XPlanAd-Info.plist"; sourceTree = "<group>"; };
+		436D194218EAB3290099A690 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		436D194418EAB3290099A690 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		436D194618EAB3290099A690 /* XPlanAd-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XPlanAd-Prefix.pch"; sourceTree = "<group>"; };
+		436D194718EAB3290099A690 /* XPADAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPADAppDelegate.h; sourceTree = "<group>"; };
+		436D194818EAB3290099A690 /* XPADAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XPADAppDelegate.m; sourceTree = "<group>"; };
+		436D194A18EAB3290099A690 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		436D195018EAB3290099A690 /* XPlanAdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XPlanAdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		436D195818EAB3290099A690 /* XPlanAdTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "XPlanAdTests-Info.plist"; sourceTree = "<group>"; };
+		436D195A18EAB3290099A690 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		436D195C18EAB3290099A690 /* XPlanAdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XPlanAdTests.m; sourceTree = "<group>"; };
+		436D1AAA18EAC2F50099A690 /* CityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityListViewController.h; sourceTree = "<group>"; };
+		436D1AAB18EAC2F50099A690 /* CityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityListViewController.m; sourceTree = "<group>"; };
+		436D1AAC18EAC2F50099A690 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
+		436D1AAD18EAC2F50099A690 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
+		436D1AAE18EAC2F50099A690 /* NSString+DrawHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DrawHelper.h"; sourceTree = "<group>"; };
+		436D1AAF18EAC2F50099A690 /* NSString+DrawHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DrawHelper.m"; sourceTree = "<group>"; };
+		436D1AB018EAC2F50099A690 /* OMGToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMGToast.h; sourceTree = "<group>"; };
+		436D1AB118EAC2F50099A690 /* OMGToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMGToast.m; sourceTree = "<group>"; };
+		436D1AB218EAC2F50099A690 /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
+		436D1AB318EAC2F50099A690 /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
+		436D1AB418EAC2F50099A690 /* TaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
+		436D1AB518EAC2F50099A690 /* TaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
+		436D1AB618EAC2F50099A690 /* UIDevice+Resolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Resolution.h"; sourceTree = "<group>"; };
+		436D1AB718EAC2F50099A690 /* UIDevice+Resolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Resolution.m"; sourceTree = "<group>"; };
+		436D1AB818EAC2F50099A690 /* UIImage+XPUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XPUIImage.h"; sourceTree = "<group>"; };
+		436D1AB918EAC2F50099A690 /* UIImage+XPUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+XPUIImage.m"; sourceTree = "<group>"; };
+		436D1ABA18EAC2F50099A690 /* XPAboutMeVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPAboutMeVCtler.h; sourceTree = "<group>"; };
+		436D1ABB18EAC2F50099A690 /* XPAboutMeVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPAboutMeVCtler.m; sourceTree = "<group>"; };
+		436D1ABC18EAC2F50099A690 /* XPAdBannerVer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPAdBannerVer.h; sourceTree = "<group>"; };
+		436D1ABD18EAC2F50099A690 /* XPAdBannerVer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPAdBannerVer.m; sourceTree = "<group>"; };
+		436D1ABE18EAC2F50099A690 /* XPAlarmClockHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPAlarmClockHelper.h; sourceTree = "<group>"; };
+		436D1ABF18EAC2F50099A690 /* XPAlarmClockHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPAlarmClockHelper.m; sourceTree = "<group>"; };
+		436D1AC018EAC2F50099A690 /* XPBaseTableVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPBaseTableVCtler.h; sourceTree = "<group>"; };
+		436D1AC118EAC2F50099A690 /* XPBaseTableVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPBaseTableVCtler.m; sourceTree = "<group>"; };
+		436D1AC218EAC2F50099A690 /* XPBaseViewCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPBaseViewCtler.h; sourceTree = "<group>"; };
+		436D1AC318EAC2F50099A690 /* XPBaseViewCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPBaseViewCtler.m; sourceTree = "<group>"; };
+		436D1AC418EAC2F50099A690 /* XPCheckBoxTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPCheckBoxTableCell.h; sourceTree = "<group>"; };
+		436D1AC518EAC2F50099A690 /* XPCheckBoxTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPCheckBoxTableCell.m; sourceTree = "<group>"; };
+		436D1AC618EAC2F50099A690 /* XPDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPDataManager.h; sourceTree = "<group>"; };
+		436D1AC718EAC2F50099A690 /* XPDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPDataManager.m; sourceTree = "<group>"; };
+		436D1AC818EAC2F50099A690 /* XPDialyStaticVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPDialyStaticVCtler.h; sourceTree = "<group>"; };
+		436D1AC918EAC2F50099A690 /* XPDialyStaticVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPDialyStaticVCtler.m; sourceTree = "<group>"; };
+		436D1ACA18EAC2F50099A690 /* XPHistoryListVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPHistoryListVctler.h; sourceTree = "<group>"; };
+		436D1ACB18EAC2F50099A690 /* XPHistoryListVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPHistoryListVctler.m; sourceTree = "<group>"; };
+		436D1ACC18EAC2F50099A690 /* XPHistoryTaskDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPHistoryTaskDataHelper.h; sourceTree = "<group>"; };
+		436D1ACD18EAC2F50099A690 /* XPHistoryTaskDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPHistoryTaskDataHelper.m; sourceTree = "<group>"; };
+		436D1ACF18EAC2F50099A690 /* XPlanModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XPlanModel.xcdatamodel; sourceTree = "<group>"; };
+		436D1AD018EAC2F50099A690 /* XPLeftMenuViewCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPLeftMenuViewCtler.h; sourceTree = "<group>"; };
+		436D1AD118EAC2F50099A690 /* XPLeftMenuViewCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPLeftMenuViewCtler.m; sourceTree = "<group>"; };
+		436D1AD218EAC2F50099A690 /* XPMathHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = XPMathHelper.c; sourceTree = "<group>"; };
+		436D1AD318EAC2F50099A690 /* XPMathHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPMathHelper.h; sourceTree = "<group>"; };
+		436D1AD418EAC2F50099A690 /* XPNewTaskVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPNewTaskVctler.h; sourceTree = "<group>"; };
+		436D1AD518EAC2F50099A690 /* XPNewTaskVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPNewTaskVctler.m; sourceTree = "<group>"; };
+		436D1AD618EAC2F50099A690 /* XPSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPSegmentedView.h; sourceTree = "<group>"; };
+		436D1AD718EAC2F50099A690 /* XPSegmentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPSegmentedView.m; sourceTree = "<group>"; };
+		436D1AD818EAC2F50099A690 /* XPSettingVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPSettingVctler.h; sourceTree = "<group>"; };
+		436D1AD918EAC2F50099A690 /* XPSettingVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPSettingVctler.m; sourceTree = "<group>"; };
+		436D1ADA18EAC2F50099A690 /* XPSettingVctler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPSettingVctler.xib; sourceTree = "<group>"; };
+		436D1ADB18EAC2F50099A690 /* XPStartupGuiderVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPStartupGuiderVctler.h; sourceTree = "<group>"; };
+		436D1ADC18EAC2F50099A690 /* XPStartupGuiderVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPStartupGuiderVctler.m; sourceTree = "<group>"; };
+		436D1ADD18EAC2F50099A690 /* XPTaskListVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPTaskListVCtler.h; sourceTree = "<group>"; };
+		436D1ADE18EAC2F50099A690 /* XPTaskListVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPTaskListVCtler.m; sourceTree = "<group>"; };
+		436D1ADF18EAC2F50099A690 /* XPTaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPTaskTableViewCell.h; sourceTree = "<group>"; };
+		436D1AE018EAC2F50099A690 /* XPTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPTaskTableViewCell.m; sourceTree = "<group>"; };
+		436D1AE318EAC2F50099A690 /* XPUILable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUILable.h; sourceTree = "<group>"; };
+		436D1AE418EAC2F50099A690 /* XPUILable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPUILable.m; sourceTree = "<group>"; };
+		436D1AE518EAC2F50099A690 /* XPUIRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUIRadioButton.h; sourceTree = "<group>"; };
+		436D1AE618EAC2F50099A690 /* XPUIRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPUIRadioButton.m; sourceTree = "<group>"; };
+		436D1AE718EAC2F50099A690 /* XPUserDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUserDataHelper.h; sourceTree = "<group>"; };
+		436D1AE818EAC2F50099A690 /* XPUserDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPUserDataHelper.m; sourceTree = "<group>"; };
+		436D1AE918EAC2F50099A690 /* XPWeatherVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPWeatherVctler.h; sourceTree = "<group>"; };
+		436D1AEA18EAC2F50099A690 /* XPWeatherVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPWeatherVctler.m; sourceTree = "<group>"; };
+		436D1AEB18EAC2F50099A690 /* XPWeatherVctler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPWeatherVctler.xib; sourceTree = "<group>"; };
+		436D1AF718EAC2F50099A690 /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon80.png; sourceTree = "<group>"; };
+		436D1AF818EAC2F50099A690 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
+		436D1AFA18EAC2F50099A690 /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
+		436D1AFB18EAC2F50099A690 /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
+		436D1AFC18EAC2F50099A690 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
+		436D1AFD18EAC2F50099A690 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
+		436D1AFE18EAC2F50099A690 /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIWrapController.h; sourceTree = "<group>"; };
+		436D1AFF18EAC2F50099A690 /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
 		437A7CBF18B71BA20088F1AA /* XPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437A7CC218B71BA20088F1AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		437A7CC418B71BA20088F1AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -160,40 +268,47 @@
 		437A7CEB18B71BA20088F1AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		437A7CED18B71BA20088F1AA /* XPlanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XPlanTests.m; sourceTree = "<group>"; };
 		437A7CF718B71D250088F1AA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		437A7CFA18B723330088F1AA /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
-		437A7CFB18B723330088F1AA /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
-		437A7CFC18B723330088F1AA /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
-		437A7CFD18B723330088F1AA /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
-		437A7CFE18B723330088F1AA /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIWrapController.h; sourceTree = "<group>"; };
-		437A7CFF18B723330088F1AA /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
-		437A7D0318B725AF0088F1AA /* XPLeftMenuViewCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPLeftMenuViewCtler.h; sourceTree = "<group>"; };
-		437A7D0418B725AF0088F1AA /* XPLeftMenuViewCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPLeftMenuViewCtler.m; sourceTree = "<group>"; };
 		437A7D0818B74F210088F1AA /* resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resource; sourceTree = "<group>"; };
-		437A7D0A18B750B60088F1AA /* UIImage+XPUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XPUIImage.h"; sourceTree = "<group>"; };
-		437A7D0B18B750B60088F1AA /* UIImage+XPUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+XPUIImage.m"; sourceTree = "<group>"; };
-		437B10B218D9761000A9925D /* XPUserDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUserDataHelper.h; sourceTree = "<group>"; };
-		437B10B318D9761000A9925D /* XPUserDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPUserDataHelper.m; sourceTree = "<group>"; };
-		4383D9E418BC8577007F7CA0 /* XPNewTaskVctler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPNewTaskVctler.h; sourceTree = "<group>"; };
-		4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPNewTaskVctler.m; sourceTree = "<group>"; };
-		4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUIRadioButton.h; sourceTree = "<group>"; };
-		4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPUIRadioButton.m; sourceTree = "<group>"; };
-		439623F518DDC8280051183F /* TaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
-		439623F618DDC8280051183F /* TaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
-		439623F818DDC8290051183F /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
-		439623F918DDC8290051183F /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
-		43BD907118D1B0560007E002 /* XPAlarmClockHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPAlarmClockHelper.h; sourceTree = "<group>"; };
-		43BD907218D1B0560007E002 /* XPAlarmClockHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPAlarmClockHelper.m; sourceTree = "<group>"; };
-		43E2460518E14D7400E91C8B /* CityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityListViewController.h; sourceTree = "<group>"; };
-		43E2460618E14D7400E91C8B /* CityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityListViewController.m; sourceTree = "<group>"; };
 		819FEE31D70B48FC9C272777 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C1E589819649A9B058BAB3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		436D193718EAB3290099A690 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43239CDC18EAF06D0048FF9E /* libGoogleAdMobAds.a in Frameworks */,
+				43239CCB18EAEC320048FF9E /* StoreKit.framework in Frameworks */,
+				43239CCA18EAEC220048FF9E /* CoreData.framework in Frameworks */,
+				43239CC918EAEC130048FF9E /* AdSupport.framework in Frameworks */,
+				43239CC818EAEC050048FF9E /* AudioToolbox.framework in Frameworks */,
+				43239CC718EAEBF10048FF9E /* AVFoundation.framework in Frameworks */,
+				43239CC618EAEBE90048FF9E /* CoreTelephony.framework in Frameworks */,
+				43239CC518EAEBDE0048FF9E /* MessageUI.framework in Frameworks */,
+				43239CC418EAEBD70048FF9E /* SystemConfiguration.framework in Frameworks */,
+				436D193C18EAB3290099A690 /* CoreGraphics.framework in Frameworks */,
+				436D193D18EAB3290099A690 /* UIKit.framework in Frameworks */,
+				436D193B18EAB3290099A690 /* Foundation.framework in Frameworks */,
+				39CD6053479F442884C8B94B /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		436D194D18EAB3290099A690 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				436D195118EAB3290099A690 /* XCTest.framework in Frameworks */,
+				436D195318EAB3290099A690 /* UIKit.framework in Frameworks */,
+				436D195218EAB3290099A690 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		437A7CBC18B71BA20088F1AA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43239CDB18EAF06D0048FF9E /* libGoogleAdMobAds.a in Frameworks */,
 				18E874C218E32ACC0094376E /* SystemConfiguration.framework in Frameworks */,
 				18E874BE18E32AB60094376E /* MessageUI.framework in Frameworks */,
 				18E874BC18E32AAB0094376E /* CoreTelephony.framework in Frameworks */,
@@ -206,7 +321,6 @@
 				437A7CC318B71BA20088F1AA /* Foundation.framework in Frameworks */,
 				BCEE7B4EE240439AAD1851E5 /* libPods.a in Frameworks */,
 				1897FE7418E9AC5B00DC0172 /* StoreKit.framework in Frameworks */,
-				18E874B418E32A5B0094376E /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,151 +337,215 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		18E874A918E32A5B0094376E /* ads-sdk */ = {
+		431DDF9418EADC8A000EF684 /* Catogery */ = {
 			isa = PBXGroup;
 			children = (
-				18E874AA18E32A5B0094376E /* GADAdMobExtras.h */,
-				18E874AB18E32A5B0094376E /* GADAdNetworkExtras.h */,
-				18E874AC18E32A5B0094376E /* GADAdSize.h */,
-				18E874AD18E32A5B0094376E /* GADBannerView.h */,
-				18E874AE18E32A5B0094376E /* GADBannerViewDelegate.h */,
-				18E874AF18E32A5B0094376E /* GADInterstitial.h */,
-				18E874B018E32A5B0094376E /* GADInterstitialDelegate.h */,
-				18E874B118E32A5B0094376E /* GADRequest.h */,
-				18E874B218E32A5B0094376E /* GADRequestError.h */,
-				18E874B318E32A5B0094376E /* libGoogleAdMobAds.a */,
-			);
-			path = "ads-sdk";
-			sourceTree = "<group>";
-		};
-		18EB3F5B18C1F01000400E72 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				18A97E4018C1B12200CE3161 /* XPlanModel.xcdatamodeld */,
-				439623F518DDC8280051183F /* TaskModel.h */,
-				439623F618DDC8280051183F /* TaskModel.m */,
-				439623F818DDC8290051183F /* ProjectModel.h */,
-				439623F918DDC8290051183F /* ProjectModel.m */,
-				4321392718B8D78F00613275 /* XPDataManager.h */,
-				4321392818B8D78F00613275 /* XPDataManager.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		431F74AE18C76D2900B03742 /* listview */ = {
-			isa = PBXGroup;
-			children = (
-				18ED380918C324BA002565E8 /* XPTaskListVCtler.h */,
-				18ED380A18C324BA002565E8 /* XPTaskListVCtler.m */,
-				4361FC0118D835E300B40D27 /* XPHistoryListVctler.h */,
-				4361FC0218D835E300B40D27 /* XPHistoryListVctler.m */,
-				4361FC0A18D8540F00B40D27 /* XPHistoryTaskDataHelper.h */,
-				4361FC0B18D8540F00B40D27 /* XPHistoryTaskDataHelper.m */,
-			);
-			name = listview;
-			sourceTree = "<group>";
-		};
-		431F74AF18C76D3E00B03742 /* NewView */ = {
-			isa = PBXGroup;
-			children = (
-				4383D9E418BC8577007F7CA0 /* XPNewTaskVctler.h */,
-				4383D9E518BC8577007F7CA0 /* XPNewTaskVctler.m */,
-			);
-			name = NewView;
-			sourceTree = "<group>";
-		};
-		431F74B018C76D6700B03742 /* Catogery */ = {
-			isa = PBXGroup;
-			children = (
-				437A7D0A18B750B60088F1AA /* UIImage+XPUIImage.h */,
-				437A7D0B18B750B60088F1AA /* UIImage+XPUIImage.m */,
-				18ED380318C308D1002565E8 /* NSString+DrawHelper.h */,
-				18ED380418C308D1002565E8 /* NSString+DrawHelper.m */,
-				433EDCCF18C8B60500746E63 /* UIDevice+Resolution.h */,
-				433EDCD018C8B60500746E63 /* UIDevice+Resolution.m */,
-				4361FC0718D8433100B40D27 /* XPMathHelper.h */,
-				4361FC0818D843BB00B40D27 /* XPMathHelper.c */,
+				436D1AB618EAC2F50099A690 /* UIDevice+Resolution.h */,
+				436D1AB718EAC2F50099A690 /* UIDevice+Resolution.m */,
+				436D1AB818EAC2F50099A690 /* UIImage+XPUIImage.h */,
+				436D1AB918EAC2F50099A690 /* UIImage+XPUIImage.m */,
+				436D1AAC18EAC2F50099A690 /* NSDate+Category.h */,
+				436D1AAD18EAC2F50099A690 /* NSDate+Category.m */,
+				436D1AAE18EAC2F50099A690 /* NSString+DrawHelper.h */,
+				436D1AAF18EAC2F50099A690 /* NSString+DrawHelper.m */,
 			);
 			name = Catogery;
 			sourceTree = "<group>";
 		};
-		431F74B118C76D8700B03742 /* basic-vc */ = {
+		431DDF9518EADCAE000EF684 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				431F74A518C75C6900B03742 /* XPBaseViewCtler.h */,
-				431F74A618C75C6900B03742 /* XPBaseViewCtler.m */,
-				431F74A818C75D2E00B03742 /* XPBaseTableVCtler.h */,
-				431F74A918C75D2E00B03742 /* XPBaseTableVCtler.m */,
+				436D1ABE18EAC2F50099A690 /* XPAlarmClockHelper.h */,
+				436D1ABF18EAC2F50099A690 /* XPAlarmClockHelper.m */,
+				436D1AE718EAC2F50099A690 /* XPUserDataHelper.h */,
+				436D1AE818EAC2F50099A690 /* XPUserDataHelper.m */,
+				436D1AD218EAC2F50099A690 /* XPMathHelper.c */,
+				436D1AD318EAC2F50099A690 /* XPMathHelper.h */,
 			);
-			name = "basic-vc";
+			name = Utils;
 			sourceTree = "<group>";
 		};
-		431F74B218C76DB400B03742 /* staitc-vc */ = {
+		431DDF9618EADCC1000EF684 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				431F74A218C75C3A00B03742 /* XPDialyStaticVCtler.h */,
-				431F74A318C75C3A00B03742 /* XPDialyStaticVCtler.m */,
+				436D1ACC18EAC2F50099A690 /* XPHistoryTaskDataHelper.h */,
+				436D1ACD18EAC2F50099A690 /* XPHistoryTaskDataHelper.m */,
+				436D1ACE18EAC2F50099A690 /* XPlanModel.xcdatamodeld */,
+				436D1AB218EAC2F50099A690 /* ProjectModel.h */,
+				436D1AB318EAC2F50099A690 /* ProjectModel.m */,
+				436D1AB418EAC2F50099A690 /* TaskModel.h */,
+				436D1AB518EAC2F50099A690 /* TaskModel.m */,
+				436D1AC618EAC2F50099A690 /* XPDataManager.h */,
+				436D1AC718EAC2F50099A690 /* XPDataManager.m */,
 			);
-			name = "staitc-vc";
+			name = CoreData;
 			sourceTree = "<group>";
 		};
-		431F74B318C76DEC00B03742 /* custom-v */ = {
+		431DDF9718EADCF4000EF684 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				18ED380618C30FBF002565E8 /* XPTaskTableViewCell.h */,
-				18ED380718C30FBF002565E8 /* XPTaskTableViewCell.m */,
-				4383D9E718BC9646007F7CA0 /* XPUIRadioButton.h */,
-				4383D9E818BC9646007F7CA0 /* XPUIRadioButton.m */,
-				4361FC0418D837BA00B40D27 /* XPSegmentedView.h */,
-				4361FC0518D837BA00B40D27 /* XPSegmentedView.m */,
-				18E5DDB618DEA99100E97158 /* XPCheckBoxTableCell.h */,
-				18E5DDB718DEA99100E97158 /* XPCheckBoxTableCell.m */,
-				180C5FD918E45F410032F67B /* XPAdBannerVer.h */,
-				180C5FDA18E45F410032F67B /* XPAdBannerVer.m */,
-				18015F6818E719C600BAD721 /* OMGToast.h */,
-				18015F6918E719C600BAD721 /* OMGToast.m */,
+				436D1AB018EAC2F50099A690 /* OMGToast.h */,
+				436D1AB118EAC2F50099A690 /* OMGToast.m */,
+				436D1AD618EAC2F50099A690 /* XPSegmentedView.h */,
+				436D1AD718EAC2F50099A690 /* XPSegmentedView.m */,
+				436D1ABC18EAC2F50099A690 /* XPAdBannerVer.h */,
+				436D1ABD18EAC2F50099A690 /* XPAdBannerVer.m */,
+				436D1AE318EAC2F50099A690 /* XPUILable.h */,
+				436D1AE418EAC2F50099A690 /* XPUILable.m */,
+				436D1AE518EAC2F50099A690 /* XPUIRadioButton.h */,
+				436D1AE618EAC2F50099A690 /* XPUIRadioButton.m */,
 			);
-			name = "custom-v";
+			name = CustomView;
 			sourceTree = "<group>";
 		};
-		431F74B418C76F1A00B03742 /* guider */ = {
+		431DDF9818EAE384000EF684 /* ListVctler */ = {
 			isa = PBXGroup;
 			children = (
-				43E2460518E14D7400E91C8B /* CityListViewController.h */,
-				43E2460618E14D7400E91C8B /* CityListViewController.m */,
-				431F749F18C758C800B03742 /* XPStartupGuiderVctler.h */,
-				431F74A018C758C800B03742 /* XPStartupGuiderVctler.m */,
-				18B8052C18D9DE9900282D17 /* XPWeatherVctler.h */,
-				18B8052D18D9DE9900282D17 /* XPWeatherVctler.m */,
-				18B8052E18D9DE9900282D17 /* XPWeatherVctler.xib */,
-				18B8053118D9E0F100282D17 /* XPAboutMeVCtler.h */,
-				18B8053218D9E0F100282D17 /* XPAboutMeVCtler.m */,
-				18EE742C18E5B13D00BC1631 /* XPSettingVctler.h */,
-				18EE742D18E5B13D00BC1631 /* XPSettingVctler.m */,
-				18EE742E18E5B13D00BC1631 /* XPSettingVctler.xib */,
+				436D1AC818EAC2F50099A690 /* XPDialyStaticVCtler.h */,
+				436D1AC918EAC2F50099A690 /* XPDialyStaticVCtler.m */,
+				436D1AD418EAC2F50099A690 /* XPNewTaskVctler.h */,
+				436D1AD518EAC2F50099A690 /* XPNewTaskVctler.m */,
+				436D1AC418EAC2F50099A690 /* XPCheckBoxTableCell.h */,
+				436D1AC518EAC2F50099A690 /* XPCheckBoxTableCell.m */,
+				436D1ACA18EAC2F50099A690 /* XPHistoryListVctler.h */,
+				436D1ACB18EAC2F50099A690 /* XPHistoryListVctler.m */,
+				436D1ADD18EAC2F50099A690 /* XPTaskListVCtler.h */,
+				436D1ADE18EAC2F50099A690 /* XPTaskListVCtler.m */,
+				436D1ADF18EAC2F50099A690 /* XPTaskTableViewCell.h */,
+				436D1AE018EAC2F50099A690 /* XPTaskTableViewCell.m */,
 			);
-			name = guider;
+			name = ListVctler;
 			sourceTree = "<group>";
 		};
-		43359AED18C426DA00C12617 /* NSDateHelper */ = {
+		431DDF9918EAE3C1000EF684 /* weather */ = {
 			isa = PBXGroup;
 			children = (
-				43359AEE18C426F700C12617 /* NSDate+Category.h */,
-				43359AEF18C426F700C12617 /* NSDate+Category.m */,
+				436D1ABA18EAC2F50099A690 /* XPAboutMeVCtler.h */,
+				436D1ABB18EAC2F50099A690 /* XPAboutMeVCtler.m */,
+				436D1AD818EAC2F50099A690 /* XPSettingVctler.h */,
+				436D1AD918EAC2F50099A690 /* XPSettingVctler.m */,
+				436D1ADA18EAC2F50099A690 /* XPSettingVctler.xib */,
+				436D1AAA18EAC2F50099A690 /* CityListViewController.h */,
+				436D1AAB18EAC2F50099A690 /* CityListViewController.m */,
+				436D1AE918EAC2F50099A690 /* XPWeatherVctler.h */,
+				436D1AEA18EAC2F50099A690 /* XPWeatherVctler.m */,
+				436D1AEB18EAC2F50099A690 /* XPWeatherVctler.xib */,
 			);
-			name = NSDateHelper;
+			name = weather;
+			sourceTree = "<group>";
+		};
+		431DDF9A18EAE413000EF684 /* BasicVctler */ = {
+			isa = PBXGroup;
+			children = (
+				436D1AC018EAC2F50099A690 /* XPBaseTableVCtler.h */,
+				436D1AC118EAC2F50099A690 /* XPBaseTableVCtler.m */,
+				436D1AC218EAC2F50099A690 /* XPBaseViewCtler.h */,
+				436D1AC318EAC2F50099A690 /* XPBaseViewCtler.m */,
+			);
+			name = BasicVctler;
+			sourceTree = "<group>";
+		};
+		43239CD018EAF06D0048FF9E /* ads-sdk */ = {
+			isa = PBXGroup;
+			children = (
+				43239CD118EAF06D0048FF9E /* GADAdMobExtras.h */,
+				43239CD218EAF06D0048FF9E /* GADAdNetworkExtras.h */,
+				43239CD318EAF06D0048FF9E /* GADAdSize.h */,
+				43239CD418EAF06D0048FF9E /* GADBannerView.h */,
+				43239CD518EAF06D0048FF9E /* GADBannerViewDelegate.h */,
+				43239CD618EAF06D0048FF9E /* GADInterstitial.h */,
+				43239CD718EAF06D0048FF9E /* GADInterstitialDelegate.h */,
+				43239CD818EAF06D0048FF9E /* GADRequest.h */,
+				43239CD918EAF06D0048FF9E /* GADRequestError.h */,
+				43239CDA18EAF06D0048FF9E /* libGoogleAdMobAds.a */,
+			);
+			path = "ads-sdk";
+			sourceTree = "<group>";
+		};
+		436D193E18EAB3290099A690 /* XPlanAd */ = {
+			isa = PBXGroup;
+			children = (
+				436D194718EAB3290099A690 /* XPADAppDelegate.h */,
+				436D194818EAB3290099A690 /* XPADAppDelegate.m */,
+				436D194A18EAB3290099A690 /* Images.xcassets */,
+				436D193F18EAB3290099A690 /* Supporting Files */,
+			);
+			path = XPlanAd;
+			sourceTree = "<group>";
+		};
+		436D193F18EAB3290099A690 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				436D194018EAB3290099A690 /* XPlanAd-Info.plist */,
+				436D194118EAB3290099A690 /* InfoPlist.strings */,
+				436D194418EAB3290099A690 /* main.m */,
+				436D194618EAB3290099A690 /* XPlanAd-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		436D195618EAB3290099A690 /* XPlanAdTests */ = {
+			isa = PBXGroup;
+			children = (
+				436D195C18EAB3290099A690 /* XPlanAdTests.m */,
+				436D195718EAB3290099A690 /* Supporting Files */,
+			);
+			path = XPlanAdTests;
+			sourceTree = "<group>";
+		};
+		436D195718EAB3290099A690 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				436D195818EAB3290099A690 /* XPlanAdTests-Info.plist */,
+				436D195918EAB3290099A690 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		436D1AA918EAC2F50099A690 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				431DDF9A18EAE413000EF684 /* BasicVctler */,
+				431DDF9918EAE3C1000EF684 /* weather */,
+				431DDF9718EADCF4000EF684 /* CustomView */,
+				431DDF9618EADCC1000EF684 /* CoreData */,
+				431DDF9518EADCAE000EF684 /* Utils */,
+				431DDF9418EADC8A000EF684 /* Catogery */,
+				431DDF9818EAE384000EF684 /* ListVctler */,
+				436D1AD018EAC2F50099A690 /* XPLeftMenuViewCtler.h */,
+				436D1AD118EAC2F50099A690 /* XPLeftMenuViewCtler.m */,
+				436D1ADB18EAC2F50099A690 /* XPStartupGuiderVctler.h */,
+				436D1ADC18EAC2F50099A690 /* XPStartupGuiderVctler.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		436D1AF918EAC2F50099A690 /* ViewDeck */ = {
+			isa = PBXGroup;
+			children = (
+				436D1AFA18EAC2F50099A690 /* IISideController.h */,
+				436D1AFB18EAC2F50099A690 /* IISideController.m */,
+				436D1AFC18EAC2F50099A690 /* IIViewDeckController.h */,
+				436D1AFD18EAC2F50099A690 /* IIViewDeckController.m */,
+				436D1AFE18EAC2F50099A690 /* IIWrapController.h */,
+				436D1AFF18EAC2F50099A690 /* IIWrapController.m */,
+			);
+			path = ViewDeck;
 			sourceTree = "<group>";
 		};
 		437A7CB618B71BA20088F1AA = {
 			isa = PBXGroup;
 			children = (
-				1897FE7118E9AC2000DC0172 /* icon80.png */,
-				1897FE7018E9AA9600DC0172 /* icon120.png */,
+				43239CD018EAF06D0048FF9E /* ads-sdk */,
+				436D1AF718EAC2F50099A690 /* icon80.png */,
+				436D1AF818EAC2F50099A690 /* icon120.png */,
 				437A7D0818B74F210088F1AA /* resource */,
-				18E874A918E32A5B0094376E /* ads-sdk */,
-				437A7CF918B723330088F1AA /* ViewDeck */,
+				436D1AF918EAC2F50099A690 /* ViewDeck */,
+				436D1AA918EAC2F50099A690 /* UI */,
 				437A7CC818B71BA20088F1AA /* XPlan */,
 				437A7CE718B71BA20088F1AA /* XPlanTests */,
+				436D193E18EAB3290099A690 /* XPlanAd */,
+				436D195618EAB3290099A690 /* XPlanAdTests */,
 				437A7CC118B71BA20088F1AA /* Frameworks */,
 				437A7CC018B71BA20088F1AA /* Products */,
 				81C1E589819649A9B058BAB3 /* Pods.xcconfig */,
@@ -379,6 +557,8 @@
 			children = (
 				437A7CBF18B71BA20088F1AA /* XPlan.app */,
 				437A7CE018B71BA20088F1AA /* XPlanTests.xctest */,
+				436D193A18EAB3290099A690 /* XPlanAd.app */,
+				436D195018EAB3290099A690 /* XPlanAdTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -406,21 +586,8 @@
 		437A7CC818B71BA20088F1AA /* XPlan */ = {
 			isa = PBXGroup;
 			children = (
-				437B10B118D9750900A9925D /* userhelper */,
-				43BD907018D1B0070007E002 /* alarm */,
-				431F74B418C76F1A00B03742 /* guider */,
-				431F74B318C76DEC00B03742 /* custom-v */,
-				431F74B218C76DB400B03742 /* staitc-vc */,
-				431F74B118C76D8700B03742 /* basic-vc */,
-				431F74B018C76D6700B03742 /* Catogery */,
-				431F74AF18C76D3E00B03742 /* NewView */,
-				431F74AE18C76D2900B03742 /* listview */,
-				43359AED18C426DA00C12617 /* NSDateHelper */,
-				18EB3F5B18C1F01000400E72 /* Model */,
 				437A7CD118B71BA20088F1AA /* XPAppDelegate.h */,
 				437A7CD218B71BA20088F1AA /* XPAppDelegate.m */,
-				437A7D0318B725AF0088F1AA /* XPLeftMenuViewCtler.h */,
-				437A7D0418B725AF0088F1AA /* XPLeftMenuViewCtler.m */,
 				437A7CDA18B71BA20088F1AA /* Images.xcassets */,
 				437A7CC918B71BA20088F1AA /* Supporting Files */,
 			);
@@ -457,40 +624,46 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		437A7CF918B723330088F1AA /* ViewDeck */ = {
-			isa = PBXGroup;
-			children = (
-				437A7CFA18B723330088F1AA /* IISideController.h */,
-				437A7CFB18B723330088F1AA /* IISideController.m */,
-				437A7CFC18B723330088F1AA /* IIViewDeckController.h */,
-				437A7CFD18B723330088F1AA /* IIViewDeckController.m */,
-				437A7CFE18B723330088F1AA /* IIWrapController.h */,
-				437A7CFF18B723330088F1AA /* IIWrapController.m */,
-			);
-			path = ViewDeck;
-			sourceTree = "<group>";
-		};
-		437B10B118D9750900A9925D /* userhelper */ = {
-			isa = PBXGroup;
-			children = (
-				437B10B218D9761000A9925D /* XPUserDataHelper.h */,
-				437B10B318D9761000A9925D /* XPUserDataHelper.m */,
-			);
-			name = userhelper;
-			sourceTree = "<group>";
-		};
-		43BD907018D1B0070007E002 /* alarm */ = {
-			isa = PBXGroup;
-			children = (
-				43BD907118D1B0560007E002 /* XPAlarmClockHelper.h */,
-				43BD907218D1B0560007E002 /* XPAlarmClockHelper.m */,
-			);
-			name = alarm;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		436D193918EAB3290099A690 /* XPlanAd */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 436D196218EAB3290099A690 /* Build configuration list for PBXNativeTarget "XPlanAd" */;
+			buildPhases = (
+				DBF3CC9BDE5E4341A8EA3D13 /* Check Pods Manifest.lock */,
+				436D193618EAB3290099A690 /* Sources */,
+				436D193718EAB3290099A690 /* Frameworks */,
+				436D193818EAB3290099A690 /* Resources */,
+				5D1EB712FE824B2AB1C77C93 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XPlanAd;
+			productName = XPlanAd;
+			productReference = 436D193A18EAB3290099A690 /* XPlanAd.app */;
+			productType = "com.apple.product-type.application";
+		};
+		436D194F18EAB3290099A690 /* XPlanAdTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 436D196318EAB3290099A690 /* Build configuration list for PBXNativeTarget "XPlanAdTests" */;
+			buildPhases = (
+				436D194C18EAB3290099A690 /* Sources */,
+				436D194D18EAB3290099A690 /* Frameworks */,
+				436D194E18EAB3290099A690 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				436D195518EAB3290099A690 /* PBXTargetDependency */,
+			);
+			name = XPlanAdTests;
+			productName = XPlanAdTests;
+			productReference = 436D195018EAB3290099A690 /* XPlanAdTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		437A7CBE18B71BA20088F1AA /* XPlan */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 437A7CF118B71BA20088F1AA /* Build configuration list for PBXNativeTarget "XPlan" */;
@@ -538,6 +711,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = mjlee;
 				TargetAttributes = {
+					436D194F18EAB3290099A690 = {
+						TestTargetID = 437A7CBE18B71BA20088F1AA;
+					};
 					437A7CBE18B71BA20088F1AA = {
 						DevelopmentTeam = 6D6U4G36JF;
 						SystemCapabilities = {
@@ -566,20 +742,45 @@
 			targets = (
 				437A7CBE18B71BA20088F1AA /* XPlan */,
 				437A7CDF18B71BA20088F1AA /* XPlanTests */,
+				436D193918EAB3290099A690 /* XPlanAd */,
+				436D194F18EAB3290099A690 /* XPlanAdTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		436D193818EAB3290099A690 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				436D194B18EAB3290099A690 /* Images.xcassets in Resources */,
+				436D194318EAB3290099A690 /* InfoPlist.strings in Resources */,
+				436D1B4718EAC2F50099A690 /* icon80.png in Resources */,
+				436D1B4918EAC2F50099A690 /* icon120.png in Resources */,
+				436D1B3118EAC2F50099A690 /* XPSettingVctler.xib in Resources */,
+				436D1B4318EAC2F50099A690 /* XPWeatherVctler.xib in Resources */,
+				436D1B5018EAC7670099A690 /* resource in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		436D194E18EAB3290099A690 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				436D195B18EAB3290099A690 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		437A7CBD18B71BA20088F1AA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18B8053018D9DE9900282D17 /* XPWeatherVctler.xib in Resources */,
-				18EE743018E5B13D00BC1631 /* XPSettingVctler.xib in Resources */,
-				1897FE7218E9AC2000DC0172 /* icon80.png in Resources */,
 				437A7CDB18B71BA20088F1AA /* Images.xcassets in Resources */,
 				437A7CCD18B71BA20088F1AA /* InfoPlist.strings in Resources */,
+				436D1B4618EAC2F50099A690 /* icon80.png in Resources */,
+				436D1B4818EAC2F50099A690 /* icon120.png in Resources */,
+				436D1B3018EAC2F50099A690 /* XPSettingVctler.xib in Resources */,
+				436D1B4218EAC2F50099A690 /* XPWeatherVctler.xib in Resources */,
 				437A7D0918B74F210088F1AA /* resource in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,7 +811,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5D1EB712FE824B2AB1C77C93 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B011D7D8DF72443EA84F429C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DBF3CC9BDE5E4341A8EA3D13 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -628,45 +859,97 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		436D193618EAB3290099A690 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				436D1B3518EAC2F50099A690 /* XPTaskListVCtler.m in Sources */,
+				436D1B3B18EAC2F50099A690 /* XPUILable.m in Sources */,
+				436D1B0518EAC2F50099A690 /* NSString+DrawHelper.m in Sources */,
+				436D1B2718EAC2F50099A690 /* XPLeftMenuViewCtler.m in Sources */,
+				436D1B4D18EAC2F50099A690 /* IIViewDeckController.m in Sources */,
+				436D1B2F18EAC2F50099A690 /* XPSettingVctler.m in Sources */,
+				436D1B3718EAC2F50099A690 /* XPTaskTableViewCell.m in Sources */,
+				436D1B1718EAC2F50099A690 /* XPBaseTableVCtler.m in Sources */,
+				436D1B0318EAC2F50099A690 /* NSDate+Category.m in Sources */,
+				436D1B2D18EAC2F50099A690 /* XPSegmentedView.m in Sources */,
+				436D1B0B18EAC2F50099A690 /* TaskModel.m in Sources */,
+				436D194918EAB3290099A690 /* XPADAppDelegate.m in Sources */,
+				436D1B0D18EAC2F50099A690 /* UIDevice+Resolution.m in Sources */,
+				436D1B1518EAC2F50099A690 /* XPAlarmClockHelper.m in Sources */,
+				436D1B4B18EAC2F50099A690 /* IISideController.m in Sources */,
+				436D1B2118EAC2F50099A690 /* XPHistoryListVctler.m in Sources */,
+				436D1B1B18EAC2F50099A690 /* XPCheckBoxTableCell.m in Sources */,
+				436D1B0F18EAC2F50099A690 /* UIImage+XPUIImage.m in Sources */,
+				436D1B2518EAC2F50099A690 /* XPlanModel.xcdatamodeld in Sources */,
+				436D1B2918EAC2F50099A690 /* XPMathHelper.c in Sources */,
+				436D1B0918EAC2F50099A690 /* ProjectModel.m in Sources */,
+				436D1B0118EAC2F50099A690 /* CityListViewController.m in Sources */,
+				436D194518EAB3290099A690 /* main.m in Sources */,
+				436D1B1D18EAC2F50099A690 /* XPDataManager.m in Sources */,
+				436D1B2B18EAC2F50099A690 /* XPNewTaskVctler.m in Sources */,
+				436D1B3318EAC2F50099A690 /* XPStartupGuiderVctler.m in Sources */,
+				436D1B1F18EAC2F50099A690 /* XPDialyStaticVCtler.m in Sources */,
+				436D1B2318EAC2F50099A690 /* XPHistoryTaskDataHelper.m in Sources */,
+				436D1B1918EAC2F50099A690 /* XPBaseViewCtler.m in Sources */,
+				436D1B4F18EAC2F50099A690 /* IIWrapController.m in Sources */,
+				436D1B1118EAC2F50099A690 /* XPAboutMeVCtler.m in Sources */,
+				436D1B3D18EAC2F50099A690 /* XPUIRadioButton.m in Sources */,
+				436D1B1318EAC2F50099A690 /* XPAdBannerVer.m in Sources */,
+				436D1B3F18EAC2F50099A690 /* XPUserDataHelper.m in Sources */,
+				436D1B4118EAC2F50099A690 /* XPWeatherVctler.m in Sources */,
+				436D1B0718EAC2F50099A690 /* OMGToast.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		436D194C18EAB3290099A690 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				436D195D18EAB3290099A690 /* XPlanAdTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		437A7CBB18B71BA20088F1AA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18B8052F18D9DE9900282D17 /* XPWeatherVctler.m in Sources */,
-				4383D9E618BC8577007F7CA0 /* XPNewTaskVctler.m in Sources */,
-				43BD907318D1B0560007E002 /* XPAlarmClockHelper.m in Sources */,
-				18ED380518C308D1002565E8 /* NSString+DrawHelper.m in Sources */,
-				43359AF018C426F700C12617 /* NSDate+Category.m in Sources */,
-				4361FC0C18D8540F00B40D27 /* XPHistoryTaskDataHelper.m in Sources */,
-				437A7D0018B723330088F1AA /* IISideController.m in Sources */,
+				436D1B3418EAC2F50099A690 /* XPTaskListVCtler.m in Sources */,
+				436D1B3A18EAC2F50099A690 /* XPUILable.m in Sources */,
+				436D1B0418EAC2F50099A690 /* NSString+DrawHelper.m in Sources */,
+				436D1B2618EAC2F50099A690 /* XPLeftMenuViewCtler.m in Sources */,
+				436D1B4C18EAC2F50099A690 /* IIViewDeckController.m in Sources */,
+				436D1B2E18EAC2F50099A690 /* XPSettingVctler.m in Sources */,
+				436D1B3618EAC2F50099A690 /* XPTaskTableViewCell.m in Sources */,
+				436D1B1618EAC2F50099A690 /* XPBaseTableVCtler.m in Sources */,
+				436D1B0218EAC2F50099A690 /* NSDate+Category.m in Sources */,
+				436D1B2C18EAC2F50099A690 /* XPSegmentedView.m in Sources */,
+				436D1B0A18EAC2F50099A690 /* TaskModel.m in Sources */,
 				437A7CD318B71BA20088F1AA /* XPAppDelegate.m in Sources */,
-				18A97E4318C1B12200CE3161 /* XPlanModel.xcdatamodeld in Sources */,
-				4361FC0618D837BA00B40D27 /* XPSegmentedView.m in Sources */,
-				18ED380B18C324BA002565E8 /* XPTaskListVCtler.m in Sources */,
-				180C5FDB18E45F410032F67B /* XPAdBannerVer.m in Sources */,
-				4361FC0918D843BB00B40D27 /* XPMathHelper.c in Sources */,
-				18B8053418D9E0F100282D17 /* XPAboutMeVCtler.m in Sources */,
-				439623F718DDC8280051183F /* TaskModel.m in Sources */,
-				437B10B418D9761000A9925D /* XPUserDataHelper.m in Sources */,
-				431F74A118C758C800B03742 /* XPStartupGuiderVctler.m in Sources */,
-				433EDCD118C8B60500746E63 /* UIDevice+Resolution.m in Sources */,
-				18E5DDB818DEA99100E97158 /* XPCheckBoxTableCell.m in Sources */,
-				18015F6A18E719C600BAD721 /* OMGToast.m in Sources */,
-				18ED380818C30FBF002565E8 /* XPTaskTableViewCell.m in Sources */,
-				431F74AA18C75D2E00B03742 /* XPBaseTableVCtler.m in Sources */,
-				4321392918B8D78F00613275 /* XPDataManager.m in Sources */,
-				437A7D0118B723330088F1AA /* IIViewDeckController.m in Sources */,
-				437A7D0C18B750B60088F1AA /* UIImage+XPUIImage.m in Sources */,
-				4361FC0318D835E300B40D27 /* XPHistoryListVctler.m in Sources */,
-				439623FA18DDC8290051183F /* ProjectModel.m in Sources */,
-				431F74A418C75C3A00B03742 /* XPDialyStaticVCtler.m in Sources */,
-				437A7D0518B725AF0088F1AA /* XPLeftMenuViewCtler.m in Sources */,
-				431F74A718C75C6900B03742 /* XPBaseViewCtler.m in Sources */,
-				43E2460718E14D7400E91C8B /* CityListViewController.m in Sources */,
-				4383D9E918BC9646007F7CA0 /* XPUIRadioButton.m in Sources */,
+				436D1B0C18EAC2F50099A690 /* UIDevice+Resolution.m in Sources */,
+				436D1B1418EAC2F50099A690 /* XPAlarmClockHelper.m in Sources */,
+				436D1B4A18EAC2F50099A690 /* IISideController.m in Sources */,
+				436D1B2018EAC2F50099A690 /* XPHistoryListVctler.m in Sources */,
+				436D1B1A18EAC2F50099A690 /* XPCheckBoxTableCell.m in Sources */,
+				436D1B0E18EAC2F50099A690 /* UIImage+XPUIImage.m in Sources */,
+				436D1B2418EAC2F50099A690 /* XPlanModel.xcdatamodeld in Sources */,
+				436D1B2818EAC2F50099A690 /* XPMathHelper.c in Sources */,
+				436D1B0818EAC2F50099A690 /* ProjectModel.m in Sources */,
+				436D1B0018EAC2F50099A690 /* CityListViewController.m in Sources */,
 				437A7CCF18B71BA20088F1AA /* main.m in Sources */,
-				18EE742F18E5B13D00BC1631 /* XPSettingVctler.m in Sources */,
-				437A7D0218B723330088F1AA /* IIWrapController.m in Sources */,
+				436D1B1C18EAC2F50099A690 /* XPDataManager.m in Sources */,
+				436D1B2A18EAC2F50099A690 /* XPNewTaskVctler.m in Sources */,
+				436D1B3218EAC2F50099A690 /* XPStartupGuiderVctler.m in Sources */,
+				436D1B1E18EAC2F50099A690 /* XPDialyStaticVCtler.m in Sources */,
+				436D1B2218EAC2F50099A690 /* XPHistoryTaskDataHelper.m in Sources */,
+				436D1B1818EAC2F50099A690 /* XPBaseViewCtler.m in Sources */,
+				436D1B4E18EAC2F50099A690 /* IIWrapController.m in Sources */,
+				436D1B1018EAC2F50099A690 /* XPAboutMeVCtler.m in Sources */,
+				436D1B3C18EAC2F50099A690 /* XPUIRadioButton.m in Sources */,
+				436D1B1218EAC2F50099A690 /* XPAdBannerVer.m in Sources */,
+				436D1B3E18EAC2F50099A690 /* XPUserDataHelper.m in Sources */,
+				436D1B4018EAC2F50099A690 /* XPWeatherVctler.m in Sources */,
+				436D1B0618EAC2F50099A690 /* OMGToast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +965,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		436D195518EAB3290099A690 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 436D193918EAB3290099A690 /* XPlanAd */;
+			targetProxy = 436D195418EAB3290099A690 /* PBXContainerItemProxy */;
+		};
 		437A7CE618B71BA20088F1AA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 437A7CBE18B71BA20088F1AA /* XPlan */;
@@ -690,6 +978,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		436D194118EAB3290099A690 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				436D194218EAB3290099A690 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		436D195918EAB3290099A690 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				436D195A18EAB3290099A690 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		437A7CCB18B71BA20088F1AA /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -709,6 +1013,102 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		436D195E18EAB3290099A690 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81C1E589819649A9B058BAB3 /* Pods.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XPlanAd/XPlanAd-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/PNChart\"",
+					"\"${PODS_ROOT}/Headers/UICountingLabel\"",
+				);
+				INFOPLIST_FILE = "XPlanAd/XPlanAd-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/mjlee/mycode/PNC/XPlan/ads-sdk",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		436D195F18EAB3290099A690 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81C1E589819649A9B058BAB3 /* Pods.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XPlanAd/XPlanAd-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/PNChart\"",
+					"\"${PODS_ROOT}/Headers/UICountingLabel\"",
+				);
+				INFOPLIST_FILE = "XPlanAd/XPlanAd-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/mjlee/mycode/PNC/XPlan/ads-sdk",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		436D196018EAB3290099A690 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/XPlan.app/XPlan";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XPlanAd/XPlanAd-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "XPlanAdTests/XPlanAdTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		436D196118EAB3290099A690 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/XPlan.app/XPlan";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XPlanAd/XPlanAd-Prefix.pch";
+				INFOPLIST_FILE = "XPlanAdTests/XPlanAdTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		437A7CEF18B71BA20088F1AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -794,7 +1194,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Apple/mycode/PNC/XPlan/ads-sdk",
+					"/Users/mjlee/mycode/PNC/XPlan/ads-sdk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -815,7 +1215,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Apple/mycode/PNC/XPlan/ads-sdk",
+					"/Users/mjlee/mycode/PNC/XPlan/ads-sdk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -868,6 +1268,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		436D196218EAB3290099A690 /* Build configuration list for PBXNativeTarget "XPlanAd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				436D195E18EAB3290099A690 /* Debug */,
+				436D195F18EAB3290099A690 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		436D196318EAB3290099A690 /* Build configuration list for PBXNativeTarget "XPlanAdTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				436D196018EAB3290099A690 /* Debug */,
+				436D196118EAB3290099A690 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		437A7CBA18B71BA20088F1AA /* Build configuration list for PBXProject "XPlan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -898,12 +1316,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		18A97E4018C1B12200CE3161 /* XPlanModel.xcdatamodeld */ = {
+		436D1ACE18EAC2F50099A690 /* XPlanModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				18A97E4118C1B12200CE3161 /* XPlanModel.xcdatamodel */,
+				436D1ACF18EAC2F50099A690 /* XPlanModel.xcdatamodel */,
 			);
-			currentVersion = 18A97E4118C1B12200CE3161 /* XPlanModel.xcdatamodel */;
+			currentVersion = 436D1ACF18EAC2F50099A690 /* XPlanModel.xcdatamodel */;
 			path = XPlanModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
