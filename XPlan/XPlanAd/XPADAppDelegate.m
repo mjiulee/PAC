@@ -1,26 +1,26 @@
 //
-//  XPAppDelegate.m
-//  XPlan
+//  XPADAppDelegate.m
+//  XPlanAd
 //
-//  Created by mjlee on 14-2-21.
+//  Created by mjlee on 14-4-1.
 //  Copyright (c) 2014年 mjlee. All rights reserved.
 //
 
-#import "XPAppDelegate.h"
+#import "XPADAppDelegate.h"
 #import "IIViewDeckController.h"
 #import "XPLeftMenuViewCtler.h"
 #import "XPTaskListVCtler.h"
 #import "XPStartupGuiderVctler.h"
 #import "XPAlarmClockHelper.h"
 
-@interface XPAppDelegate()
+@interface XPADAppDelegate()
 @end
 
-@implementation XPAppDelegate
+@implementation XPADAppDelegate
 
-+ (XPAppDelegate*)shareInstance
++ (XPADAppDelegate*)shareInstance
 {
-    return (XPAppDelegate*)[[UIApplication sharedApplication] delegate];
+    return (XPADAppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
 -(void)showTaskListDeckVctler
@@ -55,7 +55,7 @@
     
     // alarmhelper setup
     [[XPAlarmClockHelper shareInstance] setupNotification];
-
+    
     // show the start up guider
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     NSDate * today      = [NSDate date];
@@ -78,7 +78,7 @@
     }
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -87,7 +87,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -101,27 +101,27 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     // 常驻内存打开的情况
     /*NSDate * today      = [NSDate date];
-    NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
-    if([today isTheSameDay:lastOpenDate] == YES)
-    {
-        // 今日有打开过
-        if (self.window.rootViewController != self.rootNav) {
-            _deckController = [self generateControllerStack];
-            UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:self.deckController];
-            self.rootNav = nav;
-            self.rootNav.navigationBarHidden = YES;
-            self.window.rootViewController = self.rootNav;
-            [self.window makeKeyAndVisible];            
-        }
-    }else
-    {
-        // 今日没打开过
-        _guiderVctler   = [self generateStartupGuider];
-        self.window.rootViewController = _guiderVctler;
-        [self.window makeKeyAndVisible];
-        // 在这里设置已经打开过
-        [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_LastOpenDate value:today];
-    }*/
+     NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
+     if([today isTheSameDay:lastOpenDate] == YES)
+     {
+     // 今日有打开过
+     if (self.window.rootViewController != self.rootNav) {
+     _deckController = [self generateControllerStack];
+     UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:self.deckController];
+     self.rootNav = nav;
+     self.rootNav.navigationBarHidden = YES;
+     self.window.rootViewController = self.rootNav;
+     [self.window makeKeyAndVisible];
+     }
+     }else
+     {
+     // 今日没打开过
+     _guiderVctler   = [self generateStartupGuider];
+     self.window.rootViewController = _guiderVctler;
+     [self.window makeKeyAndVisible];
+     // 在这里设置已经打开过
+     [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_LastOpenDate value:today];
+     }*/
     
     NSDate * today      = [NSDate date];
     NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
@@ -143,7 +143,7 @@
         self.window.rootViewController = _guiderVctler;
         [self.window makeKeyAndVisible];
     }
-
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -175,13 +175,13 @@
     UINavigationController* rootNav      = [[UINavigationController alloc] initWithRootViewController:centervc];
     XPLeftMenuViewCtler*  leftController = [[XPLeftMenuViewCtler alloc] initWithStyle:UITableViewStyleGrouped];
     IIViewDeckController* deckController = [[IIViewDeckController alloc] initWithCenterViewController:rootNav
-                                                                                    leftViewController:leftController
-                                                                                   rightViewController:nil];
+                                                                                   leftViewController:leftController
+                                                                                  rightViewController:nil];
     deckController.panningMode = IIViewDeckNavigationBarPanning;
     deckController.leftSize = 100;
     deckController.openSlideAnimationDuration = 0.25f;
     deckController.closeSlideAnimationDuration= 0.25f;
-
+    
     [deckController disablePanOverViewsOfClass:NSClassFromString(@"_UITableViewHeaderFooterContentView")];
     return deckController;
 }
