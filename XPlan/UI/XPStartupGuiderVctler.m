@@ -185,8 +185,8 @@ static char kCharCellCheckKey;
     NSUInteger all_total =0,all_done=0,all_notdone = 0;
     {
         // 普通
-        normal_ongoing = [[XPDataManager shareInstance] taskCoutByDay:yestoday prLevel:XPTask_PriorityLevel_normal status:XPTask_Status_ongoing];
-        normal_done    = [[XPDataManager shareInstance] taskCoutByDay:yestoday prLevel:XPTask_PriorityLevel_normal status:XPTask_Status_Done];
+        normal_ongoing   = [[XPDataManager shareInstance] taskCoutByDay:yestoday prLevel:XPTask_PriorityLevel_normal status:XPTask_Status_ongoing];
+        normal_done      = [[XPDataManager shareInstance] taskCoutByDay:yestoday prLevel:XPTask_PriorityLevel_normal status:XPTask_Status_Done];
         // 总要
         important_ongoing=[[XPDataManager shareInstance] taskCoutByDay:yestoday prLevel:XPTask_PriorityLevel_important status:XPTask_Status_ongoing];
         important_done   =[[XPDataManager shareInstance] taskCoutByDay:yestoday prLevel:XPTask_PriorityLevel_important status:XPTask_Status_Done];
@@ -207,7 +207,7 @@ static char kCharCellCheckKey;
         
         CGFloat fpercent = 0.0;
         if (all_total > 0) {
-            fpercent = (normal_done+important_done)/all_total;
+            fpercent = (normal_done+important_done)*1.0/all_total;
         }
         PNCircleChart * circleChart
         = [[PNCircleChart alloc] initWithFrame:CGRectMake(0,30,CGRectGetWidth(cycleView.frame),130)
@@ -460,6 +460,11 @@ static char kCharCellCheckKey;
     NSArray* todayTask = [dict objectForKey:[NSString stringWithFormat:@"%d",today.weekday]];
     if (todayTask && [todayTask count]) {
         [self.dialyTaskList setArray:todayTask];
+
+        // 设置第一个为选中状态：
+        NSString *ifcheck = @"check";
+        NSString *taskContent = [self.dialyTaskList objectAtIndex:0];
+        objc_setAssociatedObject(taskContent,&kCharCellCheckKey,ifcheck, OBJC_ASSOCIATION_RETAIN);
     }
 }
 

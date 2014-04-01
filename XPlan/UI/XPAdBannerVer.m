@@ -32,10 +32,10 @@
         self.adBannerView = bannerView;
         // Initiate a generic request to load it with an ad.
         GADRequest *request = [GADRequest request];
-        request.testDevices = [NSArray arrayWithObjects:
+        /*request.testDevices = [NSArray arrayWithObjects:
                                @"MY_SIMULATOR_IDENTIFIER",
                                @"MY_DEVICE_IDENTIFIER",
-                               nil];
+                               nil];*/
         [self.adBannerView loadRequest:request];
         
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
