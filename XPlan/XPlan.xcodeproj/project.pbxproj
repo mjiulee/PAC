@@ -1037,6 +1037,7 @@
 					"${SRCROOT}/ads-sdk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9F8C1B4E-133E-479B-BEC5-9AA83F27E6D7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1047,6 +1048,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: li mingjiu (6D6U4G36JF)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlanAd/XPlanAd-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1061,6 +1063,7 @@
 					"${SRCROOT}/ads-sdk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9F8C1B4E-133E-479B-BEC5-9AA83F27E6D7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1184,7 +1187,7 @@
 			baseConfigurationReference = 81C1E589819649A9B058BAB3 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
@@ -1195,7 +1198,7 @@
 					"${SRCROOT}/ads-sdk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "A5621BAC-80E5-4F8E-8070-6508E7FD4AC6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1205,8 +1208,8 @@
 			baseConfigurationReference = 81C1E589819649A9B058BAB3 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: li mingjiu (6D6U4G36JF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: li mingjiu (6D6U4G36JF)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
@@ -1216,7 +1219,7 @@
 					"${SRCROOT}/ads-sdk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "A5621BAC-80E5-4F8E-8070-6508E7FD4AC6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

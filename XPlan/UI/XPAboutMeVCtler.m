@@ -34,6 +34,7 @@
     UIWebView* webv = [[UIWebView alloc] initWithFrame:frame];
     webv.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     webv.scrollView.contentSize = CGSizeMake(webv.frame.size.width,0);
+    self.view.backgroundColor = XPRGBColor(255, 255, 255, 1.0);
     [self.view addSubview:webv];
     self.webview = webv;
     
