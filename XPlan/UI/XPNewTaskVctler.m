@@ -151,14 +151,19 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     if ([UIDevice isRunningOniPhone]) {
         yvalstart = 15;
     }
-    yvalstart += 0;//CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    yvalstart += 0;
     if (orientation == 1)
     {
         _tfviewbg.frame = CGRectMake(15,yvalstart,290, 82);
         _tfview.frame   = CGRectMake(16,yvalstart+2,288,78);
-        _radioNormal.frame    = CGRectMake(20,CGRectGetMaxY(_tfview .frame)+20,80, 24);
-        _radioImportant.frame = CGRectMake(120,CGRectGetMaxY(_tfview .frame)+20,80, 24);
-        _btnNext.frame  = CGRectMake(CGRectGetMaxX(_radioImportant.frame)+20, CGRectGetMaxY(_tfview .frame)+10,100, 40);
+        if (_viewType != XPNewTaskViewType_Update){
+            _radioNormal.frame    = CGRectMake(20,CGRectGetMaxY(_tfview .frame)+20,80, 24);
+            _radioImportant.frame = CGRectMake(120,CGRectGetMaxY(_tfview .frame)+20,80, 24);
+            _btnNext.frame  = CGRectMake(CGRectGetMaxX(_radioImportant.frame)+20, CGRectGetMaxY(_tfview .frame)+10,100, 40);
+        }else{
+            _radioNormal.frame    = CGRectMake(70,CGRectGetMaxY(_tfview .frame)+20,80, 24);
+            _radioImportant.frame = CGRectMake(190,CGRectGetMaxY(_tfview .frame)+20,80, 24);
+        }
     }else if(orientation == 2)
     {
         yvalstart = CGRectGetMaxY(self.navigationController.navigationBar.frame) + 5;

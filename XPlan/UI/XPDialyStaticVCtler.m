@@ -63,10 +63,10 @@ static const NSUInteger kScrollViewPageIndex = 1000;
     sclview.autoresizingMask  = UIViewAutoresizingFlexibleHeight;
     sclview.showsHorizontalScrollIndicator= NO;
     sclview.pagingEnabled  = YES;
-    sclview.delegate       = (id<UIScrollViewDelegate>)self;
+    //sclview.delegate       = (id<UIScrollViewDelegate>)self;
     [self.view addSubview:sclview];
     self.contentScrollview = sclview;
-    self.contentScrollview.contentSize = CGSizeMake(CGRectGetWidth(sclview.frame)*2, 0);
+    self.contentScrollview.contentSize = CGSizeMake(CGRectGetWidth(sclview.frame), 0);
     [self prepareForStatistic];
 }
 
@@ -116,14 +116,14 @@ static const NSUInteger kScrollViewPageIndex = 1000;
 }
 
 #pragma mark -  UIScrollviewdelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    NSUInteger page = floor((scrollView.contentOffset.x - scrollView.frame.size.width / 2) / scrollView.frame.size.width) + 1;
-    if (self.pageIndex != page) {
-        self.pageIndex = page;
-        [self setPageView:self.pageIndex];
-    }
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    NSUInteger page = floor((scrollView.contentOffset.x - scrollView.frame.size.width / 2) / scrollView.frame.size.width) + 1;
+//    if (self.pageIndex != page) {
+//        self.pageIndex = page;
+//        [self setPageView:self.pageIndex];
+//    }
+//}
 
 -(void)setPageView:(NSUInteger)page
 {
@@ -145,21 +145,16 @@ static const NSUInteger kScrollViewPageIndex = 1000;
         NSLog(@"frame=%@",NSStringFromCGRect(cycleView.frame));
         
         {
-            /*UILabel* labtitle = [[UILabel alloc] initWithFrame:CGRectMake(0,0,CGRectGetWidth(cycleView.frame),30)];
-            labtitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-            labtitle.text = @"今天的任务完成情况";
-            labtitle.textColor = XPRGBColor(35, 135, 255, 1.0);
-            labtitle.font = [UIFont systemFontOfSize:16];
-            labtitle.textAlignment = NSTextAlignmentCenter;
-            labtitle.backgroundColor = XPRGBColor(220,220,220,0.78);
-            [cycleView addSubview:labtitle];*/
-            
             CGFloat fpercent = 0.0;
             if (_allTotal > 0) {
                 fpercent = (_normalDone+_importantDone)*1.0/_allTotal;
             }
+            CGFloat yval = 40;
+            if ([UIDevice isRunningOniPhone5]) {
+                yval = 60;
+            }
             PNCircleChart * circleChart
-            = [[PNCircleChart alloc] initWithFrame:CGRectMake(0,40,CGRectGetWidth(cycleView.frame),130)
+            = [[PNCircleChart alloc] initWithFrame:CGRectMake(0,60,CGRectGetWidth(cycleView.frame),130)
                                           andTotal:[NSNumber numberWithInt:1]
                                         andCurrent:[NSNumber numberWithFloat:fpercent]];
             circleChart.backgroundColor = [UIColor clearColor];
@@ -170,6 +165,9 @@ static const NSUInteger kScrollViewPageIndex = 1000;
         
         {
             CGFloat yof = cycleView.frame.size.height - 100;
+            if ([UIDevice isRunningOniPhone5]) {
+                yof = cycleView.frame.size.height - 140;
+            }
             for(int i = 0;i < 3;i++){
                 UILabel* labtitle = [[UILabel alloc] initWithFrame:CGRectMake(40,yof,CGRectGetWidth(cycleView.frame),20)];
                 labtitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
