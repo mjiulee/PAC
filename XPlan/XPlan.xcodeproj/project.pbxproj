@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1887867719114DFA00CAB38E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867619114DFA00CAB38E /* QuartzCore.framework */; };
+		1887867919114E1000CAB38E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867819114E1000CAB38E /* libicucore.dylib */; };
+		1887867B19114E2400CAB38E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867A19114E2400CAB38E /* libz.1.2.5.dylib */; };
+		1887867D19114E3900CAB38E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867C19114E3900CAB38E /* Security.framework */; };
+		1887867F19114E5800CAB38E /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867E19114E5800CAB38E /* libstdc++.dylib */; };
+		1887868119114E6A00CAB38E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887868019114E6A00CAB38E /* libsqlite3.dylib */; };
 		1897FE7418E9AC5B00DC0172 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1897FE7318E9AC5B00DC0172 /* StoreKit.framework */; };
 		18E874B618E32A870094376E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B518E32A870094376E /* AdSupport.framework */; };
 		18E874B818E32A950094376E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B718E32A950094376E /* AudioToolbox.framework */; };
@@ -150,6 +156,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1887867619114DFA00CAB38E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1887867819114E1000CAB38E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		1887867A19114E2400CAB38E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		1887867C19114E3900CAB38E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		1887867E19114E5800CAB38E /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		1887868019114E6A00CAB38E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		1897FE7318E9AC5B00DC0172 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		18E874B518E32A870094376E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		18E874B718E32A950094376E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -278,13 +290,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1887868119114E6A00CAB38E /* libsqlite3.dylib in Frameworks */,
+				1887867F19114E5800CAB38E /* libstdc++.dylib in Frameworks */,
+				1887867D19114E3900CAB38E /* Security.framework in Frameworks */,
+				1887867B19114E2400CAB38E /* libz.1.2.5.dylib in Frameworks */,
+				1887867919114E1000CAB38E /* libicucore.dylib in Frameworks */,
+				1887867719114DFA00CAB38E /* QuartzCore.framework in Frameworks */,
+				43239CC618EAEBE90048FF9E /* CoreTelephony.framework in Frameworks */,
 				43239CDC18EAF06D0048FF9E /* libGoogleAdMobAds.a in Frameworks */,
 				43239CCB18EAEC320048FF9E /* StoreKit.framework in Frameworks */,
 				43239CCA18EAEC220048FF9E /* CoreData.framework in Frameworks */,
 				43239CC918EAEC130048FF9E /* AdSupport.framework in Frameworks */,
 				43239CC818EAEC050048FF9E /* AudioToolbox.framework in Frameworks */,
 				43239CC718EAEBF10048FF9E /* AVFoundation.framework in Frameworks */,
-				43239CC618EAEBE90048FF9E /* CoreTelephony.framework in Frameworks */,
 				43239CC518EAEBDE0048FF9E /* MessageUI.framework in Frameworks */,
 				43239CC418EAEBD70048FF9E /* SystemConfiguration.framework in Frameworks */,
 				436D193C18EAB3290099A690 /* CoreGraphics.framework in Frameworks */,
@@ -566,6 +584,12 @@
 		437A7CC118B71BA20088F1AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1887868019114E6A00CAB38E /* libsqlite3.dylib */,
+				1887867E19114E5800CAB38E /* libstdc++.dylib */,
+				1887867C19114E3900CAB38E /* Security.framework */,
+				1887867A19114E2400CAB38E /* libz.1.2.5.dylib */,
+				1887867819114E1000CAB38E /* libicucore.dylib */,
+				1887867619114DFA00CAB38E /* QuartzCore.framework */,
 				1897FE7318E9AC5B00DC0172 /* StoreKit.framework */,
 				18E874C118E32ACC0094376E /* SystemConfiguration.framework */,
 				18E874BD18E32AB60094376E /* MessageUI.framework */,
@@ -708,7 +732,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = XP;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = mjlee;
 				TargetAttributes = {
 					436D194F18EAB3290099A690 = {
@@ -734,6 +758,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 437A7CB618B71BA20088F1AA;
 			productRefGroup = 437A7CC018B71BA20088F1AA /* Products */;
@@ -1017,7 +1042,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81C1E589819649A9B058BAB3 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlanAd/XPlanAd-Prefix.pch";
@@ -1046,7 +1070,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81C1E589819649A9B058BAB3 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: li mingjiu (6D6U4G36JF)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1071,7 +1094,6 @@
 		436D196018EAB3290099A690 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/XPlan.app/XPlan";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1094,7 +1116,6 @@
 		436D196118EAB3290099A690 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/XPlan.app/XPlan";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1114,7 +1135,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1153,7 +1173,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1189,6 +1208,17 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShareSDK/Connection",
+					"$(PROJECT_DIR)/ShareSDK/Core",
+					"$(PROJECT_DIR)/ShareSDK/Extend/GooglePlusSDK",
+					"$(PROJECT_DIR)/ShareSDK/Extend/Pinterest.embeddedframework",
+					"$(PROJECT_DIR)/ShareSDK/Extend/QQConnectSDK",
+					"$(PROJECT_DIR)/ShareSDK/Extend/RenRenSDK",
+					"$(PROJECT_DIR)/ShareSDK",
+					"$(PROJECT_DIR)/ShareSDK/UI",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
@@ -1196,6 +1226,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}/ads-sdk",
+					"$(PROJECT_DIR)/ShareSDK/Extend/SinaWeiboSDK",
+					"$(PROJECT_DIR)/ShareSDK/Extend/TencentWeiboSDK",
+					"$(PROJECT_DIR)/ShareSDK/Extend/WeChatSDK",
+					"$(PROJECT_DIR)/ShareSDK/Extend/YiXinSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A5621BAC-80E5-4F8E-8070-6508E7FD4AC6";
@@ -1210,6 +1244,17 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: li mingjiu (6D6U4G36JF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: li mingjiu (6D6U4G36JF)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShareSDK/Connection",
+					"$(PROJECT_DIR)/ShareSDK/Core",
+					"$(PROJECT_DIR)/ShareSDK/Extend/GooglePlusSDK",
+					"$(PROJECT_DIR)/ShareSDK/Extend/Pinterest.embeddedframework",
+					"$(PROJECT_DIR)/ShareSDK/Extend/QQConnectSDK",
+					"$(PROJECT_DIR)/ShareSDK/Extend/RenRenSDK",
+					"$(PROJECT_DIR)/ShareSDK",
+					"$(PROJECT_DIR)/ShareSDK/UI",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XPlan/XPlan-Prefix.pch";
 				INFOPLIST_FILE = "XPlan/XPlan-Info.plist";
@@ -1217,6 +1262,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}/ads-sdk",
+					"$(PROJECT_DIR)/ShareSDK/Extend/SinaWeiboSDK",
+					"$(PROJECT_DIR)/ShareSDK/Extend/TencentWeiboSDK",
+					"$(PROJECT_DIR)/ShareSDK/Extend/WeChatSDK",
+					"$(PROJECT_DIR)/ShareSDK/Extend/YiXinSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A5621BAC-80E5-4F8E-8070-6508E7FD4AC6";
@@ -1227,7 +1276,6 @@
 		437A7CF518B71BA20088F1AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/XPlan.app/XPlan";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1250,7 +1298,6 @@
 		437A7CF618B71BA20088F1AA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/XPlan.app/XPlan";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

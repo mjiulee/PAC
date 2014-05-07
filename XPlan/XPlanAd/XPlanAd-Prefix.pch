@@ -35,4 +35,6 @@
 // if need ad show
 #define kIfShowGoogleAdBanner 1
 
+#define kShareSDKAppkey @"1b0eaa005042"
+
 #endif

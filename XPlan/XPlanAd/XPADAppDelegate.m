@@ -12,6 +12,7 @@
 #import "XPTaskListVCtler.h"
 #import "XPStartupGuiderVctler.h"
 #import "XPAlarmClockHelper.h"
+//#import <ShareSDK/ShareSDK.h>
 
 @interface XPADAppDelegate()
 @end
@@ -49,6 +50,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    // sharesdk
+//    [ShareSDK registerApp:@"api20"];
+//    {
+//        //添加新浪微博应用
+//        [ShareSDK connectSinaWeiboWithAppKey:@"857364782"
+//                                   appSecret:@"49ca31f2e541bfb42e49a6fe8efbba1d"
+//                                 redirectUri:@"http://appgo.cn"];
+//    }
+    
     // core Data setup
     [[UINavigationBar appearance] setBarTintColor:XPRGBColor(236,236,236,0.88)] ;
     // _coreDataMgr= [[XPDataManager alloc] init];
