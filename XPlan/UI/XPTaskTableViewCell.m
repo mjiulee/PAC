@@ -37,6 +37,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
         _finished = NO;
         
         UIScrollView* scrollcontview = [[UIScrollView alloc] init];
+        //scrollcontview.backgroundColor = XPRGBColor(35, 75, 255, 1.0);
         scrollcontview.frame = CGRectMake(0, 0, 320, tableview.rowHeight);
         scrollcontview.delegate      = self;
         scrollcontview.backgroundColor = kWhiteColor;
@@ -83,7 +84,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
         [self addSubview:finish];
         self.finishimg   = finish;
         
-        UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(10,tableview.rowHeight-1, CGRectGetWidth(tableview.frame)-20,1)];
+        UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(0,tableview.rowHeight-1, CGRectGetWidth(tableview.frame),1)];
         divLine.backgroundColor = XPRGBColor(220, 220, 220, 1.0);
         [self addSubview:divLine];
     }
@@ -103,6 +104,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
     }
     
     if ([atask.status integerValue] == 2) {
+        self.scrollcontview.backgroundColor = XPRGBColor(255, 255, 255, 1.0);
         NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:atask.content];
         [attributeString addAttribute:NSStrikethroughStyleAttributeName
                                 value:@1
@@ -110,6 +112,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
         self.briefLabel.attributedText = attributeString;
         self.finished = YES;
     }else{
+        self.scrollcontview.backgroundColor = XPRGBColor(35, 75, 255, 1.0);
         NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:atask.content];
         self.briefLabel.attributedText = attributeString;
         self.finished = NO;

@@ -8,6 +8,9 @@
 
 #import "XPDialyStaticVCtler.h"
 #import "PNChart.h"
+#import "Utils.h"
+#import <ShareSDK/ShareSDK.h>
+#import "XPADAppDelegate.h"
 
 static const NSUInteger kScrollViewPageIndex = 1000;
 
@@ -22,6 +25,7 @@ static const NSUInteger kScrollViewPageIndex = 1000;
     NSUInteger _allOngoing;
 }
 @property(nonatomic,strong)UIScrollView*contentScrollview;
+@property(nonatomic,strong)PNCircleChart*circleChart;
 @property(nonatomic)NSInteger pageIndex;
 
 -(void)onNavLeftBtnAction:(id)sender;
@@ -44,18 +48,31 @@ static const NSUInteger kScrollViewPageIndex = 1000;
     self.title = @"任务统计";
 	// Do any additional setup after loading the view.
     // nav left
-    UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_back_1"];
-    UIImage* imhighLight = [UIImage imageNamed:@"nav_icon_back_2"];
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
-    [btn setImage:imgnormal   forState:UIControlStateNormal];
-    [btn setImage:imhighLight forState:UIControlStateHighlighted];
-    [btn setContentEdgeInsets:UIEdgeInsetsMake(0,-10, 0, 0)];
-    [btn addTarget:self action:@selector(onNavLeftBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.leftBarButtonItem = leftBtn;
-    
+    {
+        UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_back_1"];
+        //UIImage* imhighLight = [UIImage imageNamed:@"nav_icon_back_2"];
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
+        [btn setImage:imgnormal   forState:UIControlStateNormal];
+        //[btn setImage:imhighLight forState:UIControlStateHighlighted];
+        [btn setContentEdgeInsets:UIEdgeInsetsMake(0,0, 0, 0)];
+        [btn addTarget:self action:@selector(onNavLeftBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        self.navigationItem.leftBarButtonItem = leftBtn;
+    }
     //self.view.backgroundColor = [UIColor redColor];
+    if([[XPADAppDelegate shareInstance] sharSdkInitFinish]==YES)
+    {
+        UIImage* imgnormal   = [UIImage imageNamed:@"share_btn"];
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
+        [btn setImage:imgnormal   forState:UIControlStateNormal];
+        [btn setContentEdgeInsets:UIEdgeInsetsMake(0,0,0,0)];
+        [btn addTarget:self action:@selector(onshare:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        self.navigationItem.rightBarButtonItem = rightBtn;
+    }
+
     
     CGFloat yvalstart     = 0;//CGRectGetMaxY(self.navigationController.navigationBar.frame);
     UIScrollView* sclview = [[UIScrollView alloc] initWithFrame:CGRectMake(0,yvalstart,CGRectGetWidth(self.view.frame),CGRectGetHeight(self.view.frame)-yvalstart)];
@@ -116,15 +133,6 @@ static const NSUInteger kScrollViewPageIndex = 1000;
 }
 
 #pragma mark -  UIScrollviewdelegate
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    NSUInteger page = floor((scrollView.contentOffset.x - scrollView.frame.size.width / 2) / scrollView.frame.size.width) + 1;
-//    if (self.pageIndex != page) {
-//        self.pageIndex = page;
-//        [self setPageView:self.pageIndex];
-//    }
-//}
-
 -(void)setPageView:(NSUInteger)page
 {
     if (page == 0)
@@ -158,9 +166,10 @@ static const NSUInteger kScrollViewPageIndex = 1000;
                                           andTotal:[NSNumber numberWithInt:1]
                                         andCurrent:[NSNumber numberWithFloat:fpercent]];
             circleChart.backgroundColor = [UIColor clearColor];
-            [circleChart setStrokeColor:PNGreen];
+            [circleChart setStrokeColor:XPRGBColor(25, 133, 255, 1.0)];
             [circleChart strokeChart];
             [cycleView addSubview:circleChart];
+            self.circleChart = circleChart;
         }
         
         {
@@ -186,54 +195,144 @@ static const NSUInteger kScrollViewPageIndex = 1000;
                 yof +=25;
             }
         }
-    }else if(page == 1)
-    {
-        UIView* tview = [self.contentScrollview viewWithTag:kScrollViewPageIndex+page];
-        if(tview == nil){
-            tview = [[UIView alloc] initWithFrame:CGRectMake(10.0+page*CGRectGetWidth(self.contentScrollview.frame),10.0,
-                                                             CGRectGetWidth(self.contentScrollview.frame)-20,
-                                                             CGRectGetHeight(self.contentScrollview.frame)-20)];
-            tview.layer.borderColor= XPRGBColor(157, 157, 157, 1.0).CGColor;
-            tview.layer.borderWidth =0.5;
-            tview.layer.cornerRadius= 8;
-            tview.clipsToBounds     = YES;
-            tview.tag = kScrollViewPageIndex+page;
-            tview.autoresizingMask  = UIViewAutoresizingFlexibleHeight;
-            [self.contentScrollview addSubview:tview];
-        }
-        
-        [[tview subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        CGFloat fpercent = 0.0;
-        if (_allTotal > 0) {
-            fpercent = (_normalDone+_importantDone)/_allTotal;
-        }
-        NSString* brief  = @"";
-        if (fpercent < 0.1) {
-            brief = @"妈蛋，今天你不用干活吗？\r这效率吃屎都抢不过别人啊.\r亲，你这么懒，你爸妈知道不？";
-        }else if(fpercent < 0.5){
-            brief = @"妈蛋，一天的活才做不到一半.\r亲，你这么混日子,\r还想迎娶高富帅/嫁个白富美不？\r还想就滚回去干活!";
-        }else if(fpercent < 0.8){
-            brief = @"哎呦，效率不错嘛，亲.\r再接再厉，本屌看好你哦！";
-        }else if(fpercent < 0.95){
-            brief = @"我插咧，效率爆表啊，亲.\r你这是发粪图强，努力上进，不久当上CEO，迎娶白富美，走向人生巅峰的节奏吗?";
-        }else {
-            brief = @"我插咧，效率报表啊，亲。\r你这是发粪图强,粪力上进,努力当上CEO,迎娶白富美,走向人生巅峰的节奏吗?";
-        }
-        
-        UILabel* labEmpty = [[UILabel alloc] init];
-        labEmpty.font  = [UIFont systemFontOfSize:15];
-        labEmpty.textAlignment = NSTextAlignmentCenter;
-        labEmpty.numberOfLines = 0;
-        if ([UIDevice isRunningOniPhone5]) {
-            labEmpty.frame = CGRectMake(20, 0, CGRectGetWidth(tview.frame)-40, CGRectGetHeight(tview.frame));
-        }else{
-            labEmpty.frame = CGRectMake(20, 0, CGRectGetWidth(tview.frame)-40, CGRectGetHeight(tview.frame));
-        }
-        labEmpty.text = brief;
-        labEmpty.textColor= XPRGBColor(157,157, 157, 1.0);
-        [tview addSubview:labEmpty];
     }
 }
 
+- (UIImage *)capture
+{
+    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, [UIScreen mainScreen].scale);
+    [self.view drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:YES];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
 
+
+-(void)onshare:(id)sender
+{
+    CGFloat fpercent = 0.0;
+    if (_allTotal > 0) {
+        fpercent = (_normalDone+_importantDone)/_allTotal;
+    }
+    
+    NSString* brief  = @"";
+    if (fpercent < 0.1) {
+        brief = @"妈蛋，今天没干活吗？\r这效率捡钱都抢不过别人啊.";
+    }else if(fpercent < 0.5){
+        brief = @"妈蛋，一天的活才做不到一半.\r还想迎娶高富帅/嫁个白富美不？\r还想就滚回去干活!";
+    }else if(fpercent < 0.8){
+        brief = @"哎呦，今天效率不从，再接再厉";
+    }else{
+        brief = @"喔插咧，效率爆表啊.\r我这是发粪图强，努力上进，不久当上CEO，迎娶白富美，走向人生巅峰的节奏啊！";
+    }
+    
+    UIImage* imagesnap = [self capture];
+    //构造分享内容
+    id<ISSContent> publishContent =
+        [ShareSDK content:[NSString stringWithFormat:@"%@,%@",brief,kUrlAdAppstore]
+           defaultContent:[NSString stringWithFormat:@"%@,%@",brief,kUrlAboutXplan]
+                    image:[ShareSDK pngImageWithImage:imagesnap]
+                    title:@"每天完成一件事"
+                      url:kUrlAboutXplan
+              description:@"来自’计&划‘应用"
+                mediaType:SSPublishContentMediaTypeNews];
+    
+    ///////////////////////
+    //定制QQ空间信息
+    [publishContent addQQSpaceUnitWithTitle:@"计&划：每日完成一件事"
+                                        url:kUrlAdAppstore
+                                       site:kUrlAboutXplan
+                                    fromUrl:nil
+                                    comment:brief
+                                    summary:@"来自’计&划‘应用"
+                                      image:[ShareSDK pngImageWithImage:imagesnap]
+                                       type:[NSNumber numberWithInteger:SSPublishContentMediaTypeNews]
+                                    playUrl:nil
+                                       nswb:nil];
+    //定制QQ分享信息
+    [publishContent addQQUnitWithType:[NSNumber numberWithInteger:SSPublishContentMediaTypeNews]
+                              content:brief
+                                title:@"计&划"
+                                  url:kUrlAboutXplan
+                                image:[ShareSDK pngImageWithImage:imagesnap]];
+    
+    //定制微信好友信息
+    [publishContent addWeixinSessionUnitWithType:[NSNumber numberWithInteger:SSPublishContentMediaTypeNews]
+                                         content:brief
+                                           title:@"计&划：每日完成一件事"
+                                             url:kUrlAboutXplan
+                                      thumbImage:[ShareSDK pngImageWithImage:imagesnap]
+                                           image:[ShareSDK pngImageWithImage:imagesnap]
+                                    musicFileUrl:nil
+                                         extInfo:nil
+                                        fileData:nil
+                                    emoticonData:nil];
+    //定制微信朋友圈信息
+    [publishContent addWeixinTimelineUnitWithType:[NSNumber numberWithInteger:SSPublishContentMediaTypeNews]
+                                          content:brief
+                                            title:@"计&划：每日完成一件事"
+                                              url:kUrlAboutXplan
+                                       thumbImage:[ShareSDK pngImageWithImage:imagesnap]
+                                            image:[ShareSDK pngImageWithImage:imagesnap]
+                                     musicFileUrl:nil
+                                          extInfo:nil
+                                         fileData:nil
+                                     emoticonData:nil];
+    
+    //创建弹出菜单容器
+    id<ISSContainer> container = [ShareSDK container];
+    [container setIPadContainerWithView:sender arrowDirect:UIPopoverArrowDirectionUp];
+    
+    id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES
+                                                         allowCallback:NO
+                                                         authViewStyle:SSAuthViewStyleFullScreenPopup
+                                                          viewDelegate:nil
+                                               authManagerViewDelegate:nil];
+    
+    //在授权页面中添加关注官方微博
+    [authOptions setFollowAccounts:[NSDictionary dictionaryWithObjectsAndKeys:
+                                    [ShareSDK userFieldWithType:SSUserFieldTypeName value:@"计&划"],
+                                    SHARE_TYPE_NUMBER(ShareTypeSinaWeibo),
+                                    [ShareSDK userFieldWithType:SSUserFieldTypeName value:@"计&划"],
+                                    SHARE_TYPE_NUMBER(ShareTypeTencentWeibo),
+                                    nil]];
+    
+    NSArray *shareList = [ShareSDK getShareListWithType:
+                          ShareTypeWeixiSession,
+                          ShareTypeWeixiTimeline,
+                          ShareTypeSinaWeibo,
+                          ShareTypeTencentWeibo,
+                          ShareTypeQQ,
+                          ShareTypeCopy,
+                          nil];
+    
+    id<ISSShareOptions> shareOptions = [ShareSDK defaultShareOptionsWithTitle:@"内容分享"
+                                                              oneKeyShareList:shareList
+                                                               qqButtonHidden:YES
+                                                        wxSessionButtonHidden:YES
+                                                       wxTimelineButtonHidden:YES
+                                                         showKeyboardOnAppear:NO
+                                                            shareViewDelegate:nil
+                                                          friendsViewDelegate:nil
+                                                        picViewerViewDelegate:nil];
+    
+    //弹出分享菜单
+    [ShareSDK showShareActionSheet:container
+                         shareList:shareList
+                           content:publishContent
+                     statusBarTips:YES
+                       authOptions:authOptions
+                      shareOptions:shareOptions
+                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                
+                                if (state == SSResponseStateSuccess)
+                                {
+                                    NSLog(@"分享成功");
+                                }
+                                else if (state == SSResponseStateFail)
+                                {
+                                    NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
+                                }
+                            }];
+}
 @end

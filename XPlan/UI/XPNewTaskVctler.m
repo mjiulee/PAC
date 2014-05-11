@@ -51,24 +51,32 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"新增任务";
     // nav left
-    UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_back_1"];
-    UIImage* imhighLight = [UIImage imageNamed:@"nav_icon_back_2"];
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
-    [btn setImage:imgnormal   forState:UIControlStateNormal];
-    [btn setImage:imhighLight forState:UIControlStateHighlighted];
-    [btn setContentEdgeInsets:UIEdgeInsetsMake(0,-10, 0, 0)];
-    [btn addTarget:self action:@selector(onNavLeftBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.leftBarButtonItem = leftBtn;
-    
+    {
+        UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_back_1"];
+        //UIImage* imhighLight = [UIImage imageNamed:@"nav_icon_back_2"];
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
+        [btn setImage:imgnormal   forState:UIControlStateNormal];
+        //[btn setImage:imhighLight forState:UIControlStateHighlighted];
+        [btn setContentEdgeInsets:UIEdgeInsetsMake(0,0, 0, 0)];
+        [btn addTarget:self action:@selector(onNavLeftBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        self.navigationItem.leftBarButtonItem = leftBtn;
+    }
+
     if (_viewType == XPNewTaskViewType_Update)
     {
         self.title = @"修改任务";
-        UIBarButtonItem* rightBtn
-        = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onNavRightBtnAction:)];
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0, 0, 44, 44);
+        [btn setTitle:@"完成" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        [btn addTarget:self action:@selector(onNavRightBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.rightBarButtonItem = rightBtn;
     }
+
     //input text view and backgoundview
     _tfviewbg  = [[UIView alloc] initWithFrame:CGRectZero];
     _tfviewbg.layer.cornerRadius = 3;

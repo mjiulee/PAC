@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface Utils : NSObject
-
++ (UIImage *)capture:(UIView*)view;
 @end

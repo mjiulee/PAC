@@ -273,17 +273,6 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 }
 
 -(void)onNavRightBtuAction:(id)sender{
-//    NSUInteger total = [self.dataHelper.listFinished count] + [self.dataHelper.listImportant count] + [self.dataHelper.listNormal count];
-//    NSUInteger fnish = [self.dataHelper.listFinished count];
-//    NSUInteger normal= [self.dataHelper.listNormal count];
-//    NSUInteger important = [self.dataHelper.listImportant count];
-//    
-//    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-//    [dict setObject:[NSNumber numberWithUnsignedInteger:total]     forKey:@"total"];
-//    [dict setObject:[NSNumber numberWithUnsignedInteger:fnish]     forKey:@"finished"];
-//    [dict setObject:[NSNumber numberWithUnsignedInteger:normal]    forKey:@"normal"];
-//    [dict setObject:[NSNumber numberWithUnsignedInteger:important] forKey:@"important"];
-    
     XPDialyStaticVCtler* diarystv = [[XPDialyStaticVCtler alloc] init];
     [self.navigationController  pushViewController:diarystv animated:YES];
 }

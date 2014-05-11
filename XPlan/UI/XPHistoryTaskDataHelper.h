@@ -13,6 +13,10 @@
 @property(nonatomic,strong) NSMutableArray* listImportant;
 @property(nonatomic,strong) NSMutableArray* listFinished;
 
+@property(nonatomic,strong) NSMutableDictionary* dataNormal;
+@property(nonatomic,strong) NSMutableDictionary* dataImportant;
+@property(nonatomic,strong) NSMutableDictionary* dataFinished;
+
 // 检查是否有
 -(BOOL)checkIfHadHistoryTask:(XPTaskPriorityLevel)priority;
 // 分页处理

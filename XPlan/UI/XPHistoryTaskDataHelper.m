@@ -24,9 +24,9 @@
 -(id)init{
     self = [super init];
     if (self) {
-        NSMutableArray*listNormal    = [[NSMutableArray alloc] init];
-        NSMutableArray*listImportant = [[NSMutableArray alloc] init];
-        NSMutableArray*listFinished  = [[NSMutableArray alloc] init];
+        NSMutableDictionary*listNormal    = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary*listImportant = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary*listFinished  = [[NSMutableDictionary alloc] init];
         _curPageNormal   = 0;
         _curPageImportant= 0;
         _curPageFinished = 0;
@@ -34,9 +34,9 @@
         _totalImportant = 0;
         _totalFinished  = 0;
         
-        self.listNormal = listNormal;
-        self.listImportant = listImportant;
-        self.listFinished  = listFinished;
+        self.dataNormal    = listNormal;
+        self.dataImportant = listImportant;
+        self.dataFinished  = listFinished;
         
         
         XPDataManager* dmg = [XPDataManager shareInstance];

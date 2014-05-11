@@ -12,7 +12,12 @@
 #import "XPTaskListVCtler.h"
 #import "XPStartupGuiderVctler.h"
 #import "XPAlarmClockHelper.h"
-//#import <ShareSDK/ShareSDK.h>
+#import <ShareSDK/ShareSDK.h>
+#import "WXApi.h"
+#import "WeiboApi.h"
+#import <TencentOpenAPI/QQApi.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 
 @interface XPADAppDelegate()
 @end
@@ -51,16 +56,34 @@
 {
     // Override point for customization after application launch.
     // sharesdk
-//    [ShareSDK registerApp:@"api20"];
-//    {
-//        //添加新浪微博应用
-//        [ShareSDK connectSinaWeiboWithAppKey:@"857364782"
-//                                   appSecret:@"49ca31f2e541bfb42e49a6fe8efbba1d"
-//                                 redirectUri:@"http://appgo.cn"];
-//    }
-    
+    {
+        _sharSdkInitFinish = NO;
+        [ShareSDK registerApp:@"api20" useAppTrusteeship:YES];
+        [ShareSDK waitAppSettingComplete:^{
+            //在这里面调用相关的ShareSDK功能接口代码
+            _sharSdkInitFinish = YES;
+        }];
+        {   // QQ互联
+            
+            [ShareSDK importQQClass:[QQApiInterface class]
+                    tencentOAuthCls:[TencentOAuth class]];
+        }
+        {
+            // 微信
+            [ShareSDK importWeChatClass:[WXApi class]];
+        }
+    }
+
     // core Data setup
-    [[UINavigationBar appearance] setBarTintColor:XPRGBColor(236,236,236,0.88)] ;
+    [[UINavigationBar appearance] setBarTintColor:XPRGBColor(25, 133, 255, 1.0)];
+    NSShadow *shadow    = [[NSShadow alloc] init];
+    shadow.shadowColor  = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, 1);
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                           XPRGBColor(245,245,245,1.0),NSForegroundColorAttributeName,
+                                                           shadow, NSShadowAttributeName,
+                                                           [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:22.0],NSFontAttributeName,nil]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     // _coreDataMgr= [[XPDataManager alloc] init];
     
     // alarmhelper setup
@@ -110,29 +133,6 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     // 常驻内存打开的情况
-    /*NSDate * today      = [NSDate date];
-     NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
-     if([today isTheSameDay:lastOpenDate] == YES)
-     {
-     // 今日有打开过
-     if (self.window.rootViewController != self.rootNav) {
-     _deckController = [self generateControllerStack];
-     UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:self.deckController];
-     self.rootNav = nav;
-     self.rootNav.navigationBarHidden = YES;
-     self.window.rootViewController = self.rootNav;
-     [self.window makeKeyAndVisible];
-     }
-     }else
-     {
-     // 今日没打开过
-     _guiderVctler   = [self generateStartupGuider];
-     self.window.rootViewController = _guiderVctler;
-     [self.window makeKeyAndVisible];
-     // 在这里设置已经打开过
-     [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_LastOpenDate value:today];
-     }*/
-    
     NSDate * today      = [NSDate date];
     NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
     if([today isTheSameDay:lastOpenDate] == YES)
@@ -171,6 +171,23 @@
     [alert show];
 }
 
+
+- (BOOL)application:(UIApplication *)application  handleOpenURL:(NSURL *)url
+{
+    return [ShareSDK handleOpenURL:url
+                        wxDelegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [ShareSDK handleOpenURL:url
+                 sourceApplication:sourceApplication
+                        annotation:annotation
+                        wxDelegate:self];
+}
 
 #pragma mark- startguider vctler
 -(XPStartupGuiderVctler*)generateStartupGuider{

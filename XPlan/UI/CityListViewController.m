@@ -37,12 +37,12 @@
     self.title = @"选择城市";
     // nav
     UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_back_1"];
-    UIImage* imhighLight = [UIImage imageNamed:@"nav_icon_back_2"];
+    //UIImage* imhighLight = [UIImage imageNamed:@"nav_icon_back_2"];
     UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, imgnormal.size.width/2, imgnormal.size.height/2);
     [btn setImage:imgnormal   forState:UIControlStateNormal];
-    [btn setImage:imhighLight forState:UIControlStateHighlighted];
-    [btn setContentEdgeInsets:UIEdgeInsetsMake(0,-10, 0, 0)];
+    //[btn setImage:imhighLight forState:UIControlStateHighlighted];
+    [btn setContentEdgeInsets:UIEdgeInsetsMake(0,0, 0, 0)];
     [btn addTarget:self action:@selector(onNavLeftBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = leftBtn;
@@ -53,6 +53,7 @@
     self.tableView.autoresizingMask= (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
     self.tableView.backgroundColor = XPRGBColor(255, 255, 255, 1.0);
     self.tableView.separatorInset  = UIEdgeInsetsZero;
+    self.tableView.separatorStyle  = UITableViewCellSelectionStyleNone;
     self.tableView.delegate        = self;
     self.tableView.dataSource      = self;
     self.tableView.sectionIndexBackgroundColor = kClearColor;
