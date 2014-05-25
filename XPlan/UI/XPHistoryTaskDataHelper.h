@@ -13,9 +13,9 @@
 @property(nonatomic,strong) NSMutableArray* listImportant;
 @property(nonatomic,strong) NSMutableArray* listFinished;
 
-@property(nonatomic,strong) NSMutableDictionary* dataNormal;
-@property(nonatomic,strong) NSMutableDictionary* dataImportant;
-@property(nonatomic,strong) NSMutableDictionary* dataFinished;
+//@property(nonatomic,strong) NSMutableArray* dataNormal;
+//@property(nonatomic,strong) NSMutableArray* dataImportant;
+//@property(nonatomic,strong) NSMutableArray* dataFinished;
 
 // 检查是否有
 -(BOOL)checkIfHadHistoryTask:(XPTaskPriorityLevel)priority;

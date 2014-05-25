@@ -11,9 +11,6 @@
 
 @interface XPDataManager(){
 }
-@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @end
 
 @implementation XPDataManager
@@ -99,22 +96,58 @@
     {
         return _persistentStoreCoordinator;
     }
-    //这个地方的.sqlite名字没有限制，就是一个数据库文件的名字
-#if IfCoreDataDebug
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"XPlanModel.sqlite"];
-#else
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"XPlanModel.sqlite"];
-#endif
+    
+    NSURL *storeUrl = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"XPlanModel.sqlite"];
+    //BOOL firstRun   = ![storeUrl checkResourceIsReachableAndReturnError:NULL];
+
+    /* handle db upgrade 迁移*/
+    NSDictionary *options
+    = @{[NSNumber numberWithBool:YES]:NSMigratePersistentStoresAutomaticallyOption,
+        [NSNumber numberWithBool:YES]:NSInferMappingModelAutomaticallyOption};
+    
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil
-                                                             URL:storeURL
-                                                         options:nil
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                   configuration:nil
+                                                             URL:storeUrl
+                                                         options:options
                                                            error:&error])
     {
-        NSLog(@"coreData:Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        NSLog(@"failed to add persistent store with type to persistent store coordinator");
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
+    
+    
+    /*if (firstRun)
+    {
+		NSManagedObjectContext *context = self.managedObjectContext;
+		NSDateComponents *dateComponents= [[NSDateComponents alloc] init];
+		[dateComponents setYear:2013];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        
+		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        [dateFormatter setCalendar:calendar];
+        
+        for (NSInteger day = 1; day < 365; day += 7)
+        {
+			[dateComponents setDay:day];
+			NSDate *date = [calendar dateFromComponents:dateComponents];
+            
+			TaskModel *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"TaskModel" inManagedObjectContext:context];
+			newTask.content    = [date formattedStringWithFormat:@"yyyy-MM-dd hh:mm:ss"];
+            [newTask setValue:date forKey:@"dateCreate"];
+            newTask.status     = [NSNumber numberWithInteger:XPTask_Status_ongoing];
+            newTask.type       = [NSNumber numberWithInteger:XPTask_Type_User];
+            newTask.prLevel    = [NSNumber numberWithInteger:XPTask_PriorityLevel_normal];
+            newTask.dateDone   = nil;
+            newTask.project    = nil;
+		}
+		[context save:NULL];
+	}*/
+    
     return _persistentStoreCoordinator;
 }
 
@@ -263,7 +296,10 @@
     NSPredicate *predicate = nil;
     if (alevel == XPTask_PriorityLevel_all) {
         predicate = [NSPredicate predicateWithFormat:@"status=%@ AND prLevel!=%@ AND ((dateCreate < %@) OR (dateCreate > %@))",status,level,dayBegin,dayEnd];
+
+        //predicate = [NSPredicate predicateWithFormat:@"status=%@ AND prLevel!=%@ AND dateCreate < %@",status,level,dayBegin];
     }else{
+        //predicate = [NSPredicate predicateWithFormat:@"status=%@ AND prLevel=%@ AND dateCreate < %@",status,level,dayBegin];
         predicate = [NSPredicate predicateWithFormat:@"status=%@ AND prLevel=%@ AND ((dateCreate < %@) OR (dateCreate > %@))",status,level,dayBegin,dayEnd];
     }
     

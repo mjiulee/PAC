@@ -14,6 +14,7 @@
 #import "XPWeatherVctler.h"
 #import "XPAboutMeVCtler.h"
 #import "XPSettingVctler.h"
+#import "XPTaskListByMonthVCtler.h"
 
 @interface XPLeftMenuViewCtler ()
 //@property(nonatomic,strong) UINavigationController* dailyVctler;
@@ -52,16 +53,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 1) {
-        return 3;
-    }
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    NSArray  *section1TextArray  = @[@"今日任务",@"历史任务"];
+    NSArray  *section1TextArray  = @[@"今日任务",@"历史任务",@"全部任务"];
     NSArray  *section2TextArray  = @[@"天气情况",@"提醒设定",@"关于"];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -99,7 +97,7 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    NSArray  *titleArray  = @[@"任务列表",@"统计图标"];
+    NSArray  *titleArray  = @[@"任务列表",@"其他"];
     return [titleArray objectAtIndex:section];
 }
 
@@ -120,6 +118,11 @@
             UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
             [self.viewDeckController setCenterController:rootNav];
         }else if([indexPath section] == 0 && [indexPath row] == 1)
+        {
+            XPTaskListByMonthVCtler* centervc = [[XPTaskListByMonthVCtler alloc] init];
+            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
+            [self.viewDeckController setCenterController:rootNav];
+        }else if([indexPath section] == 0 && [indexPath row] == 2)
         {
             XPHistoryListVctler* centervc = [[XPHistoryListVctler alloc] init];
             UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];

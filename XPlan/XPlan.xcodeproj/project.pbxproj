@@ -128,12 +128,16 @@
 		1887867F19114E5800CAB38E /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867E19114E5800CAB38E /* libstdc++.dylib */; };
 		1887868119114E6A00CAB38E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887868019114E6A00CAB38E /* libsqlite3.dylib */; };
 		1897FE7418E9AC5B00DC0172 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1897FE7318E9AC5B00DC0172 /* StoreKit.framework */; };
+		18D710291923B52A000B2FD7 /* XPTaskListByMonthVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D710281923B52A000B2FD7 /* XPTaskListByMonthVCtler.m */; };
+		18D7102A1923B52A000B2FD7 /* XPTaskListByMonthVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D710281923B52A000B2FD7 /* XPTaskListByMonthVCtler.m */; };
 		18E874B618E32A870094376E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B518E32A870094376E /* AdSupport.framework */; };
 		18E874B818E32A950094376E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B718E32A950094376E /* AudioToolbox.framework */; };
 		18E874BA18E32A9B0094376E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B918E32A9B0094376E /* AVFoundation.framework */; };
 		18E874BC18E32AAB0094376E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874BB18E32AAB0094376E /* CoreTelephony.framework */; };
 		18E874BE18E32AB60094376E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874BD18E32AB60094376E /* MessageUI.framework */; };
 		18E874C218E32ACC0094376E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874C118E32ACC0094376E /* SystemConfiguration.framework */; };
+		18F61676193186F500031D22 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F61675193186F500031D22 /* TaskModel.m */; };
+		18F61677193186F500031D22 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F61675193186F500031D22 /* TaskModel.m */; };
 		2F0A834EC23149C68EF2BAE1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D15D9107587141BA80AA78E0 /* libPods.a */; };
 		3316B2F18D77445DA1056C26 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D15D9107587141BA80AA78E0 /* libPods.a */; };
 		43239CC418EAEBD70048FF9E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874C118E32ACC0094376E /* SystemConfiguration.framework */; };
@@ -169,8 +173,6 @@
 		436D1B0718EAC2F50099A690 /* OMGToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB118EAC2F50099A690 /* OMGToast.m */; };
 		436D1B0818EAC2F50099A690 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB318EAC2F50099A690 /* ProjectModel.m */; };
 		436D1B0918EAC2F50099A690 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB318EAC2F50099A690 /* ProjectModel.m */; };
-		436D1B0A18EAC2F50099A690 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB518EAC2F50099A690 /* TaskModel.m */; };
-		436D1B0B18EAC2F50099A690 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB518EAC2F50099A690 /* TaskModel.m */; };
 		436D1B0C18EAC2F50099A690 /* UIDevice+Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB718EAC2F50099A690 /* UIDevice+Resolution.m */; };
 		436D1B0D18EAC2F50099A690 /* UIDevice+Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB718EAC2F50099A690 /* UIDevice+Resolution.m */; };
 		436D1B0E18EAC2F50099A690 /* UIImage+XPUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB918EAC2F50099A690 /* UIImage+XPUIImage.m */; };
@@ -342,12 +344,17 @@
 		1887867E19114E5800CAB38E /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		1887868019114E6A00CAB38E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		1897FE7318E9AC5B00DC0172 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		18D710271923B52A000B2FD7 /* XPTaskListByMonthVCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPTaskListByMonthVCtler.h; sourceTree = "<group>"; };
+		18D710281923B52A000B2FD7 /* XPTaskListByMonthVCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPTaskListByMonthVCtler.m; sourceTree = "<group>"; };
 		18E874B518E32A870094376E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		18E874B718E32A950094376E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		18E874B918E32A9B0094376E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		18E874BB18E32AAB0094376E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		18E874BD18E32AB60094376E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		18E874C118E32ACC0094376E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		18F61674193186F500031D22 /* TaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
+		18F61675193186F500031D22 /* TaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
+		18F73C4D192102DE00B30FF5 /* XPlanModelV1.1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XPlanModelV1.1.0.xcdatamodel; sourceTree = "<group>"; };
 		43239CD118EAF06D0048FF9E /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
 		43239CD218EAF06D0048FF9E /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		43239CD318EAF06D0048FF9E /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
@@ -381,8 +388,6 @@
 		436D1AB118EAC2F50099A690 /* OMGToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMGToast.m; sourceTree = "<group>"; };
 		436D1AB218EAC2F50099A690 /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
 		436D1AB318EAC2F50099A690 /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
-		436D1AB418EAC2F50099A690 /* TaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
-		436D1AB518EAC2F50099A690 /* TaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
 		436D1AB618EAC2F50099A690 /* UIDevice+Resolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Resolution.h"; sourceTree = "<group>"; };
 		436D1AB718EAC2F50099A690 /* UIDevice+Resolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Resolution.m"; sourceTree = "<group>"; };
 		436D1AB818EAC2F50099A690 /* UIImage+XPUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XPUIImage.h"; sourceTree = "<group>"; };
@@ -809,10 +814,10 @@
 				436D1ACC18EAC2F50099A690 /* XPHistoryTaskDataHelper.h */,
 				436D1ACD18EAC2F50099A690 /* XPHistoryTaskDataHelper.m */,
 				436D1ACE18EAC2F50099A690 /* XPlanModel.xcdatamodeld */,
+				18F61674193186F500031D22 /* TaskModel.h */,
+				18F61675193186F500031D22 /* TaskModel.m */,
 				436D1AB218EAC2F50099A690 /* ProjectModel.h */,
 				436D1AB318EAC2F50099A690 /* ProjectModel.m */,
-				436D1AB418EAC2F50099A690 /* TaskModel.h */,
-				436D1AB518EAC2F50099A690 /* TaskModel.m */,
 				436D1AC618EAC2F50099A690 /* XPDataManager.h */,
 				436D1AC718EAC2F50099A690 /* XPDataManager.m */,
 			);
@@ -839,6 +844,8 @@
 		431DDF9818EAE384000EF684 /* ListVctler */ = {
 			isa = PBXGroup;
 			children = (
+				18D710271923B52A000B2FD7 /* XPTaskListByMonthVCtler.h */,
+				18D710281923B52A000B2FD7 /* XPTaskListByMonthVCtler.m */,
 				436D1AC818EAC2F50099A690 /* XPDialyStaticVCtler.h */,
 				436D1AC918EAC2F50099A690 /* XPDialyStaticVCtler.m */,
 				436D1AD418EAC2F50099A690 /* XPNewTaskVctler.h */,
@@ -1344,14 +1351,15 @@
 				436D1B1718EAC2F50099A690 /* XPBaseTableVCtler.m in Sources */,
 				436D1B0318EAC2F50099A690 /* NSDate+Category.m in Sources */,
 				436D1B2D18EAC2F50099A690 /* XPSegmentedView.m in Sources */,
-				436D1B0B18EAC2F50099A690 /* TaskModel.m in Sources */,
 				436D194918EAB3290099A690 /* XPADAppDelegate.m in Sources */,
 				436D1B0D18EAC2F50099A690 /* UIDevice+Resolution.m in Sources */,
 				436D1B1518EAC2F50099A690 /* XPAlarmClockHelper.m in Sources */,
+				18D7102A1923B52A000B2FD7 /* XPTaskListByMonthVCtler.m in Sources */,
 				436D1B4B18EAC2F50099A690 /* IISideController.m in Sources */,
 				436D1B2118EAC2F50099A690 /* XPHistoryListVctler.m in Sources */,
 				436D1B1B18EAC2F50099A690 /* XPCheckBoxTableCell.m in Sources */,
 				436D1B0F18EAC2F50099A690 /* UIImage+XPUIImage.m in Sources */,
+				18F61677193186F500031D22 /* TaskModel.m in Sources */,
 				1815D2D419137DEF00403D29 /* Utils.m in Sources */,
 				436D1B2518EAC2F50099A690 /* XPlanModel.xcdatamodeld in Sources */,
 				436D1B2918EAC2F50099A690 /* XPMathHelper.c in Sources */,
@@ -1396,14 +1404,15 @@
 				436D1B1618EAC2F50099A690 /* XPBaseTableVCtler.m in Sources */,
 				436D1B0218EAC2F50099A690 /* NSDate+Category.m in Sources */,
 				436D1B2C18EAC2F50099A690 /* XPSegmentedView.m in Sources */,
-				436D1B0A18EAC2F50099A690 /* TaskModel.m in Sources */,
 				437A7CD318B71BA20088F1AA /* XPAppDelegate.m in Sources */,
 				436D1B0C18EAC2F50099A690 /* UIDevice+Resolution.m in Sources */,
 				436D1B1418EAC2F50099A690 /* XPAlarmClockHelper.m in Sources */,
+				18D710291923B52A000B2FD7 /* XPTaskListByMonthVCtler.m in Sources */,
 				436D1B4A18EAC2F50099A690 /* IISideController.m in Sources */,
 				436D1B2018EAC2F50099A690 /* XPHistoryListVctler.m in Sources */,
 				436D1B1A18EAC2F50099A690 /* XPCheckBoxTableCell.m in Sources */,
 				436D1B0E18EAC2F50099A690 /* UIImage+XPUIImage.m in Sources */,
+				18F61676193186F500031D22 /* TaskModel.m in Sources */,
 				1815D2D319137DEF00403D29 /* Utils.m in Sources */,
 				436D1B2418EAC2F50099A690 /* XPlanModel.xcdatamodeld in Sources */,
 				436D1B2818EAC2F50099A690 /* XPMathHelper.c in Sources */,
@@ -1854,9 +1863,10 @@
 		436D1ACE18EAC2F50099A690 /* XPlanModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				18F73C4D192102DE00B30FF5 /* XPlanModelV1.1.0.xcdatamodel */,
 				436D1ACF18EAC2F50099A690 /* XPlanModel.xcdatamodel */,
 			);
-			currentVersion = 436D1ACF18EAC2F50099A690 /* XPlanModel.xcdatamodel */;
+			currentVersion = 18F73C4D192102DE00B30FF5 /* XPlanModelV1.1.0.xcdatamodel */;
 			path = XPlanModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

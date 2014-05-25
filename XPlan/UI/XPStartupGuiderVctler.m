@@ -518,7 +518,7 @@ static char kCharCellCheckKey;
     NSDictionary* param = [NSDictionary dictionaryWithObjectsAndKeys:str,@"location",@"json",@"output",kBaiduAppKey,@"ak",nil];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:urlFormat parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        //NSLog(@"JSON: %@", responseObject);
         NSArray * results    = [responseObject objectForKey:@"results"];
         NSDictionary* result = [results objectAtIndex:0];
         NSArray * weathers = [result objectForKey:@"weather_data"];

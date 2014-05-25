@@ -62,7 +62,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     CGFloat yoffset = 10;//CGRectGetMaxY(self.navigationController.navigationBar.frame)+8;
     
     __weak typeof(self) _weakself = self;
-    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(2,yoffset,width-4,30)
+    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(15,yoffset,width-30,22)
                                                                items:@"普通",@"重要",@"已完成",nil];
     segview.backgroundColor     = XPRGBColor(248, 248, 248, 0.88);
     [self.view addSubview:segview];
