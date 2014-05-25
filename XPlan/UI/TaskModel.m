@@ -26,10 +26,10 @@
 - (NSString *)sectionIdMonthly
 {
     // Create and cache the section identifier on demand.
-    NSLog(@"%s",__func__);
+    //NSLog(@"%s",__func__);
     [self willAccessValueForKey:@"sectionIdMonthly"];
     NSString *tmp = [self primitiveValueForKey:@"sectionIdMonthly"];
-    NSLog(@"%s,tmp=%@",__func__,tmp);
+    //NSLog(@"%s,tmp=%@",__func__,tmp);
     [self didAccessValueForKey:@"sectionIdMonthly"];
     
     if (!tmp){
@@ -42,10 +42,10 @@
 - (NSString *)sectionIdDaily
 {
     // Create and cache the section identifier on demand.
-    NSLog(@"%s",__func__);
+    //NSLog(@"%s",__func__);
     [self willAccessValueForKey:@"sectionIdDaily"];
     NSString *tmp = [self primitiveValueForKey:@"sectionIdDaily"];
-    NSLog(@"%s,tmp=%@",__func__,tmp);
+    //NSLog(@"%s,tmp=%@",__func__,tmp);
     [self didAccessValueForKey:@"sectionIdDaily"];
     
     if (!tmp){
@@ -57,7 +57,7 @@
 
 - (void)setDateCreate:(NSDate *)dateCreate
 {
-    NSLog(@"%s",__func__);
+    //NSLog(@"%s",__func__);
     // If the todoDueDate changes, the section identifier become invalid.
     [self willChangeValueForKey:@"dateCreate"];
     [self setPrimitiveValue:dateCreate forKey:@"dateCreate"];

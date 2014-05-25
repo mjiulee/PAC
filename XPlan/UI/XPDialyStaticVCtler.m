@@ -45,7 +45,7 @@ static const NSUInteger kScrollViewPageIndex = 1000;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"任务统计";
+    self.title = @"统计";
 	// Do any additional setup after loading the view.
     // nav left
     {

@@ -29,7 +29,7 @@
         self.labContent = lab;
         
         UIImageView* checkv = [[UIImageView alloc] initWithFrame:CGRectMake(320-55,11,28,28)];
-        checkv.image  = [UIImage imageNamed:@"icon_check_01"];
+        checkv.image  = [UIImage imageNamed:@"img_selected_n"];
         checkv.hidden = YES;
         [self addSubview:checkv];
         self.checkImageview = checkv;

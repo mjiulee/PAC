@@ -70,7 +70,7 @@
     CGFloat yoffset = 10;//CGRectGetMaxY(self.navigationController.navigationBar.frame)+8;
     
     __weak typeof(self) _weakself = self;
-    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(15,yoffset,width-30,22)
+    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(15,yoffset,width-30,30)
                                                                items:@"按天",@"按月",nil];
     segview.backgroundColor     = XPRGBColor(248, 248, 248, 0.88);
     [self.view addSubview:segview];
@@ -177,9 +177,17 @@
         ptrfrtctler = self.fetchRtvctlerMonthly;
     }
     
-	TaskModel *event = [ptrfrtctler objectAtIndexPath:indexPath];
-	cell.textLabel.text = event.content;
-    
+	TaskModel *atask = [ptrfrtctler objectAtIndexPath:indexPath];
+    if([atask.status integerValue] == 2) {
+        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:atask.content];
+        [attributeString addAttribute:NSStrikethroughStyleAttributeName
+                                value:@1
+                                range:NSMakeRange(0, [attributeString length])];
+        cell.textLabel.attributedText = attributeString;
+    }else{
+        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:atask.content];
+        cell.textLabel.attributedText = attributeString;
+    }
     return cell;
 }
 

@@ -97,10 +97,12 @@
 
 - (NSString *)formattedStringWithFormat:(NSString *)format
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    static NSDateFormatter *formatter = nil;
+    if (!formatter) {
+        formatter = [[NSDateFormatter alloc] init];
+    }
     [formatter setDateFormat:format];
     NSString *ret = [formatter stringFromDate:self];
-    
     return ret;
 }
 

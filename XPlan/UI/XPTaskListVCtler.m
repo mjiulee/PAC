@@ -45,13 +45,18 @@ static NSString *sCellIdentifier;
 {
     self = [super initWithStyle:style];
     if (self) {
-        UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_static"];
+        //UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_static"];
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0, 0, 38,38);
-        [btn setImage:imgnormal forState:UIControlStateNormal];
-        [btn addTarget:self
-                action:@selector(onNavRightBtuAction:)
-      forControlEvents:UIControlEventTouchUpInside];
+        btn.frame = CGRectMake(0,7,30,30);
+        btn.layer.cornerRadius = 15;
+        btn.layer.borderWidth  = 2.5;
+        btn.layer.borderColor  = [UIColor whiteColor].CGColor;
+        
+        //[btn setImage:imgnormal forState:UIControlStateNormal];
+        [[btn titleLabel] setFont:[UIFont boldSystemFontOfSize:10]];
+        [btn setTitle:@"统计" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(onNavRightBtuAction:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.rightBarButtonItem = rightBtn;
 
@@ -212,9 +217,14 @@ static NSString *sCellIdentifier;
     [headview addSubview:sectionTItle];
     
     if (section != 2) {
-        UIButton* btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.tag   = kHeadViewBtnStartIdx + section;
         btn.frame = CGRectMake(CGRectGetWidth(tableView.frame)-52, 0, 40, 40);
+
+        [[btn titleLabel] setFont:[UIFont systemFontOfSize:28]];
+        [btn setTitle:@"+" forState:UIControlStateNormal];
+        [btn setTitleColor:XPRGBColor(25, 133, 255, 1.0) forState:UIControlStateNormal];
+
         btn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         
         [btn addTarget:self action:@selector(onAddTaskButtonAction:) forControlEvents:UIControlEventTouchUpInside];

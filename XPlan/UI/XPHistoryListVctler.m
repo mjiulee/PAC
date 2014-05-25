@@ -37,10 +37,16 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_static"];
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0, 0, 38,38);
-        [btn setImage:imgnormal forState:UIControlStateNormal];
+        btn.frame = CGRectMake(0,7,30,30);
+        btn.layer.cornerRadius = 15;
+        btn.layer.borderWidth  = 2.5;
+        btn.layer.borderColor  = [UIColor whiteColor].CGColor;
+        
+        //[btn setImage:imgnormal forState:UIControlStateNormal];
+        [[btn titleLabel] setFont:[UIFont boldSystemFontOfSize:10]];
+        [btn setTitle:@"统计" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(onNavRightBtuAction:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.rightBarButtonItem = rightBtn;
@@ -51,7 +57,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"历史任务";
+    self.title = @"全部任务";
     // data helper init
     XPHistoryTaskDataHelper * dataHelper = [[XPHistoryTaskDataHelper alloc] init];
     self.dataHelper = dataHelper;
@@ -62,7 +68,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     CGFloat yoffset = 10;//CGRectGetMaxY(self.navigationController.navigationBar.frame)+8;
     
     __weak typeof(self) _weakself = self;
-    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(15,yoffset,width-30,22)
+    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(15,yoffset,width-30,30)
                                                                items:@"普通",@"重要",@"已完成",nil];
     segview.backgroundColor     = XPRGBColor(248, 248, 248, 0.88);
     [self.view addSubview:segview];
