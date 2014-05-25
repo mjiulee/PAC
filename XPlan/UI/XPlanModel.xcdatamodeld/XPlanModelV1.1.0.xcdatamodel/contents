@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ProjectModel" representedClassName="ProjectModel" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskModel" inverseName="project" inverseEntity="TaskModel" syncable="YES"/>
@@ -9,12 +9,14 @@
         <attribute name="dateCreate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dateDone" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="prLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="sectionIdDaily" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sectionIdMonthly" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectModel" inverseName="tasks" inverseEntity="ProjectModel" syncable="YES"/>
     </entity>
     <elements>
         <element name="ProjectModel" positionX="-153" positionY="123" width="128" height="75"/>
-        <element name="TaskModel" positionX="-81" positionY="-189" width="128" height="150"/>
+        <element name="TaskModel" positionX="-81" positionY="-189" width="128" height="178"/>
     </elements>
 </model>
