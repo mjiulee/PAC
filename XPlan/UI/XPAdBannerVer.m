@@ -27,8 +27,8 @@
         GDTMobBannerView* bannerView = [[GDTMobBannerView alloc] initWithFrame:CGRectMake(0, 0,
                                                                          GDTMOB_AD_SUGGEST_SIZE_320x50.width,
                                                                          GDTMOB_AD_SUGGEST_SIZE_320x50.height)
-                                                       appkey:@"1101260559"
-                                                  placementId:@"9079537216057354614"];
+                                                                        appkey:@"1103957451"
+                                                                   placementId:@"3070604019989058"];
 //                                                                        appkey:@"100720253"
 //                                                                   placementId:@"9079537207574943610"];
 

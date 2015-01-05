@@ -89,14 +89,34 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     _radioImportant.backgroundColor = [UIColor clearColor];
     _radioNormal.title    = @"普通";
     _radioNormal.value    = [NSString stringWithFormat:@"%d",XPTask_PriorityLevel_normal];
+    _radioNormal.ifCHeck = YES;
+
     _radioImportant.title = @"重要";
     _radioImportant.value = [NSString stringWithFormat:@"%d",XPTask_PriorityLevel_important];
-    _radioImportant.ifCHeck = YES;
     _radioGroupPrio=[[XPUIRadioGroup alloc] initWithRadios:_radioNormal,_radioImportant,nil];
+    if (_viewType != XPNewTaskViewType_Update)
+    {
+        if (_viewType == XPNewTaskViewType_NewNormal){
+            [_radioNormal setIfCheck:YES];
+        }else if(_viewType == XPNewTaskViewType_NewImportant){
+            [_radioImportant setIfCheck:YES];
+        }
+    }else{
+        if (_task2Update){
+            _tfview.text = _task2Update.content;
+            NSUInteger priority   = [_task2Update.prLevel unsignedIntegerValue];
+            if (priority != 2) {
+                [_radioNormal setIfCheck:YES];
+            }else{
+                [_radioImportant setIfCheck:YES];
+            }
+        }
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [self.tfview becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning

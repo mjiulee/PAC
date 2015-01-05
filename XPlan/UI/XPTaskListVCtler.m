@@ -46,7 +46,7 @@ static NSString *sCellIdentifier;
     self = [super initWithStyle:style];
     if (self) {
         //UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_static"];
-        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        /*UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0,7,30,30);
         btn.layer.cornerRadius = 15;
         btn.layer.borderWidth  = 2.5;
@@ -59,8 +59,15 @@ static NSString *sCellIdentifier;
         [btn addTarget:self action:@selector(onNavRightBtuAction:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.rightBarButtonItem = rightBtn;
-
-        // data prepare
+         */
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0,7,30,30);
+        btn.layer.borderColor  = [UIColor whiteColor].CGColor;
+        UIImage* imgnormal   = [UIImage imageNamed:@"btnadd"];
+        [btn setImage:imgnormal forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(onNavRightBtuAction:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        self.navigationItem.rightBarButtonItem = rightBtn;        // data prepare
         _taskListNormal    = [[NSMutableArray alloc] init];
         _taskListImportant = [[NSMutableArray alloc] init];;
         _taskListFinish    = [[NSMutableArray alloc] init];;
@@ -214,7 +221,7 @@ static NSString *sCellIdentifier;
     sectionTItle.text = titleArray[section];
     [headview addSubview:sectionTItle];
     
-    if (section != 2) {
+    /*if (section != 2) {
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.tag   = kHeadViewBtnStartIdx + section;
         btn.frame = CGRectMake(CGRectGetWidth(tableView.frame)-52, 0, 40, 40);
@@ -227,7 +234,7 @@ static NSString *sCellIdentifier;
         
         [btn addTarget:self action:@selector(onAddTaskButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [headview addSubview:btn];
-    }
+    }*/
     
     UIView* divLine = [[UIView alloc] initWithFrame:CGRectMake(0,39, CGRectGetWidth(tableView.frame),1)];
     divLine.backgroundColor = XPRGBColor(220, 220, 220, 1.0);
@@ -296,10 +303,17 @@ static NSString *sCellIdentifier;
 
 
 #pragma mark - Navigation
+//-(void)onNavRightBtuAction:(id)sender{
+//    XPDialyStaticVCtler* diarystv = [[XPDialyStaticVCtler alloc] init];
+//    diarystv.date2Statistic = [NSDate date];
+//    [self.navigationController  pushViewController:diarystv animated:YES];
+//}
+
 -(void)onNavRightBtuAction:(id)sender{
-    XPDialyStaticVCtler* diarystv = [[XPDialyStaticVCtler alloc] init];
-    diarystv.date2Statistic = [NSDate date];
-    [self.navigationController  pushViewController:diarystv animated:YES];
+    XPNewTaskVctler* newTvctl = [[XPNewTaskVctler alloc] init];
+    newTvctl.viewType = XPNewTaskViewType_NewNormal;
+    [self.navigationController pushViewController:newTvctl animated:YES];
+    self.viewDeckController.panningMode = IIViewDeckNoPanning;
 }
 
 #pragma mark - view Buttons

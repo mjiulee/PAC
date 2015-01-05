@@ -53,6 +53,23 @@
     [super viewDidLoad];
     self.title = @"历史任务";
     
+    {
+        //UIImage* imgnormal   = [UIImage imageNamed:@"nav_icon_static"];
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0,7,30,30);
+        btn.layer.cornerRadius = 15;
+        btn.layer.borderWidth  = 2.5;
+        btn.layer.borderColor  = [UIColor whiteColor].CGColor;
+        
+        //[btn setImage:imgnormal forState:UIControlStateNormal];
+        [[btn titleLabel] setFont:[UIFont boldSystemFontOfSize:10]];
+        [btn setTitle:@"统计" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(onNavRightBtuAction:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        self.navigationItem.rightBarButtonItem = rightBtn;
+    }
+    
     self.managedObjectContext = [XPDataManager shareInstance].managedObjectContext;
     NSError *error;
 	if (![self.fetchRtvctlerDialy performFetch:&error]){
@@ -298,5 +315,11 @@
     _fetchRtvctlerMonthly.delegate = self;
     
 	return _fetchRtvctlerMonthly;
+}
+
+#pragma mark - 
+-(void)onNavRightBtuAction:(id)sender{
+    XPDialyStaticVCtler* diarystv = [[XPDialyStaticVCtler alloc] init];
+    [self.navigationController  pushViewController:diarystv animated:YES];
 }
 @end
