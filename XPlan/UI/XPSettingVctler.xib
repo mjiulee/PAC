@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XPSettingVctler">
@@ -18,9 +19,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BXI-CW-q81">
-                    <rect key="frame" x="20" y="19" width="280" height="29"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BXI-CW-q81">
+                    <rect key="frame" x="20" y="19" width="280" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="miK-Ir-wnx"/>
+                    </constraints>
                     <segments>
                         <segment title="早晨提醒时间"/>
                         <segment title="晚上提醒时间"/>
@@ -29,23 +32,30 @@
                         <action selector="onSegmentChange:" destination="-1" eventType="valueChanged" id="uZO-Fp-zpg"/>
                     </connections>
                 </segmentedControl>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="11" textAlignment="center" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="NpQ-y9-nSf">
-                    <rect key="frame" x="20" y="59" width="280" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="11" textAlignment="center" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="NpQ-y9-nSf">
+                    <rect key="frame" x="20" y="67" width="280" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="ca9-I3-wps"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h4s-VA-mhO">
-                    <rect key="frame" x="20" y="97" width="280" height="162"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4s-VA-mhO">
+                    <rect key="frame" x="20" y="105" width="280" height="162"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="162" id="yGq-E3-erM"/>
+                    </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="CW2-YT-Hcx"/>
                         <outlet property="delegate" destination="-1" id="9YT-kB-MSI"/>
                     </connections>
                 </pickerView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lna-mt-9Bo">
-                    <rect key="frame" x="115" y="304" width="91" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lna-mt-9Bo">
+                    <rect key="frame" x="115" y="312" width="91" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="6gt-3P-uOg"/>
+                        <constraint firstAttribute="width" constant="91" id="uF3-lY-jxd"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="设置"/>
                     <connections>
@@ -54,8 +64,25 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <constraints>
+                <constraint firstItem="BXI-CW-q81" firstAttribute="width" secondItem="NpQ-y9-nSf" secondAttribute="width" id="3uL-Ge-iVn"/>
+                <constraint firstItem="NpQ-y9-nSf" firstAttribute="top" secondItem="BXI-CW-q81" secondAttribute="bottom" constant="12" id="5SK-t2-Htr"/>
+                <constraint firstAttribute="trailing" secondItem="h4s-VA-mhO" secondAttribute="trailing" constant="20" id="8Qg-H5-6fa"/>
+                <constraint firstItem="h4s-VA-mhO" firstAttribute="top" secondItem="NpQ-y9-nSf" secondAttribute="bottom" constant="8" id="chA-PU-qtl"/>
+                <constraint firstItem="BXI-CW-q81" firstAttribute="top" secondItem="1" secondAttribute="top" constant="19" id="f8t-mZ-QmK"/>
+                <constraint firstItem="h4s-VA-mhO" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="fB4-Ho-r7K"/>
+                <constraint firstItem="BXI-CW-q81" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="haQ-Uh-PWr"/>
+                <constraint firstItem="lna-mt-9Bo" firstAttribute="top" secondItem="h4s-VA-mhO" secondAttribute="bottom" constant="45" id="j4W-na-szC"/>
+                <constraint firstAttribute="centerX" secondItem="lna-mt-9Bo" secondAttribute="centerX" constant="-0.5" id="n9G-m9-Jyu"/>
+                <constraint firstItem="BXI-CW-q81" firstAttribute="centerX" secondItem="NpQ-y9-nSf" secondAttribute="centerX" id="wqN-gJ-E9d"/>
+                <constraint firstAttribute="trailing" secondItem="BXI-CW-q81" secondAttribute="trailing" constant="20" id="xKJ-Lb-R11"/>
+            </constraints>
+            <point key="canvasLocation" x="266" y="259"/>
         </view>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

@@ -13,5 +13,8 @@
 @property(nonatomic)SystemSoundID soundFileObject;
 
 +(instancetype)shareInstance;
+// 设置每天早上、晚上的提醒
 -(void)setupNotification;
+// 对任务做提醒
+-(void)setTaskNotify:(NSDate*)date message:(NSString*)msg name:(NSString*)name;
 @end

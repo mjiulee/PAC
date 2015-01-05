@@ -93,10 +93,11 @@
     if( kIfShowGoogleAdBanner == 1)
     {
         __block typeof(self) wself = self;
-        self.adBannerview = [[XPAdBannerVer alloc] initWithFrame:CGRectMake(0, 0,kGADAdSizeBanner.size.width,
-                                                                            kGADAdSizeBanner.size.height)
-                                                       controler:self];
-        
+//        self.adBannerview = [[XPAdBannerVer alloc] initWithFrame:CGRectMake(0, 0,kGADAdSizeBanner.size.width,
+//                                                                            kGADAdSizeBanner.size.height)
+//                                                       controler:self];
+        self.adBannerview = [[XPAdBannerVer alloc] initWithFrame:CGRectMake(0, 0, GDTMOB_AD_SUGGEST_SIZE_320x50.width, GDTMOB_AD_SUGGEST_SIZE_320x50.height) controler:self];
+
         self.adBannerview.closeBlock = ^(){
             wself.tableview.tableHeaderView = nil;
         };

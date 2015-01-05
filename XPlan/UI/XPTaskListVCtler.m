@@ -88,10 +88,8 @@ static NSString *sCellIdentifier;
     if( kIfShowGoogleAdBanner == 1)
     {
         __block typeof(self) wself = self;
-        XPAdBannerVer* bannerv = [[XPAdBannerVer alloc] initWithFrame:CGRectMake(0, 0, kGADAdSizeBanner.size.width, kGADAdSizeBanner.size.height)
-                                                            controler:self];
+        XPAdBannerVer* bannerv = [[XPAdBannerVer alloc] initWithFrame:CGRectMake(0, 0, GDTMOB_AD_SUGGEST_SIZE_320x50.width, GDTMOB_AD_SUGGEST_SIZE_320x50.height) controler:self];
         self.adBannerview = bannerv;
-
         bannerv.closeBlock = ^(){
             wself.tableView.tableHeaderView = nil;
         };

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015年 mjlee. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
+                    <rect key="frame" x="20" y="439" width="441" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact">
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    </variation>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的日常" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
+                    <rect key="frame" x="20" y="220" width="441" height="43"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon120.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fhr-d5-m3s">
+                    <rect key="frame" x="190" y="93" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="L81-7g-rTq"/>
+                        <constraint firstAttribute="height" constant="100" id="b01-eI-3Mc"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gH-uG-EW7">
+                    <rect key="frame" x="20" y="263" width="441" height="176"/>
+                    <string key="text">每天做好一个任务
+每天给自己一个进步</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="Fhr-d5-m3s" secondAttribute="bottom" constant="27" id="05g-Ip-2eK"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="centerX" secondItem="5gH-uG-EW7" secondAttribute="centerX" id="1u1-QS-l8z"/>
+                <constraint firstItem="Fhr-d5-m3s" firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" constant="-0.5" id="Cwm-Ya-Esc"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="bottom" multiplier="1/2" constant="1" id="Kid-kn-2rF"/>
+                <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="Koa-jz-hwk"/>
+                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
+                <constraint firstAttribute="centerX" secondItem="5gH-uG-EW7" secondAttribute="centerX" id="Lsv-Ux-8wx"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
+                <constraint firstItem="5gH-uG-EW7" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" id="Qg3-oy-DAx"/>
+                <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="top" secondItem="5gH-uG-EW7" secondAttribute="bottom" id="dvF-bw-c5i"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="fvb-Df-36g"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="width" secondItem="5gH-uG-EW7" secondAttribute="width" id="not-5Z-0Nc"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Lsv-Ux-8wx"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="404" y="445"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon120.png" width="120" height="120"/>
+    </resources>
+</document>

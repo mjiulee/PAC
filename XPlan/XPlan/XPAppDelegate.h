@@ -13,14 +13,13 @@
 @class XPStartupGuiderVctler;
 @interface XPAppDelegate : UIResponder <UIApplicationDelegate>
 
-//@property (strong, nonatomic) XPDataManager*    coreDataMgr;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController*rootNav;
 @property (strong, nonatomic) IIViewDeckController*  deckController;
 @property (strong, nonatomic) XPStartupGuiderVctler* guiderVctler;
 
 // 单例模式
-+(XPAppDelegate*)shareInstance;
++(instancetype)shareInstance;
 -(void)showTaskListDeckVctler;
 
 @end

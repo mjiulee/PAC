@@ -18,10 +18,10 @@
 @property (strong, nonatomic) IIViewDeckController*  deckController;
 @property (strong, nonatomic) XPStartupGuiderVctler* guiderVctler;
 
-@property (nonatomic) BOOL sharSdkInitFinish;
+//@property (nonatomic,strong)  NSNumber* sharSdkInitFinish;
 
 // 单例模式
-+(XPADAppDelegate*)shareInstance;
++(instancetype)shareInstance;
 -(void)showTaskListDeckVctler;
 
 @end

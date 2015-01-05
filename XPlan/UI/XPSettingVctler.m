@@ -91,13 +91,13 @@
         [self.pickerView selectRow:hour   inComponent:0 animated:YES];
         [self.pickerView selectRow:minute   inComponent:1 animated:YES];
 
-        NSString * tipstr = [NSString stringWithFormat:@"应用将在%ld点%ld分提醒你做每日计划",hour,minute];
+        NSString * tipstr = [NSString stringWithFormat:@"应用将在%@点%@分提醒你做每日计划",@(hour),@(minute)];
         [self setText2TextField:tipstr];
     }else{
         [self getHour:self.nightDict hour:&hour minute:&minute];
         [self.pickerView selectRow:hour-12  inComponent:0 animated:YES];
         [self.pickerView selectRow:minute   inComponent:1 animated:YES];
-        NSString * tipstr = [NSString stringWithFormat:@"应用将在%ld点%ld分提醒你做每日总结",hour,minute];
+        NSString * tipstr = [NSString stringWithFormat:@"应用将在%@点%@分提醒你做每日总结",@(hour),@(minute)];
         [self setText2TextField:tipstr];
     }
 }
@@ -115,7 +115,7 @@
         [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_MorningNotify value:dict];
         self.morningDict = dict;
         
-        NSString * tipstr = [NSString stringWithFormat:@"应用将在%ld点%ld分提醒你做每日计划",hour,minute];
+        NSString * tipstr = [NSString stringWithFormat:@"应用将在%@点%@分提醒你做每日计划",@(hour),@(minute)];
         [self setText2TextField:tipstr];
         [OMGToast showWithText:@"早上提醒时间设定成功，\r我们将会在指定时间提醒你。" duration:3];
     }else
@@ -127,7 +127,7 @@
         [[XPUserDataHelper shareInstance] setUserDataByKey:XPUserDataKey_NightNotify value:dict];
         self.nightDict = dict;
 
-        NSString * tipstr = [NSString stringWithFormat:@"应用将在%ld点%ld分提醒你做每日总结",hour,minute];
+        NSString * tipstr = [NSString stringWithFormat:@"应用将在%@点%@分提醒你做每日总结",@(hour),@(minute)];
         [self setText2TextField:tipstr];
         [OMGToast showWithText:@"下午提醒时间设定成功，\r我们将会在指定时间提醒你。" duration:3];
     }
@@ -183,12 +183,12 @@
     NSString* title = @"";
     if (component == 0) {
         if (self.segmentview.selectedSegmentIndex ==0 ) {
-            title = [NSString stringWithFormat:@"%ld点",row];
+            title = [NSString stringWithFormat:@"%@点",@(row)];
         }else{
-            title = [NSString stringWithFormat:@"%ld点",row+12];
+            title = [NSString stringWithFormat:@"%@点",@(row+12)];
         }
     }else{
-       title = [NSString stringWithFormat:@"%ld分",row];
+       title = [NSString stringWithFormat:@"%@分",@(row)];
     }
     return title;
 }

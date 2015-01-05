@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GADBannerView.h"
+//#import "GADBannerView.h"
+#import "GDTMobBannerView.h"
 
 typedef void (^CloseAdBannerview)(void);
 typedef void (^AdViewDidReceive)(void);
 
-@interface XPAdBannerVer : GADBannerView
+//@interface XPAdBannerVer : GADBannerView
+@interface XPAdBannerVer : GDTMobBannerView
 @property(nonatomic,copy) CloseAdBannerview closeBlock;
 @property(nonatomic,copy) AdViewDidReceive  adViewReceive;
 - (id)initWithFrame:(CGRect)frame controler:(UIViewController*)controler;

@@ -25,7 +25,8 @@
 
 #define NLSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
 #define IOS7_OR_LATER   NLSystemVersionGreaterOrEqualThan(7.0)
-
+//: 屏幕宽度
+#define SCREEN_WIDTH         ([UIScreen mainScreen].bounds.size.width)
 
 // colors
 #define XPRGBColor(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
@@ -34,5 +35,24 @@
 
 // if need ad show
 #define kIfShowGoogleAdBanner 0
+
+// weibo分享
+#define kUrlAboutXplan  @"http://qygweixin.sinaapp.com/index.php/aboutxplan/index"
+#define kUrlAdAppstore  @"https://itunes.apple.com/us/app/ji-hua-free/id853802565?ls=1&mt=8"
+
+#define kShareSDKAppkey @"1b0eaa005042"
+//sina:微博
+#define kSinaWeiboAppkey @"857364782"
+#define kSinaWeiboSeckey @"49ca31f2e541bfb42e49a6fe8efbba1d"
+
+//QQ:互联
+#define kQQconnectAppkey @"801134596"
+#define kQQconnectSeckey @"63176ed6dc115822ce65c119f9dd720d"
+
+//QQ微博：
+#define kQQWeiboAppkey @"801502141"
+#define kQQWeiboSeckey @"b025f1116b1c56af1211e8dbbd874fbf"
+
+////QQ微信：
 
 #endif

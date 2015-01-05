@@ -7,7 +7,6 @@
 //
 
 #import "XPADAppDelegate.h"
-#import "IIViewDeckController.h"
 #import "XPLeftMenuViewCtler.h"
 #import "XPTaskListVCtler.h"
 #import "XPStartupGuiderVctler.h"
@@ -15,16 +14,15 @@
 #import <ShareSDK/ShareSDK.h>
 #import "WXApi.h"
 #import "WeiboApi.h"
-#import <TencentOpenAPI/QQApi.h>
-#import <TencentOpenAPI/QQApiInterface.h>
-#import <TencentOpenAPI/TencentOAuth.h>
+#import "ShareUtils.h"
+#import "iLink.h"
 
 @interface XPADAppDelegate()
 @end
 
 @implementation XPADAppDelegate
 
-+ (XPADAppDelegate*)shareInstance
++(instancetype)shareInstance
 {
     return (XPADAppDelegate*)[[UIApplication sharedApplication] delegate];
 }
@@ -57,21 +55,8 @@
     // Override point for customization after application launch.
     // sharesdk
     {
-        _sharSdkInitFinish = NO;
-        [ShareSDK registerApp:@"api20" useAppTrusteeship:YES];
-        [ShareSDK waitAppSettingComplete:^{
-            //在这里面调用相关的ShareSDK功能接口代码
-            _sharSdkInitFinish = YES;
-        }];
-        {   // QQ互联
-            
-            [ShareSDK importQQClass:[QQApiInterface class]
-                    tencentOAuthCls:[TencentOAuth class]];
-        }
-        {
-            // 微信
-            [ShareSDK importWeChatClass:[WXApi class]];
-        }
+        [iLink sharedInstance];
+        [[ShareUtils instance] setUpAppkeys];
     }
 
     // core Data setup
@@ -93,7 +78,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     NSDate * today      = [NSDate date];
     NSDate* lastOpenDate= [[XPUserDataHelper shareInstance] getUserDataByKey:XPUserDataKey_LastOpenDate];
-    if([today isTheSameDay:lastOpenDate] == YES)
+    if([today isTheSameDay:lastOpenDate] == NO)
     {
         // 今日有打开过
         _deckController = [self generateControllerStack];
@@ -212,4 +197,18 @@
     [deckController disablePanOverViewsOfClass:NSClassFromString(@"_UITableViewHeaderFooterContentView")];
     return deckController;
 }
+
+#pragma mark - 
+- (void)iLinkDidFindiTunesInfo{
+    NSLog(@"App local URL: %@", [iLink sharedInstance].iLinkGetAppURLforLocal );
+    NSLog(@"App sharing URL: %@", [iLink sharedInstance].iLinkGetAppURLforSharing );
+    NSLog(@"App rating URL: %@", [iLink sharedInstance].iLinkGetRatingURL );
+    NSLog(@"App Developer URL: %@", [iLink sharedInstance].iLinkGetDeveloperURLforSharing);
+    
+    //[[iLink sharedInstance] iLinkOpenRatingsPageInAppStore];
+    //[[iLink sharedInstance] iLinkOpenDeveloperPage]; // Would open developer page on the App Store
+    //[[iLink sharedInstance] iLinkOpenAppPageInAppStoreWithAppleID:553834731]; // Would open a different app then the current, For example the paid version. Just put the Apple ID of that app.
+}
+
+
 @end

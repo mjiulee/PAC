@@ -13,23 +13,23 @@
 
 NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
 
-@interface XPNewTaskVctler ()
-<UITextViewDelegate>
-{
+@interface XPNewTaskVctler ()<UITextViewDelegate>{
 }
-@property(nonatomic)    BOOL ifChange;
-@property(nonatomic,strong)    XPUIRadioGroup*  radioGroupPrio;
-@property(nonatomic,strong)    UIView*     tfviewbg;
-@property(nonatomic,strong)    UITextView* tfview;
-@property(nonatomic,strong)    UIView* pikerView;
-@property(nonatomic,strong)    XPUIRadioButton*radioNormal;
-@property(nonatomic,strong)    XPUIRadioButton*radioImportant;
-@property(nonatomic,strong)    UIButton* btnNext;
-@property(nonatomic,strong)    UIDatePicker* timePicker;
+@property(nonatomic)           BOOL ifChange;
+@property(nonatomic,strong) XPUIRadioGroup*  radioGroupPrio;
+@property(nonatomic,weak) IBOutlet UIView*     tfviewbg;
+@property(nonatomic,weak) IBOutlet UITextView* tfview;
+@property(nonatomic,weak) IBOutlet XPUIRadioButton*radioNormal;
+@property(nonatomic,weak) IBOutlet XPUIRadioButton*radioImportant;
+@property(nonatomic,weak) IBOutlet UISwitch* notifySwith;
+
+@property(nonatomic,weak) IBOutlet UIButton* btnNext;
+@property(nonatomic,weak) IBOutlet UIView*   pikerView;
+@property(nonatomic,weak) IBOutlet UIDatePicker* timePicker;
 
 -(void)onNavLeftBtnAction:(id)sender;
--(void)onNavRightBtnAction:(id)sender;
--(void)onNextBtnAction:(id)sender;
+-(IBAction)onNavRightBtnAction:(id)sender;
+-(IBAction)onNextBtnAction:(id)sender;
 @end
 
 @implementation XPNewTaskVctler
@@ -64,125 +64,45 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
         self.navigationItem.leftBarButtonItem = leftBtn;
     }
 
-    if (_viewType == XPNewTaskViewType_Update)
-    {
+    if (_viewType == XPNewTaskViewType_Update){
         self.title = @"修改任务";
-        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0, 0, 44, 44);
-        [btn setTitle:@"完成" forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        [btn addTarget:self action:@selector(onNavRightBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
-        self.navigationItem.rightBarButtonItem = rightBtn;
     }
+    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 44, 44);
+    if (_viewType == XPNewTaskViewType_Update){
+        [btn setTitle:@"修改" forState:UIControlStateNormal];
+    }else{
+        [btn setTitle:@"创建" forState:UIControlStateNormal];
+    }
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    [btn addTarget:self action:@selector(onNavRightBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = rightBtn;
 
-    //input text view and backgoundview
-    _tfviewbg  = [[UIView alloc] initWithFrame:CGRectZero];
     _tfviewbg.layer.cornerRadius = 3;
-    _tfviewbg.autoresizingMask   = UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleLeftMargin;
-    _tfviewbg.backgroundColor    = [UIColor whiteColor];
-    _tfviewbg.layer.borderColor  = XPRGBColor(157,157,157,1).CGColor;
-    _tfviewbg.layer.borderWidth  = 1;
-    [self.view addSubview:_tfviewbg];
-    
-    _tfview = [[UITextView alloc] initWithFrame:CGRectZero];
-    _tfview.textContainerInset = UIEdgeInsetsMake(3, 1, 0, 1);
-    _tfview.autoresizingMask   = UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleLeftMargin;
-    _tfview.font = [UIFont systemFontOfSize:15];
     _tfview .layer.cornerRadius = 3;
-    [self.view addSubview:_tfview];
+    _tfview.textContainerInset = UIEdgeInsetsMake(3, 1, 0, 1);
+    _tfview.font = [UIFont systemFontOfSize:15];
     
-    _radioNormal = [[XPUIRadioButton alloc] initWithFrame:CGRectZero];
-    _radioNormal.title = @"普通";
-    _radioNormal.value = [NSString stringWithFormat:@"%d",XPTask_PriorityLevel_normal];
-    [self.view addSubview:_radioNormal];
-    
-    _radioImportant = [[XPUIRadioButton alloc] initWithFrame:CGRectZero];
+    _radioNormal.backgroundColor    = [UIColor clearColor];
+    _radioImportant.backgroundColor = [UIColor clearColor];
+    _radioNormal.title    = @"普通";
+    _radioNormal.value    = [NSString stringWithFormat:@"%d",XPTask_PriorityLevel_normal];
     _radioImportant.title = @"重要";
     _radioImportant.value = [NSString stringWithFormat:@"%d",XPTask_PriorityLevel_important];
     _radioImportant.ifCHeck = YES;
-    [self.view addSubview:_radioImportant];
-    
-    _radioGroupPrio = [[XPUIRadioGroup alloc] initWithRadios:_radioNormal,_radioImportant,nil];
-    
-    if (_viewType != XPNewTaskViewType_Update)
-    {
-        if (_viewType == XPNewTaskViewType_NewNormal)
-        {
-            [_radioNormal setIfCheck:YES];
-        }else if(_viewType == XPNewTaskViewType_NewImportant)
-        {
-            [_radioImportant setIfCheck:YES];
-        }
-        
-        _btnNext = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        _btnNext.frame = CGRectZero;
-        [_btnNext setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
-        [_btnNext setTitle:@"下一个" forState:UIControlStateNormal];
-        [_btnNext addTarget:self action:@selector(onNextBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:_btnNext];
-    }else{
-        if (_task2Update)
-        {
-            _tfview.text = _task2Update.content;
-            NSUInteger priority   = [_task2Update.prLevel unsignedIntegerValue];
-            if (priority == 0) {
-                [_radioNormal setIfCheck:YES];
-            }else{
-                [_radioImportant setIfCheck:YES];
-            }
-        }
-    }
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self layoutWithOrientat:1];
+    _radioGroupPrio=[[XPUIRadioGroup alloc] initWithRadios:_radioNormal,_radioImportant,nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [_tfview becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Rotation
--(void)layoutWithOrientat:(int)orientation
-{
-    CGFloat yvalstart = 25;
-    if ([UIDevice isRunningOniPhone]) {
-        yvalstart = 15;
-    }
-    yvalstart += 0;
-    if (orientation == 1)
-    {
-        _tfviewbg.frame = CGRectMake(15,yvalstart,290, 82);
-        _tfview.frame   = CGRectMake(16,yvalstart+2,288,78);
-        if (_viewType != XPNewTaskViewType_Update){
-            _radioNormal.frame    = CGRectMake(20,CGRectGetMaxY(_tfview .frame)+20,80, 24);
-            _radioImportant.frame = CGRectMake(120,CGRectGetMaxY(_tfview .frame)+20,80, 24);
-            _btnNext.frame  = CGRectMake(CGRectGetMaxX(_radioImportant.frame)+20, CGRectGetMaxY(_tfview .frame)+10,100, 40);
-        }else{
-            _radioNormal.frame    = CGRectMake(70,CGRectGetMaxY(_tfview .frame)+20,80, 24);
-            _radioImportant.frame = CGRectMake(190,CGRectGetMaxY(_tfview .frame)+20,80, 24);
-        }
-    }else if(orientation == 2)
-    {
-        yvalstart = CGRectGetMaxY(self.navigationController.navigationBar.frame) + 5;
-        _tfviewbg.frame = CGRectMake(15,yvalstart,CGRectGetWidth(self.view.frame)-30, 32);
-        _tfview.frame   = CGRectMake(16,yvalstart+2,CGRectGetWidth(self.view.frame)-32,28);
-        _radioNormal.frame    = CGRectMake(20, CGRectGetMaxY(_tfview .frame)+10,80, 20);
-        _radioImportant.frame = CGRectMake(120,CGRectGetMaxY(_tfview .frame)+10,80, 20);
-        _btnNext.frame  = CGRectMake(CGRectGetMaxX(self.view.frame)-80,CGRectGetMaxY(_tfview .frame)+4,100,26);
-        [_radioNormal setNeedsDisplay];
-        [_radioImportant setNeedsDisplay];
-    }
 }
 
 #pragma mark- navButtons
@@ -192,19 +112,22 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
 
 -(void)onNavRightBtnAction:(id)sender{
     // Save to core data
-    // [self.navigationController popViewControllerAnimated:YES];
-    if (!_tfview.text || [_tfview.text length] <= 0) {
-        [OMGToast showWithText:@"请输入任务内容" topOffset:146];
-        return;
+    if (_viewType == XPNewTaskViewType_Update){
+        if (!_tfview.text || [_tfview.text length] <= 0) {
+            [OMGToast showWithText:@"请输入任务内容" topOffset:146];
+            return;
+        }
+        self.ifChange = YES;
+        // save item to core data
+        NSString* value = [_radioGroupPrio getSelectedValue];
+        _task2Update.content = _tfview.text;
+        _task2Update.prLevel = [NSNumber numberWithInt:[value integerValue]];
+        [[XPDataManager shareInstance] updateTask:_task2Update];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kMyMsgTaskUpdateNotification object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [self onNextBtnAction:nil];
     }
-    self.ifChange = YES;
-    // save item to core data
-    NSString* value = [_radioGroupPrio getSelectedValue];
-    _task2Update.content = _tfview.text;
-    _task2Update.prLevel = [NSNumber numberWithInt:[value integerValue]];
-    [[XPDataManager shareInstance] updateTask:_task2Update];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kMyMsgTaskUpdateNotification object:nil];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)onNextBtnAction:(id)sender
@@ -218,22 +141,21 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     // save item to core data
     NSString* value = [_radioGroupPrio getSelectedValue];
     XPTaskPriorityLevel priority;
-    if ([value integerValue] == 1)
-    {
+    if ([value integerValue] == 1){
         priority = XPTask_PriorityLevel_normal;
     }
     
-    if([value integerValue] == 2)
-    {
+    if([value integerValue] == 2){
         priority = XPTask_PriorityLevel_important;
     }
     
-    [[XPDataManager shareInstance] insertTask:_tfview.text date:[NSDate date]
-                           type:XPTask_Type_User
-                        prLevel:priority
-                        project:nil];
+    [[XPDataManager shareInstance] insertTask:_tfview.text
+                                         date:[NSDate date]
+                                         type:XPTask_Type_User
+                                      prLevel:priority
+                                      project:nil];
     [_tfview setText:@""];
     [[NSNotificationCenter defaultCenter] postNotificationName:kMyMsgTaskUpdateNotification object:nil];
-    [OMGToast showWithText:@"任务添加成功" topOffset:146];
+    [OMGToast showWithText:@"任务添加成功，你可以继续编辑下一个任务" topOffset:self.view.frame.size.height-275];
 }
 @end

@@ -68,7 +68,7 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
     CGFloat yoffset = 10;//CGRectGetMaxY(self.navigationController.navigationBar.frame)+8;
     
     __weak typeof(self) _weakself = self;
-    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(15,yoffset,width-30,30)
+    XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(10,yoffset,width-20,30)
                                                                items:@"普通",@"重要",@"已完成",nil];
     segview.backgroundColor     = XPRGBColor(248, 248, 248, 0.88);
     [self.view addSubview:segview];
@@ -243,16 +243,6 @@ static const NSUInteger kTableViewTagStartIdx = 1000;
 #pragma mark- tableviewdelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TaskModel* atask = nil;
-    NSInteger tagidx = self.segmentView.curSelectIndex;
-    if(tagidx == 0) atask = [self.dataHelper.listNormal    objectAtIndex:[indexPath row]];
-    if(tagidx == 1) atask = [self.dataHelper.listImportant objectAtIndex:[indexPath row]];
-    if(tagidx == 2) return;
-   
-    XPNewTaskVctler* updatevc = [[XPNewTaskVctler alloc] init];
-    updatevc.viewType    = XPNewTaskViewType_Update;
-    updatevc.task2Update = atask;
-    [self.navigationController pushViewController:updatevc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

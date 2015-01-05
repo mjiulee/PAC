@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XPNewTaskVctler">
+            <connections>
+                <outlet property="notifySwith" destination="d4t-Qu-px3" id="7N4-WR-3qG"/>
+                <outlet property="radioImportant" destination="2ly-vE-DgS" id="VE5-0n-la2"/>
+                <outlet property="radioNormal" destination="ahu-t8-eTg" id="JMm-3b-aUC"/>
+                <outlet property="tfview" destination="mCg-zf-Ma4" id="H2X-02-GOs"/>
+                <outlet property="tfviewbg" destination="9dq-ct-WTi" id="VyM-u7-Syk"/>
+                <outlet property="view" destination="iN0-l3-epB" id="tO7-Fn-y2F"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9dq-ct-WTi">
+                    <rect key="frame" x="14" y="14" width="292" height="84"/>
+                    <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="84" id="KhI-Wo-N6r"/>
+                    </constraints>
+                </view>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu" translatesAutoresizingMaskIntoConstraints="NO" id="mCg-zf-Ma4">
+                    <rect key="frame" x="15" y="15" width="290" height="82"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="82" id="lxL-ZX-peH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ahu-t8-eTg" customClass="XPUIRadioButton">
+                    <rect key="frame" x="14" y="113" width="80" height="20"/>
+                    <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="6GO-67-dnd"/>
+                        <constraint firstAttribute="width" constant="80" id="SuC-pF-oQE"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ly-vE-DgS" customClass="XPUIRadioButton">
+                    <rect key="frame" x="114" y="113" width="80" height="20"/>
+                    <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="Jqz-oJ-A5D"/>
+                        <constraint firstAttribute="height" constant="20" id="QgI-sw-n73"/>
+                    </constraints>
+                </view>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4t-Qu-px3">
+                    <rect key="frame" x="260" y="108" width="42" height="30"/>
+                </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开通提醒" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21K-n8-cHg">
+                    <rect key="frame" x="195" y="112" width="60" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="Vvy-qs-pdc"/>
+                        <constraint firstAttribute="height" constant="21" id="bmZ-A1-JgN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="9dq-ct-WTi" secondAttribute="trailing" constant="14" id="6i5-3g-gfu"/>
+                <constraint firstItem="ahu-t8-eTg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="7Db-AF-tJs"/>
+                <constraint firstItem="mCg-zf-Ma4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="DLG-Uy-NaR"/>
+                <constraint firstItem="d4t-Qu-px3" firstAttribute="leading" secondItem="21K-n8-cHg" secondAttribute="trailing" constant="5" id="Db6-Tk-Ycn"/>
+                <constraint firstItem="9dq-ct-WTi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="EOh-NG-NOS"/>
+                <constraint firstAttribute="trailing" secondItem="d4t-Qu-px3" secondAttribute="trailing" constant="11" id="Pp6-Yj-ffE"/>
+                <constraint firstItem="2ly-vE-DgS" firstAttribute="leading" secondItem="ahu-t8-eTg" secondAttribute="trailing" constant="20" id="UCy-Ba-h1b"/>
+                <constraint firstItem="d4t-Qu-px3" firstAttribute="centerY" secondItem="2ly-vE-DgS" secondAttribute="centerY" id="ceh-ec-M3M"/>
+                <constraint firstAttribute="trailing" secondItem="mCg-zf-Ma4" secondAttribute="trailing" constant="15" id="ehT-7D-vwh"/>
+                <constraint firstItem="mCg-zf-Ma4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="gtX-Gh-gCq"/>
+                <constraint firstItem="21K-n8-cHg" firstAttribute="centerY" secondItem="ahu-t8-eTg" secondAttribute="centerY" id="mBH-1F-fHO"/>
+                <constraint firstItem="ahu-t8-eTg" firstAttribute="top" secondItem="mCg-zf-Ma4" secondAttribute="bottom" constant="16" id="pUq-um-aa4"/>
+                <constraint firstItem="9dq-ct-WTi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="pmC-bJ-DIF"/>
+                <constraint firstItem="21K-n8-cHg" firstAttribute="centerY" secondItem="2ly-vE-DgS" secondAttribute="centerY" id="uwl-Up-bq0"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <point key="canvasLocation" x="450" y="390"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

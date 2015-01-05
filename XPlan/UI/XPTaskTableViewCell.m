@@ -38,7 +38,7 @@ static const CGFloat  kCellScrollMaxOffset = 80;
         
         UIScrollView* scrollcontview = [[UIScrollView alloc] init];
         //scrollcontview.backgroundColor = XPRGBColor(35, 75, 255, 1.0);
-        scrollcontview.frame = CGRectMake(0, 0, 320, tableview.rowHeight);
+        scrollcontview.frame = CGRectMake(0, 0, tableview.frame.size.width, tableview.rowHeight);
         scrollcontview.delegate      = self;
         scrollcontview.backgroundColor = kWhiteColor;
         scrollcontview.showsHorizontalScrollIndicator = NO;
@@ -76,9 +76,9 @@ static const CGFloat  kCellScrollMaxOffset = 80;
         [scrollcontview addSubview:contentView];
         [self insertSubview:scrollcontview atIndex:0];
         self.scrollcontview = scrollcontview;
-        scrollcontview.contentSize = CGSizeMake(321, 44);
+        scrollcontview.contentSize = CGSizeMake(tableview.frame.size.width+0.5, 44);
         
-        UIImageView* finish = [[UIImageView alloc] initWithFrame:CGRectMake(320-40,11,28,28)];
+        UIImageView* finish = [[UIImageView alloc] initWithFrame:CGRectMake(tableview.frame.size.width-40,11,28,28)];
         finish.image = [UIImage imageNamed:@"icon_check_01"];
         finish.alpha= 0;
         [self addSubview:finish];

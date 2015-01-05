@@ -128,4 +128,27 @@ static NSString* const kSTREveningAlarm = @"xp-evening-call";
     NSLog(@"关闭本地通知");
 }
 
+-(void)setTaskNotify:(NSDate*)date message:(NSString*)msg name:(NSString*)name
+{
+    UILocalNotification *notification=[[UILocalNotification alloc] init];
+    if (notification!=nil) {
+        notification.fireDate   = date;      //触发通知的时间
+        notification.repeatCalendar = [NSCalendar currentCalendar];
+        notification.timeZone   = [NSTimeZone defaultTimeZone];
+        notification.soundName  = UILocalNotificationDefaultSoundName;
+        notification.alertBody  = msg;
+        
+        notification.alertAction= @"打开";  //提示框按钮
+        notification.hasAction  = YES;       //是否显示额外的按钮，为no时alertAction消失
+        
+        notification.applicationIconBadgeNumber = 1; //设置app图标右上角的数字
+        //下面设置本地通知发送的消息，这个消息可以接受
+        NSDictionary* infoDic = [NSDictionary dictionaryWithObject:name forKey:@"key"];
+        notification.userInfo = infoDic;
+        //发送通知
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
+}
+
+
 @end
