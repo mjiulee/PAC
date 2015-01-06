@@ -57,6 +57,12 @@
     {
         [iLink sharedInstance];
         [[ShareUtils instance] setUpAppkeys];
+        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+            //ios 8
+            UIUserNotificationSettings* notificationSettings =
+            [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge| UIUserNotificationTypeSound categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+        }
     }
     
     // core Data setup
@@ -94,6 +100,8 @@
         self.window.rootViewController = _guiderVctler;
         [self.window makeKeyAndVisible];
     }
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     return YES;
 }
 
@@ -138,7 +146,7 @@
         self.window.rootViewController = _guiderVctler;
         [self.window makeKeyAndVisible];
     }
-    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

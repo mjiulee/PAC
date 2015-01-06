@@ -119,9 +119,19 @@ static NSString* const kSTREveningAlarm = @"xp-evening-call";
     for (UILocalNotification * loc in array)
     {
         if ([[loc.userInfo objectForKey:@"key"] isEqualToString:kSTREveningAlarm]||
-            [[loc.userInfo objectForKey:@"key"] isEqualToString:kSTRmorningAlarm]||
-            [[loc.userInfo objectForKey:@"key"] isEqualToString:@"name"])
-        {
+            [[loc.userInfo objectForKey:@"key"] isEqualToString:kSTRmorningAlarm]){
+            [[UIApplication sharedApplication] cancelLocalNotification:loc];//取消 本地推送
+        }
+    }
+    NSLog(@"关闭本地通知");
+}
+
+-(void)cancelTaskNotification:(NSString*)name{
+    //拿到 存有 所有 推送的数组
+    NSArray * array = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    //便利这个数组 根据 key 拿到我们想要的 UILocalNotification
+    for (UILocalNotification * loc in array){
+        if ([[loc.userInfo objectForKey:@"key"] isEqualToString:name]){
             [[UIApplication sharedApplication] cancelLocalNotification:loc];//取消 本地推送
         }
     }

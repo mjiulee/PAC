@@ -117,7 +117,6 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
     
-    
     /*if (firstRun)
     {
 		NSManagedObjectContext *context = self.managedObjectContext;
@@ -163,8 +162,14 @@
 
 #pragma mark - Data CURD
 #pragma mark - task-list-curd
--(void)insertTask:(NSString*)content date:(NSDate*)datecreate type:(XPTaskType)taskType prLevel:(XPTaskPriorityLevel)prLevel
-          project:(ProjectModel*)project
+-(void)insertTask:(NSString*)content
+             date:(NSDate*)datecreate
+         ifnotify:(NSNumber*)ifnotify
+       notifytime:(NSDate*)notifytime
+       notifyname:(NSString*)notifyname
+             type:(XPTaskType)taskType
+          prLevel:(XPTaskPriorityLevel)prLevel
+          project:(ProjectModel*)project;
 {
    NSManagedObjectContext *context = [self managedObjectContext];
    TaskModel* newTask  = [NSEntityDescription insertNewObjectForEntityForName:@"TaskModel"
@@ -176,6 +181,9 @@
         }
         newTask.content    = content;
         newTask.dateCreate = datecreate;
+        newTask.neednotify = ifnotify;
+        newTask.notifydate = notifytime;
+        newTask.notifyname = notifyname;
         newTask.status     = [NSNumber numberWithInteger:XPTask_Status_ongoing];
         newTask.type       = [NSNumber numberWithInteger:taskType];
         newTask.prLevel    = [NSNumber numberWithInteger:prLevel];
@@ -207,6 +215,9 @@
     for (TaskModel *info in result){
         info.content    = task2update.content;
         info.dateCreate = task2update.dateCreate;
+        info.neednotify = task2update.neednotify;
+        info.notifydate = task2update.notifydate;
+        info.notifyname = task2update.notifyname;
         info.status     = task2update.status;
         info.type       = task2update.type;
         info.prLevel    = task2update.prLevel;

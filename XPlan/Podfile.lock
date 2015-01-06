@@ -18,6 +18,7 @@ PODS:
   - AFNetworking/UIKit (2.2.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CocoaSecurity (1.2.4)
   - PNChart (0.3.3):
     - UICountingLabel (~> 1.0.0)
   - UICountingLabel (1.0.0)
@@ -25,11 +26,13 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - CocoaSecurity
   - PNChart
   - ViewDeck
 
 SPEC CHECKSUMS:
   AFNetworking: 47947303319594706f48a55185ea95a95159ab94
+  CocoaSecurity: 7ce1b967863d4e96dcffdbad17671117900e6c6e
   PNChart: c77c6880b03851f01d7b5523648e0b93cfe51978
   UICountingLabel: 0a0e9e34bf4690dbd127aaec552d19ed938087a9
   ViewDeck: 654a493fc83928892ce483dea08a5302180aafce

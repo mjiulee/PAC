@@ -3,3 +3,4 @@ platform :ios, '7.0'
 pod "AFNetworking"
 pod 'PNChart'
 pod 'ViewDeck'
+pod 'CocoaSecurity'

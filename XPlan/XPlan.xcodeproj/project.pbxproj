@@ -15,6 +15,8 @@
 		180DCED31933936500DC0248 /* XPStartupGuiderVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180DCED11933936500DC0248 /* XPStartupGuiderVctler.xib */; };
 		1815D2D319137DEF00403D29 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815D2D219137DEF00403D29 /* Utils.m */; };
 		1815D2D419137DEF00403D29 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815D2D219137DEF00403D29 /* Utils.m */; };
+		182391451A5C2FBA0054BD47 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182391441A5C2FBA0054BD47 /* ProjectModel.m */; };
+		182391481A5C2FBB0054BD47 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182391471A5C2FBB0054BD47 /* TaskModel.m */; };
 		183F39E21A5AB9460005B89E /* XPNewTaskVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183F39E11A5AB9460005B89E /* XPNewTaskVctler.xib */; };
 		183F39E31A5ABE620005B89E /* XPNewTaskVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183F39E11A5AB9460005B89E /* XPNewTaskVctler.xib */; };
 		183F39E81A5ACE110005B89E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183F39E71A5ACE110005B89E /* LaunchScreen.xib */; };
@@ -86,8 +88,6 @@
 		18E874BC18E32AAB0094376E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874BB18E32AAB0094376E /* CoreTelephony.framework */; };
 		18E874BE18E32AB60094376E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874BD18E32AB60094376E /* MessageUI.framework */; };
 		18E874C218E32ACC0094376E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874C118E32ACC0094376E /* SystemConfiguration.framework */; };
-		18F61676193186F500031D22 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F61675193186F500031D22 /* TaskModel.m */; };
-		18F61677193186F500031D22 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F61675193186F500031D22 /* TaskModel.m */; };
 		2F0A834EC23149C68EF2BAE1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D15D9107587141BA80AA78E0 /* libPods.a */; };
 		3316B2F18D77445DA1056C26 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D15D9107587141BA80AA78E0 /* libPods.a */; };
 		43239CC418EAEBD70048FF9E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874C118E32ACC0094376E /* SystemConfiguration.framework */; };
@@ -119,8 +119,6 @@
 		436D1B0518EAC2F50099A690 /* NSString+DrawHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AAF18EAC2F50099A690 /* NSString+DrawHelper.m */; };
 		436D1B0618EAC2F50099A690 /* OMGToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB118EAC2F50099A690 /* OMGToast.m */; };
 		436D1B0718EAC2F50099A690 /* OMGToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB118EAC2F50099A690 /* OMGToast.m */; };
-		436D1B0818EAC2F50099A690 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB318EAC2F50099A690 /* ProjectModel.m */; };
-		436D1B0918EAC2F50099A690 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB318EAC2F50099A690 /* ProjectModel.m */; };
 		436D1B0C18EAC2F50099A690 /* UIDevice+Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB718EAC2F50099A690 /* UIDevice+Resolution.m */; };
 		436D1B0D18EAC2F50099A690 /* UIDevice+Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB718EAC2F50099A690 /* UIDevice+Resolution.m */; };
 		436D1B0E18EAC2F50099A690 /* UIImage+XPUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB918EAC2F50099A690 /* UIImage+XPUIImage.m */; };
@@ -218,6 +216,10 @@
 		180DCED11933936500DC0248 /* XPStartupGuiderVctler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPStartupGuiderVctler.xib; sourceTree = "<group>"; };
 		1815D2D119137DEF00403D29 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		1815D2D219137DEF00403D29 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		182391431A5C2FBA0054BD47 /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
+		182391441A5C2FBA0054BD47 /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
+		182391461A5C2FBB0054BD47 /* TaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
+		182391471A5C2FBB0054BD47 /* TaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
 		183F39E11A5AB9460005B89E /* XPNewTaskVctler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPNewTaskVctler.xib; sourceTree = "<group>"; };
 		183F39E71A5ACE110005B89E /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		18641DF91A495CDB001B979E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -225,6 +227,7 @@
 		18641DFD1A495D2F001B979E /* ShareUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareUtils.m; sourceTree = "<group>"; };
 		18641DFE1A495D2F001B979E /* ShareUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareUtils.h; sourceTree = "<group>"; };
 		18641E011A495E09001B979E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		187052C21A5C169E0075AD14 /* XPlanModelV1.3.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XPlanModelV1.3.0.xcdatamodel; sourceTree = "<group>"; };
 		1887867619114DFA00CAB38E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1887867819114E1000CAB38E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		1887867A19114E2400CAB38E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
@@ -272,8 +275,6 @@
 		18E874BB18E32AAB0094376E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		18E874BD18E32AB60094376E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		18E874C118E32ACC0094376E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		18F61674193186F500031D22 /* TaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
-		18F61675193186F500031D22 /* TaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
 		18F73C4D192102DE00B30FF5 /* XPlanModelV1.1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XPlanModelV1.1.0.xcdatamodel; sourceTree = "<group>"; };
 		43359AF118C42A1600C12617 /* TaskInsertTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInsertTest.m; sourceTree = "<group>"; };
 		436D193A18EAB3290099A690 /* XPlanAd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPlanAd.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,8 +297,6 @@
 		436D1AAF18EAC2F50099A690 /* NSString+DrawHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DrawHelper.m"; sourceTree = "<group>"; };
 		436D1AB018EAC2F50099A690 /* OMGToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMGToast.h; sourceTree = "<group>"; };
 		436D1AB118EAC2F50099A690 /* OMGToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMGToast.m; sourceTree = "<group>"; };
-		436D1AB218EAC2F50099A690 /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
-		436D1AB318EAC2F50099A690 /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
 		436D1AB618EAC2F50099A690 /* UIDevice+Resolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Resolution.h"; sourceTree = "<group>"; };
 		436D1AB718EAC2F50099A690 /* UIDevice+Resolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Resolution.m"; sourceTree = "<group>"; };
 		436D1AB818EAC2F50099A690 /* UIImage+XPUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XPUIImage.h"; sourceTree = "<group>"; };
@@ -647,10 +646,10 @@
 				436D1ACC18EAC2F50099A690 /* XPHistoryTaskDataHelper.h */,
 				436D1ACD18EAC2F50099A690 /* XPHistoryTaskDataHelper.m */,
 				436D1ACE18EAC2F50099A690 /* XPlanModel.xcdatamodeld */,
-				18F61674193186F500031D22 /* TaskModel.h */,
-				18F61675193186F500031D22 /* TaskModel.m */,
-				436D1AB218EAC2F50099A690 /* ProjectModel.h */,
-				436D1AB318EAC2F50099A690 /* ProjectModel.m */,
+				182391461A5C2FBB0054BD47 /* TaskModel.h */,
+				182391471A5C2FBB0054BD47 /* TaskModel.m */,
+				182391431A5C2FBA0054BD47 /* ProjectModel.h */,
+				182391441A5C2FBA0054BD47 /* ProjectModel.m */,
 				436D1AC618EAC2F50099A690 /* XPDataManager.h */,
 				436D1AC718EAC2F50099A690 /* XPDataManager.m */,
 			);
@@ -1169,12 +1168,10 @@
 				436D1B2118EAC2F50099A690 /* XPHistoryListVctler.m in Sources */,
 				436D1B1B18EAC2F50099A690 /* XPCheckBoxTableCell.m in Sources */,
 				436D1B0F18EAC2F50099A690 /* UIImage+XPUIImage.m in Sources */,
-				18F61677193186F500031D22 /* TaskModel.m in Sources */,
 				1815D2D419137DEF00403D29 /* Utils.m in Sources */,
 				436D1B2518EAC2F50099A690 /* XPlanModel.xcdatamodeld in Sources */,
 				436D1B2918EAC2F50099A690 /* XPMathHelper.c in Sources */,
 				189C94CA1A59729500318F1E /* iLink.m in Sources */,
-				436D1B0918EAC2F50099A690 /* ProjectModel.m in Sources */,
 				436D1B0118EAC2F50099A690 /* CityListViewController.m in Sources */,
 				436D194518EAB3290099A690 /* main.m in Sources */,
 				436D1B1D18EAC2F50099A690 /* XPDataManager.m in Sources */,
@@ -1206,10 +1203,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				436D1B3418EAC2F50099A690 /* XPTaskListVCtler.m in Sources */,
+				182391451A5C2FBA0054BD47 /* ProjectModel.m in Sources */,
 				436D1B3A18EAC2F50099A690 /* XPUILable.m in Sources */,
 				436D1B0418EAC2F50099A690 /* NSString+DrawHelper.m in Sources */,
 				436D1B2618EAC2F50099A690 /* XPLeftMenuViewCtler.m in Sources */,
 				436D1B2E18EAC2F50099A690 /* XPSettingVctler.m in Sources */,
+				182391481A5C2FBB0054BD47 /* TaskModel.m in Sources */,
 				436D1B3618EAC2F50099A690 /* XPTaskTableViewCell.m in Sources */,
 				436D1B1618EAC2F50099A690 /* XPBaseTableVCtler.m in Sources */,
 				436D1B0218EAC2F50099A690 /* NSDate+Category.m in Sources */,
@@ -1221,12 +1220,10 @@
 				436D1B2018EAC2F50099A690 /* XPHistoryListVctler.m in Sources */,
 				436D1B1A18EAC2F50099A690 /* XPCheckBoxTableCell.m in Sources */,
 				436D1B0E18EAC2F50099A690 /* UIImage+XPUIImage.m in Sources */,
-				18F61676193186F500031D22 /* TaskModel.m in Sources */,
 				1815D2D319137DEF00403D29 /* Utils.m in Sources */,
 				436D1B2418EAC2F50099A690 /* XPlanModel.xcdatamodeld in Sources */,
 				436D1B2818EAC2F50099A690 /* XPMathHelper.c in Sources */,
 				189C94C91A59729500318F1E /* iLink.m in Sources */,
-				436D1B0818EAC2F50099A690 /* ProjectModel.m in Sources */,
 				436D1B0018EAC2F50099A690 /* CityListViewController.m in Sources */,
 				437A7CCF18B71BA20088F1AA /* main.m in Sources */,
 				436D1B1C18EAC2F50099A690 /* XPDataManager.m in Sources */,
@@ -1320,7 +1317,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lee mj (VYK2CP9M6D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Connection",
@@ -1349,7 +1347,7 @@
 					"-Objc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "46c3ae06-622d-4763-baab-8bf5a8ef815c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -1362,8 +1360,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: li mingjiu (6D6U4G36JF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: li mingjiu (6D6U4G36JF)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Connection",
@@ -1388,7 +1386,7 @@
 					"-Objc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "46c3ae06-622d-4763-baab-8bf5a8ef815c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -1693,10 +1691,11 @@
 		436D1ACE18EAC2F50099A690 /* XPlanModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				187052C21A5C169E0075AD14 /* XPlanModelV1.3.0.xcdatamodel */,
 				18F73C4D192102DE00B30FF5 /* XPlanModelV1.1.0.xcdatamodel */,
 				436D1ACF18EAC2F50099A690 /* XPlanModel.xcdatamodel */,
 			);
-			currentVersion = 18F73C4D192102DE00B30FF5 /* XPlanModelV1.1.0.xcdatamodel */;
+			currentVersion = 187052C21A5C169E0075AD14 /* XPlanModelV1.3.0.xcdatamodel */;
 			path = XPlanModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

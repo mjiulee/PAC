@@ -7,7 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XPNewTaskVctler">
             <connections>
+                <outlet property="labNotifyTime" destination="TnQ-pM-EN5" id="Txw-YS-hzR"/>
+                <outlet property="labSelectTime" destination="H0y-sG-lyD" id="dt4-mn-t7g"/>
                 <outlet property="notifySwith" destination="d4t-Qu-px3" id="7N4-WR-3qG"/>
+                <outlet property="pickerView" destination="Cdq-tW-pzt" id="rtL-WN-NDX"/>
                 <outlet property="radioImportant" destination="2ly-vE-DgS" id="VE5-0n-la2"/>
                 <outlet property="radioNormal" destination="ahu-t8-eTg" id="JMm-3b-aUC"/>
                 <outlet property="tfview" destination="mCg-zf-Ma4" id="H2X-02-GOs"/>
@@ -53,7 +56,10 @@
                     </constraints>
                 </view>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="d4t-Qu-px3">
-                    <rect key="frame" x="260" y="108" width="42" height="30"/>
+                    <rect key="frame" x="260" y="108" width="51" height="31"/>
+                    <connections>
+                        <action selector="onSwitchChange:" destination="-1" eventType="valueChanged" id="7yL-2l-sAF"/>
+                    </connections>
                 </switch>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开通提醒" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21K-n8-cHg">
                     <rect key="frame" x="195" y="112" width="60" height="21"/>
@@ -65,26 +71,61 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cdq-tW-pzt">
+                    <rect key="frame" x="20" y="385" width="280" height="162"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="162" id="8Qg-J7-907"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="JT1-Ix-g4B"/>
+                        <outlet property="delegate" destination="-1" id="3NI-Du-hA3"/>
+                    </connections>
+                </pickerView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="程序将会在12:30提醒你" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TnQ-pM-EN5">
+                    <rect key="frame" x="16" y="139" width="293" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="3RX-WP-dHk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择提醒时间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0y-sG-lyD">
+                    <rect key="frame" x="0.0" y="364" width="320" height="21"/>
+                    <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Cdq-tW-pzt" firstAttribute="top" secondItem="H0y-sG-lyD" secondAttribute="bottom" id="04K-aJ-xye"/>
                 <constraint firstAttribute="trailing" secondItem="9dq-ct-WTi" secondAttribute="trailing" constant="14" id="6i5-3g-gfu"/>
                 <constraint firstItem="ahu-t8-eTg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="7Db-AF-tJs"/>
                 <constraint firstItem="mCg-zf-Ma4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="DLG-Uy-NaR"/>
                 <constraint firstItem="d4t-Qu-px3" firstAttribute="leading" secondItem="21K-n8-cHg" secondAttribute="trailing" constant="5" id="Db6-Tk-Ycn"/>
                 <constraint firstItem="9dq-ct-WTi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="EOh-NG-NOS"/>
+                <constraint firstAttribute="trailing" secondItem="TnQ-pM-EN5" secondAttribute="trailing" constant="11" id="M1y-oY-oXP"/>
                 <constraint firstAttribute="trailing" secondItem="d4t-Qu-px3" secondAttribute="trailing" constant="11" id="Pp6-Yj-ffE"/>
+                <constraint firstAttribute="bottom" secondItem="Cdq-tW-pzt" secondAttribute="bottom" constant="21" id="RF5-pe-TSE"/>
                 <constraint firstItem="2ly-vE-DgS" firstAttribute="leading" secondItem="ahu-t8-eTg" secondAttribute="trailing" constant="20" id="UCy-Ba-h1b"/>
+                <constraint firstAttribute="trailing" secondItem="Cdq-tW-pzt" secondAttribute="trailing" constant="20" id="Xjm-yn-drO"/>
+                <constraint firstItem="H0y-sG-lyD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZaI-cJ-I6j"/>
                 <constraint firstItem="d4t-Qu-px3" firstAttribute="centerY" secondItem="2ly-vE-DgS" secondAttribute="centerY" id="ceh-ec-M3M"/>
                 <constraint firstAttribute="trailing" secondItem="mCg-zf-Ma4" secondAttribute="trailing" constant="15" id="ehT-7D-vwh"/>
                 <constraint firstItem="mCg-zf-Ma4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="gtX-Gh-gCq"/>
+                <constraint firstItem="TnQ-pM-EN5" firstAttribute="top" secondItem="d4t-Qu-px3" secondAttribute="bottom" id="j8U-VF-8d8"/>
+                <constraint firstItem="Cdq-tW-pzt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="jgr-BU-TKI"/>
                 <constraint firstItem="21K-n8-cHg" firstAttribute="centerY" secondItem="ahu-t8-eTg" secondAttribute="centerY" id="mBH-1F-fHO"/>
+                <constraint firstItem="TnQ-pM-EN5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="owD-vU-a5C"/>
                 <constraint firstItem="ahu-t8-eTg" firstAttribute="top" secondItem="mCg-zf-Ma4" secondAttribute="bottom" constant="16" id="pUq-um-aa4"/>
                 <constraint firstItem="9dq-ct-WTi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="pmC-bJ-DIF"/>
+                <constraint firstAttribute="trailing" secondItem="H0y-sG-lyD" secondAttribute="trailing" id="rpS-lJ-qgZ"/>
                 <constraint firstItem="21K-n8-cHg" firstAttribute="centerY" secondItem="2ly-vE-DgS" secondAttribute="centerY" id="uwl-Up-bq0"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
-            <point key="canvasLocation" x="450" y="390"/>
+            <point key="canvasLocation" x="122" y="282"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

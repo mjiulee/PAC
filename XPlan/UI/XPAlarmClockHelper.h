@@ -17,4 +17,5 @@
 -(void)setupNotification;
 // 对任务做提醒
 -(void)setTaskNotify:(NSDate*)date message:(NSString*)msg name:(NSString*)name;
+-(void)cancelTaskNotification:(NSString*)name;
 @end

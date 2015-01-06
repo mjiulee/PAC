@@ -10,6 +10,10 @@
 #import "UIImage+XPUIImage.h"
 #import "XPUIRadioButton.h"
 #import "TaskModel.h"
+#import "XPAlarmClockHelper.h"
+#import "Utils.h"
+#import "CocoaSecurity.h"
+
 
 NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
 
@@ -22,14 +26,14 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
 @property(nonatomic,weak) IBOutlet XPUIRadioButton*radioNormal;
 @property(nonatomic,weak) IBOutlet XPUIRadioButton*radioImportant;
 @property(nonatomic,weak) IBOutlet UISwitch* notifySwith;
-
-@property(nonatomic,weak) IBOutlet UIButton* btnNext;
-@property(nonatomic,weak) IBOutlet UIView*   pikerView;
-@property(nonatomic,weak) IBOutlet UIDatePicker* timePicker;
+@property(nonatomic,weak) IBOutlet UIPickerView* pickerView;
+@property(nonatomic,weak) IBOutlet UILabel*  labNotifyTime;
+@property(nonatomic,weak) IBOutlet UILabel*  labSelectTime;
 
 -(void)onNavLeftBtnAction:(id)sender;
 -(IBAction)onNavRightBtnAction:(id)sender;
 -(IBAction)onNextBtnAction:(id)sender;
+-(IBAction)onSwitchChange:(id)sender;
 @end
 
 @implementation XPNewTaskVctler
@@ -80,6 +84,19 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     UIBarButtonItem* rightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = rightBtn;
 
+    {
+        _labNotifyTime.hidden = YES;
+        _pickerView.hidden    = YES;
+        _labSelectTime.hidden = YES;
+        NSUInteger hour=0,minute=0;
+        [self.pickerView reloadAllComponents];
+        NSDate* dateNow = [NSDate date];
+        hour   = (dateNow.hour+2-1);
+        minute = dateNow.minute;
+        [self.pickerView selectRow:hour   inComponent:0 animated:YES];
+        [self.pickerView selectRow:minute   inComponent:1 animated:YES];
+    }
+
     _tfviewbg.layer.cornerRadius = 3;
     _tfview .layer.cornerRadius = 3;
     _tfview.textContainerInset = UIEdgeInsetsMake(3, 1, 0, 1);
@@ -110,6 +127,18 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
             }else{
                 [_radioImportant setIfCheck:YES];
             }
+            
+            if([_task2Update.neednotify boolValue]){
+                _notifySwith.on = YES;
+                NSUInteger hour  = _task2Update.notifydate.hour-1;
+                NSUInteger minit = _task2Update.notifydate.minute;
+                [self.pickerView reloadAllComponents];
+                [self.pickerView selectRow:hour  inComponent:0 animated:YES];
+                [self.pickerView selectRow:minit inComponent:1 animated:YES];
+                _labNotifyTime.hidden = NO;
+                _pickerView.hidden = NO;
+                _labSelectTime.hidden = NO;
+            }
         }
     }
 }
@@ -134,7 +163,7 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     // Save to core data
     if (_viewType == XPNewTaskViewType_Update){
         if (!_tfview.text || [_tfview.text length] <= 0) {
-            [OMGToast showWithText:@"请输入任务内容" topOffset:146];
+            [OMGToast showWithText:@"请输入任务内容" topOffset:self.view.frame.size.height-265];
             return;
         }
         self.ifChange = YES;
@@ -142,6 +171,26 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
         NSString* value = [_radioGroupPrio getSelectedValue];
         _task2Update.content = _tfview.text;
         _task2Update.prLevel = [NSNumber numberWithInt:[value integerValue]];
+        NSNumber* needNotify = [NSNumber numberWithBool:_notifySwith.on];
+        NSDate*   notifyDate = nil;
+        NSString* notifyname = _task2Update.notifyname;
+        if (notifyname && notifyname.length) {
+            // 取消
+            [[XPAlarmClockHelper shareInstance] cancelTaskNotification:notifyname];
+        }
+        if(_notifySwith.on){
+            notifyDate = [self getNotifyDate];
+            CocoaSecurityResult *rtsec = [CocoaSecurity md5:_tfview.text];
+            notifyname = rtsec.hex;
+            // 设置提醒
+            if (notifyname && notifyname.length) {
+                _task2Update.notifyname = notifyname;
+                NSString* msg = [NSString stringWithFormat:@"您的任务:%@,快到时间了，记得完成哦",_task2Update.content];
+                [[XPAlarmClockHelper shareInstance] setTaskNotify:notifyDate message:msg name:notifyname];
+            }
+        }
+        _task2Update.notifydate = notifyDate;
+        _task2Update.neednotify = needNotify;
         [[XPDataManager shareInstance] updateTask:_task2Update];
         [[NSNotificationCenter defaultCenter] postNotificationName:kMyMsgTaskUpdateNotification object:nil];
         [self.navigationController popViewControllerAnimated:YES];
@@ -154,7 +203,7 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
 {
     //[_tfview setText:@""];
     if (!_tfview.text || [_tfview.text length] <= 0) {
-        [OMGToast showWithText:@"请输入任务内容" topOffset:146];
+        [OMGToast showWithText:@"请输入任务内容" topOffset:self.view.frame.size.height-265];
         return;
     }
     self.ifChange = YES;
@@ -168,14 +217,100 @@ NSString* const kMyMsgTaskUpdateNotification = @"MyMsg_Task_UpdateNotification";
     if([value integerValue] == 2){
         priority = XPTask_PriorityLevel_important;
     }
-    
+    NSNumber* needNotify = [NSNumber numberWithBool:_notifySwith.on];
+    NSDate*   notifyDate = nil;
+    NSString* notifyname = nil;
+    if(_notifySwith.on){
+        notifyDate = [self getNotifyDate];
+        CocoaSecurityResult *rtsec = [CocoaSecurity md5:_tfview.text];
+        notifyname = rtsec.hex;
+        // 设置提醒
+        if (notifyname && notifyname.length) {
+            NSString* msg = [NSString stringWithFormat:@"您的任务:\"%@\"还没完成，记得完成哦",_tfview.text];
+            [[XPAlarmClockHelper shareInstance] setTaskNotify:notifyDate message:msg name:notifyname];            
+        }
+    }
     [[XPDataManager shareInstance] insertTask:_tfview.text
                                          date:[NSDate date]
+                                     ifnotify:needNotify
+                                   notifytime:notifyDate
+                                   notifyname:notifyname
                                          type:XPTask_Type_User
                                       prLevel:priority
                                       project:nil];
     [_tfview setText:@""];
     [[NSNotificationCenter defaultCenter] postNotificationName:kMyMsgTaskUpdateNotification object:nil];
-    [OMGToast showWithText:@"任务添加成功，你可以继续编辑下一个任务" topOffset:self.view.frame.size.height-275];
+    [OMGToast showWithText:@"任务添加成功，你可以继续编辑下一个任务" topOffset:self.view.frame.size.height-265];
 }
+
+-(IBAction)onSwitchChange:(id)sender{
+    NSLog(@"switch:%@",@(_notifySwith.on));
+    if (_notifySwith.on) {
+        _labNotifyTime.hidden = NO;
+        _pickerView.hidden    = NO;
+        _labSelectTime.hidden = NO;
+        [self.view endEditing:YES];
+    }else{
+        _labNotifyTime.hidden = YES;
+        _pickerView.hidden    = YES;
+        _labSelectTime.hidden = YES;
+        [self.tfview becomeFirstResponder];
+    }
+}
+
+#pragma mark- UIPickerDataSource&UIPickerDelegaet
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 2;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    switch (component) {
+        case 0:
+            return 24;
+            break;
+        case 1:
+            return 60;
+        default:
+            break;
+    }
+    return 0;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
+    return CGRectGetWidth(pickerView.frame)/2;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 40;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString* title = @"";
+    if (component == 0) {
+        title = [NSString stringWithFormat:@"%@点",@(row)];
+    }else{
+        title = [NSString stringWithFormat:@"%@分",@(row)];
+    }
+    return title;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSUInteger hour   = [self.pickerView selectedRowInComponent:0];
+    NSUInteger minute = [self.pickerView selectedRowInComponent:1];
+    NSString * tipstr = [NSString stringWithFormat:@"程序将会在%@时%@分给您提醒",@(hour),@(minute)];
+    _labNotifyTime.text = tipstr;
+}
+
+-(NSDate*)getNotifyDate{
+    NSUInteger hour   = [self.pickerView selectedRowInComponent:0];
+    NSUInteger minute = [self.pickerView selectedRowInComponent:1];
+    NSDate* today = [NSDate date];
+    NSDate* morningcall = [today dateWithHour:hour mintus:minute];
+    return morningcall;
+}
+
 @end

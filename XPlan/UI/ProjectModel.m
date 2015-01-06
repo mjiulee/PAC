@@ -2,8 +2,8 @@
 //  ProjectModel.m
 //  XPlan
 //
-//  Created by mjlee on 14-3-22.
-//  Copyright (c) 2014年 mjlee. All rights reserved.
+//  Created by mjlee on 15/1/6.
+//  Copyright (c) 2015年 mjlee. All rights reserved.
 //
 
 #import "ProjectModel.h"

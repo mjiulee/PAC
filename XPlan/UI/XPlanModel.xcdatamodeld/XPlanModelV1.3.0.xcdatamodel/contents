@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ProjectModel" representedClassName="ProjectModel" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskModel" inverseName="project" inverseEntity="TaskModel" syncable="YES"/>
+    </entity>
+    <entity name="TaskModel" representedClassName="TaskModel" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateCreate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dateDone" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="neednotify" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="notifydate" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="notifyname" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="sectionIdDaily" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sectionIdMonthly" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectModel" inverseName="tasks" inverseEntity="ProjectModel" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ProjectModel" positionX="-153" positionY="123" width="128" height="75"/>
+        <element name="TaskModel" positionX="-81" positionY="-189" width="128" height="223"/>
+    </elements>
+</model>

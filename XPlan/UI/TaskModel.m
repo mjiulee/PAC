@@ -2,8 +2,8 @@
 //  TaskModel.m
 //  XPlan
 //
-//  Created by mjlee on 14-5-25.
-//  Copyright (c) 2014年 mjlee. All rights reserved.
+//  Created by mjlee on 15/1/6.
+//  Copyright (c) 2015年 mjlee. All rights reserved.
 //
 
 #import "TaskModel.h"
@@ -15,11 +15,14 @@
 @dynamic content;
 @dynamic dateCreate;
 @dynamic dateDone;
+@dynamic neednotify;
+@dynamic notifydate;
+@dynamic notifyname;
 @dynamic prLevel;
+@dynamic sectionIdDaily;
 @dynamic sectionIdMonthly;
 @dynamic status;
 @dynamic type;
-@dynamic sectionIdDaily;
 @dynamic project;
 
 
@@ -75,5 +78,6 @@
     // If the value of todoDueDate changes, the section identifier may change as well.
     return [NSSet setWithObject:@"dateCreate"];
 }
+
 
 @end

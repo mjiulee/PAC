@@ -53,7 +53,13 @@ typedef enum {
  * @taskType    --- 类型：系统、用户自建
  * @prLevel     --- 优先级：普通、重要
  * @project     --- 所属项目,暂时不用 */
--(void)insertTask:(NSString*)content date:(NSDate*)datecreate type:(XPTaskType)taskType prLevel:(XPTaskPriorityLevel)prLevel
+-(void)insertTask:(NSString*)content
+             date:(NSDate*)datecreate
+         ifnotify:(NSNumber*)ifnotify
+       notifytime:(NSDate*)ifnotifytime
+       notifyname:(NSString*)notifyname
+             type:(XPTaskType)taskType
+          prLevel:(XPTaskPriorityLevel)prLevel
           project:(ProjectModel*)project;
 
 /* 更新一项任务:
