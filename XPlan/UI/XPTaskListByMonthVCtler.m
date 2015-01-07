@@ -13,6 +13,7 @@
 #import "XPDialyStaticVCtler.h"
 #import "XPAdBannerVer.h"
 #import "XPSegmentedView.h"
+#import "TaskModel.h"
 
 //static int kHeadViewBtnStartIdx = 1000;
 
@@ -301,7 +302,7 @@
 	[fetchRequest setEntity:entity];
     
 	// Set the batch size to a suitable number.
-	[fetchRequest setFetchBatchSize:20];
+	[fetchRequest setFetchBatchSize:40];
     
 	// Sort using the timeStamp property.
 	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateCreate" ascending:NO];

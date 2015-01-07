@@ -32,7 +32,7 @@
     //NSLog(@"%s",__func__);
     [self willAccessValueForKey:@"sectionIdMonthly"];
     NSString *tmp = [self primitiveValueForKey:@"sectionIdMonthly"];
-    //NSLog(@"%s,tmp=%@",__func__,tmp);
+    NSLog(@"%s,tmp=%@",__func__,tmp);
     [self didAccessValueForKey:@"sectionIdMonthly"];
     
     if (!tmp){
@@ -48,7 +48,7 @@
     //NSLog(@"%s",__func__);
     [self willAccessValueForKey:@"sectionIdDaily"];
     NSString *tmp = [self primitiveValueForKey:@"sectionIdDaily"];
-    //NSLog(@"%s,tmp=%@",__func__,tmp);
+    NSLog(@"%s,tmp=%@",__func__,tmp);
     [self didAccessValueForKey:@"sectionIdDaily"];
     
     if (!tmp){

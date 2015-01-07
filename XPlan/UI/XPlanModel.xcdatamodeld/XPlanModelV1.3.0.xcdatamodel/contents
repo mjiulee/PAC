@@ -8,8 +8,8 @@
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateCreate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dateDone" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="neednotify" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="notifydate" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="neednotify" optional="YES" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="notifydate" optional="YES" transient="YES" attributeType="Date" defaultDateTimeInterval="0" syncable="YES"/>
         <attribute name="notifyname" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="prLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="sectionIdDaily" optional="YES" transient="YES" attributeType="String" syncable="YES"/>

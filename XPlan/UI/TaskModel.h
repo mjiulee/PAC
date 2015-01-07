@@ -20,8 +20,8 @@
 @property (nonatomic, retain) NSDate * notifydate;
 @property (nonatomic, retain) NSString * notifyname;
 @property (nonatomic, retain) NSNumber * prLevel;
-@property (nonatomic, retain) NSString * sectionIdDaily;
-@property (nonatomic, retain) NSString * sectionIdMonthly;
+@property (nonatomic, retain, getter=sectionIdDaily) NSString * sectionIdDaily;
+@property (nonatomic, retain, getter=sectionIdMonthly) NSString * sectionIdMonthly;
 @property (nonatomic, retain) NSNumber * status;
 @property (nonatomic, retain) NSNumber * type;
 @property (nonatomic, retain) ProjectModel *project;

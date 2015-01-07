@@ -29,6 +29,7 @@
 		18641E031A495FB2001B979E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18641E011A495E09001B979E /* CoreVideo.framework */; };
 		18641E041A495FCE001B979E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18641DF91A495CDB001B979E /* Accounts.framework */; };
 		18641E051A495FF0001B979E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18641DFB1A495CFA001B979E /* Social.framework */; };
+		1881BCCD1A5CCEEF00924A14 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182391471A5C2FBB0054BD47 /* TaskModel.m */; };
 		1887867719114DFA00CAB38E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867619114DFA00CAB38E /* QuartzCore.framework */; };
 		1887867919114E1000CAB38E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867819114E1000CAB38E /* libicucore.dylib */; };
 		1887867B19114E2400CAB38E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867A19114E2400CAB38E /* libz.1.2.5.dylib */; };
@@ -1152,6 +1153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1881BCCD1A5CCEEF00924A14 /* TaskModel.m in Sources */,
 				436D1B3518EAC2F50099A690 /* XPTaskListVCtler.m in Sources */,
 				436D1B3B18EAC2F50099A690 /* XPUILable.m in Sources */,
 				436D1B0518EAC2F50099A690 /* NSString+DrawHelper.m in Sources */,
