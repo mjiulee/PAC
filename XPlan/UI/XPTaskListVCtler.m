@@ -11,7 +11,10 @@
 #import "IIViewDeckController.h"
 #import "XPTaskTableViewCell.h"
 #import "XPDialyStaticVCtler.h"
+
+#ifdef kIfShowGoogleAdBanner
 #import "XPAdBannerVer.h"
+#endif
 
 static int kHeadViewBtnStartIdx = 1000;
 @interface XPTaskListVCtler ()
@@ -20,7 +23,11 @@ static int kHeadViewBtnStartIdx = 1000;
     NSMutableArray* _taskListImportant;
     NSMutableArray* _taskListFinish;
 }
+
+#ifdef kIfShowGoogleAdBanner
 @property(nonatomic,strong) XPAdBannerVer* adBannerview;
+#endif
+
 // NavButtons
 -(void)onNavRightBtuAction:(id)sender;
 // View Buttons
@@ -92,7 +99,8 @@ static NSString *sCellIdentifier;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView reloadData];
 
-    if( kIfShowGoogleAdBanner == 1)
+#ifdef kIfShowGoogleAdBanner
+    //if( kIfShowGoogleAdBanner == 1)
     {
         __block typeof(self) wself = self;
         XPAdBannerVer* bannerv = [[XPAdBannerVer alloc] initWithFrame:CGRectMake(0, 0, GDTMOB_AD_SUGGEST_SIZE_320x50.width, GDTMOB_AD_SUGGEST_SIZE_320x50.height) controler:self];
@@ -104,7 +112,7 @@ static NSString *sCellIdentifier;
             wself.tableView.tableHeaderView = wself.adBannerview;
         };
     }
-    
+#endif
     // register the task list change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onTaskUpdateNotification:)

@@ -171,7 +171,7 @@ static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
                              value:(id)[UIFont systemFontOfSize:13]
                              range:NSMakeRange(0, [atStrNotDoneType length])];
     // numberType
-    NSMutableAttributedString *strNormal = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%u",total]];
+    NSMutableAttributedString *strNormal = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",@(total)]];
     [strNormal addAttribute:NSForegroundColorAttributeName
                       value:(id)XPRGBColor(35,137, 255, 1.0)
                       range:NSMakeRange(0, [strNormal length])];
@@ -180,7 +180,7 @@ static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
                       range:NSMakeRange(0, [strNormal length])];
     
     // numberType
-    NSMutableAttributedString *strDone = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%u",done]];
+    NSMutableAttributedString *strDone = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",@(done)]];
     [strDone addAttribute:NSForegroundColorAttributeName
                     value:(id)XPRGBColor(35,137, 255, 1.0)
                     range:NSMakeRange(0, [strDone length])];
@@ -188,7 +188,7 @@ static NSString*  const kBaiduAppKey = @"FC6d7d9088a8bea53220434268c189af";
                     value:(id)[UIFont systemFontOfSize:13]
                     range:NSMakeRange(0, [strDone length])];
     // numberType
-    NSMutableAttributedString *strNotDone = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%u",notdone]];
+    NSMutableAttributedString *strNotDone = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",@(notdone)]];
     [strNotDone addAttribute:NSForegroundColorAttributeName
                        value:(id)XPRGBColor(35,137, 255, 1.0)
                        range:NSMakeRange(0, [strNotDone length])];

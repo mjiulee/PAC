@@ -15,6 +15,7 @@
 #import "XPAboutMeVCtler.h"
 #import "XPSettingVctler.h"
 #import "XPTaskListByMonthVCtler.h"
+#import "iLink.h"
 
 @interface XPLeftMenuViewCtler ()
 //@property(nonatomic,strong) UINavigationController* dailyVctler;
@@ -56,14 +57,14 @@
     if (section==0) {
         return 2;
     }
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     NSArray  *section1TextArray  = @[@"今日任务",@"历史任务"];
-    NSArray  *section2TextArray  = @[@"天气",@"提醒设定",@"关于"];
+    NSArray  *section2TextArray  = @[@"今日天气",@"提醒设定",@"鼓励一下我吧",@"关于"];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell)
@@ -143,6 +144,13 @@
             [self.viewDeckController setCenterController:rootNav];
             return;
         }else if([indexPath section] == 1 && [indexPath row] == 2)
+        {
+            /*XPAboutMeVCtler* projStaticVc = [[XPAboutMeVCtler alloc] init];
+            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:projStaticVc];
+            [self.viewDeckController setCenterController:rootNav];*/
+            [[iLink sharedInstance] iLinkOpenRatingsPageInAppStore];
+            return;
+        }else if([indexPath section] == 1 && [indexPath row] == 3)
         {
             XPAboutMeVCtler* projStaticVc = [[XPAboutMeVCtler alloc] init];
             UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:projStaticVc];

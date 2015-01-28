@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskModel.h"
 
 #define kTaskCellMaxWidth 300
 #define kTaskCellFontSize 15.0

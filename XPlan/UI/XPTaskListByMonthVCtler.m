@@ -11,9 +11,12 @@
 #import "IIViewDeckController.h"
 #import "XPTaskTableViewCell.h"
 #import "XPDialyStaticVCtler.h"
-#import "XPAdBannerVer.h"
 #import "XPSegmentedView.h"
 #import "TaskModel.h"
+
+#ifdef kIfShowGoogleAdBanner
+#import "XPAdBannerVer.h"
+#endif
 
 //static int kHeadViewBtnStartIdx = 1000;
 
@@ -22,8 +25,9 @@
 {
     NSUInteger _segmentIndex;
 }
-
+#ifdef kIfShowGoogleAdBanner
 @property(nonatomic,strong) XPAdBannerVer* adBannerview;
+#endif
 @property(nonatomic,strong) UITableView*   tableview;
 @property(nonatomic,strong) XPSegmentedView* segmentview;
 
@@ -107,8 +111,8 @@
     self.tableview = tableView;
     self.tableview.backgroundColor = [UIColor whiteColor];
 
-    
-    if( kIfShowGoogleAdBanner == 1)
+#ifdef kIfShowGoogleAdBanner
+//    if( kIfShowGoogleAdBanner == 1)
     {
         __block typeof(self) wself = self;
 //        self.adBannerview = [[XPAdBannerVer alloc] initWithFrame:CGRectMake(0, 0,kGADAdSizeBanner.size.width,
@@ -123,7 +127,10 @@
             wself.tableview.tableHeaderView = wself.adBannerview;
         };
     }
+#endif
+    
 }
+
 
 - (void)didReceiveMemoryWarning
 {

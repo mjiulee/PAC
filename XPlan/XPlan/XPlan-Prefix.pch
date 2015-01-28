@@ -34,7 +34,7 @@
 #define kWhiteColor [UIColor whiteColor]
 
 // if need ad show
-#define kIfShowGoogleAdBanner 0
+//#define kIfShowGoogleAdBanner 0
 
 // weibo分享
 #define kUrlAboutXplan  @"http://qygweixin.sinaapp.com/index.php/aboutxplan/index"

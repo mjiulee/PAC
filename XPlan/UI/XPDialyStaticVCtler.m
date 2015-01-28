@@ -252,7 +252,7 @@ static const NSUInteger kScrollViewPageIndex = 1000;
                              value:(id)[UIFont systemFontOfSize:13]
                              range:NSMakeRange(0, [atStrNotDoneType length])];
     // numberType
-    NSMutableAttributedString *strNormal = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%u",total]];
+    NSMutableAttributedString *strNormal = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",@(total)]];
     [strNormal addAttribute:NSForegroundColorAttributeName
                       value:(id)XPRGBColor(35,137, 255, 1.0)
                       range:NSMakeRange(0, [strNormal length])];
@@ -261,7 +261,7 @@ static const NSUInteger kScrollViewPageIndex = 1000;
                       range:NSMakeRange(0, [strNormal length])];
 
     // numberType
-    NSMutableAttributedString *strDone = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%u",done]];
+    NSMutableAttributedString *strDone = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",@(done)]];
     [strDone addAttribute:NSForegroundColorAttributeName
                     value:(id)XPRGBColor(35,137, 255, 1.0)
                     range:NSMakeRange(0, [strDone length])];
@@ -269,7 +269,7 @@ static const NSUInteger kScrollViewPageIndex = 1000;
                     value:(id)[UIFont systemFontOfSize:13]
                     range:NSMakeRange(0, [strDone length])];
     // numberType
-    NSMutableAttributedString *strNotDone = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%u",notdone]];
+    NSMutableAttributedString *strNotDone = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",@(notdone)]];
     [strNotDone addAttribute:NSForegroundColorAttributeName
                        value:(id)XPRGBColor(35,137, 255, 1.0)
                        range:NSMakeRange(0, [strNotDone length])];
@@ -423,7 +423,7 @@ static const NSUInteger kScrollViewPageIndex = 1000;
                                 }
                                 else if (state == SSResponseStateFail)
                                 {
-                                    NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
+                                    NSLog(@"分享失败,错误码:%@,错误描述:%@", @([error errorCode]), [error errorDescription]);
                                 }
                             }];
 }

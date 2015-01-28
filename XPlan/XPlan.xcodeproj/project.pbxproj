@@ -37,7 +37,6 @@
 		1887867F19114E5800CAB38E /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867E19114E5800CAB38E /* libstdc++.dylib */; };
 		1887868119114E6A00CAB38E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887868019114E6A00CAB38E /* libsqlite3.dylib */; };
 		1897FE7418E9AC5B00DC0172 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1897FE7318E9AC5B00DC0172 /* StoreKit.framework */; };
-		189C949B1A596EF600318F1E /* libGDTMobSDK_v3.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 189C94771A596EF600318F1E /* libGDTMobSDK_v3.3.a */; };
 		189C949C1A596EF600318F1E /* libGDTMobSDK_v3.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 189C94771A596EF600318F1E /* libGDTMobSDK_v3.3.a */; };
 		189C949D1A596EF700318F1E /* QQConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 189C947A1A596EF600318F1E /* QQConnection.framework */; };
 		189C949E1A596EF700318F1E /* QQConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 189C947A1A596EF600318F1E /* QQConnection.framework */; };
@@ -83,7 +82,6 @@
 		189C94CA1A59729500318F1E /* iLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 189C94C81A59729500318F1E /* iLink.m */; };
 		18D710291923B52A000B2FD7 /* XPTaskListByMonthVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D710281923B52A000B2FD7 /* XPTaskListByMonthVCtler.m */; };
 		18D7102A1923B52A000B2FD7 /* XPTaskListByMonthVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D710281923B52A000B2FD7 /* XPTaskListByMonthVCtler.m */; };
-		18E874B618E32A870094376E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B518E32A870094376E /* AdSupport.framework */; };
 		18E874B818E32A950094376E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B718E32A950094376E /* AudioToolbox.framework */; };
 		18E874BA18E32A9B0094376E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874B918E32A9B0094376E /* AVFoundation.framework */; };
 		18E874BC18E32AAB0094376E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E874BB18E32AAB0094376E /* CoreTelephony.framework */; };
@@ -126,7 +124,6 @@
 		436D1B0F18EAC2F50099A690 /* UIImage+XPUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1AB918EAC2F50099A690 /* UIImage+XPUIImage.m */; };
 		436D1B1018EAC2F50099A690 /* XPAboutMeVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ABB18EAC2F50099A690 /* XPAboutMeVCtler.m */; };
 		436D1B1118EAC2F50099A690 /* XPAboutMeVCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ABB18EAC2F50099A690 /* XPAboutMeVCtler.m */; };
-		436D1B1218EAC2F50099A690 /* XPAdBannerVer.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ABD18EAC2F50099A690 /* XPAdBannerVer.m */; };
 		436D1B1318EAC2F50099A690 /* XPAdBannerVer.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ABD18EAC2F50099A690 /* XPAdBannerVer.m */; };
 		436D1B1418EAC2F50099A690 /* XPAlarmClockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ABF18EAC2F50099A690 /* XPAlarmClockHelper.m */; };
 		436D1B1518EAC2F50099A690 /* XPAlarmClockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 436D1ABF18EAC2F50099A690 /* XPAlarmClockHelper.m */; };
@@ -434,7 +431,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				189C94C41A59703200318F1E /* CoreLocation.framework in Frameworks */,
-				18E874B618E32A870094376E /* AdSupport.framework in Frameworks */,
 				18E874BA18E32A9B0094376E /* AVFoundation.framework in Frameworks */,
 				18641E021A495E09001B979E /* CoreVideo.framework in Frameworks */,
 				18641DFC1A495CFA001B979E /* Social.framework in Frameworks */,
@@ -457,7 +453,6 @@
 				18E874BC18E32AAB0094376E /* CoreTelephony.framework in Frameworks */,
 				18E874B818E32A950094376E /* AudioToolbox.framework in Frameworks */,
 				189C94B91A596EF700318F1E /* libWeChatSDK.a in Frameworks */,
-				189C949B1A596EF600318F1E /* libGDTMobSDK_v3.3.a in Frameworks */,
 				437A7CF818B71D250088F1AA /* CoreData.framework in Frameworks */,
 				189C949F1A596EF700318F1E /* QZoneConnection.framework in Frameworks */,
 				437A7CC518B71BA20088F1AA /* CoreGraphics.framework in Frameworks */,
@@ -1237,7 +1232,6 @@
 				436D1B1818EAC2F50099A690 /* XPBaseViewCtler.m in Sources */,
 				436D1B1018EAC2F50099A690 /* XPAboutMeVCtler.m in Sources */,
 				436D1B3C18EAC2F50099A690 /* XPUIRadioButton.m in Sources */,
-				436D1B1218EAC2F50099A690 /* XPAdBannerVer.m in Sources */,
 				436D1B3E18EAC2F50099A690 /* XPUserDataHelper.m in Sources */,
 				436D1B4018EAC2F50099A690 /* XPWeatherVctler.m in Sources */,
 				436D1B0618EAC2F50099A690 /* OMGToast.m in Sources */,
@@ -1349,7 +1343,7 @@
 					"-Objc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "fa9e50e8-463e-4bfe-bdda-e51c7b8b47d2";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -1362,8 +1356,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: li mingjiu (6D6U4G36JF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: li mingjiu (6D6U4G36JF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Connection",
@@ -1388,7 +1382,7 @@
 					"-Objc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "fa9e50e8-463e-4bfe-bdda-e51c7b8b47d2";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -1516,11 +1510,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ShareSDK/Connection",
-					"$(PROJECT_DIR)/ShareSDK/Core",
-					"$(PROJECT_DIR)/ShareSDK/Extend/QQConnectSDK",
-					"$(PROJECT_DIR)/ShareSDK",
-					"$(PROJECT_DIR)/ShareSDK/UI",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Connection",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Core",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Extend/QQConnectSDK",
@@ -1534,12 +1523,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"${SRCROOT}/ads-sdk",
-					"$(PROJECT_DIR)/ShareSDK/Extend/SinaWeiboSDK",
-					"$(PROJECT_DIR)/ShareSDK/Extend/TencentWeiboSDK",
-					"$(PROJECT_DIR)/ShareSDK/Extend/WeChatSDK",
-					"$(PROJECT_DIR)/ads-sdk",
-					"$(PROJECT_DIR)/Vender/GDTAdLibs",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Extend/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Extend/TencentWeiboSDK",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Extend/WeChatSDK",
@@ -1563,11 +1546,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: li mingjiu (6D6U4G36JF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ShareSDK/Connection",
-					"$(PROJECT_DIR)/ShareSDK/Core",
-					"$(PROJECT_DIR)/ShareSDK/Extend/QQConnectSDK",
-					"$(PROJECT_DIR)/ShareSDK",
-					"$(PROJECT_DIR)/ShareSDK/UI",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Connection",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Core",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Extend/QQConnectSDK",
@@ -1581,12 +1559,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"${SRCROOT}/ads-sdk",
-					"$(PROJECT_DIR)/ShareSDK/Extend/SinaWeiboSDK",
-					"$(PROJECT_DIR)/ShareSDK/Extend/TencentWeiboSDK",
-					"$(PROJECT_DIR)/ShareSDK/Extend/WeChatSDK",
-					"$(PROJECT_DIR)/ads-sdk",
-					"$(PROJECT_DIR)/Vender/GDTAdLibs",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Extend/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Extend/TencentWeiboSDK",
 					"$(PROJECT_DIR)/Vender/ShareSDK/Extend/WeChatSDK",

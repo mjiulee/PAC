@@ -133,7 +133,7 @@
     }
     
     UIButton* btn = (UIButton*)sender;
-    int tag = btn.tag;
+    NSInteger tag = btn.tag;
     if (tag == self.curSelectIndex)
     {
         return;
