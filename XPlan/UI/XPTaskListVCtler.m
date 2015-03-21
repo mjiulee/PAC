@@ -23,6 +23,7 @@ static int kHeadViewBtnStartIdx = 1000;
     NSMutableArray* _taskListImportant;
     NSMutableArray* _taskListFinish;
 }
+@property(nonatomic,strong) UIView* taskemptyView;
 
 #ifdef kIfShowGoogleAdBanner
 @property(nonatomic,strong) XPAdBannerVer* adBannerview;
@@ -78,6 +79,7 @@ static NSString *sCellIdentifier;
         _taskListNormal    = [[NSMutableArray alloc] init];
         _taskListImportant = [[NSMutableArray alloc] init];;
         _taskListFinish    = [[NSMutableArray alloc] init];;
+        
         // data load from core date
         [self reLoadData];
         sCellIdentifier = @"MoveCell";
@@ -89,7 +91,22 @@ static NSString *sCellIdentifier;
 {
     [super viewDidLoad];
     self.title = @"今日任务";
-    
+
+    UINib *nib = [UINib nibWithNibName:@"XPTaskemptyView" bundle:nil];
+    do
+    {
+        if (!nib){
+            break;
+        }
+        NSArray* nibary =  [nib instantiateWithOwner:nil options:nil];
+        if (!nibary || [nibary count] <=0) {
+            break;
+        }
+        self.taskemptyView = [nibary objectAtIndex:0];
+        UIImageView* imgv = (UIImageView*)[self.taskemptyView viewWithTag:1010];
+        imgv.image = [UIImage imageNamed:@"img_empty"];
+    } while (NO);
+
     // tableview
     self.view.backgroundColor = [UIColor whiteColor];
     //self.tableView = [[FMMoveTableView alloc] initWithFrame:self.tableView.frame style:UITableViewStylePlain];
@@ -134,7 +151,20 @@ static NSString *sCellIdentifier;
 #pragma mark - UItableviewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    NSInteger count = [_taskListNormal count] + [_taskListImportant count] + [_taskListFinish count];
+    if (count <= 0) {
+        if (NO == [self.taskemptyView isDescendantOfView:self.view]) {
+            CGRect aframe = self.taskemptyView.frame;
+            aframe.origin.y = 50;
+            self.taskemptyView.frame = aframe;
+            [self.view addSubview:self.taskemptyView];
+        }
+    }else {
+        [self.taskemptyView removeFromSuperview];
+        self.taskemptyView = nil;
+        return 3;
+    }
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

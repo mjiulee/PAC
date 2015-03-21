@@ -32,6 +32,7 @@
 @property(nonatomic,strong) XPSegmentedView* segmentview;
 
 @property (nonatomic) NSFetchedResultsController *fetchRtvctlerDialy;
+@property (nonatomic) NSFetchedResultsController *fetchRtvctlerWeekly;
 @property (nonatomic) NSFetchedResultsController *fetchRtvctlerMonthly;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
@@ -82,6 +83,11 @@
 		abort();
 	}
     
+    if (![self.fetchRtvctlerWeekly performFetch:&error]){
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
     if (![self.fetchRtvctlerMonthly performFetch:&error]){
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		abort();
@@ -93,7 +99,7 @@
     
     __weak typeof(self) _weakself = self;
     XPSegmentedView* segview= [[XPSegmentedView alloc] initWithFrame:CGRectMake(15,yoffset,width-30,30)
-                                                               items:@"按天",@"按月",nil];
+                                                               items:@"按天",@"按周",@"按月",nil];
     segview.backgroundColor     = XPRGBColor(248, 248, 248, 0.88);
     [self.view addSubview:segview];
     self.segmentview = segview;
@@ -159,6 +165,8 @@
 	NSInteger count = 1;
     if (_segmentIndex == 0) {
         count = [[self.fetchRtvctlerDialy sections] count];
+    }else if(_segmentIndex == 1){
+        count = [[self.fetchRtvctlerWeekly sections] count];
     }else{
         count = [[self.fetchRtvctlerMonthly sections] count];
     }
@@ -171,6 +179,8 @@
     NSFetchedResultsController* ptrfrtctler = nil;
     if (_segmentIndex == 0) {
         ptrfrtctler = self.fetchRtvctlerDialy;
+    }else if(_segmentIndex == 1){
+        ptrfrtctler = self.fetchRtvctlerWeekly;
     }else{
         ptrfrtctler = self.fetchRtvctlerMonthly;
     }
@@ -199,6 +209,8 @@
     NSFetchedResultsController* ptrfrtctler = nil;
     if (_segmentIndex == 0) {
         ptrfrtctler = self.fetchRtvctlerDialy;
+    }else if(_segmentIndex == 1){
+        ptrfrtctler = self.fetchRtvctlerWeekly;
     }else{
         ptrfrtctler = self.fetchRtvctlerMonthly;
     }
@@ -237,6 +249,8 @@
     NSFetchedResultsController* ptrfrtctler = nil;
     if (_segmentIndex == 0) {
         ptrfrtctler = self.fetchRtvctlerDialy;
+    }else if(_segmentIndex == 1){
+        ptrfrtctler = self.fetchRtvctlerWeekly;
     }else{
         ptrfrtctler = self.fetchRtvctlerMonthly;
     }
@@ -323,6 +337,39 @@
     _fetchRtvctlerMonthly.delegate = self;
     
 	return _fetchRtvctlerMonthly;
+}
+
+- (NSFetchedResultsController *)fetchRtvctlerWeekly{
+    if (_fetchRtvctlerWeekly != nil)
+    {
+        return _fetchRtvctlerWeekly;
+    }
+    
+    /*
+     Set up the fetched results controller.
+     */
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TaskModel"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:40];
+    
+    // Sort using the timeStamp property.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateCreate" ascending:NO];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    
+    // Use the sectionIdentifier property to group into sections.
+    _fetchRtvctlerWeekly = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                managedObjectContext:self.managedObjectContext
+                                                                  sectionNameKeyPath:@"sectionIdWeakly"
+                                                                           cacheName:nil];
+    _fetchRtvctlerWeekly.delegate = self;
+    
+    return _fetchRtvctlerWeekly;
 }
 
 #pragma mark - 

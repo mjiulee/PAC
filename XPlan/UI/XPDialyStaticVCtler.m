@@ -309,16 +309,24 @@ static const NSUInteger kScrollViewPageIndex = 1000;
     
     NSString* brief  = @"";
     if (fpercent < 0.1) {
-        brief = @"妈蛋，今天没干活吗？\r这效率捡钱都抢不过别人啊.";
+        brief = @"妈蛋，这效率捡钱都抢不过别人啊.";
     }else if(fpercent < 0.5){
-        brief = @"妈蛋，一天的活才做不到一半.\r还想迎娶高富帅/嫁个白富美不？\r还想就滚回去干活!";
+        brief = @"妈蛋，还想迎娶高富帅/嫁个白富美不？还想就滚回去干活!";
     }else if(fpercent < 0.8){
         brief = @"哎呦，今天效率不从，再接再厉";
     }else{
-        brief = @"喔插咧，效率爆表啊.\r我这是发粪图强，努力上进，不久当上CEO，迎娶白富美，走向人生巅峰的节奏啊！";
+        brief = @"喔插咧，效率爆表啊.我这是发粪图强，努力上进，不久当上CEO，迎娶白富美，走向人生巅峰的节奏啊！";
     }
     
     UIImage* imagesnap = [self capture];
+    [[ShareUtils instance] onShareTo:kUrlAdAppstore
+                             content:brief
+                           contWeixi:brief
+                               image:imagesnap
+                            complite:^(NSError*error){
+                                NSLog(@"error");
+                            }];
+    /*
     //构造分享内容
     id<ISSContent> publishContent =
         [ShareSDK content:[NSString stringWithFormat:@"%@,%@",brief,kUrlAdAppstore]
@@ -426,5 +434,6 @@ static const NSUInteger kScrollViewPageIndex = 1000;
                                     NSLog(@"分享失败,错误码:%@,错误描述:%@", @([error errorCode]), [error errorDescription]);
                                 }
                             }];
+   */
 }
 @end

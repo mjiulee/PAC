@@ -23,7 +23,8 @@
 
 // 发送分享
 -(void)onShareTo:(NSString*)url
+         content:(NSString*)content
        contWeixi:(NSString*)contWeixi
-           image:(NSString*)goodsImage
+           image:(UIImage*)goodsImage
         complite:(void(^)(NSError *error))complite;
 @end

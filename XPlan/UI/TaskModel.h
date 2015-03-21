@@ -2,7 +2,7 @@
 //  TaskModel.h
 //  XPlan
 //
-//  Created by mjlee on 15/1/6.
+//  Created by mjlee on 15/2/11.
 //  Copyright (c) 2015年 mjlee. All rights reserved.
 //
 
@@ -20,10 +20,10 @@
 @property (nonatomic, retain) NSDate * notifydate;
 @property (nonatomic, retain) NSString * notifyname;
 @property (nonatomic, retain) NSNumber * prLevel;
-@property (nonatomic, retain, getter=sectionIdDaily) NSString * sectionIdDaily;
-@property (nonatomic, retain, getter=sectionIdMonthly) NSString * sectionIdMonthly;
+@property (nonatomic, retain) NSString * sectionIdDaily;
+@property (nonatomic, retain) NSString * sectionIdMonthly;
 @property (nonatomic, retain) NSNumber * status;
 @property (nonatomic, retain) NSNumber * type;
+@property (nonatomic, retain) NSString * sectionIdWeakly;
 @property (nonatomic, retain) ProjectModel *project;
-
 @end

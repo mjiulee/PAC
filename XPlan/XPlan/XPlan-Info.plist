@@ -24,6 +24,19 @@
 	<string>1.3.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>QQ101077363</string>
+				<string>QQ801134596</string>
+				<string>wx9abf4ac057238f49</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1.3.1</string>
 	<key>LSRequiresIPhoneOS</key>

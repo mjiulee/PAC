@@ -8,55 +8,36 @@
 
 #import "ShareUtils.h"
 
-#define ShareSDKShareContent @"我正在七乐康网上药店抢购特价商品，每天都有不一样的惊喜，注册还有积分礼品，赶快来逛逛吧！https://itunes.apple.com/cn/app/id919070794"
+#define ShareSDKShareContent @""
 //默认进去时的内容
-#define ShareSDKDefaultContent @"我正在七乐康网上药店抢购特价商品，每天都有不一样的惊喜，注册还有积分礼品，赶快来逛逛吧！https://itunes.apple.com/cn/app/id919070794"
+#define ShareSDKDefaultContent @"我正在使用‘我的日常’app哦，快来一起吧~"
 //分享标题
-#define ShareSDKTitle @"我正在使用七乐康购物呢"
+#define ShareSDKTitle    @"我的日常"
 //分享来源url
-#define ShareSDKShareUrl @"https://itunes.apple.com/cn/app/id919070794"
+#define ShareSDKShareUrl @"https://itunes.apple.com/cn/app/id853802565"
 //分享描述
-#define ShareSDKShareContentDescription @"哈哈哈"
-
+#define ShareSDKShareContentDescription @"我正在使用‘我的日常’app哦，快来一起吧~"
 
 // ShareSdk
 static  NSString* AppKey = @"1b0eaa005042";
+//sina:微博
+#define kSinaWeiboAppkey @"857364782"
+#define kSinaWeiboSeckey @"49ca31f2e541bfb42e49a6fe8efbba1d"
 
-//// SinaWeibo
-static  NSString* SinaWeiboAppKey=@"857364782";
-static  NSString* SinaWeiboAppSecret=@"49ca31f2e541bfb42e49a6fe8efbba1d";
+//QQ:互联
+#define kQQconnectAppkey @"801134596"
+#define kQQconnectSeckey @"63176ed6dc115822ce65c119f9dd720d"
 
-// TencentWeibo
-static  NSString* TencentWeiboAppKey=@"801502141";
-static  NSString* TencentWeiboAppSecret=@"b025f1116b1c56af1211e8dbbd874fbf";
+//QQ:空间
+#define kQQZoneAppkey   @"101077363"
+#define kQQZoneSeckey   @"73ba476c896f98fd2c290c9ebe127644"
 
-// QZone
-static  NSString* QZoneAppId=@"801134596";
-static  NSString* QZoneAppKey=@"63176ed6dc115822ce65c119f9dd720d";
+//QQ微博：
+#define kQQWeiboAppkey @"801502141"
+#define kQQWeiboSeckey @"b025f1116b1c56af1211e8dbbd874fbf"
 
-//// Wechat
-//static  NSString* WechatSortId=@"4";
-//static  NSString* WechatAppId=@"wx79f8358726155a15";
-//
-//// WechatMoments
-//static  NSString* WechatMomentsSortId=@"5";
-//static  NSString* WechatMomentsAppId=@"wx79f8358726155a15";
-
-// weibo分享
-
-//#define kShareSDKAppkey @"1b0eaa005042"
-////sina:微博
-//#define kSinaWeiboAppkey @"857364782"
-//#define kSinaWeiboSeckey @"49ca31f2e541bfb42e49a6fe8efbba1d"
-//
-////QQ:互联
-//#define kQQconnectAppkey @"801134596"
-//#define kQQconnectSeckey @"63176ed6dc115822ce65c119f9dd720d"
-//
-////QQ微博：
-//#define kQQWeiboAppkey @"801502141"
-//#define kQQWeiboSeckey @"b025f1116b1c56af1211e8dbbd874fbf"
-
+//微信：
+#define WechatAppId    @"wx9abf4ac057238f49"
 
 @implementation ShareUtils
 
@@ -79,30 +60,33 @@ static  NSString* QZoneAppKey=@"63176ed6dc115822ce65c119f9dd720d";
 -(void)setUpAppkeys{
     
     [ShareSDK registerApp:AppKey];
-    [ShareSDK connectSinaWeiboWithAppKey:SinaWeiboAppKey
-                               appSecret:SinaWeiboAppSecret
+    [ShareSDK connectSinaWeiboWithAppKey:kSinaWeiboAppkey
+                               appSecret:kSinaWeiboSeckey
                              redirectUri:@"http://www.sharesdk.cn"
                              weiboSDKCls:[WeiboSDK class]];
     
     //添加腾讯微博应用 注册网址 http://dev.t.qq.com
-    [ShareSDK connectTencentWeiboWithAppKey:TencentWeiboAppKey
-                                  appSecret:TencentWeiboAppSecret
+    [ShareSDK connectTencentWeiboWithAppKey:kQQWeiboAppkey
+                                  appSecret:kQQWeiboSeckey
                                 redirectUri:@"http://www.7lk.cn/"
                                    wbApiCls:[WeiboApi class]];
     
     //添加QQ空间应用  注册网址  http://connect.qq.com/intro/login/
-    //    [ShareSDK connectQZoneWithAppKey:QZoneAppId
-    //                           appSecret:QZoneAppKey
-    //                   qqApiInterfaceCls:[QQApiInterface class]
-    //                     tencentOAuthCls:[TencentOAuth class]];
+    [ShareSDK connectQZoneWithAppKey:kQQZoneAppkey
+                           appSecret:kQQZoneSeckey
+                   qqApiInterfaceCls:[QQApiInterface class]
+     
+                     tencentOAuthCls:[TencentOAuth class]];
+    [ShareSDK connectQQWithAppId:kQQconnectAppkey
+                        qqApiCls:[QQApi class]];
     
     // 微信
-//    [ShareSDK connectWeChatWithAppId:WechatAppId
-//                           wechatCls:[WXApi class]];
+    [ShareSDK connectWeChatWithAppId:WechatAppId
+                           wechatCls:[WXApi class]];
     
 }
 
--(void)onShareTo:(NSString*)url contWeixi:(NSString*)contWeixi image:(NSString*)goodsImage complite:(void(^)(NSError *error))complite
+-(void)onShareTo:(NSString*)url content:(NSString*)content contWeixi:(NSString*)contWeixi image:(UIImage*)goodsImage complite:(void(^)(NSError *error))complite
 {
     //actionSheet 列表
     NSArray* shareList = nil;
@@ -110,18 +94,20 @@ static  NSString* QZoneAppKey=@"63176ed6dc115822ce65c119f9dd720d";
         shareList =     [ShareSDK getShareListWithType:
                          ShareTypeWeixiSession,
                          ShareTypeWeixiTimeline,
+                         ShareTypeQQSpace,
                          ShareTypeSinaWeibo,
                          ShareTypeTencentWeibo,
                          nil];
     }else{
         shareList =     [ShareSDK getShareListWithType:
+                         ShareTypeQQSpace,
                          ShareTypeSinaWeibo,
                          ShareTypeTencentWeibo,
                          nil];
     }
     
     //构造界面 输入内容
-    id<ISSShareOptions> shareOptions = [ShareSDK defaultShareOptionsWithTitle:@"内容分享" //分享视图标题
+    id<ISSShareOptions> shareOptions = [ShareSDK defaultShareOptionsWithTitle:@"我的日常" //分享视图标题
                                                               oneKeyShareList:nil //一键分享菜单
                                                                qqButtonHidden:YES //QQ分享按钮是否隐藏
                                                         wxSessionButtonHidden:YES //微信好友分享按钮是否隐藏
@@ -131,26 +117,26 @@ static  NSString* QZoneAppKey=@"63176ed6dc115822ce65c119f9dd720d";
                                                           friendsViewDelegate:nil //好友视图委托
                                                         picViewerViewDelegate:nil];
     
-    NSString* imagePath = goodsImage;
-    UIImage*  thumbImage= [UIImage imageNamed:@"share_detault"];
-    NSString* ShareUrl  = url;
+//    NSString* imagePath = goodsImage;
+//    UIImage*  thumbImage= [UIImage imageNamed:@"share_detault"];
+//    NSString* ShareUrl  = url;
     
     //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"%@",ShareSDKShareContent]
+    id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"%@%@",content,url]
                                        defaultContent:ShareSDKDefaultContent
                                                 image:nil
                                                 title:ShareSDKTitle
-                                                  url:ShareSDKShareUrl
+                                                  url:url
                                           description:[NSString stringWithFormat:@"%@",ShareSDKShareContentDescription]
                                             mediaType:SSPublishContentMediaTypeNews];
     
     //定制微信好友信息
-    // 七乐康 商品图片+商品名称+广告语+商品wap链接
+    // 商品图片+商品名称+广告语+商品wap链接
     [publishContent addWeixinSessionUnitWithType:INHERIT_VALUE
                                          content:contWeixi
-                                           title:@"七乐康"
-                                             url:ShareUrl
-                                      thumbImage:imagePath?[ShareSDK imageWithUrl:imagePath]:[ShareSDK pngImageWithImage:thumbImage]
+                                           title:ShareSDKTitle
+                                             url:url
+                                      thumbImage:[ShareSDK pngImageWithImage:goodsImage]
                                            image:INHERIT_VALUE
                                     musicFileUrl:nil
                                          extInfo:nil
@@ -160,9 +146,9 @@ static  NSString* QZoneAppKey=@"63176ed6dc115822ce65c119f9dd720d";
     //定制微信朋友圈信息
     [publishContent addWeixinTimelineUnitWithType:INHERIT_VALUE
                                           content:contWeixi
-                                            title:@"七乐康"
-                                              url:ShareUrl
-                                       thumbImage:imagePath?[ShareSDK imageWithUrl:imagePath]:[ShareSDK pngImageWithImage:thumbImage]
+                                            title:ShareSDKTitle
+                                              url:url
+                                       thumbImage:[ShareSDK pngImageWithImage:goodsImage]
                                             image:INHERIT_VALUE
                                      musicFileUrl:nil
                                           extInfo:nil

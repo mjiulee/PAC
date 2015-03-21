@@ -16,7 +16,16 @@
 		1815D2D319137DEF00403D29 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815D2D219137DEF00403D29 /* Utils.m */; };
 		1815D2D419137DEF00403D29 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815D2D219137DEF00403D29 /* Utils.m */; };
 		182391451A5C2FBA0054BD47 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182391441A5C2FBA0054BD47 /* ProjectModel.m */; };
-		182391481A5C2FBB0054BD47 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182391471A5C2FBB0054BD47 /* TaskModel.m */; };
+		183BCFC11A8AF1FF00842A59 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 183BCFC01A8AF1FF00842A59 /* TaskModel.m */; };
+		183BCFC21A8AFFC900842A59 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 183BCFC01A8AF1FF00842A59 /* TaskModel.m */; };
+		183BCFC61A8B34E700842A59 /* XPWeeklyViewCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 183BCFC41A8B34E700842A59 /* XPWeeklyViewCtler.m */; };
+		183BCFC71A8B34E700842A59 /* XPWeeklyViewCtler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183BCFC51A8B34E700842A59 /* XPWeeklyViewCtler.xib */; };
+		183BCFC91A8B373700842A59 /* XPWeeklyViewCtler.m in Sources */ = {isa = PBXBuildFile; fileRef = 183BCFC41A8B34E700842A59 /* XPWeeklyViewCtler.m */; };
+		183BCFCA1A8B3A7D00842A59 /* XPWeeklyViewCtler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183BCFC51A8B34E700842A59 /* XPWeeklyViewCtler.xib */; };
+		183BCFCE1A8B3D0F00842A59 /* XPWeeklyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183BCFCC1A8B3D0F00842A59 /* XPWeeklyTableViewCell.m */; };
+		183BCFCF1A8B3D0F00842A59 /* XPWeeklyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183BCFCD1A8B3D0F00842A59 /* XPWeeklyTableViewCell.xib */; };
+		183BCFD01A8B403800842A59 /* XPWeeklyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183BCFCD1A8B3D0F00842A59 /* XPWeeklyTableViewCell.xib */; };
+		183BCFD11A8B424300842A59 /* XPWeeklyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183BCFCC1A8B3D0F00842A59 /* XPWeeklyTableViewCell.m */; };
 		183F39E21A5AB9460005B89E /* XPNewTaskVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183F39E11A5AB9460005B89E /* XPNewTaskVctler.xib */; };
 		183F39E31A5ABE620005B89E /* XPNewTaskVctler.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183F39E11A5AB9460005B89E /* XPNewTaskVctler.xib */; };
 		183F39E81A5ACE110005B89E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183F39E71A5ACE110005B89E /* LaunchScreen.xib */; };
@@ -29,7 +38,8 @@
 		18641E031A495FB2001B979E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18641E011A495E09001B979E /* CoreVideo.framework */; };
 		18641E041A495FCE001B979E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18641DF91A495CDB001B979E /* Accounts.framework */; };
 		18641E051A495FF0001B979E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18641DFB1A495CFA001B979E /* Social.framework */; };
-		1881BCCD1A5CCEEF00924A14 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182391471A5C2FBB0054BD47 /* TaskModel.m */; };
+		187B724D1ABD1E0D00B163CB /* XPTaskemptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187B724C1ABD1E0D00B163CB /* XPTaskemptyView.xib */; };
+		187B724E1ABD3A3800B163CB /* XPTaskemptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187B724C1ABD1E0D00B163CB /* XPTaskemptyView.xib */; };
 		1887867719114DFA00CAB38E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867619114DFA00CAB38E /* QuartzCore.framework */; };
 		1887867919114E1000CAB38E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867819114E1000CAB38E /* libicucore.dylib */; };
 		1887867B19114E2400CAB38E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1887867A19114E2400CAB38E /* libz.1.2.5.dylib */; };
@@ -216,8 +226,15 @@
 		1815D2D219137DEF00403D29 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		182391431A5C2FBA0054BD47 /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
 		182391441A5C2FBA0054BD47 /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
-		182391461A5C2FBB0054BD47 /* TaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
-		182391471A5C2FBB0054BD47 /* TaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
+		183BCFBE1A8AF0F500842A59 /* XPlanModelV1.4.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XPlanModelV1.4.0.xcdatamodel; sourceTree = "<group>"; };
+		183BCFBF1A8AF1FF00842A59 /* TaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
+		183BCFC01A8AF1FF00842A59 /* TaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
+		183BCFC31A8B34E700842A59 /* XPWeeklyViewCtler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPWeeklyViewCtler.h; sourceTree = "<group>"; };
+		183BCFC41A8B34E700842A59 /* XPWeeklyViewCtler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPWeeklyViewCtler.m; sourceTree = "<group>"; };
+		183BCFC51A8B34E700842A59 /* XPWeeklyViewCtler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPWeeklyViewCtler.xib; sourceTree = "<group>"; };
+		183BCFCB1A8B3D0F00842A59 /* XPWeeklyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPWeeklyTableViewCell.h; sourceTree = "<group>"; };
+		183BCFCC1A8B3D0F00842A59 /* XPWeeklyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPWeeklyTableViewCell.m; sourceTree = "<group>"; };
+		183BCFCD1A8B3D0F00842A59 /* XPWeeklyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPWeeklyTableViewCell.xib; sourceTree = "<group>"; };
 		183F39E11A5AB9460005B89E /* XPNewTaskVctler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPNewTaskVctler.xib; sourceTree = "<group>"; };
 		183F39E71A5ACE110005B89E /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		18641DF91A495CDB001B979E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -226,6 +243,7 @@
 		18641DFE1A495D2F001B979E /* ShareUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareUtils.h; sourceTree = "<group>"; };
 		18641E011A495E09001B979E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		187052C21A5C169E0075AD14 /* XPlanModelV1.3.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XPlanModelV1.3.0.xcdatamodel; sourceTree = "<group>"; };
+		187B724C1ABD1E0D00B163CB /* XPTaskemptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XPTaskemptyView.xib; sourceTree = "<group>"; };
 		1887867619114DFA00CAB38E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1887867819114E1000CAB38E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		1887867A19114E2400CAB38E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
@@ -642,8 +660,8 @@
 				436D1ACC18EAC2F50099A690 /* XPHistoryTaskDataHelper.h */,
 				436D1ACD18EAC2F50099A690 /* XPHistoryTaskDataHelper.m */,
 				436D1ACE18EAC2F50099A690 /* XPlanModel.xcdatamodeld */,
-				182391461A5C2FBB0054BD47 /* TaskModel.h */,
-				182391471A5C2FBB0054BD47 /* TaskModel.m */,
+				183BCFBF1A8AF1FF00842A59 /* TaskModel.h */,
+				183BCFC01A8AF1FF00842A59 /* TaskModel.m */,
 				182391431A5C2FBA0054BD47 /* ProjectModel.h */,
 				182391441A5C2FBA0054BD47 /* ProjectModel.m */,
 				436D1AC618EAC2F50099A690 /* XPDataManager.h */,
@@ -672,6 +690,12 @@
 		431DDF9818EAE384000EF684 /* ListVctler */ = {
 			isa = PBXGroup;
 			children = (
+				183BCFC31A8B34E700842A59 /* XPWeeklyViewCtler.h */,
+				183BCFC41A8B34E700842A59 /* XPWeeklyViewCtler.m */,
+				183BCFC51A8B34E700842A59 /* XPWeeklyViewCtler.xib */,
+				183BCFCB1A8B3D0F00842A59 /* XPWeeklyTableViewCell.h */,
+				183BCFCC1A8B3D0F00842A59 /* XPWeeklyTableViewCell.m */,
+				183BCFCD1A8B3D0F00842A59 /* XPWeeklyTableViewCell.xib */,
 				18D710271923B52A000B2FD7 /* XPTaskListByMonthVCtler.h */,
 				18D710281923B52A000B2FD7 /* XPTaskListByMonthVCtler.m */,
 				436D1AC818EAC2F50099A690 /* XPDialyStaticVCtler.h */,
@@ -687,6 +711,7 @@
 				436D1ADE18EAC2F50099A690 /* XPTaskListVCtler.m */,
 				436D1ADF18EAC2F50099A690 /* XPTaskTableViewCell.h */,
 				436D1AE018EAC2F50099A690 /* XPTaskTableViewCell.m */,
+				187B724C1ABD1E0D00B163CB /* XPTaskemptyView.xib */,
 			);
 			name = ListVctler;
 			sourceTree = "<group>";
@@ -1022,6 +1047,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187B724E1ABD3A3800B163CB /* XPTaskemptyView.xib in Resources */,
+				183BCFD01A8B403800842A59 /* XPWeeklyTableViewCell.xib in Resources */,
+				183BCFCA1A8B3A7D00842A59 /* XPWeeklyViewCtler.xib in Resources */,
 				183F39E31A5ABE620005B89E /* XPNewTaskVctler.xib in Resources */,
 				436D194B18EAB3290099A690 /* Images.xcassets in Resources */,
 				436D194318EAB3290099A690 /* InfoPlist.strings in Resources */,
@@ -1056,6 +1084,8 @@
 				437A7CCD18B71BA20088F1AA /* InfoPlist.strings in Resources */,
 				436D1B4618EAC2F50099A690 /* icon80.png in Resources */,
 				180DCED21933936500DC0248 /* XPStartupGuiderVctler.xib in Resources */,
+				183BCFC71A8B34E700842A59 /* XPWeeklyViewCtler.xib in Resources */,
+				187B724D1ABD1E0D00B163CB /* XPTaskemptyView.xib in Resources */,
 				436D1B4818EAC2F50099A690 /* icon120.png in Resources */,
 				189C94BD1A596EF800318F1E /* ShareSDKFlatShareViewUI.bundle in Resources */,
 				436D1B3018EAC2F50099A690 /* XPSettingVctler.xib in Resources */,
@@ -1066,6 +1096,7 @@
 				437A7D0918B74F210088F1AA /* resource in Resources */,
 				183F39E21A5AB9460005B89E /* XPNewTaskVctler.xib in Resources */,
 				189C94AB1A596EF700318F1E /* Resource.bundle in Resources */,
+				183BCFCF1A8B3D0F00842A59 /* XPWeeklyTableViewCell.xib in Resources */,
 				189C94B51A596EF700318F1E /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1148,7 +1179,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1881BCCD1A5CCEEF00924A14 /* TaskModel.m in Sources */,
+				183BCFD11A8B424300842A59 /* XPWeeklyTableViewCell.m in Sources */,
+				183BCFC91A8B373700842A59 /* XPWeeklyViewCtler.m in Sources */,
+				183BCFC21A8AFFC900842A59 /* TaskModel.m in Sources */,
 				436D1B3518EAC2F50099A690 /* XPTaskListVCtler.m in Sources */,
 				436D1B3B18EAC2F50099A690 /* XPUILable.m in Sources */,
 				436D1B0518EAC2F50099A690 /* NSString+DrawHelper.m in Sources */,
@@ -1201,14 +1234,15 @@
 			files = (
 				436D1B3418EAC2F50099A690 /* XPTaskListVCtler.m in Sources */,
 				182391451A5C2FBA0054BD47 /* ProjectModel.m in Sources */,
+				183BCFC11A8AF1FF00842A59 /* TaskModel.m in Sources */,
 				436D1B3A18EAC2F50099A690 /* XPUILable.m in Sources */,
 				436D1B0418EAC2F50099A690 /* NSString+DrawHelper.m in Sources */,
 				436D1B2618EAC2F50099A690 /* XPLeftMenuViewCtler.m in Sources */,
 				436D1B2E18EAC2F50099A690 /* XPSettingVctler.m in Sources */,
-				182391481A5C2FBB0054BD47 /* TaskModel.m in Sources */,
 				436D1B3618EAC2F50099A690 /* XPTaskTableViewCell.m in Sources */,
 				436D1B1618EAC2F50099A690 /* XPBaseTableVCtler.m in Sources */,
 				436D1B0218EAC2F50099A690 /* NSDate+Category.m in Sources */,
+				183BCFCE1A8B3D0F00842A59 /* XPWeeklyTableViewCell.m in Sources */,
 				436D1B2C18EAC2F50099A690 /* XPSegmentedView.m in Sources */,
 				437A7CD318B71BA20088F1AA /* XPAppDelegate.m in Sources */,
 				436D1B0C18EAC2F50099A690 /* UIDevice+Resolution.m in Sources */,
@@ -1218,6 +1252,7 @@
 				436D1B1A18EAC2F50099A690 /* XPCheckBoxTableCell.m in Sources */,
 				436D1B0E18EAC2F50099A690 /* UIImage+XPUIImage.m in Sources */,
 				1815D2D319137DEF00403D29 /* Utils.m in Sources */,
+				183BCFC61A8B34E700842A59 /* XPWeeklyViewCtler.m in Sources */,
 				436D1B2418EAC2F50099A690 /* XPlanModel.xcdatamodeld in Sources */,
 				436D1B2818EAC2F50099A690 /* XPMathHelper.c in Sources */,
 				189C94C91A59729500318F1E /* iLink.m in Sources */,
@@ -1665,11 +1700,12 @@
 		436D1ACE18EAC2F50099A690 /* XPlanModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				183BCFBE1A8AF0F500842A59 /* XPlanModelV1.4.0.xcdatamodel */,
 				187052C21A5C169E0075AD14 /* XPlanModelV1.3.0.xcdatamodel */,
 				18F73C4D192102DE00B30FF5 /* XPlanModelV1.1.0.xcdatamodel */,
 				436D1ACF18EAC2F50099A690 /* XPlanModel.xcdatamodel */,
 			);
-			currentVersion = 187052C21A5C169E0075AD14 /* XPlanModelV1.3.0.xcdatamodel */;
+			currentVersion = 183BCFBE1A8AF0F500842A59 /* XPlanModelV1.4.0.xcdatamodel */;
 			path = XPlanModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

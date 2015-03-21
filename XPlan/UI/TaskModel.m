@@ -2,7 +2,7 @@
 //  TaskModel.m
 //  XPlan
 //
-//  Created by mjlee on 15/1/6.
+//  Created by mjlee on 15/2/11.
 //  Copyright (c) 2015年 mjlee. All rights reserved.
 //
 
@@ -23,8 +23,8 @@
 @dynamic sectionIdMonthly;
 @dynamic status;
 @dynamic type;
+@dynamic sectionIdWeakly;
 @dynamic project;
-
 
 - (NSString *)sectionIdMonthly
 {
@@ -58,6 +58,22 @@
     return tmp;
 }
 
+- (NSString *)sectionIdWeakly{
+    // Create and cache the section identifier on demand.
+    //NSLog(@"%s",__func__);
+    [self willAccessValueForKey:@"sectionIdWeakly"];
+    NSString *tmp = [self primitiveValueForKey:@"sectionIdWeakly"];
+    NSLog(@"%s,tmp=%@",__func__,tmp);
+    [self didAccessValueForKey:@"sectionIdWeakly"];
+    
+    if (!tmp){
+        tmp = [[self dateCreate] formattedStringWithFormat:@"YYYY年"];
+        tmp = [NSString stringWithFormat:@"%@ 第%d周",tmp,[[self dateCreate] week]];
+        [self setPrimitiveValue:tmp forKey:@"sectionIdWeakly"];
+    }
+    return tmp;
+}
+
 - (void)setDateCreate:(NSDate *)dateCreate
 {
     //NSLog(@"%s",__func__);
@@ -69,6 +85,7 @@
     // Set the section identifier to nil, so that it will be recalculated
     // when the sectionIdentifier method is called the next time:
     [self setPrimitiveValue:nil forKey:@"sectionIdDaily"];
+    [self setPrimitiveValue:nil forKey:@"sectionIdWeakly"];
     [self setPrimitiveValue:nil forKey:@"sectionIdMonthly"];
 }
 
@@ -78,6 +95,5 @@
     // If the value of todoDueDate changes, the section identifier may change as well.
     return [NSSet setWithObject:@"dateCreate"];
 }
-
 
 @end

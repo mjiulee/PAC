@@ -15,6 +15,7 @@
 #import "XPAboutMeVCtler.h"
 #import "XPSettingVctler.h"
 #import "XPTaskListByMonthVCtler.h"
+#import "XPWeeklyViewCtler.h"
 #import "iLink.h"
 
 @interface XPLeftMenuViewCtler ()
@@ -55,7 +56,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section==0) {
-        return 2;
+        return 3;
     }
     return 4;
 }
@@ -63,7 +64,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    NSArray  *section1TextArray  = @[@"今日任务",@"历史任务"];
+    NSArray  *section1TextArray  = @[@"今日任务",@"历史任务",@"周报帮手"];
     NSArray  *section2TextArray  = @[@"今日天气",@"提醒设定",@"鼓励一下我吧",@"关于"];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -128,8 +129,11 @@
             [self.viewDeckController setCenterController:rootNav];
         }else if([indexPath section] == 0 && [indexPath row] == 2)
         {
-            XPHistoryListVctler* centervc = [[XPHistoryListVctler alloc] init];
+            /*XPHistoryListVctler* centervc = [[XPHistoryListVctler alloc] init];
             UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:centervc];
+            [self.viewDeckController setCenterController:rootNav];*/
+            XPWeeklyViewCtler* vc = [[XPWeeklyViewCtler alloc] initWithNibName:@"XPWeeklyViewCtler" bundle:nil];
+            UINavigationController* rootNav = [[UINavigationController alloc] initWithRootViewController:vc];
             [self.viewDeckController setCenterController:rootNav];
         }else if([indexPath section] == 1 && [indexPath row] == 0)
         {
